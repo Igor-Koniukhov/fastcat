@@ -1,3 +1,9 @@
+/*css rules to specify families
+
+font-family: 'Dancing Script', cursive;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif;*/
+
 * {
     padding: 0;
     margin: 0;
@@ -12,11 +18,20 @@ ul {
 
 p {
     font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h2, h3, h4, h5, h6{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #333333;
 }
 
 a {
     text-decoration: none;
     font-size: 14px;
+    font-family: 'Roboto Light', sans-serif;
+    font-weight: 200;
 
 }
 
@@ -27,6 +42,10 @@ li {
 body, html {
     height: 100%;
 
+}
+.dancing{
+    font-family: 'Dancing Script', cursive;
+    font-size: 100px;
 }
 
 .main-wrapper-content {
