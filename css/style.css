@@ -47,6 +47,10 @@ body, html {
     font-family: 'Dancing Script', cursive;
     font-size: 100px;
 }
+.dancing-sm{
+    font-family: 'Dancing Script', cursive;
+    font-size: 50px;
+}
 
 .main-wrapper-content {
     height: 100%;
