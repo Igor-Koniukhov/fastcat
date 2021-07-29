@@ -258,8 +258,8 @@ body, html {
 
 }
 .margin-bottom-hidden{
-    padding-bottom: 30px;
-    margin-bottom: -30px;
+    padding-bottom: 15px;
+    margin-bottom: -40px;
 }
 .form-control-custom-search{
     max-width: 200px;
