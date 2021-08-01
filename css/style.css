@@ -21,7 +21,7 @@ p {
     font-family: 'Roboto', sans-serif;
 }
 
-h2, h3, h4, h5, h6{
+h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     color: #333333;
@@ -44,14 +44,23 @@ body, html {
 
 }
 
+<<<<<<< HEAD
 
 .dancing{
+=======
+.dancing {
+>>>>>>> feature/HEADFIXFEATURE
     font-family: 'Dancing Script', cursive;
     font-size: 100px;
 }
 .dancing-sm{
     font-family: 'Dancing Script', cursive;
     font-size: 50px;
+}
+
+.dancing-sm {
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
 }
 
 .main-wrapper-content {
@@ -63,14 +72,16 @@ body, html {
     height: 50px;
     opacity: 0.9;
 }
+
 .cart {
     width: 40px;
     height: 40px;
     padding: 2px;
 
 }
-.cart:hover{
-    background-color: rgba(255,255,255, 0.3);
+
+.cart:hover {
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
 }
 
@@ -106,7 +117,8 @@ body, html {
 
 
 }
-.footer-low-writing{
+
+.footer-low-writing {
     width: 100%;
     text-align: center;
     font-size: 11px;
@@ -116,7 +128,7 @@ body, html {
 }
 
 
-.section-decoration{
+.section-decoration {
     display: block;
     width: 100%;
     margin-bottom: -5px;
@@ -128,18 +140,24 @@ body, html {
     top: 0;
     bottom: 0;
 }
-.section-decoration-120{
+
+.section-decoration-120 {
     height: 120px;
-    margin-top: -5px;
+    /*margin-top: -5px;*/
+
 }
-.section-decoration-50{
+
+.section-decoration-50 {
     height: 50px;
-    margin-top: -5px;
+    /*margin-top: -5px;*/
+
 }
-.underline-word{
+
+.underline-word {
     position: relative;
 }
-.underline-word:before{
+
+.underline-word:before {
     content: "";
     display: block;
     position: absolute;
@@ -151,43 +169,46 @@ body, html {
     background-repeat: no-repeat;
 
 }
-.go-in-rocket{
+
+.go-in-rocket {
     position: relative;
     height: 100%;
 
 
 }
-.go-in-rocket:before{
+
+.go-in-rocket:before {
     background-image: url(../img/go-in-rocket.png);
     background-position: center;
-    background-size:contain;
+    background-size: contain;
     content: "";
     display: block;
     position: absolute;
     width: 130px;
     height: 65px;
     background-repeat: no-repeat;
-    left:40px;
+    right: 270px;
     top: 0px;
-    z-index: 1;
+    z-index: -1;
 
 }
-.burger-go-background{
+
+.burger-go-background {
     position: relative;
     z-index: 2;
 }
 
-.burger-go-background:before{
+.burger-go-background:before {
     background-image: url(../img/burger-go.png);
     background-position: center;
-    background-size:contain;
+    background-size: contain;
     content: "";
     display: block;
     position: absolute;
     width: 100px;
     height: 100px;
     background-repeat: no-repeat;
-    right:0;
+    right: 0;
     bottom: -24px;
     z-index: -2;
 }
@@ -201,18 +222,22 @@ body, html {
     width: 100%;
     margin-bottom: 30px;
 }
+
 .restaurant-icon {
     border-radius: 50%;
 
 }
-.wrapper-content{
+
+.wrapper-content {
     position: relative;
     width: 100%;
 }
-.wrapper-content-yellow{
+
+.wrapper-content-yellow {
     background-color: #ffc107;
 }
-.cat-on-delivery{
+
+.cat-on-delivery {
     display: block;
     max-width: 300px;
     width: 100%;
@@ -253,9 +278,10 @@ body, html {
     border: 4px solid rgba(255, 193, 7, 0.9);
     transition: 0.3s ease-in-out;
 }
+
 .navbar-dark .navbar-toggler {
-    color: rgba(255,255,255,.55);
-    border-color: rgba(3,3,3,.1);
+    color: rgba(255, 255, 255, .55);
+    border-color: rgba(3, 3, 3, .1);
 }
 
 .roll-up {
@@ -269,24 +295,28 @@ body, html {
 
 
 }
-.roll-up-button{
+
+.roll-up-button {
     width: 40px;
     height: 80px;
     opacity: 0.9;
 
 }
-.roll-up:hover {
-     cursor: pointer;
- }
 
-.background-yellow{
+.roll-up:hover {
+    cursor: pointer;
+}
+
+.background-yellow {
 
 }
-.margin-bottom-hidden{
+
+.margin-bottom-hidden {
     padding-bottom: 15px;
     margin-bottom: -40px;
 }
-.form-control-custom-search{
+
+.form-control-custom-search {
     max-width: 200px;
     width: 100%;
     padding: 0 15px;
@@ -298,7 +328,20 @@ body, html {
 
 }
 
-.navbar-toggler{
+.navbar-toggler {
     margin-left: auto;
     margin-right: 15px;
+}
+
+.header-fixed {
+    width: 100%;
+    position: fixed;
+    display: block;
+    top: 0;
+    z-index: 50;
+}
+
+.header-support {
+    display: none;
+    background-color: red;
 }
