@@ -1,8 +1,6 @@
-<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 68" width="1400" height="68">
-	<title>header-wave-svg</title>
-	<style>
-		tspan { white-space:pre }
-		.shp0 { fill: #ffc107 } 
-	</style>
-	<path id="Layer" class="shp0" d="M1280 0.73L0 0.73L0 26.68C432.06 88.44 865.7 81.34 1400 0.73L1280 0.73Z" />
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 68" width="1400"
+     height="68" fill="#ffc107" stroke="#ffc107">
+
+    <path id="Layer" stroke="#ffc107" class="header-wave" d="M1280 0.73L0 0.73L0 26.68C432.06 88.44 865.7 81.34 1400 0.73L1280 0.73Z"/>
+
 </svg>
