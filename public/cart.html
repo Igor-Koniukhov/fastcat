@@ -11,7 +11,8 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Open+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Open+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1.1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -33,8 +34,8 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-yellow-custom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html"><img class="logo-cat" src="img/fast-cat.png"
-                                                            alt="fast cat - symbol of fast catering"></a>
+            <a class="navbar-brand" href="/public/index.htmlex.html"><img class="logo-cat" src="img/fast-cat.png"
+                                                                          alt="fast cat - symbol of fast catering"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -43,10 +44,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/public/index.htmlex.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about.html">About</a>
+                        <a class="nav-link" href="/public/about.htmlut.html">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -55,12 +56,12 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Log in</a></li>
-                            <li><a class="dropdown-item" href="/registration.html">Registration</a></li>
+                            <li><a class="dropdown-item" href="/public/registration.htmlon.html">Registration</a></li>
 
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contacts.html">Contacts</a>
+                        <a class="nav-link" href="/public/contacts.htmlts.html">Contacts</a>
                     </li>
 
                 </ul>
@@ -73,8 +74,8 @@
                 </form>
 
             </div>
-            <a class="navbar-brand" href="/cart.html"><img class="cart" src="img/trolley.png"
-                                                           alt="fast cat - symbol of fast catering"></a>
+            <a class="navbar-brand" href="/public/cart.html"><img class="cart" src="img/trolley.png"
+                                                                  alt="fast cat - symbol of fast catering"></a>
         </div>
 
     </nav>
@@ -91,47 +92,57 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <h1 class="text-center dancing-sm burger-go-background"><span style="color: red;">Conta</span><span
-                                style="color: #ffc107">cts</span></h1>
+                        <h1 class="text-center burger-go-background dancing-sm"><span style="color: red;">Confirm </span><span
+                                style="color: #ffc107">order</span></h1>
 
-                        <div>
-                            <address>
-                                <strong>Twitter, Inc.</strong><br>
-                                1355 Market St, Suite 900<br>
-                                San Francisco, CA 94103<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                            </address>
-                            <address>
-                                <strong>Full Name</strong><br>
-                                <a href="mailto:first.last@example.com">first.last@example.com</a>
-                            </address>
-                        </div>
-
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="inputPassword4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress2" class="form-label">Address 2</label>
+                                <input type="text" class="form-control" id="inputAddress2"
+                                       placeholder="Apartment, studio, or floor">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCity" class="form-label">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">State</label>
+                                <select id="inputState" class="form-select">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="inputZip" class="form-label">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Check me out
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-5">
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="second-section  margin-bottom-hidden">
-            <div class="section-decoration section-decoration-120"
-                 style="background-image: url(img/section-decor/divider2_desktop.svg);"></div>
-            <div class="wrapper-content wrapper-content-yellow margin-bottom-hidden">
-            <div class="container">
-                <h2 class="text-center"><span class="background-yellow">Contact with us - write a message:</span></h2>
-                <div class="row justify-content-center">
-                    <div class="col-md-10 col-sm-12 ">
-                        <div class="mb-3 col-md-10">
-                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                   placeholder="name@example.com">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
             </div>
         </section>
     </div>
