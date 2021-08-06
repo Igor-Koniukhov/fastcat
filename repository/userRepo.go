@@ -14,6 +14,7 @@ var (
 	err        error
 	idSequence int32
 	DataUser   []*model.User
+
 )
 
 type UserRepositoryI interface {
@@ -23,6 +24,7 @@ type UserRepositoryI interface {
 	Delete(id int) error
 	Edit(u *model.User) *model.User
 }
+
 
 type UserFileRepository struct {
 	idMutex *sync.Mutex
@@ -36,6 +38,8 @@ func NewUserFileRepository() *UserFileRepository {
 
 func (ufr UserFileRepository) Create(user *model.User) (*model.User, error) {
 	user.ID = ufr.GetNextID()
+
+
 	err := helpers.CreateModel("users", user)
 	if err != nil {
 		return nil, err
@@ -68,7 +72,22 @@ func (ufr UserFileRepository) Delete(id int32) (*model.User, error) {
 	return v, err
 }
 
-func (ufr UserFileRepository) Edit(u2 *model.User) *model.User {
+func (ufr UserFileRepository) Edit(id int32, u2 *model.User) *model.User {
+	var v *model.User
+	for _, v := range DataUser {
+		if v.ID == id {
+			v.ID = u2.ID
+			v.Name = u2.Name
+			v.Email = u2.Email
+			v.PhoneNumber = u2.PhoneNumber
+			v.Password = u2.Password
+			v.Status = u2.Status
+
+			return v
+		}
+	}
+	return v
+
 	return u2
 }
 

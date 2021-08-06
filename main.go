@@ -6,18 +6,24 @@ import (
 	r "github.com/igor-koniukhov/fastcat/repository"
 )
 
+
+
 func main() {
+	userRepository := r.NewUserFileRepository()
+
 	u := model.User{
 		Name:     "Name",
 		Email:    "Name@gmail.com",
+		PhoneNumber: "555 555 555",
 		Password: "password",
 		Status:   "created",
 	}
 	//u2 struct for imitation changing file
 	u2 := model.User{
 		ID:       34,
-		Name:     "Name",
-		Email:    "Name@gmail.com",
+		Name:     "Arnold",
+		Email:    "arni@gmail.com",
+		PhoneNumber: "777 555 555",
 		Password: "password",
 		Status:   "created",
 	}
@@ -25,7 +31,7 @@ func main() {
 	email := "igor@gmail.com"
 	var id int32 = 20
 
-	userRepository := r.NewUserFileRepository()
+
 	storedUser, err := userRepository.Create(&u)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -33,7 +39,7 @@ func main() {
 	}
 	printEmail := userRepository.Get(&email)
 	allUser := userRepository.GetAll()
-	edit := userRepository.Edit(&u2)
+	edit := userRepository.Edit(id, &u2)
 	delete, err := userRepository.Delete(id)
 	r.CheckErr(err)
 
