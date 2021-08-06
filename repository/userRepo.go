@@ -21,8 +21,8 @@ type UserRepositoryI interface {
 	Create(u *model.User) (*model.User, error)
 	Get(email *string) *model.User
 	GetAll() []*model.User
-	Delete(id int) error
-	Edit(u *model.User) *model.User
+	Delete(id int32) (*model.User, error)
+	Edit(id int32, u *model.User) *model.User
 }
 
 
@@ -64,9 +64,10 @@ func (ufr UserFileRepository) GetAll() []*model.User {
 func (ufr UserFileRepository) Delete(id int32) (*model.User, error) {
 	var v *model.User
 	for _, v := range DataUser {
+
 		if v.ID == id {
 			v.Status = "deleted"
-			return v, nil
+			return v, err
 		}
 	}
 	return v, err
@@ -87,8 +88,6 @@ func (ufr UserFileRepository) Edit(id int32, u2 *model.User) *model.User {
 		}
 	}
 	return v
-
-	return u2
 }
 
 func (ufr *UserFileRepository) GetNextID() int32 {
