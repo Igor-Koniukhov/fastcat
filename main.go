@@ -13,6 +13,7 @@ func main() {
 		Password: "password",
 		Status:   "created",
 	}
+	//u2 struct for imitation changing file
 	u2 := model.User{
 		ID:       34,
 		Name:     "Name",
@@ -20,6 +21,7 @@ func main() {
 		Password: "password",
 		Status:   "created",
 	}
+	// email, id - var's for search and delete elements of file
 	email := "igor@gmail.com"
 	var id int32 = 20
 
@@ -31,9 +33,10 @@ func main() {
 	}
 	printEmail := userRepository.Get(&email)
 	allUser := userRepository.GetAll()
+	edit := userRepository.Edit(&u2)
 	delete, err := userRepository.Delete(id)
 	r.CheckErr(err)
-	edit := userRepository.Edit(&u2)
+
 
 	for _, data := range allUser {
 		fmt.Println(*data, "this is from GetAll")

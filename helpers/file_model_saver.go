@@ -7,8 +7,6 @@ import (
 	"os"
 )
 
-
-
 func CreateModel(modelName string, v interface{}) error {
 	bytes, err := json.MarshalIndent(v, "", "   ")
 	_ = checkReturnError(err)
@@ -16,6 +14,7 @@ func CreateModel(modelName string, v interface{}) error {
 	_ = checkReturnError(err)
 	defer file.Close()
 
+	//chunk of code for json write build structure
 	fstat, err := file.Stat()
 	_ = checkReturnError(err)
 	fSize := fstat.Size()
@@ -33,7 +32,6 @@ func CreateModel(modelName string, v interface{}) error {
 		_, err = file.WriteAt(bytes, fSize+1)
 		_ = checkReturnError(err)
 	}
-
 	return err
 }
 
