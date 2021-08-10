@@ -3,7 +3,7 @@ package repository
 import (
 	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/helpers"
-	"github.com/igor-koniukhov/fastcat/model"
+	"github.com/igor-koniukhov/fastcat/internal/model"
 	"io"
 	"log"
 	"os"
@@ -17,13 +17,38 @@ var (
 
 )
 
-type UserRepositoryI interface {
+type UserRepository interface {
 	Create(u *model.User) (*model.User, error)
 	Get(email *string) *model.User
 	GetAll() []*model.User
 	Delete(id int32) (*model.User, error)
 	Edit(id int32, u *model.User) *model.User
 }
+
+type UserDBRepository struct {
+
+}
+
+func (u2 UserDBRepository) Create(u *model.User) (*model.User, error) {
+	panic("implement me")
+}
+
+func (u2 UserDBRepository) Get(email *string) *model.User {
+	panic("implement me")
+}
+
+func (u2 UserDBRepository) GetAll() []*model.User {
+	panic("implement me")
+}
+
+func (u2 UserDBRepository) Delete(id int32) (*model.User, error) {
+	panic("implement me")
+}
+
+func (u2 UserDBRepository) Edit(id int32, u *model.User) *model.User {
+	panic("implement me")
+}
+
 
 
 type UserFileRepository struct {

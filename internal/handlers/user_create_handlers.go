@@ -2,15 +2,19 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/igor-koniukhov/fastcat/model"
-	"github.com/igor-koniukhov/fastcat/repository"
+	"github.com/igor-koniukhov/fastcat/internal/model"
+	"github.com/igor-koniukhov/fastcat/internal/repository"
 )
 
-type UserCreateHandler struct {
-	UserRepository repository.UserRepositoryI
+type UserHandler struct {
+	UserRepository repository.UserRepository
 }
 
-func (uch UserCreateHandler) Handle() error {
+func NewUserHandler(userRepository repository.UserRepository) *UserHandler {
+	return &UserHandler{UserRepository: userRepository}
+}
+
+func (uch UserHandler) Handle() error {
 	u := model.User{
 		Name:        "Name",
 		Email:       "Name@gmail.com",
