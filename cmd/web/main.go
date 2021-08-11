@@ -1,17 +1,18 @@
 package main
 
 import (
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/handlers"
 	r "github.com/igor-koniukhov/fastcat/internal/repository"
 	"log"
 	"net/http"
 )
 
-
+var app config.AppConfig
 
 func main() {
 
-	userFileRepository:=  r.NewUserFileRepository()
+	userFileRepository:=  r.NewUserRepository(&app)
 	userCreateHandler := handlers.UserHandler{
 		UserRepository: userFileRepository,
 	}

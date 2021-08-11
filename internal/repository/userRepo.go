@@ -3,6 +3,7 @@ package repository
 import (
 	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/helpers"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"io"
 	"log"
@@ -51,17 +52,19 @@ func (u2 UserDBRepository) Edit(id int32, u *model.User) *model.User {
 
 
 
-type UserFileRepository struct {
+type Repository struct {
+	App *config.AppConfig
 	idMutex *sync.Mutex
 }
 
-func NewUserFileRepository() *UserFileRepository {
-	return &UserFileRepository{
+func NewUserRepository(a *config.AppConfig) *Repository {
+	return &Repository{
+		App : a,
 		idMutex: &sync.Mutex{},
 	}
 }
 
-func (ufr UserFileRepository) Create(user *model.User) (*model.User, error) {
+func (ufr Repository) Create(user *model.User) (*model.User, error) {
 	user.ID = ufr.GetNextID()
 
 
@@ -72,7 +75,7 @@ func (ufr UserFileRepository) Create(user *model.User) (*model.User, error) {
 	return user, nil
 }
 
-func (ufr UserFileRepository) Get(email *string) *model.User {
+func (ufr Repository) Get(email *string) *model.User {
 	var v *model.User
 	for _, v := range DataUser {
 		if v.Email == *email {
@@ -82,11 +85,11 @@ func (ufr UserFileRepository) Get(email *string) *model.User {
 	return v
 }
 
-func (ufr UserFileRepository) GetAll() []*model.User {
+func (ufr Repository) GetAll() []*model.User {
 	return DataUser
 }
 
-func (ufr UserFileRepository) Delete(id int32) (*model.User, error) {
+func (ufr Repository) Delete(id int32) (*model.User, error) {
 	var v *model.User
 	for _, v := range DataUser {
 
@@ -98,7 +101,7 @@ func (ufr UserFileRepository) Delete(id int32) (*model.User, error) {
 	return v, err
 }
 
-func (ufr UserFileRepository) Edit(id int32, u2 *model.User) *model.User {
+func (ufr Repository) Edit(id int32, u2 *model.User) *model.User {
 	var v *model.User
 	for _, v := range DataUser {
 		if v.ID == id {
@@ -115,7 +118,7 @@ func (ufr UserFileRepository) Edit(id int32, u2 *model.User) *model.User {
 	return v
 }
 
-func (ufr *UserFileRepository) GetNextID() int32 {
+func (ufr *Repository) GetNextID() int32 {
 	fl, err := os.OpenFile("./datastore/users.json", os.O_RDWR, 0600)
 	CheckErr(err)
 	defer fl.Close()

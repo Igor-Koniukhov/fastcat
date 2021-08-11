@@ -218,9 +218,18 @@ body, html {
     width: 100%;
     margin-bottom: 30px;
 }
+.direction-col_square{
+    border-radius: 5px;
+    max-width: unset;
+}
 
 .restaurant-icon {
     border-radius: 50%;
+
+}
+.restaurant-icon_square {
+
+    border-radius: 5px;
 
 }
 
@@ -264,6 +273,11 @@ body, html {
     bottom: 0;
     z-index: 10;
     transition: 0.3s ease-in-out;
+}
+.icon-reference_square {
+
+    border-radius: 5px;
+
 }
 
 .icon-reference:hover {
