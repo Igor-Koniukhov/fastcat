@@ -355,3 +355,9 @@ body, html {
     display: none;
     background-color: red;
 }
+.btn-custom{
+    max-width: 35px;
+    width: 100%;
+    margin: 1px;
+    padding: 0 12px;
+}
