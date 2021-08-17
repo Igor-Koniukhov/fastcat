@@ -48,10 +48,14 @@ const deleteFunction = id => {
 
 
 
-let quantity = document.getElementById('quantity')
-let productName = document.getElementById('product')
-let productPrice = document.getElementById('price')
+
 const renderCart = (id) => {
+    console.log(cart.indexOf())
+    let quantity = document.getElementsByClassName('quantity')
+    console.log(quantity[id])
+    let productName = document.getElementsByClassName('product')
+    let productPrice = document.getElementsByClassName('price')
+
     quantity.value = cart[id]['count'];
     productName.value = cart[id]['name'];
     productPrice.value = cart[id]['price'] * cart[id]['count'];
