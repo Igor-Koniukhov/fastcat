@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Open+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1.1">
+    <link rel="stylesheet" href="css/modal-log-in.css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -56,7 +57,7 @@
                             Get started
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Log in</a></li>
+                            <li><a class="dropdown-item log-in" href="#">Log in</a></li>
                             <li><a class="dropdown-item" href="/registration.html">Registration</a></li>
 
                         </ul>
@@ -162,6 +163,21 @@
     <div class="wrapper-roll-up roll-up">
         <img class="roll-up-button" src="img/rocket-2-go.png" alt="roll-up">
     </div>
+    <div class="modals">
+        <div class="modal-custom">
+            <button class="mod-btn"></button>
+            <button class="mobile-close" data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false"></button>
+            <form class="modal__form form">
+                <label for="email_login">Email:</label>
+                <input type="email" class="form__input" id="email_login" name="email_login" placeholder="your@email.com">
+
+                <label for="pass_login">Password</label>
+                <input type="tel" class="form__input" id="pass_login" name="pass_login" placeholder="password">
+
+                <button class="form__btn button-custom">Log-in</button>
+            </form>
+        </div>
+    </div>
 </main>
 <footer>
     <section class="section-decoration section-decoration-120"
@@ -214,5 +230,7 @@
     </div>
 </footer>
 <script src="js/script.js?v=1.1"></script>
+<script src="js/swiped-events.min.js"></script>
+<script src="js/modal-log-in.js"></script>
 </body>
 </html>
