@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
@@ -10,19 +11,19 @@ import (
 )
 
 type ControllerInterface interface {
-	Create(u *model.User) http.HandlerFunc
-	Get(email *string) http.HandlerFunc
-	GetAll() http.HandlerFunc
-	Delete(id int) http.HandlerFunc
-	Update(id int, u *model.User) http.HandlerFunc
-
+	Create(u *model.User, db *sql.DB) http.HandlerFunc
+	Get(email *string, db *sql.DB) http.HandlerFunc
+	GetAll(db *sql.DB) http.HandlerFunc
+	Delete(id int, db *sql.DB) http.HandlerFunc
+	Update(id int, u *model.User, db *sql.DB) http.HandlerFunc
 }
 
 type Controllers struct {
-	App     *config.AppConfig
-
+	App *config.AppConfig
 }
-const TableUser ="user"
+
+const TableUser = "user"
+
 var user model.User
 
 func (c Controllers) Create(u *model.User, db *sql.DB) http.HandlerFunc {
@@ -36,65 +37,84 @@ func (c Controllers) Create(u *model.User, db *sql.DB) http.HandlerFunc {
 		id, err := res.LastInsertId()
 		CheckErr(err)
 		fmt.Println(id)
-
 		fmt.Fprintf(w, u.Name, "this user name")
 	}
 }
 
-func (c Controllers) Get(email *string) http.HandlerFunc {
+func (c Controllers) Get(email *string, db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var user model.User
 		sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email=?", TableUser)
-		err := c.App.DB.QueryRow(sqlStmt, *email).Scan(&user.ID, &user.Name, &user.Email, &user.PhoneNumber, &user.Password, &user.Status)
+		err := db.QueryRow(sqlStmt, *email).Scan(&user.ID, &user.Name, &user.Email, &user.PhoneNumber, &user.Password, &user.Status)
 		CheckErr(err)
 		fmt.Println(user.Email)
 	}
 }
 
-func (c Controllers) GetAll() http.HandlerFunc {
+func (c Controllers) GetAll(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var users []model.User
-		sqlStmt := fmt.Sprintf("SELECT * FROM %s", TableUser)
-		results, err := c.App.DB.Query(sqlStmt)
-		CheckErr(err)
-		for results.Next() {
-			err = results.Scan(
-				&user.ID,
-				&user.Name,
-				&user.Email,
-				&user.PhoneNumber,
-				&user.Password,
-				&user.Status)
+		switch r.Method {
+		case "GET":
+			sqlStmt := fmt.Sprintf("SELECT * FROM %s", TableUser)
+			results, err := db.Query(sqlStmt)
 			CheckErr(err)
-			users = append(users, user)
+			for results.Next() {
+				err = results.Scan(
+					&user.ID,
+					&user.Name,
+					&user.Email,
+					&user.PhoneNumber,
+					&user.Password,
+					&user.Status)
+				CheckErr(err)
+				users = append(users, user)
+			}
+			json.NewEncoder(w).Encode(&users)
+		default:
+			http.Error(w, "Only GET method is allowed", http.StatusMethodNotAllowed)
+
 		}
 	}
 }
 
-func (c Controllers) Delete(id int) http.HandlerFunc {
+func (c Controllers) Delete(id int, db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", TableUser)
-		_, err := c.App.DB.Exec(sqlStmt, id)
-		CheckErr(err)
+		switch r.Method {
+		case "DELETE":
+			sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", TableUser)
+			_, err := db.Exec(sqlStmt, id)
+			CheckErr(err)
+			fmt.Fprintf(w, " user with "+string(id)+" deleted")
+		default:
+			http.Error(w, "Only DELETE method is allowed", http.StatusMethodNotAllowed)
+		}
 	}
 }
 
-func (c Controllers) Update(id int, u *model.User) http.HandlerFunc {
+func (c Controllers) Update(id int, u *model.User, db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		sqlStmt := fmt.Sprintf("UPDATE %s SET name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", TableUser, id)
-		stmt, err := c.App.DB.Prepare(sqlStmt)
-		CheckErr(err)
+		json.NewDecoder(r.Body).Decode(&u)
+		switch r.Method {
+		case "PUT":
+			sqlStmt := fmt.Sprintf("UPDATE %s SET name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", TableUser, id)
+			stmt, err := db.Prepare(sqlStmt)
+			CheckErr(err)
 
-		_, err = stmt.Exec(
-			u.Name,
-			u.Email,
-			u.PhoneNumber,
-			u.Password,
-			u.Status)
-		CheckErr(err)
+			_, err = stmt.Exec(
+				u.Name,
+				u.Email,
+				u.PhoneNumber,
+				u.Password,
+				u.Status)
+			CheckErr(err)
+			json.NewEncoder(w).Encode(&u)
+		default:
+
+			http.Error(w, "Only UPDATE method is allowed", http.StatusMethodNotAllowed)
+		}
 	}
 }
-
 
 func CheckErr(err error) {
 	if err != nil {
