@@ -14,7 +14,9 @@ func NewUserHandler(userRepository repository.UserRepository) *UserHandler {
 	return &UserHandler{UserRepository: userRepository}
 }
 
-func (uch UserHandler) Handle() error {
+func (uch UserHandler) MyHandle() error {
+
+
 	u := model.User{
 		Name:        "Name",
 		Email:       "Name@gmail.com",
@@ -42,7 +44,7 @@ func (uch UserHandler) Handle() error {
 
 	printEmail := uch.UserRepository.Get(&email)
 	allUser := uch.UserRepository.GetAll()
-	edit := uch.UserRepository.Edit(id, &u2)
+	edit := uch.UserRepository.Update(id, &u2)
 	del, err := uch.UserRepository.Delete(id)
 	repository.CheckErr(err)
 

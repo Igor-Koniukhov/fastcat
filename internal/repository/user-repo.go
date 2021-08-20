@@ -15,7 +15,6 @@ var (
 	err        error
 	idSequence int32
 	DataUser   []*model.User
-
 )
 
 type UserRepository interface {
@@ -23,14 +22,17 @@ type UserRepository interface {
 	Get(email *string) *model.User
 	GetAll() []*model.User
 	Delete(id int32) (*model.User, error)
-	Edit(id int32, u *model.User) *model.User
+	Update(id int32, u *model.User) *model.User
 }
 
 type UserDBRepository struct {
+	App *config.AppConfig
 
 }
 
 func (u2 UserDBRepository) Create(u *model.User) (*model.User, error) {
+
+
 	panic("implement me")
 }
 
@@ -46,7 +48,7 @@ func (u2 UserDBRepository) Delete(id int32) (*model.User, error) {
 	panic("implement me")
 }
 
-func (u2 UserDBRepository) Edit(id int32, u *model.User) *model.User {
+func (u2 UserDBRepository) Update(id int32, u *model.User) *model.User {
 	panic("implement me")
 }
 
@@ -55,6 +57,7 @@ func (u2 UserDBRepository) Edit(id int32, u *model.User) *model.User {
 type Repository struct {
 	App *config.AppConfig
 	idMutex *sync.Mutex
+
 }
 
 func NewUserRepository(a *config.AppConfig) *Repository {
@@ -101,7 +104,7 @@ func (ufr Repository) Delete(id int32) (*model.User, error) {
 	return v, err
 }
 
-func (ufr Repository) Edit(id int32, u2 *model.User) *model.User {
+func (ufr Repository) Update(id int32, u2 *model.User) *model.User {
 	var v *model.User
 	for _, v := range DataUser {
 		if v.ID == id {
