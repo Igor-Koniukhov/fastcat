@@ -1,137 +1,109 @@
 package repository
 
+/*
 import (
-	"encoding/json"
-	"github.com/igor-koniukhov/fastcat/helpers"
+	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	"io"
 	"log"
-	"os"
-	"sync"
 )
 
-var (
-	err        error
-	idSequence int32
-	DataUser   []*model.User
-)
-
-type UserRepository interface {
+type MethodRepositoryI interface {
 	Create(u *model.User) (*model.User, error)
 	Get(email *string) *model.User
-	GetAll() []*model.User
-	Delete(id int32) (*model.User, error)
-	Update(id int32, u *model.User) *model.User
-}
-
-type UserDBRepository struct {
-	App *config.AppConfig
+	GetAll() *[]model.User
+	Delete(id int) (*model.User, error)
+	Update(id int, u *model.User) *model.User
 
 }
 
-func (u2 UserDBRepository) Create(u *model.User) (*model.User, error) {
-
-
-	panic("implement me")
-}
-
-func (u2 UserDBRepository) Get(email *string) *model.User {
-	panic("implement me")
-}
-
-func (u2 UserDBRepository) GetAll() []*model.User {
-	panic("implement me")
-}
-
-func (u2 UserDBRepository) Delete(id int32) (*model.User, error) {
-	panic("implement me")
-}
-
-func (u2 UserDBRepository) Update(id int32, u *model.User) *model.User {
-	panic("implement me")
-}
-
-
-
-type Repository struct {
-	App *config.AppConfig
-	idMutex *sync.Mutex
+type MethodRepo struct {
+	App     *config.AppConfig
 
 }
 
-func NewUserRepository(a *config.AppConfig) *Repository {
-	return &Repository{
-		App : a,
-		idMutex: &sync.Mutex{},
+func NewUserDBRepository(a *config.AppConfig) *MethodRepo {
+	return &MethodRepo{
+		App:     a,
+
 	}
 }
 
-func (ufr Repository) Create(user *model.User) (*model.User, error) {
-	user.ID = ufr.GetNextID()
+const TableUser = "user"
 
+func (usr MethodRepo) Create(u *model.User) (*model.User, error) {
 
-	err := helpers.CreateModel("users", user)
-	if err != nil {
-		return nil, err
-	}
-	return user, nil
-}
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", TableUser)
 
-func (ufr Repository) Get(email *string) *model.User {
-	var v *model.User
-	for _, v := range DataUser {
-		if v.Email == *email {
-			return v
-		}
-	}
-	return v
-}
-
-func (ufr Repository) GetAll() []*model.User {
-	return DataUser
-}
-
-func (ufr Repository) Delete(id int32) (*model.User, error) {
-	var v *model.User
-	for _, v := range DataUser {
-
-		if v.ID == id {
-			v.Status = "deleted"
-			return v, err
-		}
-	}
-	return v, err
-}
-
-func (ufr Repository) Update(id int32, u2 *model.User) *model.User {
-	var v *model.User
-	for _, v := range DataUser {
-		if v.ID == id {
-			v.ID = u2.ID
-			v.Name = u2.Name
-			v.Email = u2.Email
-			v.PhoneNumber = u2.PhoneNumber
-			v.Password = u2.Password
-			v.Status = u2.Status
-
-			return v
-		}
-	}
-	return v
-}
-
-func (ufr *Repository) GetNextID() int32 {
-	fl, err := os.OpenFile("./datastore/users.json", os.O_RDWR, 0600)
+	p, err := usr.App.DB.Prepare(sqlStmt)
 	CheckErr(err)
-	defer fl.Close()
-	data, err := io.ReadAll(fl)
-	err = json.Unmarshal(data, &DataUser)
+	res, err := p.Exec(u.Name, u.Email, u.PhoneNumber, u.Password, u.Status)
 	CheckErr(err)
-	idSequence = int32(len(DataUser) - 1)
-	ufr.idMutex.Lock()
-	idSequence += 1
-	return idSequence
+	id, err := res.LastInsertId()
+	CheckErr(err)
+	fmt.Println(id)
+
+	return u, err
+}
+
+func (usr MethodRepo) Get(email *string) *model.User {
+	var user model.User
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email=?", TableUser)
+	err := usr.App.DB.QueryRow(sqlStmt, *email).Scan(&user.ID, &user.Name, &user.Email, &user.PhoneNumber, &user.Password, &user.Status)
+	CheckErr(err)
+	fmt.Println(user.Email)
+	return &user
+
+}
+
+var user model.User
+
+func (usr MethodRepo) GetAll() *[]model.User {
+	var users []model.User
+
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s", TableUser)
+	results, err := usr.App.DB.Query(sqlStmt)
+	CheckErr(err)
+	for results.Next() {
+		err = results.Scan(
+			&user.ID,
+			&user.Name,
+			&user.Email,
+			&user.PhoneNumber,
+			&user.Password,
+			&user.Status)
+		CheckErr(err)
+
+		users = append(users, user)
+	}
+
+	return &users
+}
+
+func (usr MethodRepo) Delete(id int) (*model.User, error) {
+	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", TableUser)
+
+	_, err := usr.App.DB.Exec(sqlStmt, id)
+	CheckErr(err)
+
+	return nil, err
+}
+
+func (usr MethodRepo) Update(id int, u *model.User) *model.User {
+
+	sqlStmt := fmt.Sprintf("UPDATE %s SET name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", TableUser, id)
+	stmt, err := usr.App.DB.Prepare(sqlStmt)
+	CheckErr(err)
+
+	_, err = stmt.Exec(
+		u.Name,
+		u.Email,
+		u.PhoneNumber,
+		u.Password,
+		u.Status)
+	CheckErr(err)
+
+	return u
 }
 
 func CheckErr(err error) {
@@ -139,3 +111,4 @@ func CheckErr(err error) {
 		log.Fatal(err.Error())
 	}
 }
+*/
