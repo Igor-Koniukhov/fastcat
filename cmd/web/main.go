@@ -6,7 +6,6 @@ import (
 	"github.com/igor-koniukhov/fastcat/helpers"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"github.com/subosito/gotenv"
 	"log"
@@ -25,17 +24,9 @@ func init() {
 	gotenv.Load()
 }
 
-/*var u = model.User{
-	Name:        "Arnold777",
-	Email:       "arni@gmail.com",
-	PhoneNumber: "777 555 555",
-	Password:    "password",
-	Status:      "created",
-}*/
-
 var u model.User
 var email = "arni@mail.com"
-var id int = 3
+var id int = 21
 
 func main() {
 	port := os.Getenv("PORT")
@@ -48,14 +39,13 @@ func main() {
 
 	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	app.ErrorLog = infoLog
-
 	/*repo := handlers.NewUserDBRepostitory(&app)
 	handlers.NewHandlers(repo)*/
 
-	http.HandleFunc("/user", controller.Create(&u, db))
+	http.HandleFunc("/user", controller.Create(db))
 	http.HandleFunc("/user-email", controller.Get(&email, db))
 	http.HandleFunc("/users", controller.GetAll(db))
-	http.HandleFunc("/update", controller.Update(id,&u,db))
+	http.HandleFunc("/update", controller.Update(id, db))
 	http.HandleFunc("/delete", controller.Delete(id, db))
 
 	if err != nil {
