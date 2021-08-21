@@ -12,7 +12,7 @@ import (
 
 )
 
-type ControllerInterface interface {
+type UserControllerI interface {
 	CreateUser(db *sql.DB) http.HandlerFunc
 	GetUser(db *sql.DB) http.HandlerFunc
 	GetAllUsers(db *sql.DB) http.HandlerFunc
@@ -20,11 +20,11 @@ type ControllerInterface interface {
 	UpdateUser(db *sql.DB) http.HandlerFunc
 }
 
-type Controllers struct {
+type UserControllers struct {
 	App *config.AppConfig
 }
 
-const TableUser = "user"
+
 
 var user model.User
 
@@ -34,7 +34,7 @@ func checkError(err error) {
 	}
 }
 
-func (c Controllers) CreateUser(db *sql.DB) http.HandlerFunc {
+func (c UserControllers) CreateUser(db *sql.DB) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
@@ -52,9 +52,9 @@ func (c Controllers) CreateUser(db *sql.DB) http.HandlerFunc {
 	}
 }
 
-var email = "Jone@gmail.com"
 
-func (c Controllers) GetUser( db *sql.DB) http.HandlerFunc {
+
+func (c UserControllers) GetUser( db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "GET":
@@ -69,7 +69,7 @@ func (c Controllers) GetUser( db *sql.DB) http.HandlerFunc {
 	}
 }
 
-func (c Controllers) GetAllUsers(db *sql.DB) http.HandlerFunc {
+func (c UserControllers) GetAllUsers(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "GET":
@@ -82,7 +82,7 @@ func (c Controllers) GetAllUsers(db *sql.DB) http.HandlerFunc {
 	}
 }
 
-func (c Controllers) DeleteUser(db *sql.DB) http.HandlerFunc {
+func (c UserControllers) DeleteUser(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "DELETE":
@@ -98,7 +98,7 @@ func (c Controllers) DeleteUser(db *sql.DB) http.HandlerFunc {
 	}
 }
 
-func (c Controllers) UpdateUser(db *sql.DB) http.HandlerFunc {
+func (c UserControllers) UpdateUser(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "PUT":

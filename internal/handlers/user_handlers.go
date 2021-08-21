@@ -6,7 +6,9 @@ import (
 	"net/http"
 )
 
-func UserHandlers(db *sql.DB, controller controllers.Controllers)  {
+func UserHandlers(db *sql.DB)  {
+	controller := controllers.UserControllers{}
+
 	http.HandleFunc("/user/create", controller.CreateUser(db))
 	// GetUser able search by id and email
 	http.HandleFunc("/user/", controller.GetUser(db))

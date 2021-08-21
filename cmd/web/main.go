@@ -2,7 +2,6 @@ package main
 
 import (
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/igor-koniukhov/fastcat/controllers"
 	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/helpers"
 	"github.com/igor-koniukhov/fastcat/internal/config"
@@ -28,22 +27,20 @@ func main() {
 	port := os.Getenv("PORT")
 	db := driver.ConnectMySQLDB(&app)
 	defer db.Close()
-	controller := controllers.Controllers{}
+
 
 	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	app.InfoLog = infoLog
 
 	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	app.ErrorLog = infoLog
-	handlers.UserHandlers(db, controller)
-	//handlers.SupplierHandlers(db, controller)
-	//handlers.ProductHandlers(db, controller)
-	//handlers.OrderHandlers(db, controller)
-	//handlers.CartHandlers(db, controller)
+	handlers.UserHandlers(db)
+	//handlers.SupplierHandlers(db)
+	//handlers.ProductHandlers(db)
+	//handlers.OrderHandlers(db)
+	//handlers.CartHandlers(db)
 
 	helpers.NewHelpers(&app)
-
-
 
 	http.Handle("/", http.FileServer(http.Dir("./public")))
 
