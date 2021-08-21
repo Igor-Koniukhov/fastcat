@@ -7,6 +7,7 @@ import (
 )
 
 func ProductHandlers(db *sql.DB,)  {
+
 	controller := controllers.ProductControllers{}
 
 	http.HandleFunc("/product/create", controller.CreateProduct(db, "POST"))

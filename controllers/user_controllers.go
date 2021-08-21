@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"database/sql"
+
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
@@ -13,20 +13,26 @@ import (
 )
 
 type UserControllerI interface {
-	CreateUser(db *sql.DB, method string) http.HandlerFunc
-	GetUser(db *sql.DB, method string) http.HandlerFunc
-	GetAllUsers(db *sql.DB, method string) http.HandlerFunc
-	DeleteUser(db *sql.DB, method string) http.HandlerFunc
-	UpdateUser(db *sql.DB, method string) http.HandlerFunc
+	CreateUser( method string) http.HandlerFunc
+	GetUser( method string) http.HandlerFunc
+	GetAllUsers( method string) http.HandlerFunc
+	DeleteUser( method string) http.HandlerFunc
+	UpdateUser( method string) http.HandlerFunc
 }
+
+var Repo *UserControllers
 
 type UserControllers struct {
 	App *config.AppConfig
 }
 
+func NewUserControllers(app *config.AppConfig) *UserControllers {
+	return &UserControllers{App: app}
+}
 
-
-var user model.User
+func NewControllers(r *UserControllers)  {
+	Repo = r
+}
 
 func checkError(err error) {
 	if err != nil {
@@ -34,15 +40,14 @@ func checkError(err error) {
 	}
 }
 
-func (c UserControllers) CreateUser(db *sql.DB, method string) http.HandlerFunc {
-
+func (c *UserControllers) CreateUser( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
 		switch r.Method {
 		case method:
 			json.NewDecoder(r.Body).Decode(&u)
 			userRepo := repository.UserRepository{}
-			user, err := userRepo.CreateUser(&u, db)
+			user, err := userRepo.CreateUser(&u, c.App.DB)
 			checkError(err)
 			json.NewEncoder(w).Encode(&user)
 
@@ -54,14 +59,16 @@ func (c UserControllers) CreateUser(db *sql.DB, method string) http.HandlerFunc 
 
 
 
-func (c UserControllers) GetUser( db *sql.DB, method string) http.HandlerFunc {
+func (c *UserControllers) GetUser(  method string) http.HandlerFunc {
+
 	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(c.App.Session)
 		switch r.Method {
 		case method:
 			userRepo := repository.UserRepository{}
 			param, nameParam, _ := userRepo.Param(r)
 			fmt.Println(param, nameParam)
-			user := userRepo.GetUser(&nameParam, &param, db)
+			user := userRepo.GetUser(&nameParam, &param, c.App.DB)
 			fmt.Fprintf(w, user.Name)
 		default:
 			methodMassage(w, method)
@@ -69,12 +76,12 @@ func (c UserControllers) GetUser( db *sql.DB, method string) http.HandlerFunc {
 	}
 }
 
-func (c UserControllers) GetAllUsers(db *sql.DB, method string) http.HandlerFunc {
+func (c *UserControllers) GetAllUsers( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
 			userRepo := repository.UserRepository{}
-			users := userRepo.GetAllUsers(db)
+			users := userRepo.GetAllUsers(c.App.DB)
 			json.NewEncoder(w).Encode(&users)
 		default:
 			methodMassage(w, method)
@@ -82,14 +89,14 @@ func (c UserControllers) GetAllUsers(db *sql.DB, method string) http.HandlerFunc
 	}
 }
 
-func (c UserControllers) DeleteUser(db *sql.DB, method string) http.HandlerFunc {
+func (c *UserControllers) DeleteUser( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
 
 			userRepo := repository.UserRepository{}
 			_, _, id := userRepo.Param(r)
-			err := userRepo.DeleteUser(id, db)
+			err := userRepo.DeleteUser(id, c.App.DB)
 			checkError(err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 		default:
@@ -98,7 +105,7 @@ func (c UserControllers) DeleteUser(db *sql.DB, method string) http.HandlerFunc 
 	}
 }
 
-func (c UserControllers) UpdateUser(db *sql.DB, method string) http.HandlerFunc {
+func (c *UserControllers) UpdateUser( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -106,7 +113,7 @@ func (c UserControllers) UpdateUser(db *sql.DB, method string) http.HandlerFunc 
 			var u model.User
 			json.NewDecoder(r.Body).Decode(&u)
 			userRepo := repository.UserRepository{}
-			user := userRepo.UpdateUser(id, &u, db)
+			user := userRepo.UpdateUser(id, &u, c.App.DB)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMassage(w, method)

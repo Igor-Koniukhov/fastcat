@@ -7,6 +7,7 @@ import (
 )
 
 func SupplierHandlers(db *sql.DB,)  {
+
 	controller := controllers.SupplierControllers{}
 
 	http.HandleFunc("/supplier/create", controller.CreateSupplier(db, "POST"))

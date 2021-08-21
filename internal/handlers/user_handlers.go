@@ -1,18 +1,21 @@
 package handlers
 
 import (
-	"database/sql"
 	"github.com/igor-koniukhov/fastcat/controllers"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"net/http"
 )
 
-func UserHandlers(db *sql.DB)  {
-	controller := controllers.UserControllers{}
+func UserHandlers(app *config.AppConfig)  {
+	repo := controllers.NewUserControllers(app)
+	controllers.NewControllers(repo)
+	app.Str = "hello from main"
 
-	http.HandleFunc("/user/create", controller.CreateUser(db, "POST"))
+	http.HandleFunc("/user/create", controllers.Repo.CreateUser( "POST"))
 	// GetUser able search by id and email
-	http.HandleFunc("/user/", controller.GetUser(db, "GET"))
-	http.HandleFunc("/users", controller.GetAllUsers(db, "GET"))
-	http.HandleFunc("/user/update/", controller.UpdateUser(db, "PUT"))
-	http.HandleFunc("/user/delete/", controller.DeleteUser(db, "DELETE"))
+	http.HandleFunc("/user/", controllers.Repo.GetUser( "GET"))
+	http.HandleFunc("/users", controllers.Repo.GetAllUsers( "GET"))
+	http.HandleFunc("/user/update/", controllers.Repo.UpdateUser( "PUT"))
+	http.HandleFunc("/user/delete/", controllers.Repo.DeleteUser( "DELETE"))
+
 }
