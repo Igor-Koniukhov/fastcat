@@ -1,42 +1,21 @@
 package repository
 
 import (
+	"database/sql"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
+	"net/http"
 )
 
-type SupplierRepositoryInterface interface {
-	Create(supplier model.Supplier) (*model.Supplier, error)
-	Get(id *int32) (*model.Supplier, error)
-	GetAll() ([]*model.Supplier, error)
-	Delete(id *int32) error
+type SupplierRepositoryI interface {
+	CreateSupplier(u *model.Supplier, db *sql.DB) (*model.Supplier, error)
+	GetSupplier(nameParam, param *string, db *sql.DB) *model.Supplier
+	GetAllUSuppliers(db *sql.DB) *[]model.Supplier
+	DeleteSupplier(id int, db *sql.DB) error
+	UpdateSupplier(id int, u *model.Supplier, db *sql.DB) *model.Supplier
+	Param(r *http.Request) (string, string, int)
 }
 
-type SupplierDBRepository struct {
+type SupplierRepository struct {
 	App *config.AppConfig
-}
-
-func NewSupplierDBRepository(a *config.AppConfig) *SupplierDBRepository {
-	return &SupplierDBRepository{
-		App: a,
-	}
-}
-
-func (s SupplierDBRepository) Create(supplier model.Supplier) (*model.Supplier, error) {
-return nil, nil
-}
-
-func (s SupplierDBRepository) Get(id *int32) (*model.Supplier, error) {
-	return nil, nil
-
-
-}
-
-func (s SupplierDBRepository) GetAll() ([]*model.Supplier, error) {
-	return nil, nil
-
-}
-
-func (s SupplierDBRepository) Delete(id *int32) error {
-return nil
 }

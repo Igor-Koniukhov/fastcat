@@ -38,12 +38,12 @@ func (uch UserHandler) MyHandle() error {
 	//email := "dane@gmail.com"
 	//var id int = 2
 
-	/*storedUser, err := uch.UserRepository.Create(&u)
+	/*storedUser, err := uch.UserRepository.CreateUser(&u)
 	if err != nil {
 		fmt.Println(err.Error())
 	}*/
 
-	//printEmail := uch.UserRepository.Get(&email)
+	//printEmail := uch.UserRepository.GetUser(&email)
 	//allUser := uch.UserRepository.GetAll()
 	//update := uch.UserRepository.Update( id,&u)
 	//del, err := uch.UserRepository.Delete(int(id))

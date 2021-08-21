@@ -1,33 +1,16 @@
 package handlers
 
-/*
 import (
-	"github.com/igor-koniukhov/fastcat/internal/config"
-	"github.com/igor-koniukhov/fastcat/internal/repository"
+	"database/sql"
+	"github.com/igor-koniukhov/fastcat/controllers"
 	"net/http"
 )
-var Repo *UserDBRepository
 
-type UserDBRepository struct {
-	App *config.AppConfig
+func UserHandlers(db *sql.DB, controller controllers.Controllers)  {
+	http.HandleFunc("/user/create", controller.CreateUser(db))
+	// GetUser able search by id and email
+	http.HandleFunc("/user/", controller.GetUser(db))
+	http.HandleFunc("/users", controller.GetAllUsers(db))
+	http.HandleFunc("/user/update/", controller.UpdateUser(db))
+	http.HandleFunc("/user/delete/", controller.DeleteUser(db))
 }
-
-func NewHandlers(r *UserDBRepository)  {
-	Repo = r
-
-}
-
-func NewUserDBRepostitory(a *config.AppConfig) *UserDBRepository {
-	return &UserDBRepository{App: a}
-}
-var email = "Jone@gmail.com"
-
-func (u *UserDBRepository) GetUser(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case "GET":
- u :=repository.MethodRepo.Get()
-	default:
-		http.Error(w, "Only GET method is allowed", http.StatusMethodNotAllowed)
-	}
-}
-*/

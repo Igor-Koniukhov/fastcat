@@ -3,9 +3,9 @@ package helpers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/igor-koniukhov/fastcat/controllers"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"io"
 	"sync"
 
@@ -128,11 +128,11 @@ func (ufr Repository) Update(u2 *model.User) *model.User {
 
 func (ufr *Repository) GetNextID() int {
 	fl, err := os.OpenFile("./datastore/users.json", os.O_RDWR, 0600)
-	repository.CheckErr(err)
+	controllers.CheckErr(err)
 	defer fl.Close()
 	data, err := io.ReadAll(fl)
 	err = json.Unmarshal(data, &DataUser)
-	repository.CheckErr(err)
+	controllers.CheckErr(err)
 	idSequence = len(DataUser) - 1
 	ufr.idMutex.Lock()
 	idSequence += 1

@@ -6,11 +6,12 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"log"
 )
+
 var err error
 
 const DataSName = "fastcat:fastCat@tcp(127.0.0.1:3306)/fastcat_db"
 
-func ConnectDB(app *config.AppConfig) *sql.DB  {
+func ConnectMySQLDB(app *config.AppConfig) *sql.DB {
 	app.DB, err = sql.Open("mysql", DataSName)
 	if err != nil {
 		log.Fatal(err)
@@ -19,7 +20,7 @@ func ConnectDB(app *config.AppConfig) *sql.DB  {
 	}
 
 	err = app.DB.Ping()
-	if err !=nil {
+	if err != nil {
 		log.Fatal(err)
 	}
 
