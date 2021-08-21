@@ -7,34 +7,74 @@ import (
 )
 
 type CartControllerI interface {
-	CreateCart(db *sql.DB) http.HandlerFunc
-	GetCart(db *sql.DB) http.HandlerFunc
-	GetAllCarts(db *sql.DB) http.HandlerFunc
-	DeleteCart(db *sql.DB) http.HandlerFunc
-	UpdateCart(db *sql.DB) http.HandlerFunc
+	CreateCart(db *sql.DB, method string) http.HandlerFunc
+	GetCart(db *sql.DB, method string) http.HandlerFunc
+	GetAllCarts(db *sql.DB, method string) http.HandlerFunc
+	DeleteCart(db *sql.DB, method string) http.HandlerFunc
+	UpdateCart(db *sql.DB, method string) http.HandlerFunc
 }
 
 type CartControllers struct {
 	App *config.AppConfig
 }
 
-func (c CartControllers) CreateCart(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {}
+func (c CartControllers) CreateCart(db *sql.DB, method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+
+
+		default:
+			methodMassage(w, method)
+		}
+	}
 }
 
-func (c CartControllers) GetCart(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {}
+func (c CartControllers) GetCart(db *sql.DB, method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+
+
+		default:
+			methodMassage(w, method)
+		}
+	}
 }
 
-func (c CartControllers) GetAllCarts(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {}
+func (c CartControllers) GetAllCarts(db *sql.DB, method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+
+
+		default:
+			methodMassage(w, method)
+		}
+	}
 }
 
-func (c CartControllers) DeleteCart(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {}
+func (c CartControllers) DeleteCart(db *sql.DB, method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+
+
+		default:
+			methodMassage(w, method)
+		}
+	}
 }
 
-func (c CartControllers) UpdateCart(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {}
+func (c CartControllers) UpdateCart(db *sql.DB, method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+
+
+		default:
+			methodMassage(w, method)
+		}
+	}
 }
 

@@ -9,10 +9,10 @@ import (
 func UserHandlers(db *sql.DB)  {
 	controller := controllers.UserControllers{}
 
-	http.HandleFunc("/user/create", controller.CreateUser(db))
+	http.HandleFunc("/user/create", controller.CreateUser(db, "POST"))
 	// GetUser able search by id and email
-	http.HandleFunc("/user/", controller.GetUser(db))
-	http.HandleFunc("/users", controller.GetAllUsers(db))
-	http.HandleFunc("/user/update/", controller.UpdateUser(db))
-	http.HandleFunc("/user/delete/", controller.DeleteUser(db))
+	http.HandleFunc("/user/", controller.GetUser(db, "GET"))
+	http.HandleFunc("/users", controller.GetAllUsers(db, "GET"))
+	http.HandleFunc("/user/update/", controller.UpdateUser(db, "PUT"))
+	http.HandleFunc("/user/delete/", controller.DeleteUser(db, "DELETE"))
 }

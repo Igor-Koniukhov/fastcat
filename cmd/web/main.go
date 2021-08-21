@@ -31,14 +31,14 @@ func main() {
 
 	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	app.InfoLog = infoLog
-
 	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	app.ErrorLog = infoLog
+
 	handlers.UserHandlers(db)
-	//handlers.SupplierHandlers(db)
-	//handlers.ProductHandlers(db)
-	//handlers.OrderHandlers(db)
-	//handlers.CartHandlers(db)
+	handlers.SupplierHandlers(db)
+	handlers.ProductHandlers(db)
+	handlers.OrderHandlers(db)
+	handlers.CartHandlers(db)
 
 	helpers.NewHelpers(&app)
 

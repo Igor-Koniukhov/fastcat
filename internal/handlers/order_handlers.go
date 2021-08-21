@@ -9,9 +9,9 @@ import (
 func OrderHandlers(db *sql.DB,)  {
 	controller := controllers.OrderControllers{}
 
-	http.HandleFunc("/supplier/create", controller.CreateOrder(db))
-	http.HandleFunc("/supplier/", controller.GetOrder(db))
-	http.HandleFunc("/supplier", controller.GetAllOrders(db))
-	http.HandleFunc("/supplier/update/", controller.UpdateOrder(db))
-	http.HandleFunc("/supplier/delete/", controller.DeleteOrder(db))
+	http.HandleFunc("/order/create", controller.CreateOrder(db, "POST"))
+	http.HandleFunc("/order/", controller.GetOrder(db, "GET"))
+	http.HandleFunc("/order", controller.GetAllOrders(db, "GET"))
+	http.HandleFunc("/order/update/", controller.UpdateOrder(db, "PUT"))
+	http.HandleFunc("/order/delete/", controller.DeleteOrder(db, "DELETE"))
 }
