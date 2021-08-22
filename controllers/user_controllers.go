@@ -87,7 +87,6 @@ func (c *UserControllers) DeleteUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-
 			userRepo := repository.UserRepository{}
 			_, _, id := userRepo.Param(r)
 			err := userRepo.DeleteUser(id, c.App.DB)

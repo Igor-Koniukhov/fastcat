@@ -93,7 +93,6 @@ func (usr *UserRepository) UpdateUser(id int, u *model.User, db *sql.DB) *model.
 		u.Status)
 	CheckErr(err)
 	fmt.Println(*u)
-
 	return u
 }
 

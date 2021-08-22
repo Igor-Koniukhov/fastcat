@@ -9,7 +9,13 @@ import (
 var err error
 
 
-const TableUser = "users"
+const (
+	TableUser = "users"
+	TableOrders = "orders"
+	TableAddress = "address"
+	TableCartProduct = "cart_products"
+	TableProducts = "products"
+)
 
 func ConnectMySQLDB(DSN string) *sql.DB {
 	db, err := sql.Open("mysql", DSN)
