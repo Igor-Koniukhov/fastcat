@@ -41,7 +41,7 @@ func (oc OrderControllers) CreateOrder( method string) http.HandlerFunc {
 			checkError(err)
 			json.NewEncoder(w).Encode(&order)
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -57,7 +57,7 @@ func (oc OrderControllers) GetOrder(method string) http.HandlerFunc {
 			order := orderRepo.GetOrder(&param, oc.App.DB)
 			json.NewEncoder(w).Encode(&order)
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -70,7 +70,7 @@ func (oc OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 			order := orderRepo.GetAllOrders(oc.App.DB)
 			json.NewEncoder(w).Encode(&order)
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -85,7 +85,7 @@ func (oc OrderControllers) DeleteOrder(method string) http.HandlerFunc {
 			checkError(err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -102,7 +102,7 @@ func (oc OrderControllers) UpdateOrder(method string) http.HandlerFunc {
 			json.NewEncoder(w).Encode(&order)
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }

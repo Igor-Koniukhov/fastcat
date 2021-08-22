@@ -37,7 +37,7 @@ func (s SupplierControllers) GetSupplier(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -48,7 +48,7 @@ func (s SupplierControllers) GetAllSuppliers(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -59,7 +59,7 @@ func (s SupplierControllers) DeleteSupplier(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -70,7 +70,7 @@ func (s SupplierControllers) UpdateSupplier(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }

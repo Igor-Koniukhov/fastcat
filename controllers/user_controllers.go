@@ -51,7 +51,7 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 			json.NewEncoder(w).Encode(&user)
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -65,7 +65,7 @@ func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 			user := userRepo.GetUser(&nameParam, &param, c.App.DB)
 			json.NewEncoder(w).Encode(&user)
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -78,7 +78,7 @@ func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
 			users := userRepo.GetAllUsers(c.App.DB)
 			json.NewEncoder(w).Encode(&users)
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -93,7 +93,7 @@ func (c *UserControllers) DeleteUser(method string) http.HandlerFunc {
 			checkError(err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -109,7 +109,7 @@ func (c *UserControllers) UpdateUser(method string) http.HandlerFunc {
 			user := userRepo.UpdateUser(id, &u, c.App.DB)
 			json.NewEncoder(w).Encode(&user)
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -119,7 +119,7 @@ func CheckErr(err error) {
 		log.Fatal(err.Error())
 	}
 }
-func methodMassage(w http.ResponseWriter, m string) {
+func methodMessage(w http.ResponseWriter, m string) {
 	http.Error(w, "Only "+m+" method is allowed", http.StatusMethodNotAllowed)
 
 }
