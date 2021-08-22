@@ -1,44 +1,39 @@
 package repository
 
 import (
-	"database/sql"
-	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"net/http"
 )
 
 type ProductRepositoryI interface {
-	CreateProduct(u *model.Product, db *sql.DB) (*model.Product, error)
-	GetProduct(nameParam, param *string, db *sql.DB) *model.Product
-	GetAllUProduct(db *sql.DB) *[]model.Product
-	DeleteProduct(id int, db *sql.DB) error
-	UpdateProduct(id int, u *model.Product, db *sql.DB) *model.Product
+	CreateProduct(u *model.Product ) (*model.Product, error)
+	GetProduct(nameParam, param *string) *model.Product
+	GetAllUProducts() *[]model.Product
+	DeleteProduct(id int ) error
+	UpdateProduct(id int, u *model.Product ) *model.Product
 	Param(r *http.Request) (string, string, int)
 }
 
-type ProductRepository struct {
-	App *config.AppConfig
+type ProductRepository struct {}
 
-}
-
-func (p ProductRepository) CreateProduct(u *model.Product, db *sql.DB) (*model.Product, error) {
+func (p ProductRepository) CreateProduct(u *model.Product) (*model.Product, error) {
 	return nil, nil
 }
 
 
-func (p ProductRepository) GetProduct(nameParam, param *string, db *sql.DB) *model.Product {
+func (p ProductRepository) GetProduct(nameParam, param *string) *model.Product {
 	return nil
 }
 
-func (p ProductRepository) GetAllUProduct(db *sql.DB) *[]model.Product {
+func (p ProductRepository) GetAllUProducts() *[]model.Product {
 	return nil
 }
 
-func (p ProductRepository) DeleteProduct(id int, db *sql.DB) error {
+func (p ProductRepository) DeleteProduct(id int,) error {
 	return nil
 }
 
-func (p ProductRepository) UpdateProduct(id int, u *model.Product, db *sql.DB) *model.Product {
+func (p ProductRepository) UpdateProduct(id int, u *model.Product,) *model.Product {
 	return nil
 }
 

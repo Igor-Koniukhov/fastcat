@@ -1,24 +1,29 @@
 package controllers
 
 import (
-	"database/sql"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"net/http"
 )
 
 type ProductControllerI interface {
-	CreateProduct(db *sql.DB, method string) http.HandlerFunc
-	GetProduct(db *sql.DB, method string) http.HandlerFunc
-	GetAllProducts(db *sql.DB, method string) http.HandlerFunc
-	DeleteProduct(db *sql.DB, method string) http.HandlerFunc
-	UpdateProduct(db *sql.DB, method string) http.HandlerFunc
+	CreateProduct( method string) http.HandlerFunc
+	GetProduct( method string) http.HandlerFunc
+	GetAllProducts( method string) http.HandlerFunc
+	DeleteProduct( method string) http.HandlerFunc
+	UpdateProduct( method string) http.HandlerFunc
 }
-
+var RepoProducts *ProductControllers
 type ProductControllers struct {
 	App *config.AppConfig
 }
+func NewProductControllers(app *config.AppConfig) *ProductControllers {
+	return &ProductControllers{App: app}
+}
+func NewControllersP(r *ProductControllers){
+	RepoProducts = r
+}
 
-func (p ProductControllers) CreateProduct(db *sql.DB, method string) http.HandlerFunc {
+func (p ProductControllers) CreateProduct( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -30,7 +35,7 @@ func (p ProductControllers) CreateProduct(db *sql.DB, method string) http.Handle
 	}
 }
 
-func (p ProductControllers) GetProduct(db *sql.DB, method string) http.HandlerFunc {
+func (p ProductControllers) GetProduct( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -42,7 +47,7 @@ func (p ProductControllers) GetProduct(db *sql.DB, method string) http.HandlerFu
 	}
 }
 
-func (p ProductControllers) GetAllProducts(db *sql.DB, method string) http.HandlerFunc {
+func (p ProductControllers) GetAllProducts( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -54,7 +59,7 @@ func (p ProductControllers) GetAllProducts(db *sql.DB, method string) http.Handl
 	}
 }
 
-func (p ProductControllers) DeleteProduct(db *sql.DB, method string) http.HandlerFunc {
+func (p ProductControllers) DeleteProduct( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -66,7 +71,7 @@ func (p ProductControllers) DeleteProduct(db *sql.DB, method string) http.Handle
 	}
 }
 
-func (p ProductControllers) UpdateProduct(db *sql.DB, method string) http.HandlerFunc {
+func (p ProductControllers) UpdateProduct( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:

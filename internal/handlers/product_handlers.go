@@ -1,18 +1,20 @@
 package handlers
 
 import (
-	"database/sql"
 	"github.com/igor-koniukhov/fastcat/controllers"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"net/http"
 )
 
-func ProductHandlers(db *sql.DB,)  {
+func ProductHandlers(app *config.AppConfig)  {
 
-	controller := controllers.ProductControllers{}
+	repo := controllers.NewProductControllers(app)
+	controllers.NewControllersP(repo)
+	pc := controllers.RepoProducts
 
-	http.HandleFunc("/product/create", controller.CreateProduct(db, "POST"))
-	http.HandleFunc("/product/", controller.GetProduct(db, "GET"))
-	http.HandleFunc("/product", controller.GetAllProducts(db, "GET"))
-	http.HandleFunc("/product/update/", controller.UpdateProduct(db, "PUT"))
-	http.HandleFunc("/product/delete/", controller.DeleteProduct(db, "DELETE"))
+	http.HandleFunc("/product/create", pc.CreateProduct( "POST"))
+	http.HandleFunc("/product/", pc.GetProduct( "GET"))
+	http.HandleFunc("/product", pc.GetAllProducts( "GET"))
+	http.HandleFunc("/product/update/", pc.UpdateProduct( "PUT"))
+	http.HandleFunc("/product/delete/", pc.DeleteProduct( "DELETE"))
 }

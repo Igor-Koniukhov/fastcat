@@ -1,43 +1,39 @@
 package repository
 
 import (
-	"database/sql"
-	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"net/http"
 )
 
 type OrderRepositoryI interface {
-	CreateOrder(u *model.Order, db *sql.DB) (*model.Order, error)
-	GetOrder(nameParam, param *string, db *sql.DB) *model.Order
-	GetAllOrders(db *sql.DB) *[]model.Order
-	DeleteOrder(id int, db *sql.DB) error
-	UpdateOrder(id int, u *model.Order, db *sql.DB) *model.Order
+	CreateOrder(u *model.Order) (*model.Order, error)
+	GetOrder(nameParam, param *string) *model.Order
+	GetAllOrders() *[]model.Order
+	DeleteOrder(id int ) error
+	UpdateOrder(id int, u *model.Order) *model.Order
 	Param(r *http.Request) (string, string, int)
 }
 
-type OrderRepository struct {
-	App *config.AppConfig
-}
+type OrderRepository struct {}
 
-func (o OrderRepository) CreateOrder(u *model.Order, db *sql.DB) (*model.Order, error) {
+func (o OrderRepository) CreateOrder(u *model.Order) (*model.Order, error) {
 	return nil, nil
 }
 
 
-func (o OrderRepository) GetOrder(nameParam, param *string, db *sql.DB) *model.Order {
+func (o OrderRepository) GetOrder(nameParam, param *string) *model.Order {
 	return nil
 }
 
-func (o OrderRepository) GetAllOrders(db *sql.DB) *[]model.Order {
+func (o OrderRepository) GetAllOrders() *[]model.Order {
 	return nil
 }
 
-func (o OrderRepository) DeleteOrder(id int, db *sql.DB) error {
+func (o OrderRepository) DeleteOrder(id int) error {
 	return nil
 }
 
-func (o OrderRepository) UpdateOrder(id int, u *model.Order, db *sql.DB) *model.Order {
+func (o OrderRepository) UpdateOrder(id int, u *model.Order) *model.Order {
 	return nil
 }
 

@@ -1,24 +1,30 @@
 package controllers
 
 import (
-	"database/sql"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"net/http"
 )
 
 type OrderControllerI interface {
-	CreateOrder(db *sql.DB, method string) http.HandlerFunc
-	GetOrder(db *sql.DB, method string) http.HandlerFunc
-	GetAllOrders(db *sql.DB, method string) http.HandlerFunc
-	DeleteOrder(db *sql.DB, method string) http.HandlerFunc
-	UpdateOrder(db *sql.DB, method string) http.HandlerFunc
+	CreateOrder( method string) http.HandlerFunc
+	GetOrder( method string) http.HandlerFunc
+	GetAllOrders( method string) http.HandlerFunc
+	DeleteOrder( method string) http.HandlerFunc
+	UpdateOrder( method string) http.HandlerFunc
 }
-
+var RepoOrder *OrderControllers
 type OrderControllers struct {
 	App *config.AppConfig
 }
 
-func (o OrderControllers) CreateOrder(db *sql.DB, method string) http.HandlerFunc {
+func NewOrderControllers(app *config.AppConfig) *OrderControllers {
+	return &OrderControllers{App: app}
+}
+func NewControllersO(r *OrderControllers)  {
+	RepoOrder = r
+}
+
+func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -30,7 +36,7 @@ func (o OrderControllers) CreateOrder(db *sql.DB, method string) http.HandlerFun
 	}
 }
 
-func (o OrderControllers) GetOrder(db *sql.DB, method string) http.HandlerFunc {
+func (o OrderControllers) GetOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -42,7 +48,7 @@ func (o OrderControllers) GetOrder(db *sql.DB, method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderControllers) GetAllOrders(db *sql.DB, method string) http.HandlerFunc {
+func (o OrderControllers) GetAllOrders( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -54,7 +60,7 @@ func (o OrderControllers) GetAllOrders(db *sql.DB, method string) http.HandlerFu
 	}
 }
 
-func (o OrderControllers) DeleteOrder(db *sql.DB, method string) http.HandlerFunc {
+func (o OrderControllers) DeleteOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -66,7 +72,7 @@ func (o OrderControllers) DeleteOrder(db *sql.DB, method string) http.HandlerFun
 	}
 }
 
-func (o OrderControllers) UpdateOrder(db *sql.DB, method string) http.HandlerFunc {
+func (o OrderControllers) UpdateOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:

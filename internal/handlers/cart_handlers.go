@@ -1,18 +1,20 @@
 package handlers
 
 import (
-	"database/sql"
 	"github.com/igor-koniukhov/fastcat/controllers"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"net/http"
 )
 
-func CartHandlers(db *sql.DB,)  {
+func CartHandlers(app *config.AppConfig) {
 
-	controller := controllers.CartControllers{}
+	repo := controllers.NewCartControllers(app)
+	controllers.NewControllersC(repo)
+	cr := controllers.RepoCart
 
-	http.HandleFunc("/cart/create", controller.CreateCart(db, "POST"))
-	http.HandleFunc("/cart/", controller.GetCart(db, "GET"))
-	http.HandleFunc("/cart", controller.GetAllCarts(db, "GET"))
-	http.HandleFunc("/cart/update/", controller.UpdateCart(db, "PUT"))
-	http.HandleFunc("/cart/delete/", controller.DeleteCart(db, "DELETE"))
+	http.HandleFunc("/cart/create", cr.CreateCart("POST"))
+	http.HandleFunc("/cart/", cr.GetCart("GET"))
+	http.HandleFunc("/cart", cr.GetAllCarts("GET"))
+	http.HandleFunc("/cart/update/", cr.UpdateCart("PUT"))
+	http.HandleFunc("/cart/delete/", cr.DeleteCart("DELETE"))
 }

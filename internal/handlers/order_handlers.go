@@ -1,18 +1,21 @@
 package handlers
 
 import (
-	"database/sql"
 	"github.com/igor-koniukhov/fastcat/controllers"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"net/http"
 )
 
-func OrderHandlers(db *sql.DB,)  {
+func OrderHandlers(app *config.AppConfig) {
 
-	controller := controllers.OrderControllers{}
+	repo := controllers.NewOrderControllers(app)
+	controllers.NewControllersO(repo)
+	or := controllers.RepoOrder
 
-	http.HandleFunc("/order/create", controller.CreateOrder(db, "POST"))
-	http.HandleFunc("/order/", controller.GetOrder(db, "GET"))
-	http.HandleFunc("/order", controller.GetAllOrders(db, "GET"))
-	http.HandleFunc("/order/update/", controller.UpdateOrder(db, "PUT"))
-	http.HandleFunc("/order/delete/", controller.DeleteOrder(db, "DELETE"))
+	http.HandleFunc("/order/create", or.CreateOrder("POST"))
+	http.HandleFunc("/order/", or.GetOrder("GET"))
+	http.HandleFunc("/order", or.GetAllOrders("GET"))
+	http.HandleFunc("/order/update/", or.UpdateOrder("PUT"))
+	http.HandleFunc("/order/delete/", or.DeleteOrder("DELETE"))
+
 }
