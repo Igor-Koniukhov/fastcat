@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	dr "github.com/igor-koniukhov/fastcat/driver"
-	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"log"
 	"net/http"
@@ -22,9 +21,7 @@ type UserRepositoryI interface {
 }
 var user model.User
 
-type UserRepository struct {
-	App *config.AppConfig
-}
+type UserRepository struct {}
 
 func (usr *UserRepository) CreateUser(u *model.User, db *sql.DB) (*model.User, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
@@ -36,7 +33,7 @@ func (usr *UserRepository) CreateUser(u *model.User, db *sql.DB) (*model.User, e
 	return u, err
 }
 
-func (usr UserRepository) GetUser(nameParam, param *string, db *sql.DB) *model.User {
+func (usr *UserRepository) GetUser(nameParam, param *string, db *sql.DB) *model.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
 	err := db.QueryRow(sqlStmt).Scan(
 		&user.ID,

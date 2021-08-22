@@ -30,14 +30,14 @@ func NewControllersO(r *OrderControllers) {
 	RepoOrder = r
 }
 
-func (o OrderControllers) CreateOrder(method string) http.HandlerFunc {
+func (oc OrderControllers) CreateOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var ord model.Order
 		switch r.Method {
 		case method:
 			json.NewDecoder(r.Body).Decode(&ord)
 			orderRepo := repository.OrderRepository{}
-			order, err := orderRepo.CreateOrder(&ord, o.App.DB)
+			order, err := orderRepo.CreateOrder(&ord, oc.App.DB)
 			checkError(err)
 			json.NewEncoder(w).Encode(&order)
 		default:
@@ -46,13 +46,15 @@ func (o OrderControllers) CreateOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
+func (oc OrderControllers) GetOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(oc.App.Session)
+
 		switch r.Method {
 		case method:
 			orderRepo := repository.OrderRepository{}
 			param, _, _ := orderRepo.Param(r)
-			order := orderRepo.GetOrder(&param, o.App.DB)
+			order := orderRepo.GetOrder(&param, oc.App.DB)
 			json.NewEncoder(w).Encode(&order)
 		default:
 			methodMassage(w, method)
@@ -60,12 +62,12 @@ func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
+func (oc OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
 			orderRepo := repository.OrderRepository{}
-			order := orderRepo.GetAllOrders(o.App.DB)
+			order := orderRepo.GetAllOrders(oc.App.DB)
 			json.NewEncoder(w).Encode(&order)
 		default:
 			methodMassage(w, method)
@@ -73,13 +75,13 @@ func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderControllers) DeleteOrder(method string) http.HandlerFunc {
+func (oc OrderControllers) DeleteOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
 			orderRepo := repository.OrderRepository{}
 			_, _, id := orderRepo.Param(r)
-			err := orderRepo.DeleteOrder(id, o.App.DB)
+			err := orderRepo.DeleteOrder(id, oc.App.DB)
 			checkError(err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 		default:
@@ -88,7 +90,7 @@ func (o OrderControllers) DeleteOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderControllers) UpdateOrder(method string) http.HandlerFunc {
+func (oc OrderControllers) UpdateOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -96,7 +98,7 @@ func (o OrderControllers) UpdateOrder(method string) http.HandlerFunc {
 			json.NewDecoder(r.Body).Decode(&ord)
 			orderRepo := repository.OrderRepository{}
 			_, _, id := orderRepo.Param(r)
-			order := orderRepo.UpdateOrder(id, &ord, o.App.DB)
+			order := orderRepo.UpdateOrder(id, &ord, oc.App.DB)
 			json.NewEncoder(w).Encode(&order)
 
 		default:

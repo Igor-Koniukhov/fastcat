@@ -22,19 +22,20 @@ type OrderRepositoryI interface {
 var order model.Order
 type OrderRepository struct {}
 
-func (o OrderRepository) CreateOrder(ord *model.Order, db *sql.DB) (*model.Order, error) {
+func (o *OrderRepository) CreateOrder(or *model.Order, db *sql.DB) (*model.Order, error) {
 
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, cart_id, address, status) VALUES (?, ?, ?, ?)", dr.TableOrders)
-	stmt, err := db.Prepare(sqlStmt)
-	CheckErr(err)
-	_, err = stmt.Exec(ord.UserID, ord.CartID, ord.AddressID, ord.Status)
-	CheckErr(err)
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, cart_id, address_id, status) VALUES (?, ?, ?, ?)", dr.TableOrders)
 
-	return ord, err
+	p, err := db.Prepare(sqlStmt)
+	defer p.Close()
+	CheckErr(err)
+	_, err = p.Exec(or.UserID, or.CartID, or.AddressID, or.Status)
+	CheckErr(err)
+	return or, err
 }
 
 
-func (o OrderRepository) GetOrder( param *string, db *sql.DB) *model.Order {
+func (o *OrderRepository) GetOrder( param *string, db *sql.DB) *model.Order {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = '%s' ", dr.TableOrders, *param)
 	err := db.QueryRow(sqlStmt).Scan(
 		&order.ID,
@@ -48,9 +49,9 @@ func (o OrderRepository) GetOrder( param *string, db *sql.DB) *model.Order {
 	return &order
 }
 
-func (o OrderRepository) GetAllOrders(db *sql.DB) *[]model.Order {
+func (o *OrderRepository) GetAllOrders(db *sql.DB) *[]model.Order {
 	var orders []model.Order
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableOrders)
 	results, err := db.Query(sqlStmt)
 	CheckErr(err)
 	for results.Next() {
@@ -68,29 +69,30 @@ func (o OrderRepository) GetAllOrders(db *sql.DB) *[]model.Order {
 	return &orders
 }
 
-func (o OrderRepository) DeleteOrder(id int, db *sql.DB) error {
+func (o *OrderRepository) DeleteOrder(id int, db *sql.DB) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", dr.TableOrders)
 	_, err := db.Exec(sqlStmt, id)
 	CheckErr(err)
 	return err
 }
 
-func (o OrderRepository) UpdateOrder(id int, ord *model.Order, db *sql.DB) *model.Order {
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, user_id=?, cart_id=?, address=?, status=? WHERE id=%d ", dr.TableOrders, id)
+func (o *OrderRepository) UpdateOrder(id int, ord *model.Order, db *sql.DB) *model.Order {
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, user_id=?, cart_id=?, address_id=?, status=? WHERE id=%d ", dr.TableOrders, id)
+	fmt.Println(sqlStmt)
 	stmt, err := db.Prepare(sqlStmt)
 	CheckErr(err)
 	_, err = stmt.Exec(
-		order.ID,
-		order.UserID,
-		order.CartID,
-		order.AddressID,
-		order.Status)
+		ord.ID,
+		ord.UserID,
+		ord.CartID,
+		ord.AddressID,
+		ord.Status)
 	CheckErr(err)
 	fmt.Println(*ord)
 	return ord
 }
 
-func (o OrderRepository) Param(r *http.Request) (string, string, int) {
+func (o *OrderRepository) Param(r *http.Request) (string, string, int) {
 	var paramName string
 	var param string
 	var id int
