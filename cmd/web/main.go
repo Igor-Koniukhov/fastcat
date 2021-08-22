@@ -25,7 +25,8 @@ func init() {
 
 func main() {
 	port := os.Getenv("PORT")
-	db := driver.ConnectMySQLDB()
+	DSN := os.Getenv("DSN")
+	db := driver.ConnectMySQLDB(DSN)
 	defer db.Close()
 
 
