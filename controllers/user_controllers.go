@@ -1,7 +1,6 @@
 package controllers
 
 import (
-
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
@@ -9,18 +8,18 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"log"
 	"net/http"
-
 )
 
 type UserControllerI interface {
-	CreateUser( method string) http.HandlerFunc
-	GetUser( method string) http.HandlerFunc
-	GetAllUsers( method string) http.HandlerFunc
-	DeleteUser( method string) http.HandlerFunc
-	UpdateUser( method string) http.HandlerFunc
+	CreateUser(method string) http.HandlerFunc
+	GetUser(method string) http.HandlerFunc
+	GetAllUsers(method string) http.HandlerFunc
+	DeleteUser(method string) http.HandlerFunc
+	UpdateUser(method string) http.HandlerFunc
 }
 
 var RepoUser *UserControllers
+
 
 type UserControllers struct {
 	App *config.AppConfig
@@ -30,7 +29,7 @@ func NewUserControllers(app *config.AppConfig) *UserControllers {
 	return &UserControllers{App: app}
 }
 
-func NewControllersU(r *UserControllers)  {
+func NewControllersU(r *UserControllers) {
 	RepoUser = r
 }
 
@@ -40,7 +39,7 @@ func checkError(err error) {
 	}
 }
 
-func (c *UserControllers) CreateUser( method string) http.HandlerFunc {
+func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
 		switch r.Method {
@@ -57,26 +56,21 @@ func (c *UserControllers) CreateUser( method string) http.HandlerFunc {
 	}
 }
 
-
-
-func (c *UserControllers) GetUser(  method string) http.HandlerFunc {
-
+func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(c.App.Session)
 		switch r.Method {
 		case method:
 			userRepo := repository.UserRepository{}
 			param, nameParam, _ := userRepo.Param(r)
-			fmt.Println(param, nameParam)
 			user := userRepo.GetUser(&nameParam, &param, c.App.DB)
-			fmt.Fprintf(w, user.Name)
+			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMassage(w, method)
 		}
 	}
 }
 
-func (c *UserControllers) GetAllUsers( method string) http.HandlerFunc {
+func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -89,7 +83,7 @@ func (c *UserControllers) GetAllUsers( method string) http.HandlerFunc {
 	}
 }
 
-func (c *UserControllers) DeleteUser( method string) http.HandlerFunc {
+func (c *UserControllers) DeleteUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -105,14 +99,14 @@ func (c *UserControllers) DeleteUser( method string) http.HandlerFunc {
 	}
 }
 
-func (c *UserControllers) UpdateUser( method string) http.HandlerFunc {
+func (c *UserControllers) UpdateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			var id = 5
 			var u model.User
 			json.NewDecoder(r.Body).Decode(&u)
 			userRepo := repository.UserRepository{}
+			_, _, id := userRepo.Param(r)
 			user := userRepo.UpdateUser(id, &u, c.App.DB)
 			json.NewEncoder(w).Encode(&user)
 		default:

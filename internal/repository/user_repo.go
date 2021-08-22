@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	dr "github.com/igor-koniukhov/fastcat/driver"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"log"
 	"net/http"
@@ -21,7 +22,9 @@ type UserRepositoryI interface {
 }
 var user model.User
 
-type UserRepository struct {}
+type UserRepository struct {
+	App *config.AppConfig
+}
 
 func (usr *UserRepository) CreateUser(u *model.User, db *sql.DB) (*model.User, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
@@ -34,15 +37,19 @@ func (usr *UserRepository) CreateUser(u *model.User, db *sql.DB) (*model.User, e
 }
 
 func (usr UserRepository) GetUser(nameParam, param *string, db *sql.DB) *model.User {
-
-	var user model.User
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s=?", dr.TableUser, *nameParam)
-	err := db.QueryRow(sqlStmt, *param).Scan(&user.ID, &user.Name, &user.Email, &user.PhoneNumber, &user.Password, &user.Status)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
+	err := db.QueryRow(sqlStmt).Scan(
+		&user.ID,
+		&user.Name,
+		&user.Email,
+		&user.PhoneNumber,
+		&user.Password,
+		&user.Status,
+		&user.CreatedAT,
+		&user.UpdatedAT)
 	CheckErr(err)
 	return &user
 }
-
-
 
 func (usr *UserRepository) GetAllUsers(db *sql.DB) *[]model.User {
 	var users []model.User
@@ -56,7 +63,9 @@ func (usr *UserRepository) GetAllUsers(db *sql.DB) *[]model.User {
 			&user.Email,
 			&user.PhoneNumber,
 			&user.Password,
-			&user.Status)
+			&user.Status,
+			&user.CreatedAT,
+			&user.UpdatedAT)
 		CheckErr(err)
 		users = append(users, user)
 	}
@@ -72,16 +81,18 @@ func (usr *UserRepository) DeleteUser(id int, db *sql.DB) error {
 
 func (usr *UserRepository) UpdateUser(id int, u *model.User, db *sql.DB) *model.User {
 
-	sqlStmt := fmt.Sprintf("UPDATE %s SET name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
 	stmt, err := db.Prepare(sqlStmt)
 	CheckErr(err)
 	_, err = stmt.Exec(
+		u.ID,
 		u.Name,
 		u.Email,
 		u.PhoneNumber,
 		u.Password,
 		u.Status)
 	CheckErr(err)
+	fmt.Println(*u)
 
 	return u
 }
@@ -109,6 +120,6 @@ func (usr *UserRepository) Param(r *http.Request) (string, string, int) {
 
 func CheckErr(err error) {
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Println(err.Error())
 	}
 }
