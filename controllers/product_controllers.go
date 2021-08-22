@@ -30,7 +30,7 @@ func (p ProductControllers) CreateProduct( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -42,7 +42,7 @@ func (p ProductControllers) GetProduct( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -54,7 +54,7 @@ func (p ProductControllers) GetAllProducts( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -66,7 +66,7 @@ func (p ProductControllers) DeleteProduct( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -78,7 +78,7 @@ func (p ProductControllers) UpdateProduct( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
