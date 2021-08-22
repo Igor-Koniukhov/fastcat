@@ -3,9 +3,26 @@ package helpers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/igor-koniukhov/fastcat/controllers"
+	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/model"
+	"io"
+	"sync"
 
 	"os"
 )
+
+var (
+	err        error
+	idSequence int
+	DataUser   []*model.User
+)
+// Cut from main
+
+/*userFileRepository := helpers.NewUserRepository(&app)
+userCreateHandler := handlers.UserHandler{
+	UserRepository: userFileRepository,
+}*/
 
 func CreateModel(modelName string, v interface{}) error {
 	bytes, err := json.MarshalIndent(v, "", "   ")
@@ -40,4 +57,84 @@ func checkReturnError(err error) error {
 		err.Error()
 	}
 	return err
+}
+
+type Repository struct {
+	App *config.AppConfig
+	idMutex *sync.Mutex
+
+}
+
+func NewUserRepository(a *config.AppConfig) *Repository {
+	return &Repository{
+		App : a,
+		idMutex: &sync.Mutex{},
+	}
+}
+
+func (ufr Repository) Create(user *model.User) (*model.User, error) {
+	user.ID = ufr.GetNextID()
+
+
+	err := CreateModel("users", user)
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
+func (ufr Repository) Get(email *string) *model.User {
+	var v *model.User
+	for _, v := range DataUser {
+		if v.Email == *email {
+			return v
+		}
+	}
+	return v
+}
+
+func (ufr Repository) GetAll() []*model.User {
+	return DataUser
+}
+
+func (ufr Repository) Delete(id int) (*model.User, error) {
+	var v *model.User
+	for _, v := range DataUser {
+
+		if v.ID == id {
+			v.Status = "deleted"
+			return v, err
+		}
+	}
+	return v, err
+}
+
+func (ufr Repository) Update(u2 *model.User) *model.User {
+	var v *model.User
+	for _, v := range DataUser {
+		if v.ID == u2.ID {
+			v.ID = u2.ID
+			v.Name = u2.Name
+			v.Email = u2.Email
+			v.PhoneNumber = u2.PhoneNumber
+			v.Password = u2.Password
+			v.Status = u2.Status
+
+			return v
+		}
+	}
+	return v
+}
+
+func (ufr *Repository) GetNextID() int {
+	fl, err := os.OpenFile("./datastore/users.json", os.O_RDWR, 0600)
+	controllers.CheckErr(err)
+	defer fl.Close()
+	data, err := io.ReadAll(fl)
+	err = json.Unmarshal(data, &DataUser)
+	controllers.CheckErr(err)
+	idSequence = len(DataUser) - 1
+	ufr.idMutex.Lock()
+	idSequence += 1
+	return idSequence
 }
