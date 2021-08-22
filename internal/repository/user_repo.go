@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"fmt"
+	dr "github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"log"
 	"net/http"
@@ -18,18 +19,74 @@ type UserRepositoryI interface {
 	UpdateUser(id int, u *model.User, db *sql.DB) *model.User
 	Param(r *http.Request) (string, string, int)
 }
+var user model.User
 
+type UserRepository struct {}
 
+func (usr *UserRepository) CreateUser(u *model.User, db *sql.DB) (*model.User, error) {
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
+	p, err := db.Prepare(sqlStmt)
+	defer p.Close()
+	CheckErr(err)
+	_, err = p.Exec(u.Name, u.Email, u.PhoneNumber, u.Password, u.Status)
+	CheckErr(err)
+	return u, err
+}
 
-type UserRepository struct {
+func (usr UserRepository) GetUser(nameParam, param *string, db *sql.DB) *model.User {
 
+	var user model.User
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s=?", dr.TableUser, *nameParam)
+	err := db.QueryRow(sqlStmt, *param).Scan(&user.ID, &user.Name, &user.Email, &user.PhoneNumber, &user.Password, &user.Status)
+	CheckErr(err)
+	return &user
 }
 
 
-const TableUser = "user"
+
+func (usr *UserRepository) GetAllUsers(db *sql.DB) *[]model.User {
+	var users []model.User
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
+	results, err := db.Query(sqlStmt)
+	CheckErr(err)
+	for results.Next() {
+		err = results.Scan(
+			&user.ID,
+			&user.Name,
+			&user.Email,
+			&user.PhoneNumber,
+			&user.Password,
+			&user.Status)
+		CheckErr(err)
+		users = append(users, user)
+	}
+	return &users
+}
+
+func (usr *UserRepository) DeleteUser(id int, db *sql.DB) error {
+	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", dr.TableUser)
+	_, err := db.Exec(sqlStmt, id)
+	CheckErr(err)
+	return err
+}
+
+func (usr *UserRepository) UpdateUser(id int, u *model.User, db *sql.DB) *model.User {
+
+	sqlStmt := fmt.Sprintf("UPDATE %s SET name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
+	stmt, err := db.Prepare(sqlStmt)
+	CheckErr(err)
+	_, err = stmt.Exec(
+		u.Name,
+		u.Email,
+		u.PhoneNumber,
+		u.Password,
+		u.Status)
+	CheckErr(err)
+
+	return u
+}
 
 func (usr *UserRepository) Param(r *http.Request) (string, string, int) {
-
 	var paramName string
 	var param string
 	var id int
@@ -48,69 +105,6 @@ func (usr *UserRepository) Param(r *http.Request) (string, string, int) {
 		id = num
 	}
 	return param, paramName, id
-}
-
-func (usr *UserRepository) CreateUser(u *model.User, db *sql.DB) (*model.User, error) {
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", TableUser)
-	p, err := db.Prepare(sqlStmt)
-	defer p.Close()
-	CheckErr(err)
-	_, err = p.Exec(u.Name, u.Email, u.PhoneNumber, u.Password, u.Status)
-	CheckErr(err)
-	return u, err
-}
-
-func (usr UserRepository) GetUser(nameParam, param *string, db *sql.DB) *model.User {
-
-	var user model.User
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s=?", TableUser, *nameParam)
-	err := db.QueryRow(sqlStmt, *param).Scan(&user.ID, &user.Name, &user.Email, &user.PhoneNumber, &user.Password, &user.Status)
-	CheckErr(err)
-	return &user
-}
-
-var user model.User
-
-func (usr *UserRepository) GetAllUsers(db *sql.DB) *[]model.User {
-	var users []model.User
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s", TableUser)
-	results, err := db.Query(sqlStmt)
-	CheckErr(err)
-	for results.Next() {
-		err = results.Scan(
-			&user.ID,
-			&user.Name,
-			&user.Email,
-			&user.PhoneNumber,
-			&user.Password,
-			&user.Status)
-		CheckErr(err)
-		users = append(users, user)
-	}
-	return &users
-}
-
-func (usr *UserRepository) DeleteUser(id int, db *sql.DB) error {
-	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", TableUser)
-	_, err := db.Exec(sqlStmt, id)
-	CheckErr(err)
-	return err
-}
-
-func (usr *UserRepository) UpdateUser(id int, u *model.User, db *sql.DB) *model.User {
-
-	sqlStmt := fmt.Sprintf("UPDATE %s SET name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", TableUser, id)
-	stmt, err := db.Prepare(sqlStmt)
-	CheckErr(err)
-	_, err = stmt.Exec(
-		u.Name,
-		u.Email,
-		u.PhoneNumber,
-		u.Password,
-		u.Status)
-	CheckErr(err)
-
-	return u
 }
 
 func CheckErr(err error) {

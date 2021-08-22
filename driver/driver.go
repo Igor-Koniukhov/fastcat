@@ -9,6 +9,7 @@ import (
 var err error
 
 const DataSName = "fastcat:fastCat@tcp(127.0.0.1:3306)/fastcat_db"
+const TableUser = "user"
 
 func ConnectMySQLDB() *sql.DB {
 	db, err := sql.Open("mysql", DataSName)

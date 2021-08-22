@@ -3,16 +3,19 @@ package handlers
 import (
 	"database/sql"
 	"github.com/igor-koniukhov/fastcat/controllers"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"net/http"
 )
 
-func SupplierHandlers(db *sql.DB,)  {
-
+func SupplierHandlers(app *config.AppConfig)  {
+repo := controllers.NewSupplierControllers(app)
+controllers.NewControllersS(repo)
 	controller := controllers.SupplierControllers{}
+	sr:= controllers.RepoSupplier
 
-	http.HandleFunc("/supplier/create", controller.CreateSupplier(db, "POST"))
-	http.HandleFunc("/supplier/", controller.GetSupplier(db, "GET"))
-	http.HandleFunc("/supplier", controller.GetAllSuppliers(db, "GET"))
-	http.HandleFunc("/supplier/update/", controller.UpdateSupplier(db, "PUT"))
-	http.HandleFunc("/supplier/delete/", controller.DeleteSupplier(db, "DELETE"))
+	http.HandleFunc("/supplier/create", sr.CreateSupplier( "POST"))
+	http.HandleFunc("/supplier/", sr.GetSupplier( "GET"))
+	http.HandleFunc("/supplier", sr.GetAllSuppliers( "GET"))
+	http.HandleFunc("/supplier/update/",sr.UpdateSupplier( "PUT"))
+	http.HandleFunc("/supplier/delete/", sr.DeleteSupplier( "DELETE"))
 }

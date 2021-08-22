@@ -20,7 +20,7 @@ type UserControllerI interface {
 	UpdateUser( method string) http.HandlerFunc
 }
 
-var Repo *UserControllers
+var RepoUser *UserControllers
 
 type UserControllers struct {
 	App *config.AppConfig
@@ -30,8 +30,8 @@ func NewUserControllers(app *config.AppConfig) *UserControllers {
 	return &UserControllers{App: app}
 }
 
-func NewControllers(r *UserControllers)  {
-	Repo = r
+func NewControllersU(r *UserControllers)  {
+	RepoUser = r
 }
 
 func checkError(err error) {

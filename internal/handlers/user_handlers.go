@@ -7,15 +7,16 @@ import (
 )
 
 func UserHandlers(app *config.AppConfig)  {
-	repo := controllers.NewUserControllers(app)
-	controllers.NewControllers(repo)
-	app.Str = "hello from main"
 
-	http.HandleFunc("/user/create", controllers.Repo.CreateUser( "POST"))
+	repo := controllers.NewUserControllers(app)
+	controllers.NewControllersU(repo)
+	ur := controllers.RepoUser
+
+	http.HandleFunc("/user/create", ur.CreateUser( "POST"))
 	// GetUser able search by id and email
-	http.HandleFunc("/user/", controllers.Repo.GetUser( "GET"))
-	http.HandleFunc("/users", controllers.Repo.GetAllUsers( "GET"))
-	http.HandleFunc("/user/update/", controllers.Repo.UpdateUser( "PUT"))
-	http.HandleFunc("/user/delete/", controllers.Repo.DeleteUser( "DELETE"))
+	http.HandleFunc("/user/", ur.GetUser( "GET"))
+	http.HandleFunc("/users", ur.GetAllUsers( "GET"))
+	http.HandleFunc("/user/update/", ur.UpdateUser( "PUT"))
+	http.HandleFunc("/user/delete/", ur.DeleteUser( "DELETE"))
 
 }
