@@ -33,7 +33,7 @@ func (c CartControllers) CreateCart(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -44,7 +44,7 @@ func (c CartControllers) GetCart(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -55,7 +55,7 @@ func (c CartControllers) GetAllCarts(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -66,7 +66,7 @@ func (c CartControllers) DeleteCart(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -77,7 +77,7 @@ func (c CartControllers) UpdateCart(method string) http.HandlerFunc {
 		case method:
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }

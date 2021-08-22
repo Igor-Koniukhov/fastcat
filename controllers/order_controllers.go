@@ -31,7 +31,7 @@ func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -43,7 +43,7 @@ func (o OrderControllers) GetOrder( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -55,7 +55,7 @@ func (o OrderControllers) GetAllOrders( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -67,7 +67,7 @@ func (o OrderControllers) DeleteOrder( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
@@ -79,7 +79,7 @@ func (o OrderControllers) UpdateOrder( method string) http.HandlerFunc {
 
 
 		default:
-			methodMassage(w, method)
+			methodMessage(w, method)
 		}
 	}
 }
