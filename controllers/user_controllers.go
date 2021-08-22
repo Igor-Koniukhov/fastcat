@@ -67,7 +67,6 @@ func (c *UserControllers) GetUser(  method string) http.HandlerFunc {
 		case method:
 			userRepo := repository.UserRepository{}
 			param, nameParam, _ := userRepo.Param(r)
-			fmt.Println(param, nameParam)
 			user := userRepo.GetUser(&nameParam, &param, c.App.DB)
 			fmt.Fprintf(w, user.Name)
 		default:
