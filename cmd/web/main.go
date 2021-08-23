@@ -29,7 +29,7 @@ func main() {
 	db := driver.ConnectMySQLDB(DSN)
 	defer db.Close()
 
-	app.DB =db
+	app.DB = db
 	app.Session="This is session"
 
 
@@ -40,9 +40,9 @@ func main() {
 
 
 	handlers.UserHandlers(&app)
+	handlers.OrderHandlers(&app)
 	handlers.SupplierHandlers(&app)
 	handlers.ProductHandlers(&app)
-	handlers.OrderHandlers(&app)
 	handlers.CartHandlers(&app)
 
 	helpers.NewHelpers(&app)
