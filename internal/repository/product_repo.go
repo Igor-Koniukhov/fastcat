@@ -24,8 +24,10 @@ type ProductRepository struct {
 func NewProductRepository(app *config.AppConfig) *ProductRepository {
 	return &ProductRepository{App: app}
 }
+
 func NewRepoP(r *ProductRepository) {
 	RepoP = r
+
 }
 
 func (p ProductRepository) CreateProduct(u *model.Product) (*model.Product, error) {

@@ -16,6 +16,7 @@ type SupplierRepositoryI interface {
 }
 var RepoS *SupplierRepository
 
+
 type SupplierRepository struct {
 	App *config.AppConfig
 }
@@ -23,7 +24,7 @@ type SupplierRepository struct {
 func NewSupplierRepository(app *config.AppConfig) *SupplierRepository {
 	return &SupplierRepository{App: app}
 }
-func NewRepoS( r *SupplierRepository)  {
+func NewRepoS(r *SupplierRepository)  {
 	RepoS = r
 }
 
