@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"net/http"
 )
@@ -13,8 +14,17 @@ type SupplierRepositoryI interface {
 	UpdateSupplier(id int, u *model.Supplier) *model.Supplier
 	Param(r *http.Request) (string, string, int)
 }
+var RepoS *SupplierRepository
+type SupplierRepository struct {
+	App *config.AppConfig
+}
 
-type SupplierRepository struct {}
+func NewSupplierRepository(app *config.AppConfig) *SupplierRepository {
+	return &SupplierRepository{App: app}
+}
+func NewRepoS(r *SupplierRepository)  {
+	RepoS = r
+}
 
 func (s SupplierRepository) CreateSupplier(u *model.Supplier, ) (*model.Supplier, error) {
 	return nil, nil

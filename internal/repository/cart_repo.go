@@ -14,9 +14,17 @@ type CartRepositoryI interface {
 	UpdateCarts(id int, u *model.Cart) *model.Cart
 	Param(r *http.Request) (string, string, int)
 }
-
+var RepoC *CartRepository
 type CartRepository struct {
 	App *config.AppConfig
+}
+
+func NewCartRepository(app *config.AppConfig) *CartRepository {
+	return &CartRepository{App: app}
+}
+func NewRepoC(r *CartRepository)  {
+	RepoC = r
+
 }
 
 func (c CartRepository) CreateCart(u *model.Cart) (*model.Cart, error) {

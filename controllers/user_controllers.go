@@ -38,7 +38,7 @@ func checkError(err error) {
 	}
 }
 
-func UserAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
+func userAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
 	repo := repository.NewUserRepository(a)
 	repository.NewRepoU(repo)
 	return repo
@@ -51,7 +51,7 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 		switch r.Method {
 		case method:
 			json.NewDecoder(r.Body).Decode(&u)
-			UserAppConfigProvider(c.App)
+			userAppConfigProvider(c.App)
 			user, err := repository.RepoU.CreateUser(&u)
 			checkError(err)
 			json.NewEncoder(w).Encode(&user)
@@ -66,7 +66,7 @@ func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			UserAppConfigProvider(c.App)
+			userAppConfigProvider(c.App)
 			param, nameParam, _ := repository.RepoU.Param(r)
 			user := repository.RepoU.GetUser(&nameParam, &param)
 			json.NewEncoder(w).Encode(&user)
@@ -80,7 +80,7 @@ func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			UserAppConfigProvider(c.App)
+			userAppConfigProvider(c.App)
 			users := repository.RepoU.GetAllUsers()
 			json.NewEncoder(w).Encode(&users)
 		default:
@@ -94,7 +94,7 @@ func (c *UserControllers) DeleteUser(method string) http.HandlerFunc {
 		switch r.Method {
 		case method:
 
-			repo := UserAppConfigProvider(c.App)
+			repo := userAppConfigProvider(c.App)
 			_, _, id := repo.Param(r)
 			err := repository.RepoU.DeleteUser(id)
 			checkError(err)
@@ -111,7 +111,7 @@ func (c *UserControllers) UpdateUser(method string) http.HandlerFunc {
 		case method:
 			var u model.User
 			json.NewDecoder(r.Body).Decode(&u)
-			repo := UserAppConfigProvider(c.App)
+			repo := userAppConfigProvider(c.App)
 			_, _, id := repo.Param(r)
 			user := repository.RepoU.UpdateUser(id, &u)
 			json.NewEncoder(w).Encode(&user)

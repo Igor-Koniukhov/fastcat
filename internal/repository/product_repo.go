@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"net/http"
 )
@@ -14,7 +15,19 @@ type ProductRepositoryI interface {
 	Param(r *http.Request) (string, string, int)
 }
 
-type ProductRepository struct {}
+var RepoP *ProductRepository
+
+type ProductRepository struct {
+	App *config.AppConfig
+}
+
+func NewProductRepository(app *config.AppConfig) *ProductRepository {
+	return &ProductRepository{App: app}
+}
+func NewRepoP(r *ProductRepository)  {
+	RepoP = r
+
+}
 
 func (p ProductRepository) CreateProduct(u *model.Product) (*model.Product, error) {
 	return nil, nil

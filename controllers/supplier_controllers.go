@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"net/http"
 )
 
@@ -27,15 +28,29 @@ func NewControllersS(r *SupplierControllers) {
 	RepoSupplier = r
 }
 
+func supplierAppConfigProvider(a *config.AppConfig) *repository.SupplierRepository {
+	repo := repository.NewSupplierRepository(a)
+	repository.NewRepoS(repo)
+	return repo
+
+}
+
 func (s SupplierControllers) CreateSupplier(method string) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {}
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+			supplierAppConfigProvider(s.App)
+		default:
+			methodMessage(w, method)
+		}
+	}
 }
 
 func (s SupplierControllers) GetSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-
+			supplierAppConfigProvider(s.App)
 		default:
 			methodMessage(w, method)
 		}
@@ -46,7 +61,7 @@ func (s SupplierControllers) GetAllSuppliers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-
+			supplierAppConfigProvider(s.App)
 		default:
 			methodMessage(w, method)
 		}
@@ -57,7 +72,7 @@ func (s SupplierControllers) DeleteSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-
+			supplierAppConfigProvider(s.App)
 		default:
 			methodMessage(w, method)
 		}
@@ -68,7 +83,7 @@ func (s SupplierControllers) UpdateSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-
+			supplierAppConfigProvider(s.App)
 		default:
 			methodMessage(w, method)
 		}
