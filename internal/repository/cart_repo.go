@@ -15,8 +15,18 @@ type CartRepositoryI interface {
 	Param(r *http.Request) (string, string, int)
 }
 
+var RepoC *CartRepository
+
 type CartRepository struct {
 	App *config.AppConfig
+}
+
+func NewCartRepository(app *config.AppConfig) *CartRepository {
+	return &CartRepository{App: app}
+}
+func NewRepoC(r *CartRepository) {
+	RepoC = r
+
 }
 
 func (c CartRepository) CreateCart(u *model.Cart) (*model.Cart, error) {
@@ -32,7 +42,7 @@ func (c CartRepository) GetAllCarts() *[]model.Cart {
 	return nil
 }
 
-func (c CartRepository) DeleteCarts(id int ) error {
+func (c CartRepository) DeleteCarts(id int) error {
 	return nil
 }
 

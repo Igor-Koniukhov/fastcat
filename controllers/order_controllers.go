@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"net/http"
 )
 
@@ -26,10 +27,19 @@ func NewControllersO(r *OrderControllers) {
 	RepoOrder = r
 }
 
-func (o OrderControllers) CreateOrder(method string) http.HandlerFunc {
+
+func orderAppConfigProvider(a *config.AppConfig) *repository.OrderRepository {
+	repo := repository.NewOrderRepository(a)
+	repository.NewRepoO(repo)
+	return repo
+}
+
+func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
+			orderAppConfigProvider(o.App)
+
 
 		default:
 			methodMessage(w, method)
@@ -42,6 +52,9 @@ func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
 		switch r.Method {
 		case method:
 
+			orderAppConfigProvider(o.App)
+
+
 		default:
 			methodMessage(w, method)
 		}
@@ -52,6 +65,9 @@ func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
+
+			orderAppConfigProvider(o.App)
+
 
 		default:
 			methodMessage(w, method)
@@ -64,6 +80,9 @@ func (o OrderControllers) DeleteOrder(method string) http.HandlerFunc {
 		switch r.Method {
 		case method:
 
+			orderAppConfigProvider(o.App)
+
+
 		default:
 			methodMessage(w, method)
 		}
@@ -74,6 +93,9 @@ func (o OrderControllers) UpdateOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
+
+			orderAppConfigProvider(o.App)
+
 
 		default:
 			methodMessage(w, method)
