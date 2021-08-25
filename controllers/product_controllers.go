@@ -26,17 +26,18 @@ func NewProductControllers(app *config.AppConfig) *ProductControllers {
 func NewControllersP(r *ProductControllers) {
 	RepoProducts = r
 }
-
 func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository {
 	repo := repository.NewProductRepository(a)
 	repository.NewRepoP(repo)
 	return repo
+
 }
 
-func (p ProductControllers) CreateProduct(method string) http.HandlerFunc {
+func (p *ProductControllers) CreateProduct(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
+
 			productAppConfigProvider(p.App)
 
 		default:
@@ -45,18 +46,7 @@ func (p ProductControllers) CreateProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p ProductControllers) GetProduct(method string) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			productAppConfigProvider(p.App)
-		default:
-			methodMessage(w, method)
-		}
-	}
-}
-
-func (p ProductControllers) GetAllProducts(method string) http.HandlerFunc {
+func (p *ProductControllers) GetProduct(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -67,7 +57,7 @@ func (p ProductControllers) GetAllProducts(method string) http.HandlerFunc {
 	}
 }
 
-func (p ProductControllers) DeleteProduct(method string) http.HandlerFunc {
+func (p *ProductControllers) GetAllProducts(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -78,7 +68,18 @@ func (p ProductControllers) DeleteProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p ProductControllers) UpdateProduct(method string) http.HandlerFunc {
+func (p *ProductControllers) DeleteProduct(method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+			productAppConfigProvider(p.App)
+		default:
+			methodMessage(w, method)
+		}
+	}
+}
+
+func (p *ProductControllers) UpdateProduct(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:

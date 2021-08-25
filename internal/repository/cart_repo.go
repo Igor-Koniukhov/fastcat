@@ -24,7 +24,9 @@ type CartRepository struct {
 func NewCartRepository(app *config.AppConfig) *CartRepository {
 	return &CartRepository{App: app}
 }
-func NewRepoC(r *CartRepository) {
+
+func NewRepoC(r *CartRepository)  {
+
 	RepoC = r
 
 }

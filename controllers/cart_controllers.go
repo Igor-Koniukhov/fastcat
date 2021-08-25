@@ -31,6 +31,7 @@ func cartAppConfigProvider(a *config.AppConfig) *repository.CartRepository {
 	repo := repository.NewCartRepository(a)
 	repository.NewRepoC(repo)
 	return repo
+
 }
 
 func (c CartControllers) CreateCart(method string) http.HandlerFunc {

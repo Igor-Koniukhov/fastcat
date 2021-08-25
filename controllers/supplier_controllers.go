@@ -34,6 +34,7 @@ func supplierAppConfigProvider(a *config.AppConfig) *repository.SupplierReposito
 	repo := repository.NewSupplierRepository(a)
 	repository.NewRepoS(repo)
 	return repo
+
 }
 
 func (s SupplierControllers) CreateSupplier(method string) http.HandlerFunc {
@@ -41,8 +42,6 @@ func (s SupplierControllers) CreateSupplier(method string) http.HandlerFunc {
 		switch r.Method {
 		case method:
 			supplierAppConfigProvider(s.App)
-
-
 
 		default:
 			methodMessage(w, method)

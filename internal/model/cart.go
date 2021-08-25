@@ -8,6 +8,7 @@ type Cart struct {
 	Status    string         `json:"status"`
 	CreatedAt string         `json:"created_at"`
 	UpdatedAt string         `json:"updated_at"`
+
 }
 
 type CartProducts struct {
@@ -16,4 +17,3 @@ type CartProducts struct {
 	ProductID int `json:"product_id"`
 	Number    int `json:"number"`
 }
-

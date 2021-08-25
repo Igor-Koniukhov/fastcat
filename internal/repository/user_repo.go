@@ -21,9 +21,7 @@ type UserRepositoryI interface {
 }
 var user model.User
 
-
 var RepoU *UserRepository
-
 
 type UserRepository struct {
 	App *config.AppConfig
@@ -48,7 +46,7 @@ func (usr *UserRepository) CreateUser(u *model.User) (*model.User, error) {
 }
 
 
-func (usr UserRepository) GetUser(nameParam, param *string) *model.User {
+func (usr *UserRepository) GetUser(nameParam, param *string) *model.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
 	err := usr.App.DB.QueryRow(sqlStmt).Scan(
 
@@ -110,7 +108,6 @@ func (usr *UserRepository) UpdateUser(id int, u *model.User) *model.User {
 		u.Status)
 	CheckErr(err)
 	fmt.Println(*u)
-
 	return u
 }
 
