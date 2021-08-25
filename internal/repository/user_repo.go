@@ -21,7 +21,9 @@ type UserRepositoryI interface {
 }
 var user model.User
 
+
 var RepoU *UserRepository
+
 
 type UserRepository struct {
 	App *config.AppConfig
@@ -45,9 +47,11 @@ func (usr *UserRepository) CreateUser(u *model.User) (*model.User, error) {
 	return u, err
 }
 
+
 func (usr UserRepository) GetUser(nameParam, param *string) *model.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
 	err := usr.App.DB.QueryRow(sqlStmt).Scan(
+
 		&user.ID,
 		&user.Name,
 		&user.Email,
@@ -60,7 +64,9 @@ func (usr UserRepository) GetUser(nameParam, param *string) *model.User {
 	return &user
 }
 
+
 func (usr *UserRepository) GetAllUsers() *[]model.User {
+
 	var users []model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
 	results, err := usr.App.DB.Query(sqlStmt)
@@ -91,7 +97,9 @@ func (usr *UserRepository) DeleteUser(id int) error {
 func (usr *UserRepository) UpdateUser(id int, u *model.User) *model.User {
 
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
+
 	stmt, err := usr.App.DB.Prepare(sqlStmt)
+
 	CheckErr(err)
 	_, err = stmt.Exec(
 		u.ID,
