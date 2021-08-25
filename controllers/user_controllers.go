@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/igor-koniukhov/fastcat/auth/services"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
@@ -12,7 +13,7 @@ import (
 
 type UserControllerI interface {
 	CreateUser(method string) http.HandlerFunc
-	GetUser(method string) http.HandlerFunc
+	Login(method string) http.HandlerFunc
 	GetAllUsers(method string) http.HandlerFunc
 	DeleteUser(method string) http.HandlerFunc
 	UpdateUser(method string) http.HandlerFunc
@@ -38,13 +39,11 @@ func checkError(err error) {
 	}
 }
 
-
 func userAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
 	repo := repository.NewUserRepository(a)
 	repository.NewRepoU(repo)
 	return repo
 }
-
 
 func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -63,16 +62,96 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 	}
 }
 
-func (c *UserControllers) GetUser(method string) http.HandlerFunc {
+
+func (c *UserControllers) Login(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			repo := userAppConfigProvider(c.App)
-			param, nameParam, _ := repo.Param(r)
-			user := repository.RepoU.GetUser(&nameParam, &param)
-			json.NewEncoder(w).Encode(&user)
+			logReq := new(model.LoginRequest)
+			if err := json.NewDecoder(r.Body).Decode(&logReq); err != nil {
+				http.Error(w, err.Error(), http.StatusBadRequest)
+				return
+			}
+
+			resp, err := services.TokenResponder(w, logReq, c.App)
+			if err != nil {
+				log.Println(err)
+			}
+
+			err = json.NewEncoder(w).Encode(resp)
+			if err != nil {
+				log.Println(err)
+			}
+
 		default:
 			methodMessage(w, method)
+		}
+	}
+}
+func (c *UserControllers) Refresh(method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case method:
+			logReq := new(model.LoginRequest)
+			if err := json.NewDecoder(r.Body).Decode(&logReq); err != nil {
+				http.Error(w, err.Error(), http.StatusBadRequest)
+				return
+			}
+			resp, err := services.TokenResponder(w, logReq, c.App)
+			if err != nil {
+				log.Println(err)
+			}
+
+			w.WriteHeader(http.StatusOK)
+			err = json.NewEncoder(w).Encode(resp)
+			if err != nil {
+				log.Println(err)
+			}
+
+		default:
+			methodMessage(w, method)
+		}
+	}
+
+}
+func (c *UserControllers) GetProfile(method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		w.Header().Set("Content-Type", "application/json")
+
+		switch r.Method {
+		case method:
+			bearerString := r.Header.Get("Authorization")
+			tokenString := services.GetTokenFromBearerString(bearerString)
+			claims, err := services.ValidateToken(tokenString, services.AccessSecret)
+			//claims, err := ValidateToken(GetTokenFromBearerString(r.Header.Get("Authorization")), RefreshSecret)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusUnauthorized)
+				return
+			}
+
+			userAppConfigProvider(c.App)
+			user, err := repository.RepoU.GetUserByID(claims.ID)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusBadRequest)
+				return
+			}
+
+			resp := &services.UserResponse{
+				ID:    user.ID,
+				Name:  user.Name,
+				Email: user.Email,
+			}
+
+			w.WriteHeader(http.StatusOK)
+			err = json.NewEncoder(w).Encode(resp)
+			if err != nil {
+				log.Println(err)
+			}
+
+		default:
+			methodMessage(w, method)
+
 		}
 	}
 }

@@ -15,7 +15,9 @@ func UserHandlers(app *config.AppConfig)  {
 
 	http.HandleFunc("/user/create", ur.CreateUser( "POST"))
 	// GetUser able search by id and email
-	http.HandleFunc("/user/", ur.GetUser("GET"))
+	http.HandleFunc("/login", ur.Login("POST"))
+	http.HandleFunc("/refresh", ur.Refresh("POST"))
+	http.HandleFunc("/profile", ur.GetProfile("GET"))
 	http.HandleFunc("/users", ur.GetAllUsers( "GET"))
 	http.HandleFunc("/user/update/", ur.UpdateUser( "PUT"))
 	http.HandleFunc("/user/delete/", ur.DeleteUser( "DELETE"))

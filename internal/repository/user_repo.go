@@ -5,6 +5,7 @@ import (
 	dr "github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
+	"golang.org/x/crypto/bcrypt"
 	"log"
 	"net/http"
 	"strconv"
@@ -13,7 +14,8 @@ import (
 
 type UserRepositoryI interface {
 	CreateUser(u *model.User) (*model.User, error)
-	GetUser(nameParam, param *string) *model.User
+	GetUserByID(id int) (*model.User, error)
+	GetUserByEmail(email string) (*model.User, error)
 	GetAllUsers() *[]model.User
 	DeleteUser(id int) error
 	UpdateUser(id int, u *model.User) *model.User
@@ -36,18 +38,19 @@ func NewRepoU(r *UserRepository)  {
 }
 
 func (usr *UserRepository) CreateUser(u *model.User) (*model.User, error) {
+	pass, _ := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
 	p, err := usr.App.DB.Prepare(sqlStmt)
 	defer p.Close()
 	CheckErr(err)
-	_, err = p.Exec(u.Name, u.Email, u.PhoneNumber, u.Password, u.Status)
+	_, err = p.Exec(u.Name, u.Email, u.PhoneNumber, pass, u.Status)
 	CheckErr(err)
 	return u, err
 }
 
 
-func (usr *UserRepository) GetUser(nameParam, param *string) *model.User {
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
+func (usr *UserRepository) GetUserByID(id int) (*model.User, error) {
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = %d ", dr.TableUser,id)
 	err := usr.App.DB.QueryRow(sqlStmt).Scan(
 
 		&user.ID,
@@ -59,8 +62,24 @@ func (usr *UserRepository) GetUser(nameParam, param *string) *model.User {
 		&user.CreatedAT,
 		&user.UpdatedAT)
 	CheckErr(err)
-	return &user
+	return &user, err
 }
+func (usr *UserRepository) GetUserByEmail(email string) (*model.User, error) {
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = '%s' ", dr.TableUser, email)
+	err := usr.App.DB.QueryRow(sqlStmt).Scan(
+
+		&user.ID,
+		&user.Name,
+		&user.Email,
+		&user.PhoneNumber,
+		&user.Password,
+		&user.Status,
+		&user.CreatedAT,
+		&user.UpdatedAT)
+	CheckErr(err)
+	return &user, err
+}
+
 
 
 func (usr *UserRepository) GetAllUsers() *[]model.User {

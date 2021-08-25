@@ -38,7 +38,6 @@ func main() {
 	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	app.ErrorLog = errorLog
 
-
 	handlers.UserHandlers(&app)
 	handlers.OrderHandlers(&app)
 	handlers.SupplierHandlers(&app)
