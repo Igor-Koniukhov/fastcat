@@ -20,6 +20,7 @@ type UserControllerI interface {
 
 var RepoUser *UserControllers
 
+
 type UserControllers struct {
 	App *config.AppConfig
 }
@@ -38,11 +39,13 @@ func checkError(err error) {
 	}
 }
 
+
 func userAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
 	repo := repository.NewUserRepository(a)
 	repository.NewRepoU(repo)
 	return repo
 }
+
 
 func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -65,9 +68,12 @@ func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
+
 			repo := userAppConfigProvider(c.App)
 			param, nameParam, _ := repo.Param(r)
 			user := repository.RepoU.GetUser(&nameParam, &param)
+
+			
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
@@ -109,9 +115,12 @@ func (c *UserControllers) UpdateUser(method string) http.HandlerFunc {
 		case method:
 			var u model.User
 			json.NewDecoder(r.Body).Decode(&u)
+
 			repo := userAppConfigProvider(c.App)
 			_, _, id := repo.Param(r)
 			user := repository.RepoU.UpdateUser(id, &u)
+
+			
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
