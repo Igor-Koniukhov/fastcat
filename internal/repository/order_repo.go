@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"net/http"
 )
@@ -13,8 +14,18 @@ type OrderRepositoryI interface {
 	UpdateOrder(id int, u *model.Order) *model.Order
 	Param(r *http.Request) (string, string, int)
 }
+var RepoO *OrderRepository
+type OrderRepository struct {
+	App *config.AppConfig
+}
 
-type OrderRepository struct {}
+func NewOrderRepository(app *config.AppConfig) *OrderRepository {
+	return &OrderRepository{App: app}
+}
+func NewRepoO(r *OrderRepository)  {
+	RepoO = r
+
+}
 
 func (o OrderRepository) CreateOrder(u *model.Order) (*model.Order, error) {
 	return nil, nil
