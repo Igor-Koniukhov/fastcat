@@ -20,7 +20,6 @@ type UserControllerI interface {
 
 var RepoUser *UserControllers
 
-
 type UserControllers struct {
 	App *config.AppConfig
 }
@@ -39,14 +38,21 @@ func checkError(err error) {
 	}
 }
 
+func UserAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
+	repo := repository.NewUserRepository(a)
+	repository.NewRepoU(repo)
+	return repo
+
+}
+
 func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
 		switch r.Method {
 		case method:
 			json.NewDecoder(r.Body).Decode(&u)
-			userRepo := repository.UserRepository{}
-			user, err := userRepo.CreateUser(&u, c.App.DB)
+			UserAppConfigProvider(c.App)
+			user, err := repository.RepoU.CreateUser(&u)
 			checkError(err)
 			json.NewEncoder(w).Encode(&user)
 
@@ -60,9 +66,9 @@ func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			userRepo := repository.UserRepository{}
-			param, nameParam, _ := userRepo.Param(r)
-			user := userRepo.GetUser(&nameParam, &param, c.App.DB)
+			UserAppConfigProvider(c.App)
+			param, nameParam, _ := repository.RepoU.Param(r)
+			user := repository.RepoU.GetUser(&nameParam, &param)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
@@ -74,8 +80,8 @@ func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			userRepo := repository.UserRepository{}
-			users := userRepo.GetAllUsers(c.App.DB)
+			UserAppConfigProvider(c.App)
+			users := repository.RepoU.GetAllUsers()
 			json.NewEncoder(w).Encode(&users)
 		default:
 			methodMessage(w, method)
@@ -87,9 +93,10 @@ func (c *UserControllers) DeleteUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			userRepo := repository.UserRepository{}
-			_, _, id := userRepo.Param(r)
-			err := userRepo.DeleteUser(id, c.App.DB)
+
+			repo := UserAppConfigProvider(c.App)
+			_, _, id := repo.Param(r)
+			err := repository.RepoU.DeleteUser(id)
 			checkError(err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 		default:
@@ -104,9 +111,9 @@ func (c *UserControllers) UpdateUser(method string) http.HandlerFunc {
 		case method:
 			var u model.User
 			json.NewDecoder(r.Body).Decode(&u)
-			userRepo := repository.UserRepository{}
-			_, _, id := userRepo.Param(r)
-			user := userRepo.UpdateUser(id, &u, c.App.DB)
+			repo := UserAppConfigProvider(c.App)
+			_, _, id := repo.Param(r)
+			user := repository.RepoU.UpdateUser(id, &u)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
