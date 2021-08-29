@@ -39,6 +39,7 @@ func TokenResponder(w http.ResponseWriter,logReq *model.LoginRequest, app *confi
 
 	if err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(logReq.Password)); err != nil {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
+
 		return nil, err
 	}
 

@@ -14,7 +14,6 @@ func UserHandlers(app *config.AppConfig)  {
 	ur := controllers.RepoUser
 
 	http.HandleFunc("/user/create", ur.CreateUser( "POST"))
-	// GetUser able search by id and email
 	http.HandleFunc("/login", ur.Login("POST"))
 	http.HandleFunc("/refresh", ur.Refresh("POST"))
 	http.HandleFunc("/profile", ur.GetProfile("GET"))

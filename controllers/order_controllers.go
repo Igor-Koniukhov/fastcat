@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
-
 	"github.com/igor-koniukhov/fastcat/internal/model"
 
 	"github.com/igor-koniukhov/fastcat/internal/repository"
@@ -38,14 +37,14 @@ func orderAppConfigProvider(a *config.AppConfig) *repository.OrderRepository {
 
 }
 
-func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
+func (oc OrderControllers) CreateOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var ord model.Order
 		switch r.Method {
 		case method:
 
 			json.NewDecoder(r.Body).Decode(&ord)
-			orderAppConfigProvider(o.App)
+			orderAppConfigProvider(oc.App)
 			order, err := repository.RepoO.CreateOrder(&ord)
 			checkError(err)
 			json.NewEncoder(w).Encode(&order)
@@ -57,13 +56,11 @@ func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
 }
 
 
-func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
+func (oc OrderControllers) GetOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(o.App.Session)
-
 		switch r.Method {
 		case method:
-			repo := orderAppConfigProvider(o.App)
+			repo := orderAppConfigProvider(oc.App)
 			param, _, _ := repo.Param(r)
 			order := repository.RepoO.GetOrder(&param)
 			json.NewEncoder(w).Encode(&order)
@@ -73,11 +70,13 @@ func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
+func (oc OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(oc.App.AccessToken)
+		fmt.Println(oc.App.RefreshToken)
 		switch r.Method {
 		case method:
-			orderAppConfigProvider(o.App)
+			orderAppConfigProvider(oc.App)
 			order := repository.RepoO.GetAllOrders()
 			json.NewEncoder(w).Encode(&order)
 		default:
@@ -87,11 +86,11 @@ func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 }
 
 
-func (o OrderControllers) DeleteOrder(method string) http.HandlerFunc {
+func (oc OrderControllers) DeleteOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			repo := orderAppConfigProvider(o.App)
+			repo := orderAppConfigProvider(oc.App)
 			_, _, id := repo.Param(r)
 			err := repository.RepoO.DeleteOrder(id)
 			checkError(err)

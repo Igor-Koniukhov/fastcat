@@ -9,6 +9,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"log"
 	"net/http"
+	"strings"
 )
 
 type UserControllerI interface {
@@ -53,6 +54,7 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 			json.NewDecoder(r.Body).Decode(&u)
 			_ = userAppConfigProvider(c.App)
 			user, err := repository.RepoU.CreateUser(&u)
+			c.App.ErrorLog.Println(err, "error from appConfig")
 			checkError(err)
 			json.NewEncoder(w).Encode(&user)
 
@@ -61,7 +63,6 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 		}
 	}
 }
-
 
 func (c *UserControllers) Login(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -72,22 +73,32 @@ func (c *UserControllers) Login(method string) http.HandlerFunc {
 				http.Error(w, err.Error(), http.StatusBadRequest)
 				return
 			}
-
 			resp, err := services.TokenResponder(w, logReq, c.App)
 			if err != nil {
 				log.Println(err)
 			}
 
-			err = json.NewEncoder(w).Encode(resp)
 			if err != nil {
-				log.Println(err)
+				c.App.ErrorLog.Println(err)
 			}
+			c.App.AccessToken = resp.AccessToken
+			c.App.RefreshToken = resp.RefreshToken
+
+			str := c.App.RefreshToken
+			partAccess := strings.Split(str, ".")
+			thirdPartAccess := partAccess[len(partAccess)-1]
+			w.Header().Set("Authorization", c.App.AccessToken)
+			err = json.NewEncoder(w).Encode(resp)
+
+			fmt.Println(partAccess)
+			fmt.Println(thirdPartAccess)
 
 		default:
 			methodMessage(w, method)
 		}
 	}
 }
+
 func (c *UserControllers) Refresh(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
@@ -116,12 +127,12 @@ func (c *UserControllers) Refresh(method string) http.HandlerFunc {
 }
 func (c *UserControllers) GetProfile(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-
 		w.Header().Set("Content-Type", "application/json")
 
 		switch r.Method {
 		case method:
 			bearerString := r.Header.Get("Authorization")
+			fmt.Println(bearerString, "this is bearer string")
 			tokenString := services.GetTokenFromBearerString(bearerString)
 			claims, err := services.ValidateToken(tokenString, services.AccessSecret)
 			//claims, err := ValidateToken(GetTokenFromBearerString(r.Header.Get("Authorization")), RefreshSecret)
