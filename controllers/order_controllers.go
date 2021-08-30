@@ -72,8 +72,6 @@ func (oc OrderControllers) GetOrder(method string) http.HandlerFunc {
 
 func (oc OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(oc.App.AccessToken)
-		fmt.Println(oc.App.RefreshToken)
 		switch r.Method {
 		case method:
 			orderAppConfigProvider(oc.App)
