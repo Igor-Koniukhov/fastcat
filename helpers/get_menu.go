@@ -13,14 +13,11 @@ import (
 
 type RestMenuRepositoryI interface {
 	GetRestaurants()
-	GetMenu()
+	getMenu(id int, tx *sql.Tx)
 }
 
 type RestMenuRepository struct {
 	App        *config.AppConfig
-	Suppliers  *Suppliers
-	Menu       *Menu
-	Restaurant *Restaurant
 }
 
 var RepoRestMenu *RestMenuRepository
@@ -49,15 +46,10 @@ type Items struct {
 	Name  string  `json:"name"`
 	Price float64 `json:"price"`
 	Type  string  `json:"type"`
-	//Ingredients []string`json:"ingredients"`
 	Ingredients []string `json:"ingredients"`
-}
-type Ingredients struct {
-	Ingredients string `json:"ingredients"`
 }
 
 var ctx context.Context
-
 const TabSuppliers = "suppliers"
 const TabMenu = "menu"
 
@@ -84,7 +76,9 @@ func (r RestMenuRepository) GetRestaurants() {
 			restaurant.Id,
 			restaurant.Name,
 		)
-r.getMenu(restaurant.Id, tx)
+
+		r.getMenu(restaurant.Id, tx)
+
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -100,6 +94,7 @@ func (r RestMenuRepository) getMenu(id int, tx *sql.Tx) {
 	var menu Menu
 	url := fmt.Sprintf("http://foodapi.true-tech.php.nixdev.co/restaurants/%v/menu", id)
 	json.Unmarshal(responseConnection(url), &menu)
+
 	stmtSQl, err := tx.Prepare("INSERT INTO " + TabMenu + " (name, price, type, ingredients) VALUES (?, ?, ?, ?)")
 	if err != nil {
 		fmt.Println(err)
