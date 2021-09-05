@@ -6,7 +6,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
-	web "github.com/igor-koniukhov/webLogger/v2"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	web "github.com/igor-koniukhov/webLogger/v2"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 	"strconv"
 	"strings"
@@ -51,7 +51,7 @@ func (s SupplierRepository) CreateSupplier(suppliers *model.Suppliers) (*model.S
 		id = int(lastInsertedID)
 		wg.Add(1)
 		go func(id int) {
-			s.App.ChanelSupplierId <- id
+			s.App.ChanIdSupplier <- id
 			wg.Done()
 		}(id)
 	}
@@ -100,6 +100,16 @@ func (s SupplierRepository) SoftDelete(id int) error {
 	_, err := s.App.DB.Exec(sqlStmt, s.App.TimeFormat, id)
 	web.Log.Error(err, err)
 	return nil
+}
+func (s SupplierRepository) GetByName(name string) (int, error) {
+	var id int
+	sqlStmt := fmt.Sprintf("SELECT id FROM %s WHERE name = ? and deleted_at IS null", model.TabSuppliers)
+	err := s.App.DB.QueryRow(sqlStmt, name).Scan(&id)
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
 }
 
 func (s SupplierRepository) UpdateSupplier(id int, supplier *model.Supplier, ) *model.Supplier {

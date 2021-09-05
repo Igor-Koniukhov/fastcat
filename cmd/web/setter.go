@@ -2,9 +2,7 @@ package main
 
 import (
 	"database/sql"
-
-
-	"github.com/igor-koniukhov/webLogger/v2"
+	"github.com/igor-koniukhov/webLogger/v3"
 	"time"
 )
 
@@ -12,7 +10,7 @@ import (
 func SetAppConfigParameters(db *sql.DB)  {
 	app.DB = db
 	app.Session = "This is session"
-	app.TimeFormat = time.Now().UTC().Format("15:04:05||02.01.2006")
+	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
 
 }
 

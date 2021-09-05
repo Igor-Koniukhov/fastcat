@@ -422,3 +422,586 @@
  ERROR [13:34:18||2021.09.05] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:46  
  ERROR [13:34:18||2021.09.05] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:46  
  ERROR [13:34:18||2021.09.05] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:46  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ ERROR [17:42:35||2021.09.05] Error 1292: Incorrect datetime value: '17:42:35||05.09.2021' for column 'deleted_at' at row 1  supplier_repo.go:101  
+ INFO [19:34:07||2021.09.05] <nil> 61 21  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 62 21  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 63 21  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 64 22  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 65 22  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 66 22  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 67 23  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 68 23  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 69 23  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 71 24  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 70 24  product_repo.go:63  
+ INFO [19:34:07||2021.09.05] <nil> 72 24  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 73 25  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 75 25  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 74 25  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 76 26  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 78 26  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 77 26  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 79 27  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 80 27  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 81 27  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 82 28  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 83 28  product_repo.go:63  
+ INFO [19:34:33||2021.09.05] 84 28  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 85 29  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 87 29  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 86 29  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 88 30  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 89 30  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 90 30  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 92 31  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 93 31  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 91 31  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 95 32  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 96 32  product_repo.go:63  
+ INFO [19:35:51||2021.09.05] 94 32  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 2 1  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 1 1  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 3 1  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 4 2  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 5 2  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 6 2  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 7 3  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 8 3  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 9 3  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 10 4  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 11 4  product_repo.go:63  
+ INFO [19:36:49||2021.09.05] 12 4  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 14 -item id5- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 15 -item id5- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 13 -item id5- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 16 -item id6- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 17 -item id6- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 18 -item id6- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 19 -item id7- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 20 -item id7- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 21 -item id7- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 22 -item id8- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 24 -item id8- product id  product_repo.go:63  
+ INFO [19:41:15||2021.09.05] 23 -item id8- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 25 -item id9- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 27 -item id9- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 26 -item id9- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 28 -item id10- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 29 -item id10- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 30 -item id10- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 31 -item id11- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 32 -item id11- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 33 -item id11- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 34 -item id12- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 35 -item id12- product id  product_repo.go:63  
+ INFO [19:41:23||2021.09.05] 36 -item id12- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 37 -item id 13- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 38 -item id 13- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 39 -item id 13- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 41 -item id 14- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 40 -item id 14- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 42 -item id 14- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 43 -item id 15- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 44 -item id 15- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 45 -item id 15- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 46 -item id 16- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 47 -item id 16- product id  product_repo.go:63  
+ INFO [19:41:37||2021.09.05] 48 -item id 16- product id  product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 17- product id49 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 17- product id50 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 17- product id51 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 18- product id52 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 18- product id54 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 18- product id53 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 19- product id55 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 19- product id57 -item id   product_repo.go:63  
+ INFO [19:42:33||2021.09.05] 19- product id56 -item id   product_repo.go:63  
+ INFO [19:42:34||2021.09.05] 20- product id58 -item id   product_repo.go:63  
+ INFO [19:42:34||2021.09.05] 20- product id60 -item id   product_repo.go:63  
+ INFO [19:42:34||2021.09.05] 20- product id59 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 20dif between prod id and order number  menu_parser.go:61  
+ INFO [19:45:30||2021.09.05] 21- product id 61 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 21- product id 62 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 21- product id 63 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 20dif between prod id and order number  menu_parser.go:61  
+ INFO [19:45:30||2021.09.05] 22- product id 65 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 22- product id 66 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 22- product id 64 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 20dif between prod id and order number  menu_parser.go:61  
+ INFO [19:45:30||2021.09.05] 23- product id 68 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 23- product id 67 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 23- product id 69 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 20dif between prod id and order number  menu_parser.go:61  
+ INFO [19:45:30||2021.09.05] 24- product id 70 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 24- product id 72 -item id   product_repo.go:63  
+ INFO [19:45:30||2021.09.05] 24- product id 71 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 24 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:05||2021.09.05] 25- product id 73 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 25- product id 74 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 25- product id 75 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 24 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:05||2021.09.05] 26- product id 78 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 26- product id 77 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 26- product id 76 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 24 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:05||2021.09.05] 27- product id 79 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 27- product id 80 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 27- product id 81 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 24 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:05||2021.09.05] 28- product id 82 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 28- product id 83 -item id   product_repo.go:63  
+ INFO [19:46:05||2021.09.05] 28- product id 84 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 29--id28 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:52||2021.09.05] 29- product id 85 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 29- product id 87 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 29- product id 86 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 30--id28 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:52||2021.09.05] 30- product id 88 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 30- product id 90 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 30- product id 89 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 31--id28 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:52||2021.09.05] 31- product id 91 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 31- product id 92 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 31- product id 93 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 32--id28 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:46:52||2021.09.05] 32- product id 94 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 32- product id 95 -item id   product_repo.go:63  
+ INFO [19:46:52||2021.09.05] 32- product id 96 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 33--id 32 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:47:15||2021.09.05] 33- product id 97 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 33- product id 98 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 33- product id 99 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 34--id 32 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:47:15||2021.09.05] 34- product id 100 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 34- product id 102 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 34- product id 101 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 35--id 32 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:47:15||2021.09.05] 35- product id 104 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 35- product id 105 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 35- product id 103 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 36--id 32 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:47:15||2021.09.05] 36- product id 107 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 36- product id 108 -item id   product_repo.go:63  
+ INFO [19:47:15||2021.09.05] 36- product id 106 -item id   product_repo.go:63  
+ INFO [19:47:29||2021.09.05] 37--id 36 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:47:29||2021.09.05] 38--id 36 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:47:29||2021.09.05] 39--id 36 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:47:29||2021.09.05] 40--id 36 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:26||2021.09.05] 41--id 40 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:26||2021.09.05] 42--id 40 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:26||2021.09.05] 43--id 40 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:26||2021.09.05] 44--id 40 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:30||2021.09.05] 45--id 44 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:30||2021.09.05] 46--id 44 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:30||2021.09.05] 47--id 44 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:30||2021.09.05] 48--id 44 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:38||2021.09.05] 49--id 48 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:38||2021.09.05] 50--id 48 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:39||2021.09.05] 51--id 48 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:48:39||2021.09.05] 52--id 48 dif between prod id and order number  menu_parser.go:61  
+ INFO [19:56:45||2021.09.05] 5- product id 13 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 5- product id 14 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 5- product id 15 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 6- product id 16 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 6- product id 17 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 6- product id 18 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 7- product id 19 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 7- product id 20 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 7- product id 21 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 8- product id 22 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 8- product id 23 -item id   product_repo.go:63  
+ INFO [19:56:45||2021.09.05] 8- product id 24 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 9- product id 25 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 9- product id 27 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 9- product id 26 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 10- product id 29 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 10- product id 30 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 10- product id 28 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 11- product id 31 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 11- product id 32 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 11- product id 33 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 12- product id 34 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 12- product id 35 -item id   product_repo.go:63  
+ INFO [20:13:31||2021.09.05] 12- product id 36 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 13- product id 37 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 13- product id 39 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 13- product id 38 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 14- product id 41 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 14- product id 42 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 14- product id 40 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 15- product id 44 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 15- product id 43 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 15- product id 45 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 16- product id 48 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 16- product id 46 -item id   product_repo.go:63  
+ INFO [20:15:46||2021.09.05] 16- product id 47 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 1- product id 1 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 1- product id 2 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 1- product id 3 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 2- product id 4 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 2- product id 5 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 2- product id 6 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 3- product id 7 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 3- product id 8 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 3- product id 9 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 4- product id 10 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 4- product id 11 -item id   product_repo.go:63  
+ INFO [20:18:19||2021.09.05] 4- product id 12 -item id   product_repo.go:63  
+ INFO [20:19:28||2021.09.05] 5- product id 13 -item id   product_repo.go:63  
+ INFO [20:19:28||2021.09.05] 5- product id 15 -item id   product_repo.go:63  
+ INFO [20:19:28||2021.09.05] 5- product id 14 -item id   product_repo.go:63  
+ INFO [20:19:28||2021.09.05] 6- product id 16 -item id   product_repo.go:63  
+ INFO [20:19:28||2021.09.05] 6- product id 17 -item id   product_repo.go:63  
+ INFO [20:19:28||2021.09.05] 6- product id 18 -item id   product_repo.go:63  
+ INFO [20:19:29||2021.09.05] 7- product id 19 -item id   product_repo.go:63  
+ INFO [20:19:29||2021.09.05] 7- product id 20 -item id   product_repo.go:63  
+ INFO [20:19:29||2021.09.05] 7- product id 21 -item id   product_repo.go:63  
+ INFO [20:19:29||2021.09.05] 8- product id 22 -item id   product_repo.go:63  
+ INFO [20:19:29||2021.09.05] 8- product id 23 -item id   product_repo.go:63  
+ INFO [20:19:29||2021.09.05] 8- product id 24 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 1 oldSuppID  menu_parser.go:62  
+ INFO [20:35:06||2021.09.05] 1- product id 1 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 1- product id 3 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 1- product id 2 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 2 oldSuppID  menu_parser.go:62  
+ INFO [20:35:06||2021.09.05] 2- product id 4 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 2- product id 6 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 2- product id 5 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 3 oldSuppID  menu_parser.go:62  
+ INFO [20:35:06||2021.09.05] 3- product id 7 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 3- product id 8 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 3- product id 9 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 4 oldSuppID  menu_parser.go:62  
+ INFO [20:35:06||2021.09.05] 4- product id 10 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 4- product id 11 -item id   product_repo.go:63  
+ INFO [20:35:06||2021.09.05] 4- product id 12 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 5 oldSuppID  menu_parser.go:62  
+ INFO [20:36:27||2021.09.05] 5- product id 13 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 5- product id 15 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 5- product id 14 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 6 oldSuppID  menu_parser.go:62  
+ INFO [20:36:27||2021.09.05] 6- product id 16 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 6- product id 17 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 6- product id 18 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 7 oldSuppID  menu_parser.go:62  
+ INFO [20:36:27||2021.09.05] 7- product id 19 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 7- product id 21 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 7- product id 20 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 8 oldSuppID  menu_parser.go:62  
+ INFO [20:36:27||2021.09.05] 8- product id 23 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 8- product id 22 -item id   product_repo.go:63  
+ INFO [20:36:27||2021.09.05] 8- product id 24 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 9 oldSuppID  menu_parser.go:62  
+ INFO [20:38:39||2021.09.05] 9- product id 25 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 9- product id 26 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 9- product id 27 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 10 oldSuppID  menu_parser.go:62  
+ INFO [20:38:39||2021.09.05] 10- product id 28 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 10- product id 29 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 10- product id 30 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 11 oldSuppID  menu_parser.go:62  
+ INFO [20:38:39||2021.09.05] 11- product id 31 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 11- product id 33 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 11- product id 32 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 12 oldSuppID  menu_parser.go:62  
+ INFO [20:38:39||2021.09.05] 12- product id 34 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 12- product id 36 -item id   product_repo.go:63  
+ INFO [20:38:39||2021.09.05] 12- product id 35 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 13 oldSuppID  menu_parser.go:62  
+ INFO [20:39:15||2021.09.05] 13- product id 37 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 13- product id 38 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 13- product id 39 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 14 oldSuppID  menu_parser.go:62  
+ INFO [20:39:15||2021.09.05] 14- product id 41 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 14- product id 40 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 14- product id 42 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 15 oldSuppID  menu_parser.go:62  
+ INFO [20:39:15||2021.09.05] 15- product id 43 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 15- product id 44 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 15- product id 45 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 16 oldSuppID  menu_parser.go:62  
+ INFO [20:39:15||2021.09.05] 16- product id 46 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 16- product id 47 -item id   product_repo.go:63  
+ INFO [20:39:15||2021.09.05] 16- product id 48 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 17 oldSuppID  menu_parser.go:62  
+ INFO [20:39:20||2021.09.05] 17- product id 49 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 17- product id 50 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 17- product id 51 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 18 oldSuppID  menu_parser.go:62  
+ INFO [20:39:20||2021.09.05] 18- product id 52 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 18- product id 54 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 18- product id 53 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 19 oldSuppID  menu_parser.go:62  
+ INFO [20:39:20||2021.09.05] 19- product id 55 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 19- product id 57 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 19- product id 56 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 20 oldSuppID  menu_parser.go:62  
+ INFO [20:39:20||2021.09.05] 20- product id 58 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 20- product id 59 -item id   product_repo.go:63  
+ INFO [20:39:20||2021.09.05] 20- product id 60 -item id   product_repo.go:63  
+ INFO [20:39:25||2021.09.05] 21 oldSuppID  menu_parser.go:62  
+ INFO [20:39:25||2021.09.05] 21- product id 61 -item id   product_repo.go:63  
+ INFO [20:39:25||2021.09.05] 21- product id 63 -item id   product_repo.go:63  
+ INFO [20:39:25||2021.09.05] 21- product id 62 -item id   product_repo.go:63  
+ INFO [20:39:25||2021.09.05] 22 oldSuppID  menu_parser.go:62  
+ INFO [20:39:26||2021.09.05] 22- product id 64 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 22- product id 66 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 22- product id 65 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 23 oldSuppID  menu_parser.go:62  
+ INFO [20:39:26||2021.09.05] 23- product id 67 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 23- product id 69 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 23- product id 68 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 24 oldSuppID  menu_parser.go:62  
+ INFO [20:39:26||2021.09.05] 24- product id 70 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 24- product id 71 -item id   product_repo.go:63  
+ INFO [20:39:26||2021.09.05] 24- product id 72 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 25 oldSuppID  menu_parser.go:62  
+ INFO [20:39:29||2021.09.05] 25- product id 73 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 25- product id 74 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 25- product id 75 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 26 oldSuppID  menu_parser.go:62  
+ INFO [20:39:29||2021.09.05] 26- product id 76 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 26- product id 77 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 26- product id 78 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 27 oldSuppID  menu_parser.go:62  
+ INFO [20:39:29||2021.09.05] 27- product id 79 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 27- product id 81 -item id   product_repo.go:63  
+ INFO [20:39:29||2021.09.05] 27- product id 80 -item id   product_repo.go:63  
+ INFO [20:39:30||2021.09.05] 28 oldSuppID  menu_parser.go:62  
+ INFO [20:39:30||2021.09.05] 28- product id 82 -item id   product_repo.go:63  
+ INFO [20:39:30||2021.09.05] 28- product id 83 -item id   product_repo.go:63  
+ INFO [20:39:30||2021.09.05] 28- product id 84 -item id   product_repo.go:63  
+ INFO [20:56:21||2021.09.05] 29- product id 85 -item id   product_repo.go:63  
+ INFO [20:56:21||2021.09.05] 29- product id 87 -item id   product_repo.go:63  
+ INFO [20:56:21||2021.09.05] 29- product id 86 -item id   product_repo.go:63  
+ INFO [20:56:47||2021.09.05] 37- product id 89 -item id   product_repo.go:63  
+ INFO [20:56:47||2021.09.05] 37- product id 90 -item id   product_repo.go:63  
+ INFO [20:56:47||2021.09.05] 37- product id 88 -item id   product_repo.go:63  
+ INFO [20:57:02||2021.09.05] 45- product id 91 -item id   product_repo.go:63  
+ INFO [20:57:02||2021.09.05] 45- product id 93 -item id   product_repo.go:63  
+ INFO [20:57:02||2021.09.05] 45- product id 92 -item id   product_repo.go:63  
+ INFO [20:57:22||2021.09.05] 53- product id 94 -item id   product_repo.go:63  
+ INFO [20:57:22||2021.09.05] 53- product id 95 -item id   product_repo.go:63  
+ INFO [20:57:22||2021.09.05] 53- product id 96 -item id   product_repo.go:63  
+ INFO [21:01:47||2021.09.05] 1- product id 1 -item id   product_repo.go:63  
+ INFO [21:01:47||2021.09.05] 1- product id 3 -item id   product_repo.go:63  
+ INFO [21:01:47||2021.09.05] 1- product id 2 -item id   product_repo.go:63  
+ INFO [21:02:27||2021.09.05] 9- product id 4 -item id   product_repo.go:63  
+ INFO [21:02:27||2021.09.05] 9- product id 6 -item id   product_repo.go:63  
+ INFO [21:02:27||2021.09.05] 9- product id 5 -item id   product_repo.go:63  
+ INFO [21:02:54||2021.09.05] 17- product id 7 -item id   product_repo.go:63  
+ INFO [21:02:54||2021.09.05] 17- product id 8 -item id   product_repo.go:63  
+ INFO [21:02:54||2021.09.05] 17- product id 9 -item id   product_repo.go:63  
+ INFO [21:03:38||2021.09.05] 25- product id 10 -item id   product_repo.go:63  
+ INFO [21:03:38||2021.09.05] 25- product id 12 -item id   product_repo.go:63  
+ INFO [21:03:38||2021.09.05] 25- product id 11 -item id   product_repo.go:63  
+ INFO [21:03:47||2021.09.05] 33- product id 15 -item id   product_repo.go:63  
+ INFO [21:03:47||2021.09.05] 33- product id 13 -item id   product_repo.go:63  
+ INFO [21:03:47||2021.09.05] 33- product id 14 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 41- product id 16 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 41- product id 17 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 41- product id 18 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 42- product id 20 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 42- product id 21 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 42- product id 19 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 43- product id 22 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 43- product id 23 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 43- product id 24 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 44- product id 26 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 44- product id 25 -item id   product_repo.go:63  
+ INFO [21:10:09||2021.09.05] 44- product id 27 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 45- product id 28 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 45- product id 30 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 45- product id 29 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 46- product id 31 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 46- product id 32 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 46- product id 33 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 47- product id 34 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 47- product id 35 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 47- product id 36 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 48- product id 38 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 48- product id 37 -item id   product_repo.go:63  
+ INFO [21:11:23||2021.09.05] 48- product id 39 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 1- product id 1 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 1- product id 2 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 1- product id 3 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 2- product id 4 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 2- product id 6 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 2- product id 5 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 3- product id 8 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 3- product id 7 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 3- product id 9 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 4- product id 11 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 4- product id 10 -item id   product_repo.go:63  
+ INFO [21:23:29||2021.09.05] 4- product id 12 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 5- product id 13 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 5- product id 15 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 5- product id 14 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 6- product id 16 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 6- product id 17 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 6- product id 18 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 7- product id 19 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 7- product id 21 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 7- product id 20 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 8- product id 22 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 8- product id 23 -item id   product_repo.go:63  
+ INFO [21:24:19||2021.09.05] 8- product id 24 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 9- product id 27 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 9- product id 26 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 9- product id 25 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 10- product id 28 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 10- product id 29 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 10- product id 30 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 11- product id 31 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 11- product id 32 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 11- product id 33 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 12- product id 34 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 12- product id 36 -item id   product_repo.go:63  
+ INFO [21:24:51||2021.09.05] 12- product id 35 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 13- product id 37 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 13- product id 38 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 13- product id 39 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 14- product id 40 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 14- product id 42 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 14- product id 41 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 15- product id 43 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 15- product id 44 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 15- product id 45 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 16- product id 46 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 16- product id 48 -item id   product_repo.go:63  
+ INFO [21:25:02||2021.09.05] 16- product id 47 -item id   product_repo.go:63  
+ INFO [21:30:01||2021.09.05] 17- product id 49 -item id   product_repo.go:63  
+ INFO [21:30:01||2021.09.05] 17- product id 51 -item id   product_repo.go:63  
+ INFO [21:30:01||2021.09.05] 17- product id 50 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 18- product id 53 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 18- product id 52 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 18- product id 54 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 19- product id 56 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 19- product id 57 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 19- product id 55 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 20- product id 58 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 20- product id 59 -item id   product_repo.go:63  
+ INFO [21:30:02||2021.09.05] 20- product id 60 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 21- product id 61 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 21- product id 62 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 21- product id 63 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 22- product id 64 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 22- product id 65 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 22- product id 66 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 23- product id 67 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 23- product id 68 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 23- product id 69 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 24- product id 70 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 24- product id 71 -item id   product_repo.go:63  
+ INFO [21:30:17||2021.09.05] 24- product id 72 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 25- product id 73 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 25- product id 74 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 25- product id 75 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 26- product id 77 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 26- product id 78 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 26- product id 76 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 27- product id 79 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 27- product id 80 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 27- product id 81 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 28- product id 82 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 28- product id 84 -item id   product_repo.go:63  
+ INFO [21:33:09||2021.09.05] 28- product id 83 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 29- product id 85 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 29- product id 86 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 29- product id 87 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 30- product id 88 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 30- product id 90 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 30- product id 89 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 31- product id 91 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 31- product id 92 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 31- product id 93 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 32- product id 94 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 32- product id 95 -item id   product_repo.go:63  
+ INFO [21:33:31||2021.09.05] 32- product id 96 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 33- product id 97 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 33- product id 99 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 33- product id 98 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 34- product id 100 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 34- product id 102 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 34- product id 101 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 35- product id 103 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 35- product id 105 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 35- product id 104 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 36- product id 106 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 36- product id 107 -item id   product_repo.go:63  
+ INFO [21:33:54||2021.09.05] 36- product id 108 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 1- product id 1 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 1- product id 3 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 1- product id 2 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 2- product id 4 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 2- product id 5 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 2- product id 6 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 3- product id 7 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 3- product id 8 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 3- product id 9 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 4- product id 11 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 4- product id 10 -item id   product_repo.go:63  
+ INFO [21:34:59||2021.09.05] 4- product id 12 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 5- product id 13 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 5- product id 15 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 5- product id 14 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 6- product id 16 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 6- product id 17 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 6- product id 18 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 7- product id 19 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 7- product id 21 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 7- product id 20 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 8- product id 22 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 8- product id 24 -item id   product_repo.go:63  
+ INFO [21:35:26||2021.09.05] 8- product id 23 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 1- product id 1 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 1- product id 2 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 1- product id 3 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 2- product id 5 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 2- product id 4 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 2- product id 6 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 3- product id 8 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 3- product id 7 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 3- product id 9 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 4- product id 11 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 4- product id 10 -item id   product_repo.go:63  
+ INFO [21:42:30||2021.09.05] 4- product id 12 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 5- product id 13 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 5- product id 14 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 5- product id 15 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 6- product id 16 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 6- product id 17 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 6- product id 18 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 7- product id 19 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 7- product id 20 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 7- product id 21 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 8- product id 22 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 8- product id 23 -item id   product_repo.go:63  
+ INFO [21:44:47||2021.09.05] 8- product id 24 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 9- product id 25 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 9- product id 26 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 9- product id 27 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 10- product id 28 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 10- product id 29 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 10- product id 30 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 11- product id 31 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 11- product id 33 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 11- product id 32 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 12- product id 34 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 12- product id 35 -item id   product_repo.go:63  
+ INFO [21:45:25||2021.09.05] 12- product id 36 -item id   product_repo.go:63  

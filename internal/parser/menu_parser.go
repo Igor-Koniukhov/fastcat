@@ -7,7 +7,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
-	web "github.com/igor-koniukhov/webLogger/v2"
+	web"github.com/igor-koniukhov/webLogger/v3"
 	"io/ioutil"
 	"net/http"
 	"sync"
@@ -46,37 +46,42 @@ func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository
 var URL = "http://foodapi.true-tech.php.nixdev.co/restaurants"
 var wg sync.WaitGroup
 
+
 func (r *RestMenuParser) ParsedDataWriter() {
-	var id int
 	supplierAppConfigProvider(r.App)
+	productAppConfigProvider(r.App)
+
 	parsedSuppliers := r.GetListSuppliers()
 	suppliersInDB, err := repository.RepoS.CreateSupplier(parsedSuppliers)
 	web.Log.Error(err)
-	productAppConfigProvider(r.App)
+
 	for _, restaurant := range suppliersInDB.Restaurants {
 		menu := r.GetListMenuItems(restaurant.Id)
-		id = <-r.App.ChanelSupplierId
+		id := <-r.App.ChanIdSupplier
+		idSoftDel := id - len(parsedSuppliers.Restaurants)
+		repository.RepoS.SoftDelete(idSoftDel)
+
 		for _, item := range menu.Items {
 			wg.Add(1)
-			r.App.ChanelLockUnlock <- 1
+			r.App.ChanMutex <- 1
 			go func(id int) {
-
 				defer wg.Done()
-				repository.RepoP.CreateProduct(&item, id)
+				repository.RepoP.SoftDelete(idSoftDel)
+				_, _ = repository.RepoP.CreateProduct(&item, id)
 			}(id)
-			<-r.App.ChanelLockUnlock
+			<-r.App.ChanMutex
 		}
 		wg.Wait()
 	}
 }
 
 func (r *RestMenuParser) GetListSuppliers() (suppliers *model.Suppliers) {
-	json.Unmarshal(r.responseBodyConnection(URL), &suppliers)
+	_ = json.Unmarshal(r.responseBodyConnection(URL), &suppliers)
 	return
 }
 func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
 	var URLMenu = fmt.Sprintf("%s/%v/menu", URL, id)
-	json.Unmarshal(r.responseBodyConnection(URLMenu), &menu)
+	_ = json.Unmarshal(r.responseBodyConnection(URLMenu), &menu)
 	return
 }
 

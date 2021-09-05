@@ -10,8 +10,10 @@ func RunUpToDateSuppliersInfo(t time.Duration) {
 	rest := parser.NewRestMenuRepository(&app)
 	parser.NewRestMenu(rest)
 	suppliersInfo := parser.ParseRestMenu.GetListSuppliers()
-	app.ChanelSupplierId = make(chan int, len(suppliersInfo.Restaurants))
-	app.ChanelLockUnlock = make(chan int, 1)
+	app.ChanIdSupplier = make(chan int, len(suppliersInfo.Restaurants))
+	defer close(app.ChanIdSupplier)
+	app.ChanMutex = make(chan int, 1)
+	defer close(app.ChanMutex)
 
 	for {
 		parser.ParseRestMenu.ParsedDataWriter()

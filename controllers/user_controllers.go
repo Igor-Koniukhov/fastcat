@@ -45,7 +45,6 @@ func userAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
 	return repo
 }
 
-
 func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
@@ -56,7 +55,6 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 			user, err := repository.RepoU.CreateUser(&u)
 			checkError(err)
 			json.NewEncoder(w).Encode(&user)
-
 		default:
 			methodMessage(w, method)
 		}

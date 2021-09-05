@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	web "github.com/igor-koniukhov/webLogger/v2"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 	"strconv"
 	"strings"
@@ -59,7 +59,8 @@ func (p *ProductRepository) CreateProduct(item *model.Item, id int) (*model.Item
 	web.Log.Error(err)
 
 	_, err = stmtRest.Exec(int(lastInsertedID))
-	fmt.Println(lastInsertedID, id, "product-repo")
+
+	web.Log.Info(id, "- product id ", lastInsertedID," -item id " )
 	web.Log.Error(err, err)
 
 	return item, err
@@ -134,7 +135,7 @@ func (p *ProductRepository) DeleteProduct(id int) (err error) {
 	return
 }
 func (p *ProductRepository) SoftDelete(id int) error {
-	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE id = ?", model.TabItems)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE supplier_id = ?", model.TabItems)
 	_, err := p.App.DB.Exec(sqlStmt, p.App.TimeFormat, id)
 	web.Log.Error(err, err)
 	return nil
