@@ -1,0 +1,424 @@
+ ERROR [17:11:44||2021.09.03] Error 1146: Table 'fastcat_db.suppliers' doesn't exist  helpers.go:29  
+ ERROR [17:11:44||2021.09.03] Error 1146: Table 'fastcat_db.menu' doesn't exist  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:12:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:13:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:14:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:15:04||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:05||2021.09.03] sql: expected 5 arguments, got 6  helpers.go:29  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:16:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:30||2021.09.03] sql: expected 5 arguments, got 6  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:17:37||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:88  
+ ERROR [17:18:38||2021.09.03] Error 1146: Table 'fastcat_db.menu' doesn't exist  menu_parser.go:64  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:22:52||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:23:52||2021.09.03] Error 1146: Table 'fastcat_db.menu' doesn't exist  menu_parser.go:65  
+ ERROR [17:24:32||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:24:32||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:24:32||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:89  
+ ERROR [17:25:10||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:25:10||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:25:10||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:26:10||2021.09.03] Error 1146: Table 'fastcat_db.menu' doesn't exist  menu_parser.go:66  
+ ERROR [17:26:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:26:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:26:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:26:40||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:26:40||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:26:40||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:90  
+ ERROR [17:31:54||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:93  
+ ERROR [17:31:54||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:93  
+ ERROR [17:31:54||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:93  
+ ERROR [17:32:54||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:93  
+ ERROR [17:32:54||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:93  
+ ERROR [17:32:54||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:93  
+ ERROR [17:36:40||2021.09.03] Error 1146: Table 'fastcat_db.menu' doesn't exist  menu_parser.go:67  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:15||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:46||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:37:51||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:39:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:40:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:02||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:95  
+ ERROR [17:43:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:18||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:43:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [17:44:19||2021.09.03] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`menu`, CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`))  menu_parser.go:96  
+ ERROR [18:44:38||2021.09.03] Error 1205: Lock wait timeout exceeded; try restarting transaction  supplier_repo.go:45  
+ ERROR [18:45:40||2021.09.03] Error 1205: Lock wait timeout exceeded; try restarting transaction  supplier_repo.go:45  
+ ERROR [18:45:45||2021.09.03] Error 1054: Unknown column 'price' in 'field list'  product_repo.go:38  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:50  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:06:43||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:57  
+ ERROR [15:27:45||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURNING id' at line 1  product_repo.go:43  
+ ERROR [15:28:26||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:26||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:26||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:28:27||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [15:29:51||2021.09.04] sql: converting argument $2 type: unsupported type sql.driverResult, a struct  product_repo.go:64  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:42:31||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:44:57||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:47:39||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:48:47||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:50:03||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:75  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:52:16||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:54:06||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:55:58||2021.09.04] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'supplier_id VALUES ?' at line 1  supplier_repo.go:43  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [16:57:22||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:69  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:30:18||2021.09.04]   product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:31:27||2021.09.04] Error 1452: Cannot add or update a child row: a foreign key constraint fails (`fastcat_db`.`restaurant_items`, CONSTRAINT `restaurant_items_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE)  product_repo.go:63  
+ ERROR [20:51:56||2021.09.04]   supplier_repo.go:42  
+ ERROR [20:55:05||2021.09.04]   supplier_repo.go:42  
+ ERROR [20:56:35||2021.09.04]   supplier_repo.go:42  
+ ERROR [10:10:00||2021.09.05]   product_repo.go:46  
+ ERROR [10:10:00||2021.09.05]   product_repo.go:46  
+ ERROR [10:10:00||2021.09.05]   product_repo.go:46  
+ ERROR [10:10:39||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'item_id=?' at line 1  product_repo.go:46  
+ ERROR [10:10:39||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'item_id=?' at line 1  product_repo.go:46  
+ ERROR [10:10:39||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'item_id=?' at line 1  product_repo.go:46  
+ ERROR [10:11:01||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', item_id=?' at line 1  product_repo.go:46  
+ ERROR [10:11:01||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', item_id=?' at line 1  product_repo.go:46  
+ ERROR [10:11:01||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', item_id=?' at line 1  product_repo.go:46  
+ ERROR [10:12:20||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(supplier_id, item_id=? )' at line 1  product_repo.go:46  
+ ERROR [10:12:20||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(supplier_id, item_id=? )' at line 1  product_repo.go:46  
+ ERROR [10:12:20||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(supplier_id, item_id=? )' at line 1  product_repo.go:46  
+ ERROR [11:19:50||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'USING suppliers_items tsi WHERE ts.id = tsi.supplier_id' at line 1  supplier_repo.go:78  
+ ERROR [11:20:39||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'USING suppliers_items tsi WHERE ts.id = tsi.supplier_id' at line 1  supplier_repo.go:77  
+ ERROR [12:28:25||2021.09.05] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM suppliers' at line 1  supplier_repo.go:81  
+ ERROR [13:23:27||2021.09.05]   product_repo.go:56  
+ ERROR [13:23:27||2021.09.05]   product_repo.go:56  
+ ERROR [13:34:18||2021.09.05] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:46  
+ ERROR [13:34:18||2021.09.05] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:46  
+ ERROR [13:34:18||2021.09.05] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:46  

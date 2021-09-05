@@ -65,6 +65,7 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 
 func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			repo := userAppConfigProvider(c.App)
@@ -79,6 +80,7 @@ func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 
 func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			_ = userAppConfigProvider(c.App)

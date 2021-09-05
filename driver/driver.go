@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 )
 
 var err error
@@ -17,7 +18,9 @@ const (
 	TableProducts = "products"
 )
 
-func ConnectMySQLDB(DSN string) *sql.DB {
+func ConnectMySQLDB() *sql.DB {
+
+	DSN := os.Getenv("DSN")
 	db, err := sql.Open("mysql", DSN)
 	if err != nil {
 		log.Fatal(err)

@@ -20,7 +20,6 @@ type UserRepositoryI interface {
 	Param(r *http.Request) (string, string, int)
 }
 var user model.User
-
 var RepoU *UserRepository
 
 type UserRepository struct {
@@ -30,7 +29,7 @@ type UserRepository struct {
 func NewUserRepository(app *config.AppConfig) *UserRepository {
 	return &UserRepository{App: app}
 }
-func NewRepoU(r *UserRepository)  {
+func NewRepoU(r *UserRepository) {
 	RepoU = r
 
 }
@@ -45,11 +44,9 @@ func (usr *UserRepository) CreateUser(u *model.User) (*model.User, error) {
 	return u, err
 }
 
-
-func (usr *UserRepository) GetUser(nameParam, param *string) *model.User {
+func (usr *UserRepository) GetUser(nameParam, param *string)  *model.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
 	err := usr.App.DB.QueryRow(sqlStmt).Scan(
-
 		&user.ID,
 		&user.Name,
 		&user.Email,
@@ -61,7 +58,6 @@ func (usr *UserRepository) GetUser(nameParam, param *string) *model.User {
 	CheckErr(err)
 	return &user
 }
-
 
 func (usr *UserRepository) GetAllUsers() *[]model.User {
 
