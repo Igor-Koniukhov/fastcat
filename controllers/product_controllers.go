@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"net/http"
@@ -98,6 +99,12 @@ func (p *ProductControllers) UpdateProduct(method string) http.HandlerFunc {
 		switch r.Method {
 		case method:
 			productAppConfigProvider(p.App)
+			var item *model.Item
+			json.NewDecoder(r.Body).Decode(&item)
+			repo := supplierAppConfigProvider(p.App)
+			_, _, id := repo.Param(r)
+			item = repository.RepoP.UpdateProduct(id, item)
+			json.NewEncoder(w).Encode(&item)
 		default:
 			methodMessage(w, method)
 		}

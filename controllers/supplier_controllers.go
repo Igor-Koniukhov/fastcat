@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"net/http"
@@ -101,7 +102,12 @@ func (s SupplierControllers) UpdateSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			supplierAppConfigProvider(s.App)
+			var supplier model.Supplier
+			json.NewDecoder(r.Body).Decode(&supplier)
+			repo := supplierAppConfigProvider(s.App)
+			_, _, id := repo.Param(r)
+			user := repository.RepoS.UpdateSupplier(id, &supplier)
+			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
 		}
