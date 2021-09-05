@@ -1,4 +1,4 @@
-package services
+package parser
 
 import (
 	"database/sql"
@@ -86,7 +86,6 @@ func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
 func (r *RestMenuParser) responseBodyConnection(url string) (response []byte) {
 	conn, err := http.Get(url)
 	web.Log.Error(err)
-
 	defer conn.Body.Close()
 	response, err = ioutil.ReadAll(conn.Body)
 	web.Log.Error(err)
