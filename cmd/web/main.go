@@ -13,7 +13,6 @@ import (
 
 var app config.AppConfig
 
-
 func init() {
 	gotenv.Load()
 }

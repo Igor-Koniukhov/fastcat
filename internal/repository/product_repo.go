@@ -58,7 +58,7 @@ func (p *ProductRepository) CreateProduct(item *model.Item, id int) (*model.Item
 	lastInsertedID, err := result.LastInsertId()
 	web.Log.Error(err)
 
-	_, err = stmtRest.Exec( int(lastInsertedID))
+	_, err = stmtRest.Exec(int(lastInsertedID))
 	fmt.Println(lastInsertedID, id, "product-repo")
 	web.Log.Error(err, err)
 
@@ -126,16 +126,25 @@ func (p *ProductRepository) GetAllProducts() *[]model.Item {
 	return &items
 }
 
-func (p *ProductRepository) DeleteProduct(id int ) (err error) {
-	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ",	model.TabItems)
+func (p *ProductRepository) DeleteProduct(id int) (err error) {
+	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", model.TabItems)
 	_, err = p.App.DB.Exec(sqlStmt, id)
 	fmt.Println(sqlStmt)
 	web.Log.Error(err, err)
 	return
 }
-
-func (p *ProductRepository) UpdateProduct(id int, u *model.Product, ) *model.Product {
+func (p *ProductRepository) SoftDelete(id int) error {
+	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE id = ?", model.TabItems)
+	_, err := p.App.DB.Exec(sqlStmt, p.App.TimeFormat, id)
+	web.Log.Error(err, err)
 	return nil
+}
+
+func (p *ProductRepository) UpdateProduct(id int, item *model.Item, ) *model.Item {
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, price=?, image=?, type=?, ingredienst=? , WHERE id=?", model.TabItems)
+	_, err := p.App.DB.Exec(sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
+	web.Log.Error(err, err)
+	return item
 }
 
 func (p *ProductRepository) Param(r *http.Request) (string, string, int) {

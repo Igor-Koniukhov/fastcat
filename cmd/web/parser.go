@@ -9,12 +9,12 @@ import (
 func RunUpToDateSuppliersInfo(t time.Duration) {
 	rest := parser.NewRestMenuRepository(&app)
 	parser.NewRestMenu(rest)
-	suppliersInfo := parser.ParserRestMenu.GetListSuppliers()
+	suppliersInfo := parser.ParseRestMenu.GetListSuppliers()
 	app.ChanelSupplierId = make(chan int, len(suppliersInfo.Restaurants))
 	app.ChanelLockUnlock = make(chan int, 1)
 
 	for {
-		parser.ParserRestMenu.ParsedDataWriter()
+		parser.ParseRestMenu.ParsedDataWriter()
 		fmt.Println("Menu is up-to-date ")
 		time.Sleep(time.Second * t)
 	}

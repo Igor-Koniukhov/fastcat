@@ -23,26 +23,24 @@ type RestMenuParser struct {
 	App *config.AppConfig
 }
 
-var ParserRestMenu *RestMenuParser
+var ParseRestMenu *RestMenuParser
 
 func NewRestMenuRepository(app *config.AppConfig) *RestMenuParser {
 	return &RestMenuParser{App: app}
 }
 func NewRestMenu(r *RestMenuParser) {
-	ParserRestMenu = r
+	ParseRestMenu = r
 }
 
 func supplierAppConfigProvider(a *config.AppConfig) *repository.SupplierRepository {
 	repo := repository.NewSupplierRepository(a)
 	repository.NewRepoS(repo)
 	return repo
-
 }
 func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository {
 	repo := repository.NewProductRepository(a)
 	repository.NewRepoP(repo)
 	return repo
-
 }
 
 var URL = "http://foodapi.true-tech.php.nixdev.co/restaurants"
@@ -50,9 +48,8 @@ var wg sync.WaitGroup
 
 func (r *RestMenuParser) ParsedDataWriter() {
 	var id int
-	parsedSuppliers := r.GetListSuppliers()
-
 	supplierAppConfigProvider(r.App)
+	parsedSuppliers := r.GetListSuppliers()
 	suppliersInDB, err := repository.RepoS.CreateSupplier(parsedSuppliers)
 	web.Log.Error(err)
 	productAppConfigProvider(r.App)

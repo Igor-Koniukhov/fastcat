@@ -82,7 +82,6 @@ func (s SupplierRepository) GetAllUSuppliers() *[]model.Supplier {
 			&supplier.Id,
 			&supplier.Name,
 			&supplier.Image,
-
 		)
 		suppliers = append(suppliers, supplier)
 	}
@@ -97,16 +96,17 @@ func (s SupplierRepository) DeleteSupplier(id int) (err error) {
 	return
 }
 func (s SupplierRepository) SoftDelete(id int) error {
-	sqlStmt := fmt.Sprintf("update %s set deleted = ? where id = ?", model.TabSuppliers)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE id = ?", model.TabSuppliers)
 	_, err := s.App.DB.Exec(sqlStmt, s.App.TimeFormat, id)
-	if err != nil {
-		return err
-	}
+	web.Log.Error(err, err)
 	return nil
 }
 
-func (s SupplierRepository) UpdateSupplier(id int, u *model.Supplier, ) *model.Supplier {
-	return nil
+func (s SupplierRepository) UpdateSupplier(id int, supplier *model.Supplier, ) *model.Supplier {
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, image=?, Name=?, Menu=? , WHERE id=?", model.TabSuppliers)
+	_, err := s.App.DB.Exec(sqlStmt, supplier.Id, supplier.Image, supplier.Name, supplier.Menu, id)
+	web.Log.Error(err, err)
+	return supplier
 }
 
 func (s SupplierRepository) Param(r *http.Request) (string, string, int) {
