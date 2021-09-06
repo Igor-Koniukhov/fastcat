@@ -12,11 +12,11 @@ import (
 )
 
 type SupplierRepositoryI interface {
-	CreateSupplier(u *model.Supplier) (*model.Supplier, error)
-	GetSupplier(nameParam, param *string, ) *model.Supplier
-	GetAllUSuppliers() *[]model.Supplier
-	DeleteSupplier(id int) error
-	UpdateSupplier(id int, u *model.Supplier) *model.Supplier
+	Create(u *model.Supplier) (*model.Supplier, error)
+	Get(nameParam, param *string, ) *model.Supplier
+	GetAllUS() *[]model.Supplier
+	Delete(id int) error
+	Update(id int, u *model.Supplier) *model.Supplier
 	Param(r *http.Request) (string, string, int)
 }
 
@@ -36,7 +36,7 @@ func NewRepoS(r *SupplierRepository) {
 	RepoS = r
 }
 
-func (s SupplierRepository) CreateSupplier(suppliers *model.Suppliers) (*model.Suppliers, error) {
+func (s SupplierRepository) Create(suppliers *model.Suppliers) (*model.Suppliers, error) {
 	var id int
 	stmtSql := fmt.Sprintf("INSERT INTO %s (name, image) VALUES (?, ?)", model.TabSuppliers)
 
@@ -59,7 +59,7 @@ func (s SupplierRepository) CreateSupplier(suppliers *model.Suppliers) (*model.S
 	return suppliers, err
 }
 
-func (s SupplierRepository) GetSupplier(nameParam, param *string) *model.Supplier {
+func (s SupplierRepository) Get(nameParam, param *string) *model.Supplier {
 	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s WHERE %s = '%s' ", model.TabSuppliers, *nameParam, *param)
 	fmt.Println(sqlStmt)
 	err := s.App.DB.QueryRow(sqlStmt).Scan(
@@ -71,7 +71,7 @@ func (s SupplierRepository) GetSupplier(nameParam, param *string) *model.Supplie
 	return &supplier
 }
 
-func (s SupplierRepository) GetAllUSuppliers() *[]model.Supplier {
+func (s SupplierRepository) GetAll() *[]model.Supplier {
 	var supplier model.Supplier
 	var suppliers []model.Supplier
 	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s ", model.TabSuppliers)
@@ -88,7 +88,7 @@ func (s SupplierRepository) GetAllUSuppliers() *[]model.Supplier {
 	return &suppliers
 }
 
-func (s SupplierRepository) DeleteSupplier(id int) (err error) {
+func (s SupplierRepository) Delete(id int) (err error) {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", model.TabSuppliers)
 	_, err = s.App.DB.Exec(sqlStmt, id)
 	fmt.Println(sqlStmt)
@@ -112,7 +112,7 @@ func (s SupplierRepository) GetByName(name string) (int, error) {
 	return id, nil
 }
 
-func (s SupplierRepository) UpdateSupplier(id int, supplier *model.Supplier, ) *model.Supplier {
+func (s SupplierRepository) Update(id int, supplier *model.Supplier, ) *model.Supplier {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, image=?, Name=?, Menu=? , WHERE id=?", model.TabSuppliers)
 	_, err := s.App.DB.Exec(sqlStmt, supplier.Id, supplier.Image, supplier.Name, supplier.Menu, id)
 	web.Log.Error(err, err)

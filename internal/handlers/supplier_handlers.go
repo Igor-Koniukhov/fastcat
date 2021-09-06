@@ -12,9 +12,9 @@ func SupplierHandlers(app *config.AppConfig) {
 	controllers.NewControllersS(repo)
 	sr := controllers.RepoSupplier
 
-	http.HandleFunc("/supplier/create", sr.CreateSupplier("POST"))
-	http.HandleFunc("/supplier/", sr.GetSupplier("GET"))
-	http.HandleFunc("/suppliers", sr.GetAllSuppliers("GET"))
-	http.HandleFunc("/supplier/update/", sr.UpdateSupplier("PUT"))
-	http.HandleFunc("/supplier/delete/", sr.DeleteSupplier("DELETE"))
+	http.HandleFunc("/supplier/create", sr.Create("POST"))
+	http.HandleFunc("/supplier/", sr.Get("GET"))
+	http.HandleFunc("/suppliers", sr.GetAll("GET"))
+	http.HandleFunc("/supplier/update/", sr.Update("PUT"))
+	http.HandleFunc("/supplier/delete/", sr.Delete("DELETE"))
 }

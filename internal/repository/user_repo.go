@@ -12,11 +12,11 @@ import (
 )
 
 type UserRepositoryI interface {
-	CreateUser(u *model.User) (*model.User, error)
-	GetUser(nameParam, param *string) *model.User
-	GetAllUsers() *[]model.User
-	DeleteUser(id int) error
-	UpdateUser(id int, u *model.User) *model.User
+	Create(u *model.User) (*model.User, error)
+	Get(nameParam, param *string) *model.User
+	GetAll() *[]model.User
+	Delete(id int) error
+	Update(id int, u *model.User) *model.User
 	Param(r *http.Request) (string, string, int)
 }
 var user model.User
@@ -31,10 +31,9 @@ func NewUserRepository(app *config.AppConfig) *UserRepository {
 }
 func NewRepoU(r *UserRepository) {
 	RepoU = r
-
 }
 
-func (usr *UserRepository) CreateUser(u *model.User) (*model.User, error) {
+func (usr *UserRepository) Create(u *model.User) (*model.User, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
 	p, err := usr.App.DB.Prepare(sqlStmt)
 	defer p.Close()
@@ -44,7 +43,7 @@ func (usr *UserRepository) CreateUser(u *model.User) (*model.User, error) {
 	return u, err
 }
 
-func (usr *UserRepository) GetUser(nameParam, param *string)  *model.User {
+func (usr *UserRepository) Get(nameParam, param *string)  *model.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
 	err := usr.App.DB.QueryRow(sqlStmt).Scan(
 		&user.ID,
@@ -59,7 +58,7 @@ func (usr *UserRepository) GetUser(nameParam, param *string)  *model.User {
 	return &user
 }
 
-func (usr *UserRepository) GetAllUsers() *[]model.User {
+func (usr *UserRepository) GetAll() *[]model.User {
 
 	var users []model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
@@ -81,14 +80,14 @@ func (usr *UserRepository) GetAllUsers() *[]model.User {
 	return &users
 }
 
-func (usr *UserRepository) DeleteUser(id int) error {
+func (usr *UserRepository) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", dr.TableUser)
 	_, err := usr.App.DB.Exec(sqlStmt, id)
 	CheckErr(err)
 	return err
 }
 
-func (usr *UserRepository) UpdateUser(id int, u *model.User) *model.User {
+func (usr *UserRepository) Update(id int, u *model.User) *model.User {
 
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
 

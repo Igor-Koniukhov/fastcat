@@ -59,7 +59,7 @@ func (r *RestMenuParser) ParsedDataWriter() {
 	productAppConfigProvider(r.App)
 
 	parsedSuppliers := r.GetListSuppliers()
-	suppliersInDB, err := repository.RepoS.CreateSupplier(parsedSuppliers)
+	suppliersInDB, err := repository.RepoS.Create(parsedSuppliers)
 	web.Log.Error(err)
 
 	for _, restaurant := range suppliersInDB.Restaurants {

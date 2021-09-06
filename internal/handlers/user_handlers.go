@@ -13,11 +13,10 @@ func UserHandlers(app *config.AppConfig)  {
 	controllers.NewControllersU(repo)
 	ur := controllers.RepoUser
 
-	http.HandleFunc("/user/create", ur.CreateUser( "POST"))
-	// GetUser able search by id and email
-	http.HandleFunc("/user/", ur.GetUser("GET"))
-	http.HandleFunc("/users", ur.GetAllUsers( "GET"))
-	http.HandleFunc("/user/update/", ur.UpdateUser( "PUT"))
-	http.HandleFunc("/user/delete/", ur.DeleteUser( "DELETE"))
+	http.HandleFunc("/user/create", ur.Create( "POST"))
+	http.HandleFunc("/user/", ur.Get("GET"))
+	http.HandleFunc("/users", ur.GetAllU( "GET"))
+	http.HandleFunc("/user/update/", ur.Update( "PUT"))
+	http.HandleFunc("/user/delete/", ur.Delete( "DELETE"))
 
 }
