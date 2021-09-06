@@ -47,6 +47,7 @@ func (c CartControllers) CreateCart(method string) http.HandlerFunc {
 
 func (c CartControllers) GetCart(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			cartAppConfigProvider(c.App)
@@ -58,6 +59,7 @@ func (c CartControllers) GetCart(method string) http.HandlerFunc {
 
 func (c CartControllers) GetAllCarts(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			cartAppConfigProvider(c.App)

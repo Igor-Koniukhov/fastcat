@@ -59,8 +59,7 @@ func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
 
 func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(o.App.Session)
-
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			repo := orderAppConfigProvider(o.App)
@@ -75,6 +74,7 @@ func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
 
 func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			orderAppConfigProvider(o.App)

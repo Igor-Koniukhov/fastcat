@@ -14,7 +14,7 @@ func SupplierHandlers(app *config.AppConfig) {
 
 	http.HandleFunc("/supplier/create", sr.CreateSupplier("POST"))
 	http.HandleFunc("/supplier/", sr.GetSupplier("GET"))
-	http.HandleFunc("/supplier", sr.GetAllSuppliers("GET"))
+	http.HandleFunc("/suppliers", sr.GetAllSuppliers("GET"))
 	http.HandleFunc("/supplier/update/", sr.UpdateSupplier("PUT"))
 	http.HandleFunc("/supplier/delete/", sr.DeleteSupplier("DELETE"))
 }

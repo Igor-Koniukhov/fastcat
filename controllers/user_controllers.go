@@ -45,7 +45,6 @@ func userAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
 	return repo
 }
 
-
 func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
@@ -56,7 +55,6 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 			user, err := repository.RepoU.CreateUser(&u)
 			checkError(err)
 			json.NewEncoder(w).Encode(&user)
-
 		default:
 			methodMessage(w, method)
 		}
@@ -65,6 +63,7 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 
 func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			repo := userAppConfigProvider(c.App)
@@ -79,6 +78,7 @@ func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 
 func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			_ = userAppConfigProvider(c.App)
