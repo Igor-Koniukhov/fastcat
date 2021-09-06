@@ -11,11 +11,11 @@ import (
 )
 
 type ProductControllerI interface {
-	CreateProduct(method string) http.HandlerFunc
-	GetProduct(method string) http.HandlerFunc
-	GetAllProducts(method string) http.HandlerFunc
-	DeleteProduct(method string) http.HandlerFunc
-	UpdateProduct(method string) http.HandlerFunc
+	Create(method string) http.HandlerFunc
+	Get(method string) http.HandlerFunc
+	GetAllP(method string) http.HandlerFunc
+	Delete(method string) http.HandlerFunc
+	Update(method string) http.HandlerFunc
 }
 
 var RepoProducts *ProductController
@@ -37,7 +37,7 @@ func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository
 
 }
 
-func (p *ProductController) CreateProduct(method string) http.HandlerFunc {
+func (p *ProductController) Create(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -49,14 +49,14 @@ func (p *ProductController) CreateProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductController) GetProduct(method string) http.HandlerFunc {
+func (p *ProductController) Get(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			repo := productAppConfigProvider(p.App)
 			_, _, id := repo.Param(r)
-			item := repository.RepoP.GetProduct(id)
+			item := repository.RepoP.Get(id)
 
 			json.NewEncoder(w).Encode(&item)
 		default:
@@ -65,13 +65,13 @@ func (p *ProductController) GetProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductController) GetAllProducts(method string) http.HandlerFunc {
+func (p *ProductController) GetAll(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			 productAppConfigProvider(p.App)
-			items := repository.RepoP.GetAllProducts()
+			items := repository.RepoP.GetAll()
 			json.NewEncoder(w).Encode(&items)
 		default:
 			methodMessage(w, method)
@@ -79,13 +79,13 @@ func (p *ProductController) GetAllProducts(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductController) DeleteProduct(method string) http.HandlerFunc {
+func (p *ProductController) Delete(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
 			repo := productAppConfigProvider(p.App)
 			_, _, id := repo.Param(r)
-			err := repository.RepoP.DeleteProduct(id)
+			err := repository.RepoP.Delete(id)
 			web.Log.Error(err, err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" product with %d deleted", id))
 		default:
@@ -94,7 +94,7 @@ func (p *ProductController) DeleteProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductController) UpdateProduct(method string) http.HandlerFunc {
+func (p *ProductController) Update(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -103,7 +103,7 @@ func (p *ProductController) UpdateProduct(method string) http.HandlerFunc {
 			json.NewDecoder(r.Body).Decode(&item)
 			repo := supplierAppConfigProvider(p.App)
 			_, _, id := repo.Param(r)
-			item = repository.RepoP.UpdateProduct(id, item)
+			item = repository.RepoP.Update(id, item)
 			json.NewEncoder(w).Encode(&item)
 		default:
 			methodMessage(w, method)

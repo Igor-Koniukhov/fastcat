@@ -72,7 +72,7 @@ func (r *RestMenuParser) ParsedDataWriter() {
 			go func(id int) {
 				defer wg.Done()
 				repository.RepoP.SoftDelete(idSoftDel)
-				_, _ = repository.RepoP.CreateProduct(&item, id)
+				_, _ = repository.RepoP.Create(&item, id)
 			}(id)
 		}
 		wg.Wait()

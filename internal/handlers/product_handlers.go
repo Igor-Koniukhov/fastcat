@@ -12,9 +12,9 @@ func ProductHandlers(app *config.AppConfig)  {
 	controllers.NewControllersP(repo)
 	pc := controllers.RepoProducts
 
-	http.HandleFunc("/product/create", pc.CreateProduct( "POST"))
-	http.HandleFunc("/product/", pc.GetProduct( "GET"))
-	http.HandleFunc("/products", pc.GetAllProducts( "GET"))
-	http.HandleFunc("/product/update/", pc.UpdateProduct( "PUT"))
-	http.HandleFunc("/product/delete/", pc.DeleteProduct( "DELETE"))
+	http.HandleFunc("/product/create", pc.Update( "POST"))
+	http.HandleFunc("/product/", pc.Get( "GET"))
+	http.HandleFunc("/products", pc.GetAll( "GET"))
+	http.HandleFunc("/product/update/", pc.Update( "PUT"))
+	http.HandleFunc("/product/delete/", pc.Delete( "DELETE"))
 }
