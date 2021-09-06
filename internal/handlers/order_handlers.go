@@ -13,10 +13,10 @@ func OrderHandlers( app *config.AppConfig) {
 	controllers.NewControllersO(repo)
 	or := controllers.RepoOrder
 
-	http.HandleFunc("/order/create", or.CreateOrder("POST"))
-	http.HandleFunc("/order/", or.GetOrder("GET"))
-	http.HandleFunc("/orders", or.GetAllOrders("GET"))
-	http.HandleFunc("/order/update/", or.UpdateOrder("PUT"))
-	http.HandleFunc("/order/delete/", or.DeleteOrder("DELETE"))
+	http.HandleFunc("/order/create", or.Create("POST"))
+	http.HandleFunc("/order/", or.Get("GET"))
+	http.HandleFunc("/orders", or.GetAll("GET"))
+	http.HandleFunc("/order/update/", or.Update("PUT"))
+	http.HandleFunc("/order/delete/", or.Delete("DELETE"))
 
 }

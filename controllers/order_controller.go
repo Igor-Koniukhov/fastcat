@@ -12,11 +12,11 @@ import (
 )
 
 type OrderControllerI interface {
-	CreateOrder(method string) http.HandlerFunc
-	GetOrder(method string) http.HandlerFunc
-	GetAllOrders(method string) http.HandlerFunc
-	DeleteOrder(method string) http.HandlerFunc
-	UpdateOrder(method string) http.HandlerFunc
+	Create(method string) http.HandlerFunc
+	Get(method string) http.HandlerFunc
+	GetAllO(method string) http.HandlerFunc
+	Delete(method string) http.HandlerFunc
+	Update(method string) http.HandlerFunc
 }
 
 var RepoOrder *OrderController
@@ -38,15 +38,15 @@ func orderAppConfigProvider(a *config.AppConfig) *repository.OrderRepository {
 
 }
 
-func (o OrderController) CreateOrder( method string) http.HandlerFunc {
+func (ord OrderController) Create( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var ord model.Order
+		var o model.Order
 		switch r.Method {
 		case method:
 
 			json.NewDecoder(r.Body).Decode(&ord)
-			orderAppConfigProvider(o.App)
-			order, err := repository.RepoO.CreateOrder(&ord)
+			orderAppConfigProvider(ord.App)
+			order, err := repository.RepoO.CreateOrder(&o)
 			checkError(err)
 			json.NewEncoder(w).Encode(&order)
 
@@ -57,12 +57,12 @@ func (o OrderController) CreateOrder( method string) http.HandlerFunc {
 }
 
 
-func (o OrderController) GetOrder(method string) http.HandlerFunc {
+func (ord OrderController) Get(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			repo := orderAppConfigProvider(o.App)
+			repo := orderAppConfigProvider(ord.App)
 			param, _, _ := repo.Param(r)
 			order := repository.RepoO.GetOrder(&param)
 			json.NewEncoder(w).Encode(&order)
@@ -72,12 +72,12 @@ func (o OrderController) GetOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderController) GetAllOrders(method string) http.HandlerFunc {
+func (ord OrderController) GetAll(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			orderAppConfigProvider(o.App)
+			orderAppConfigProvider(ord.App)
 			order := repository.RepoO.GetAllOrders()
 			json.NewEncoder(w).Encode(&order)
 		default:
@@ -87,11 +87,11 @@ func (o OrderController) GetAllOrders(method string) http.HandlerFunc {
 }
 
 
-func (o OrderController) DeleteOrder(method string) http.HandlerFunc {
+func (ord OrderController) Delete(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			repo := orderAppConfigProvider(o.App)
+			repo := orderAppConfigProvider(ord.App)
 			_, _, id := repo.Param(r)
 			err := repository.RepoO.DeleteOrder(id)
 			checkError(err)
@@ -103,15 +103,15 @@ func (o OrderController) DeleteOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (oc OrderController) UpdateOrder(method string) http.HandlerFunc {
+func (ord OrderController) Update(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			var ord model.Order
+			var o model.Order
 			json.NewDecoder(r.Body).Decode(&ord)
-			repo := orderAppConfigProvider(oc.App)
+			repo := orderAppConfigProvider(ord.App)
 			_, _, id := repo.Param(r)
-			order := repository.RepoO.UpdateOrder(id, &ord)
+			order := repository.RepoO.UpdateOrder(id, &o)
 			json.NewEncoder(w).Encode(&order)
 
 		default:
