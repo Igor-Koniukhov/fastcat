@@ -9,11 +9,11 @@ import (
 )
 
 type CartRepositoryI interface {
-	CreateCart(u *model.Cart) (*model.Cart, error)
-	GetCart(nameParam, param *string) *model.Cart
-	GetAllCarts() *[]model.Cart
-	DeleteCarts(id int) error
-	UpdateCarts(id int, u *model.Cart) *model.Cart
+	Create(u *model.Cart) (*model.Cart, error)
+	Get(nameParam, param *string) *model.Cart
+	GetAll() *[]model.Cart
+	Delete(id int) error
+	Update(id int, u *model.Cart) *model.Cart
 	Param(r *http.Request) (string, string, int)
 }
 
@@ -27,30 +27,28 @@ func NewCartRepository(app *config.AppConfig) *CartRepository {
 	return &CartRepository{App: app}
 }
 
-func NewRepoC(r *CartRepository)  {
-
+func NewRepoC(r *CartRepository) {
 	RepoC = r
-
 }
 
-func (c CartRepository) CreateCart(u *model.Cart) (*model.Cart, error) {
+func (c CartRepository) Create(u *model.Cart) (*model.Cart, error) {
 
 	return nil, nil
 }
 
-func (c CartRepository) GetCart(nameParam, param *string) *model.Cart {
+func (c CartRepository) Get(nameParam, param *string) *model.Cart {
 	return nil
 }
 
-func (c CartRepository) GetAllCarts() *[]model.Cart {
+func (c CartRepository) GetAll() *[]model.Cart {
 	return nil
 }
 
-func (c CartRepository) DeleteCarts(id int) error {
+func (c CartRepository) Delete(id int) error {
 	return nil
 }
 
-func (c CartRepository) UpdateCarts(id int, u *model.Cart, ) *model.Cart {
+func (c CartRepository) Update(id int, u *model.Cart, ) *model.Cart {
 	return nil
 }
 
