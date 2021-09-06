@@ -25,7 +25,7 @@ type RestMenuParser struct {
 
 var ParseRestMenu *RestMenuParser
 
-func NewRestMenuRepository(app *config.AppConfig) *RestMenuParser {
+func NewRestMenuParser(app *config.AppConfig) *RestMenuParser {
 	return &RestMenuParser{App: app}
 }
 func NewRestMenu(r *RestMenuParser) {

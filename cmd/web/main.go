@@ -24,7 +24,7 @@ func main() {
 
 	SetAppConfigParameters(db)
 	SetWebLoggerParameters()
-	go RunUpToDateSuppliersInfo(3600)
+	go RunUpToDateSuppliersInfo(1)
 
 	handlers.UserHandlers(&app)
 	handlers.OrderHandlers(&app)

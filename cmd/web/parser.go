@@ -7,7 +7,7 @@ import (
 )
 
 func RunUpToDateSuppliersInfo(t time.Duration) {
-	rest := parser.NewRestMenuRepository(&app)
+	rest := parser.NewRestMenuParser(&app)
 	parser.NewRestMenu(rest)
 	suppliersInfo := parser.ParseRestMenu.GetListSuppliers()
 	app.ChanIdSupplier = make(chan int, len(suppliersInfo.Restaurants))
