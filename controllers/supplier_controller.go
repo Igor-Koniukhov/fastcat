@@ -18,17 +18,17 @@ type SupplierControllerI interface {
 	UpdateSupplier(method string) http.HandlerFunc
 }
 
-var RepoSupplier *SupplierControllers
+var RepoSupplier *SupplierController
 
-type SupplierControllers struct {
+type SupplierController struct {
 	App *config.AppConfig
 }
 
-func NewSupplierControllers(app *config.AppConfig) *SupplierControllers {
-	return &SupplierControllers{App: app}
+func NewSupplierControllers(app *config.AppConfig) *SupplierController {
+	return &SupplierController{App: app}
 }
 
-func NewControllersS(r *SupplierControllers) {
+func NewControllersS(r *SupplierController) {
 	RepoSupplier = r
 }
 
@@ -38,7 +38,7 @@ func supplierAppConfigProvider(a *config.AppConfig) *repository.SupplierReposito
 	return repo
 }
 
-func (s SupplierControllers) CreateSupplier(method string) http.HandlerFunc {
+func (s SupplierController) CreateSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -54,7 +54,7 @@ func (s SupplierControllers) CreateSupplier(method string) http.HandlerFunc {
 	}
 }
 
-func (s SupplierControllers) GetSupplier(method string) http.HandlerFunc {
+func (s SupplierController) GetSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
@@ -69,7 +69,7 @@ func (s SupplierControllers) GetSupplier(method string) http.HandlerFunc {
 	}
 }
 
-func (s SupplierControllers) GetAllSuppliers(method string) http.HandlerFunc {
+func (s SupplierController) GetAllSuppliers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
@@ -83,7 +83,7 @@ func (s SupplierControllers) GetAllSuppliers(method string) http.HandlerFunc {
 	}
 }
 
-func (s SupplierControllers) DeleteSupplier(method string) http.HandlerFunc {
+func (s SupplierController) DeleteSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -98,7 +98,7 @@ func (s SupplierControllers) DeleteSupplier(method string) http.HandlerFunc {
 	}
 }
 
-func (s SupplierControllers) UpdateSupplier(method string) http.HandlerFunc {
+func (s SupplierController) UpdateSupplier(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
