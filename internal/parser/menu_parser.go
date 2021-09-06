@@ -1,7 +1,6 @@
 package parser
 
 import (
-	"database/sql"
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/driver"
@@ -13,9 +12,9 @@ import (
 )
 
 type RestMenuParserInterface interface {
-	ParseRestaurants()
-	parseMenu(id int, tx *sql.Tx)
-	responseBodyConnection(url string) (response []byte)
+	GetListSuppliers() (suppliers *model.Suppliers)
+	GetListMenuItems(id int) (menu *model.Menu)
+	ParsedDataWriter()
 }
 
 type RestMenuParser struct {
@@ -45,6 +44,15 @@ func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository
 var URL = "http://foodapi.true-tech.php.nixdev.co/restaurants"
 var wg sync.WaitGroup
 
+func (r *RestMenuParser) GetListSuppliers() (suppliers *model.Suppliers) {
+	_ = json.Unmarshal(driver.GetBodyConnection(URL), &suppliers)
+	return
+}
+func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
+	var URLMenu = fmt.Sprintf("%s/%v/menu", URL, id)
+	_ = json.Unmarshal(driver.GetBodyConnection(URLMenu), &menu)
+	return
+}
 
 func (r *RestMenuParser) ParsedDataWriter() {
 	supplierAppConfigProvider(r.App)
@@ -74,14 +82,6 @@ func (r *RestMenuParser) ParsedDataWriter() {
 	}
 }
 
-func (r *RestMenuParser) GetListSuppliers() (suppliers *model.Suppliers) {
-	_ = json.Unmarshal(driver.GetBodyConnection(URL), &suppliers)
-	return
-}
-func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
-	var URLMenu = fmt.Sprintf("%s/%v/menu", URL, id)
-	_ = json.Unmarshal(driver.GetBodyConnection(URLMenu), &menu)
-	return
-}
+
 
 
