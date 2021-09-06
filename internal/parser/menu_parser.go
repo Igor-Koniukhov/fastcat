@@ -4,12 +4,11 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
-	web"github.com/igor-koniukhov/webLogger/v3"
-	"io/ioutil"
-	"net/http"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"sync"
 )
 
@@ -76,20 +75,13 @@ func (r *RestMenuParser) ParsedDataWriter() {
 }
 
 func (r *RestMenuParser) GetListSuppliers() (suppliers *model.Suppliers) {
-	_ = json.Unmarshal(r.responseBodyConnection(URL), &suppliers)
+	_ = json.Unmarshal(driver.GetBodyConnection(URL), &suppliers)
 	return
 }
 func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
 	var URLMenu = fmt.Sprintf("%s/%v/menu", URL, id)
-	_ = json.Unmarshal(r.responseBodyConnection(URLMenu), &menu)
+	_ = json.Unmarshal(driver.GetBodyConnection(URLMenu), &menu)
 	return
 }
 
-func (r *RestMenuParser) responseBodyConnection(url string) (response []byte) {
-	conn, err := http.Get(url)
-	web.Log.Error(err)
-	defer conn.Body.Close()
-	response, err = ioutil.ReadAll(conn.Body)
-	web.Log.Error(err)
-	return
-}
+
