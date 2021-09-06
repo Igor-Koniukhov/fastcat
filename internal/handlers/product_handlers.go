@@ -14,7 +14,7 @@ func ProductHandlers(app *config.AppConfig)  {
 
 	http.HandleFunc("/product/create", pc.CreateProduct( "POST"))
 	http.HandleFunc("/product/", pc.GetProduct( "GET"))
-	http.HandleFunc("/product", pc.GetAllProducts( "GET"))
+	http.HandleFunc("/products", pc.GetAllProducts( "GET"))
 	http.HandleFunc("/product/update/", pc.UpdateProduct( "PUT"))
 	http.HandleFunc("/product/delete/", pc.DeleteProduct( "DELETE"))
 }

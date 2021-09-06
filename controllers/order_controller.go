@@ -19,16 +19,16 @@ type OrderControllerI interface {
 	UpdateOrder(method string) http.HandlerFunc
 }
 
-var RepoOrder *OrderControllers
+var RepoOrder *OrderController
 
-type OrderControllers struct {
+type OrderController struct {
 	App *config.AppConfig
 }
 
-func NewOrderControllers(app *config.AppConfig) *OrderControllers {
-	return &OrderControllers{App: app}
+func NewOrderControllers(app *config.AppConfig) *OrderController {
+	return &OrderController{App: app}
 }
-func NewControllersO(r *OrderControllers) {
+func NewControllersO(r *OrderController) {
 	RepoOrder = r
 }
 func orderAppConfigProvider(a *config.AppConfig) *repository.OrderRepository {
@@ -38,7 +38,7 @@ func orderAppConfigProvider(a *config.AppConfig) *repository.OrderRepository {
 
 }
 
-func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
+func (o OrderController) CreateOrder( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var ord model.Order
 		switch r.Method {
@@ -57,10 +57,9 @@ func (o OrderControllers) CreateOrder( method string) http.HandlerFunc {
 }
 
 
-func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
+func (o OrderController) GetOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(o.App.Session)
-
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			repo := orderAppConfigProvider(o.App)
@@ -73,8 +72,9 @@ func (o OrderControllers) GetOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
+func (o OrderController) GetAllOrders(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			orderAppConfigProvider(o.App)
@@ -87,7 +87,7 @@ func (o OrderControllers) GetAllOrders(method string) http.HandlerFunc {
 }
 
 
-func (o OrderControllers) DeleteOrder(method string) http.HandlerFunc {
+func (o OrderController) DeleteOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -103,7 +103,7 @@ func (o OrderControllers) DeleteOrder(method string) http.HandlerFunc {
 	}
 }
 
-func (oc OrderControllers) UpdateOrder(method string) http.HandlerFunc {
+func (oc OrderController) UpdateOrder(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:

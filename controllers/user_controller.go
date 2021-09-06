@@ -18,17 +18,17 @@ type UserControllerI interface {
 	UpdateUser(method string) http.HandlerFunc
 }
 
-var RepoUser *UserControllers
+var RepoUser *UserController
 
-type UserControllers struct {
+type UserController struct {
 	App *config.AppConfig
 }
 
-func NewUserControllers(app *config.AppConfig) *UserControllers {
-	return &UserControllers{App: app}
+func NewUserControllers(app *config.AppConfig) *UserController {
+	return &UserController{App: app}
 }
 
-func NewControllersU(r *UserControllers) {
+func NewControllersU(r *UserController) {
 	RepoUser = r
 }
 
@@ -45,8 +45,7 @@ func userAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
 	return repo
 }
 
-
-func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
+func (c *UserController) CreateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
 		switch r.Method {
@@ -56,15 +55,15 @@ func (c *UserControllers) CreateUser(method string) http.HandlerFunc {
 			user, err := repository.RepoU.CreateUser(&u)
 			checkError(err)
 			json.NewEncoder(w).Encode(&user)
-
 		default:
 			methodMessage(w, method)
 		}
 	}
 }
 
-func (c *UserControllers) GetUser(method string) http.HandlerFunc {
+func (c *UserController) GetUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			repo := userAppConfigProvider(c.App)
@@ -77,8 +76,9 @@ func (c *UserControllers) GetUser(method string) http.HandlerFunc {
 	}
 }
 
-func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
+func (c *UserController) GetAllUsers(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
 			_ = userAppConfigProvider(c.App)
@@ -90,7 +90,7 @@ func (c *UserControllers) GetAllUsers(method string) http.HandlerFunc {
 	}
 }
 
-func (c *UserControllers) DeleteUser(method string) http.HandlerFunc {
+func (c *UserController) DeleteUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -105,7 +105,7 @@ func (c *UserControllers) DeleteUser(method string) http.HandlerFunc {
 	}
 }
 
-func (c *UserControllers) UpdateUser(method string) http.HandlerFunc {
+func (c *UserController) UpdateUser(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
