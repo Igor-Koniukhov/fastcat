@@ -11,9 +11,7 @@ func SetAppConfigParameters(db *sql.DB)  {
 	app.DB = db
 	app.Session = "This is session"
 	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
-
 }
-
 
 func SetWebLoggerParameters() {
 	logSet := webLogger.NewLogStruct(&webLogger.LogParameters{

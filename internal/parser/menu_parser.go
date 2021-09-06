@@ -65,18 +65,15 @@ func (r *RestMenuParser) ParsedDataWriter() {
 	for _, restaurant := range suppliersInDB.Restaurants {
 		menu := r.GetListMenuItems(restaurant.Id)
 		id := <-r.App.ChanIdSupplier
-		idSoftDel := id - len(parsedSuppliers.Restaurants)
+		idSoftDel := id - len(suppliersInDB.Restaurants)
 		repository.RepoS.SoftDelete(idSoftDel)
-
 		for _, item := range menu.Items {
 			wg.Add(1)
-			r.App.ChanMutex <- 1
 			go func(id int) {
 				defer wg.Done()
 				repository.RepoP.SoftDelete(idSoftDel)
 				_, _ = repository.RepoP.CreateProduct(&item, id)
 			}(id)
-			<-r.App.ChanMutex
 		}
 		wg.Wait()
 	}

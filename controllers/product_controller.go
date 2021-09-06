@@ -18,16 +18,16 @@ type ProductControllerI interface {
 	UpdateProduct(method string) http.HandlerFunc
 }
 
-var RepoProducts *ProductControllers
+var RepoProducts *ProductController
 
-type ProductControllers struct {
+type ProductController struct {
 	App *config.AppConfig
 }
 
-func NewProductControllers(app *config.AppConfig) *ProductControllers {
-	return &ProductControllers{App: app}
+func NewProductControllers(app *config.AppConfig) *ProductController {
+	return &ProductController{App: app}
 }
-func NewControllersP(r *ProductControllers) {
+func NewControllersP(r *ProductController) {
 	RepoProducts = r
 }
 func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository {
@@ -37,7 +37,7 @@ func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository
 
 }
 
-func (p *ProductControllers) CreateProduct(method string) http.HandlerFunc {
+func (p *ProductController) CreateProduct(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -49,7 +49,7 @@ func (p *ProductControllers) CreateProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductControllers) GetProduct(method string) http.HandlerFunc {
+func (p *ProductController) GetProduct(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
@@ -65,7 +65,7 @@ func (p *ProductControllers) GetProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductControllers) GetAllProducts(method string) http.HandlerFunc {
+func (p *ProductController) GetAllProducts(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
@@ -79,7 +79,7 @@ func (p *ProductControllers) GetAllProducts(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductControllers) DeleteProduct(method string) http.HandlerFunc {
+func (p *ProductController) DeleteProduct(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -94,7 +94,7 @@ func (p *ProductControllers) DeleteProduct(method string) http.HandlerFunc {
 	}
 }
 
-func (p *ProductControllers) UpdateProduct(method string) http.HandlerFunc {
+func (p *ProductController) UpdateProduct(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:

@@ -14,16 +14,16 @@ type CartControllerI interface {
 	UpdateCart(method string) http.HandlerFunc
 }
 
-var RepoCart *CartControllers
+var RepoCart *CartController
 
-type CartControllers struct {
+type CartController struct {
 	App *config.AppConfig
 }
 
-func NewCartControllers(app *config.AppConfig) *CartControllers {
-	return &CartControllers{App: app}
+func NewCartControllers(app *config.AppConfig) *CartController {
+	return &CartController{App: app}
 }
-func NewControllersC(r *CartControllers)  {
+func NewControllersC(r *CartController)  {
 	RepoCart = r
 
 }
@@ -34,7 +34,7 @@ func cartAppConfigProvider(a *config.AppConfig) *repository.CartRepository {
 
 }
 
-func (c CartControllers) CreateCart(method string) http.HandlerFunc {
+func (c CartController) CreateCart(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -45,19 +45,7 @@ func (c CartControllers) CreateCart(method string) http.HandlerFunc {
 	}
 }
 
-func (c CartControllers) GetCart(method string) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			cartAppConfigProvider(c.App)
-		default:
-			methodMessage(w, method)
-		}
-	}
-}
-
-func (c CartControllers) GetAllCarts(method string) http.HandlerFunc {
+func (c CartController) GetCart(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
@@ -69,7 +57,19 @@ func (c CartControllers) GetAllCarts(method string) http.HandlerFunc {
 	}
 }
 
-func (c CartControllers) DeleteCart(method string) http.HandlerFunc {
+func (c CartController) GetAllCarts(method string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "json")
+		switch r.Method {
+		case method:
+			cartAppConfigProvider(c.App)
+		default:
+			methodMessage(w, method)
+		}
+	}
+}
+
+func (c CartController) DeleteCart(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
@@ -80,7 +80,7 @@ func (c CartControllers) DeleteCart(method string) http.HandlerFunc {
 	}
 }
 
-func (c CartControllers) UpdateCart(method string) http.HandlerFunc {
+func (c CartController) UpdateCart(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
