@@ -10,6 +10,7 @@ type Product struct {
 	Image       string  `json:"image"`
 	Type        string  `json:"type"`
 	Ingredients []byte  `json:"ingredients"`
+	SuppliersID int      `json:"suppliers_id"`
 }
 
 type Menu struct {

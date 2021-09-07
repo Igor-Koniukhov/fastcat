@@ -10,11 +10,11 @@ import (
 )
 
 type User interface {
-	Create(method string) http.HandlerFunc
-	Get(method string) http.HandlerFunc
-	GetAll(method string) http.HandlerFunc
-	Delete(method string) http.HandlerFunc
-	Update(method string) http.HandlerFunc
+	Create() http.HandlerFunc
+	Get() http.HandlerFunc
+	GetAll() http.HandlerFunc
+	Delete() http.HandlerFunc
+	Update() http.HandlerFunc
 }
 
 type UserController struct {
@@ -25,78 +25,49 @@ func NewUserController(repo repository.UserRepositoryInterface) *UserController 
 	return &UserController{repo: repo}
 }
 
-func (c *UserController) Create(method string) http.HandlerFunc {
+func (c *UserController) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var u model.User
-		switch r.Method {
-		case method:
-			json.NewDecoder(r.Body).Decode(&u)
-			user, err := c.repo.Create(&u)
-			web.Log.Error(err, err)
-			json.NewEncoder(w).Encode(&user)
-		default:
-			methodMessage(w, method)
-		}
+		json.NewDecoder(r.Body).Decode(&u)
+		user, err := c.repo.Create(&u)
+		web.Log.Error(err, err)
+		json.NewEncoder(w).Encode(&user)
 	}
 }
 
-func (c *UserController) Get(method string) http.HandlerFunc {
+func (c *UserController) Get() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			_, _, id := c.repo.Param(r)
-			user := c.repo.Get(id)
-			json.NewEncoder(w).Encode(&user)
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		user := c.repo.Get(id)
+		json.NewEncoder(w).Encode(&user)
 	}
 }
 
-func (c *UserController) GetAll(method string) http.HandlerFunc {
+func (c *UserController) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			users := c.repo.GetAll()
-			json.NewEncoder(w).Encode(&users)
-		default:
-			methodMessage(w, method)
-		}
+		users := c.repo.GetAll()
+		json.NewEncoder(w).Encode(&users)
 	}
 }
 
-func (c *UserController) Delete(method string) http.HandlerFunc {
+func (c *UserController) Delete() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			 _, _, id := c.repo.Param(r)
-			err := c.repo.Delete(id)
-			web.Log.Error(err, err)
-			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		err := c.repo.Delete(id)
+		web.Log.Error(err, err)
+		_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
+
 	}
 }
 
-func (c *UserController) Update(method string) http.HandlerFunc {
+func (c *UserController) Update() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			var u model.User
-			json.NewDecoder(r.Body).Decode(&u)
-			_, _, id := c.repo.Param(r)
-			user := c.repo.Update(id, &u)
-			json.NewEncoder(w).Encode(&user)
-		default:
-			methodMessage(w, method)
-		}
+		var u model.User
+		json.NewDecoder(r.Body).Decode(&u)
+		id := param(r)
+		user := c.repo.Update(id, &u)
+		json.NewEncoder(w).Encode(&user)
 	}
-}
-
-func methodMessage(w http.ResponseWriter, m string) {
-	http.Error(w, "Only "+m+" method is allowed", http.StatusMethodNotAllowed)
-
 }

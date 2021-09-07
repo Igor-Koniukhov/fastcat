@@ -12,11 +12,11 @@ import (
 )
 
 type Order interface {
-	Create(method string) http.HandlerFunc
-	Get(method string) http.HandlerFunc
-	GetAll(method string) http.HandlerFunc
-	Delete(method string) http.HandlerFunc
-	Update(method string) http.HandlerFunc
+	Create() http.HandlerFunc
+	Get() http.HandlerFunc
+	GetAll() http.HandlerFunc
+	Delete() http.HandlerFunc
+	Update() http.HandlerFunc
 }
 
 type OrderController struct {
@@ -27,77 +27,48 @@ func NewOrderController(repo repository.OrderRepositoryInterface) *OrderControll
 	return &OrderController{repo: repo}
 }
 
-func (ord OrderController) Create( method string) http.HandlerFunc {
+func (ord OrderController) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var o model.Order
-		switch r.Method {
-		case method:
-			json.NewDecoder(r.Body).Decode(&ord)
-			order, err := ord.repo.Create(&o)
-			web.Log.Error(err, err)
-			json.NewEncoder(w).Encode(&order)
-		default:
-			methodMessage(w, method)
-		}
+		json.NewDecoder(r.Body).Decode(&ord)
+		order, err := ord.repo.Create(&o)
+		web.Log.Error(err, err)
+		json.NewEncoder(w).Encode(&order)
 	}
 }
 
-
-func (ord OrderController) Get(method string) http.HandlerFunc {
+func (ord OrderController) Get() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			param, _, _ := ord.repo.Param(r)
-			order := ord.repo.Get(&param)
-			json.NewEncoder(w).Encode(&order)
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		order := ord.repo.Get(id)
+		json.NewEncoder(w).Encode(&order)
 	}
 }
 
-func (ord OrderController) GetAll(method string) http.HandlerFunc {
+func (ord OrderController) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			order := ord.repo.GetAll()
-			json.NewEncoder(w).Encode(&order)
-		default:
-			methodMessage(w, method)
-		}
+		order := ord.repo.GetAll()
+		json.NewEncoder(w).Encode(&order)
 	}
 }
 
-
-func (ord OrderController) Delete(method string) http.HandlerFunc {
+func (ord OrderController) Delete() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			_, _, id := ord.repo.Param(r)
-			err := ord.repo.Delete(id)
-			web.Log.Error(err, err)
-			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
-
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		err := ord.repo.Delete(id)
+		web.Log.Error(err, err)
+		_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 	}
 }
 
-func (ord OrderController) Update(method string) http.HandlerFunc {
+func (ord OrderController) Update() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			var o model.Order
-			json.NewDecoder(r.Body).Decode(&ord)
-			_, _, id := ord.repo.Param(r)
-			order := ord.repo.Update(id, &o)
-			json.NewEncoder(w).Encode(&order)
-
-		default:
-			methodMessage(w, method)
-		}
+		var o model.Order
+		_ = json.NewDecoder(r.Body).Decode(&ord)
+		id := param(r)
+		order := ord.repo.Update(id, &o)
+		_ = json.NewEncoder(w).Encode(&order)
 	}
 }

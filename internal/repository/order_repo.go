@@ -6,19 +6,15 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
-	"net/http"
-	"strconv"
-	"strings"
 )
 
 
 type OrderRepositoryInterface interface {
 	Create(or *model.Order) (*model.Order, error)
-	Get(param *string) *model.Order
+	Get(id int) *model.Order
 	GetAll() *[]model.Order
 	Delete(id int) error
 	Update(id int, ord *model.Order) *model.Order
-	Param(r *http.Request) (string, string, int)
 }
 var order model.Order
 
@@ -40,9 +36,9 @@ func (o OrderRepository) Create(or *model.Order) (*model.Order, error) {
 	return or, err
 }
 
-func (o OrderRepository) Get(param *string) *model.Order {
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = '%s' ", dr.TableOrders, *param)
-	err := o.App.DB.QueryRow(sqlStmt).Scan(
+func (o OrderRepository) Get(id int) *model.Order {
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableOrders)
+	err := o.App.DB.QueryRow(sqlStmt, id).Scan(
 		&order.ID,
 		&order.UserID,
 		&order.CartID,
@@ -97,26 +93,7 @@ func (o OrderRepository) Update(id int, ord *model.Order) *model.Order {
 	return ord
 }
 
-func (o OrderRepository) Param(r *http.Request) (string, string, int) {
-	var paramName string
-	var param string
-	var id int
-	fields := strings.Split(r.URL.String(), "/")
-	str := fields[len(fields)-1]
-	//TODO: need to be rewriting with regexp
-	if len(str) > 5 {
-		paramName = "email"
-		param = str
-		id = 0
-	} else {
-		num, err := strconv.Atoi(str)
-		web.Log.Error(err, err)
-		paramName = "id"
-		param = str
-		id = num
-	}
-	return param, paramName, id
-}
+
 
 
 

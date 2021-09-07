@@ -6,9 +6,6 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
-	"net/http"
-	"strconv"
-	"strings"
 )
 type UserRepositoryInterface interface {
 	Create(u *model.User) (*model.User, error)
@@ -16,9 +13,9 @@ type UserRepositoryInterface interface {
 	GetAll() *[]model.User
 	Delete(id int) error
 	Update(id int, u *model.User) *model.User
-	Param(r *http.Request) (string, string, int)
 }
 
+var user model.User
 type UserRepository struct{
 	App *config.AppConfig
 }
@@ -82,9 +79,7 @@ func (usr UserRepository) Delete(id int) error {
 
 func (usr UserRepository) Update(id int, u *model.User) *model.User {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
-
 	stmt, err := usr.App.DB.Prepare(sqlStmt)
-
 	web.Log.Error(err, err)
 	_, err = stmt.Exec(
 		u.ID,
@@ -98,28 +93,7 @@ func (usr UserRepository) Update(id int, u *model.User) *model.User {
 	return u
 }
 
-func (usr UserRepository) Param(r *http.Request) (string, string, int) {
-	var paramName string
-	var param string
-	var id int
-	fields := strings.Split(r.URL.String(), "/")
-	str := fields[len(fields)-1]
-	//TODO: need to be rewriting with regexp
-	if len(str) > 5 {
-		paramName = "email"
-		param = str
-		id = 0
-	} else {
-		num, err := strconv.Atoi(str)
-		web.Log.Error(err, err)
-		paramName = "id"
-		param = str
-		id = num
-	}
-	return param, paramName, id
-}
 
-var user model.User
 
 
 

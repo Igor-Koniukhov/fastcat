@@ -5,9 +5,6 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
-	"net/http"
-	"strconv"
-	"strings"
 )
 
 type CartRepositoryInterface interface {
@@ -16,8 +13,8 @@ type CartRepositoryInterface interface {
 	GetAll() *[]model.Cart
 	Delete(id int) error
 	Update(id int, u *model.Cart) *model.Cart
-	Param(r *http.Request) (string, string, int)
 }
+
 var cart model.Cart
 type CartRepository struct{
 	App *config.AppConfig
@@ -86,23 +83,3 @@ func (c CartRepository) Update(id int, cart *model.Cart) *model.Cart {
 	return cart
 }
 
-func (c CartRepository) Param(r *http.Request) (string, string, int) {
-	var paramName string
-	var param string
-	var id int
-	fields := strings.Split(r.URL.String(), "/")
-	str := fields[len(fields)-1]
-	//TODO: need to be rewriting with regexp
-	if len(str) > 5 {
-		paramName = "email"
-		param = str
-		id = 0
-	} else {
-		num, err := strconv.Atoi(str)
-		web.Log.Error(err, err)
-		paramName = "id"
-		param = str
-		id = num
-	}
-	return param, paramName, id
-}

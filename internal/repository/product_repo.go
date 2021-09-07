@@ -6,9 +6,6 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
-	"net/http"
-	"strconv"
-	"strings"
 )
 
 
@@ -19,7 +16,6 @@ type ProductRepositoryInterface interface {
 	Delete(id int) (err error)
 	SoftDelete(id int) error
 	Update(id int, item *model.Item, ) *model.Item
-	Param(r *http.Request) (string, string, int)
 }
 
 type ProductRepository struct{
@@ -41,7 +37,6 @@ func (p ProductRepository) Create(item *model.Item, id int) (*model.Item, error)
 	stmtRest, err := p.App.DB.Prepare(stmtRestaurantsItem)
 	web.Log.Error(err, err)
 	defer stmtRest.Close()
-
 	result, err := stmt.Exec(
 		&item.Name,
 		&item.Price,
@@ -105,6 +100,7 @@ func (p ProductRepository) GetAll() *[]model.Item {
 			&product.Image,
 			&product.Type,
 			&product.Ingredients,
+			&product.SuppliersID,
 		)
 		web.Log.Error(err, err)
 		json.Unmarshal(product.Ingredients, &str)
@@ -115,9 +111,9 @@ func (p ProductRepository) GetAll() *[]model.Item {
 			Image:       product.Image,
 			Type:        product.Type,
 			Ingredients: str,
+			SuppliersID: product.SuppliersID,
 		})
 	}
-
 	return &items
 }
 
@@ -143,26 +139,6 @@ func (p ProductRepository) Update(id int, item *model.Item) *model.Item {
 	return item
 }
 
-func (p ProductRepository) Param(r *http.Request) (string, string, int) {
-	var paramName string
-	var param string
-	var id int
-	fields := strings.Split(r.URL.String(), "/")
-	str := fields[len(fields)-1]
-	//TODO: need to be rewriting with regexp
-	if len(str) > 5 {
-		paramName = "email"
-		param = str
-		id = 0
-	} else {
-		num, err := strconv.Atoi(str)
-		web.Log.Error(err, err)
-		paramName = "id"
-		param = str
-		id = num
-	}
-	return param, paramName, id
-}
 
 
 
