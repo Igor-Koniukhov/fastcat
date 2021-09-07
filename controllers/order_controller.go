@@ -23,6 +23,10 @@ type OrderController struct {
 	repo repository.OrderRepositoryInterface
 }
 
+func NewOrderController(repo repository.OrderRepositoryInterface) *OrderController {
+	return &OrderController{repo: repo}
+}
+
 func (ord OrderController) Create( method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var o model.Order

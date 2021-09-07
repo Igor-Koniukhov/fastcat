@@ -12,7 +12,7 @@ import (
 type Product interface {
 	Create(method string) http.HandlerFunc
 	Get(method string) http.HandlerFunc
-	GetAllP(method string) http.HandlerFunc
+	GetAll(method string) http.HandlerFunc
 	Delete(method string) http.HandlerFunc
 	Update(method string) http.HandlerFunc
 }
