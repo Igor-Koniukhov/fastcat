@@ -3,14 +3,13 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 )
 
-type SupplierControllerI interface {
+type Supplier interface {
 	Create(method string) http.HandlerFunc
 	Get(method string) http.HandlerFunc
 	GetAll(method string) http.HandlerFunc
@@ -18,24 +17,12 @@ type SupplierControllerI interface {
 	Update(method string) http.HandlerFunc
 }
 
-var RepoSupplier *SupplierController
-
-type SupplierController struct {
-	App *config.AppConfig
+type SupplierController struct{
+	repo repository.SupplierRepositoryInterface
 }
 
-func NewSupplierControllers(app *config.AppConfig) *SupplierController {
-	return &SupplierController{App: app}
-}
-
-func NewControllersS(r *SupplierController) {
-	RepoSupplier = r
-}
-
-func supplierAppConfigProvider(a *config.AppConfig) *repository.SupplierRepository {
-	repo := repository.NewSupplierRepository(a)
-	repository.NewRepoS(repo)
-	return repo
+func NewSupplierController(repo repository.SupplierRepositoryInterface) *SupplierController {
+	return &SupplierController{repo: repo}
 }
 
 func (s SupplierController) Create(method string) http.HandlerFunc {
@@ -44,9 +31,9 @@ func (s SupplierController) Create(method string) http.HandlerFunc {
 		case method:
 			var suppliers model.Suppliers
 			json.NewDecoder(r.Body).Decode(&suppliers)
-			_ = supplierAppConfigProvider(s.App)
-			user, err := repository.RepoS.Create(&suppliers)
-			checkError(err)
+
+			user, err := s.repo.Create(&suppliers)
+			web.Log.Error(err, err)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
@@ -59,9 +46,8 @@ func (s SupplierController) Get(method string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			repo := supplierAppConfigProvider(s.App)
-			param, nameParam, _ := repo.Param(r)
-			user := repository.RepoS.Get(&nameParam, &param)
+			param, nameParam, _ := s.repo.Param(r)
+			user := s.repo.Get(&nameParam, &param)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
@@ -74,8 +60,7 @@ func (s SupplierController) GetAll(method string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			supplierAppConfigProvider(s.App)
-			suppliers := repository.RepoS.GetAll()
+			suppliers := s.repo.GetAll()
 			json.NewEncoder(w).Encode(&suppliers)
 
 			methodMessage(w, method)
@@ -87,9 +72,8 @@ func (s SupplierController) Delete(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			repo := supplierAppConfigProvider(s.App)
-			_, _, id := repo.Param(r)
-			err := repository.RepoS.Delete(id)
+			_, _, id := s.repo.Param(r)
+			err := s.repo.Delete(id)
 			web.Log.Error(err, err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" supplier with %d deleted", id))
 		default:
@@ -104,9 +88,8 @@ func (s SupplierController) Update(method string) http.HandlerFunc {
 		case method:
 			var supplier model.Supplier
 			json.NewDecoder(r.Body).Decode(&supplier)
-			repo := supplierAppConfigProvider(s.App)
-			_, _, id := repo.Param(r)
-			user := repository.RepoS.Update(id, &supplier)
+			_, _, id := s.repo.Param(r)
+			user := s.repo.Update(id, &supplier)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)

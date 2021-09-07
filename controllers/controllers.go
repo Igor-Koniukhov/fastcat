@@ -1,6 +1,7 @@
 package controllers
 
 
-type Controller struct{
+type Controllers struct{
 	User
+	Supplier
 }

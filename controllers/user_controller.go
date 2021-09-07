@@ -17,7 +17,6 @@ type User interface {
 	Update(method string) http.HandlerFunc
 }
 
-
 type UserController struct {
 	repo repository.UserRepositoryInterface
 }
@@ -25,7 +24,6 @@ type UserController struct {
 func NewUserController(repo repository.UserRepositoryInterface) *UserController {
 	return &UserController{repo: repo}
 }
-
 
 func (c *UserController) Create(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
