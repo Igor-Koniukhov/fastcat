@@ -10,7 +10,7 @@ type Controllers struct {
 	Cart
 }
 
-func NewControllers(repos repository.Repository) *Controllers {
+func NewControllers(repos *repository.Repository) *Controllers {
 	return &Controllers{
 		User:     NewUserController(repos.UserRepositoryInterface),
 		Supplier: NewSupplierController(repos.SupplierRepositoryInterface),

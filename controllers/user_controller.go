@@ -12,7 +12,7 @@ import (
 type User interface {
 	Create(method string) http.HandlerFunc
 	Get(method string) http.HandlerFunc
-	GetAllU(method string) http.HandlerFunc
+	GetAll(method string) http.HandlerFunc
 	Delete(method string) http.HandlerFunc
 	Update(method string) http.HandlerFunc
 }
@@ -54,7 +54,7 @@ func (c *UserController) Get(method string) http.HandlerFunc {
 	}
 }
 
-func (c *UserController) GetAllU(method string) http.HandlerFunc {
+func (c *UserController) GetAll(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
