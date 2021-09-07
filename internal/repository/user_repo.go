@@ -5,13 +5,12 @@ import (
 	dr "github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	"log"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 	"strconv"
 	"strings"
 )
-
-type UserRepositoryI interface {
+type UserRepositoryInterface interface {
 	Create(u *model.User) (*model.User, error)
 	Get(nameParam, param *string) *model.User
 	GetAll() *[]model.User
@@ -19,31 +18,33 @@ type UserRepositoryI interface {
 	Update(id int, u *model.User) *model.User
 	Param(r *http.Request) (string, string, int)
 }
-var user model.User
-var RepoU *UserRepository
 
-type UserRepository struct {
+type UserRepository struct{
 	App *config.AppConfig
+}
+
+type Repository struct{
+	UserRepositoryInterface
 }
 
 func NewUserRepository(app *config.AppConfig) *UserRepository {
 	return &UserRepository{App: app}
 }
-func NewRepoU(r *UserRepository) {
-	RepoU = r
-}
 
-func (usr *UserRepository) Create(u *model.User) (*model.User, error) {
+
+
+
+func (usr UserRepository) Create(u *model.User) (*model.User, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
 	p, err := usr.App.DB.Prepare(sqlStmt)
 	defer p.Close()
-	CheckErr(err)
+	web.Log.Error(err, err)
 	_, err = p.Exec(u.Name, u.Email, u.PhoneNumber, u.Password, u.Status)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	return u, err
 }
 
-func (usr *UserRepository) Get(nameParam, param *string)  *model.User {
+func (usr UserRepository) Get(nameParam, param *string) *model.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
 	err := usr.App.DB.QueryRow(sqlStmt).Scan(
 		&user.ID,
@@ -54,16 +55,15 @@ func (usr *UserRepository) Get(nameParam, param *string)  *model.User {
 		&user.Status,
 		&user.CreatedAT,
 		&user.UpdatedAT)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	return &user
 }
 
-func (usr *UserRepository) GetAll() *[]model.User {
-
+func (usr UserRepository) GetAll() *[]model.User {
 	var users []model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
 	results, err := usr.App.DB.Query(sqlStmt)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	for results.Next() {
 		err = results.Scan(
 			&user.ID,
@@ -74,26 +74,25 @@ func (usr *UserRepository) GetAll() *[]model.User {
 			&user.Status,
 			&user.CreatedAT,
 			&user.UpdatedAT)
-		CheckErr(err)
+		web.Log.Error(err, err)
 		users = append(users, user)
 	}
 	return &users
 }
 
-func (usr *UserRepository) Delete(id int) error {
+func (usr UserRepository) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", dr.TableUser)
 	_, err := usr.App.DB.Exec(sqlStmt, id)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	return err
 }
 
-func (usr *UserRepository) Update(id int, u *model.User) *model.User {
-
+func (usr UserRepository) Update(id int, u *model.User) *model.User {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
 
 	stmt, err := usr.App.DB.Prepare(sqlStmt)
 
-	CheckErr(err)
+	web.Log.Error(err, err)
 	_, err = stmt.Exec(
 		u.ID,
 		u.Name,
@@ -101,12 +100,12 @@ func (usr *UserRepository) Update(id int, u *model.User) *model.User {
 		u.PhoneNumber,
 		u.Password,
 		u.Status)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	fmt.Println(*u)
 	return u
 }
 
-func (usr *UserRepository) Param(r *http.Request) (string, string, int) {
+func (usr UserRepository) Param(r *http.Request) (string, string, int) {
 	var paramName string
 	var param string
 	var id int
@@ -119,7 +118,7 @@ func (usr *UserRepository) Param(r *http.Request) (string, string, int) {
 		id = 0
 	} else {
 		num, err := strconv.Atoi(str)
-		CheckErr(err)
+		web.Log.Error(err, err)
 		paramName = "id"
 		param = str
 		id = num
@@ -127,8 +126,10 @@ func (usr *UserRepository) Param(r *http.Request) (string, string, int) {
 	return param, paramName, id
 }
 
-func CheckErr(err error) {
-	if err != nil {
-		log.Println(err.Error())
-	}
-}
+var user model.User
+
+
+
+
+
+
