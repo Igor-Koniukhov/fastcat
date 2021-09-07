@@ -1,55 +1,46 @@
 package repository
 
 import (
-
 	"fmt"
 	dr "github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/model"
+	web "github.com/igor-koniukhov/webLogger/v3"
+	"net/http"
 	"strconv"
 	"strings"
-
-	"github.com/igor-koniukhov/fastcat/internal/model"
-	"net/http"
 )
 
-type OrderRepositoryI interface {
-	Create(ord *model.Order) (*model.Order, error)
-	Get(nameParam, param *string) *model.Order
+
+type OrderRepositoryInterface interface {
+	Create(or *model.Order) (*model.Order, error)
+	Get(param *string) *model.Order
 	GetAll() *[]model.Order
 	Delete(id int) error
-	Update(id int, u *model.Order) *model.Order
+	Update(id int, ord *model.Order) *model.Order
 	Param(r *http.Request) (string, string, int)
 }
-
-
 var order model.Order
-var RepoO *OrderRepository
 
+type OrderRepository struct{
 
-type OrderRepository struct {
 	App *config.AppConfig
 }
 
 func NewOrderRepository(app *config.AppConfig) *OrderRepository {
 	return &OrderRepository{App: app}
 }
-func NewRepoO(r *OrderRepository) {
-	RepoO = r
-}
-
-func (o *OrderRepository) Create(or *model.Order) (*model.Order, error) {
-
+func (o OrderRepository) Create(or *model.Order) (*model.Order, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, cart_id, address_id, status) VALUES (?, ?, ?, ?)", dr.TableOrders)
-
 	p, err := o.App.DB.Prepare(sqlStmt)
 	defer p.Close()
-	CheckErr(err)
+	web.Log.Error(err, err)
 	_, err = p.Exec(or.UserID, or.CartID, or.AddressID, or.Status)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	return or, err
 }
 
-func (o *OrderRepository) Get(param *string) *model.Order {
+func (o OrderRepository) Get(param *string) *model.Order {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = '%s' ", dr.TableOrders, *param)
 	err := o.App.DB.QueryRow(sqlStmt).Scan(
 		&order.ID,
@@ -59,15 +50,15 @@ func (o *OrderRepository) Get(param *string) *model.Order {
 		&order.Status,
 		&order.CreatedAt,
 		&order.UpdatedAt)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	return &order
 }
 
-func (o *OrderRepository) GetAll() *[]model.Order {
+func (o OrderRepository) GetAll() *[]model.Order {
 	var orders []model.Order
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableOrders)
 	results, err := o.App.DB.Query(sqlStmt)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	for results.Next() {
 		err = results.Scan(
 			&order.ID,
@@ -77,36 +68,36 @@ func (o *OrderRepository) GetAll() *[]model.Order {
 			&order.Status,
 			&order.CreatedAt,
 			&order.UpdatedAt)
-		CheckErr(err)
+		web.Log.Error(err, err)
 		orders = append(orders, order)
 	}
 	return &orders
 }
 
-func (o *OrderRepository) Delete(id int) error {
+func (o OrderRepository) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", dr.TableOrders)
 	_, err := o.App.DB.Exec(sqlStmt, id)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	return err
 }
 
-func (o *OrderRepository) Update(id int, ord *model.Order) *model.Order {
+func (o OrderRepository) Update(id int, ord *model.Order) *model.Order {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, user_id=?, cart_id=?, address_id=?, status=? WHERE id=%d ", dr.TableOrders, id)
 	fmt.Println(sqlStmt)
 	stmt, err := o.App.DB.Prepare(sqlStmt)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	_, err = stmt.Exec(
 		ord.ID,
 		ord.UserID,
 		ord.CartID,
 		ord.AddressID,
 		ord.Status)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	fmt.Println(*ord)
 	return ord
 }
 
-func (o *OrderRepository) Param(r *http.Request) (string, string, int) {
+func (o OrderRepository) Param(r *http.Request) (string, string, int) {
 	var paramName string
 	var param string
 	var id int
@@ -119,10 +110,14 @@ func (o *OrderRepository) Param(r *http.Request) (string, string, int) {
 		id = 0
 	} else {
 		num, err := strconv.Atoi(str)
-		CheckErr(err)
+		web.Log.Error(err, err)
 		paramName = "id"
 		param = str
 		id = num
 	}
 	return param, paramName, id
 }
+
+
+
+
