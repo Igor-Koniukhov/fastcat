@@ -9,7 +9,7 @@ type Repository struct{
 	OrderRepositoryInterface
 	CartRepositoryInterface
 }
-
+var Repo *Repository
 func NewRepository(app *config.AppConfig) *Repository {
 	return &Repository{
 		UserRepositoryInterface:     NewUserRepository(app),
@@ -18,4 +18,9 @@ func NewRepository(app *config.AppConfig) *Repository {
 		OrderRepositoryInterface:    NewOrderRepository(app),
 		CartRepositoryInterface:     NewCartRepository(app),
 	}
+}
+
+func NewRepo(r *Repository)  {
+	Repo=r
+
 }

@@ -31,7 +31,6 @@ func (s SupplierController) Create(method string) http.HandlerFunc {
 		case method:
 			var suppliers model.Suppliers
 			json.NewDecoder(r.Body).Decode(&suppliers)
-
 			user, err := s.repo.Create(&suppliers)
 			web.Log.Error(err, err)
 			json.NewEncoder(w).Encode(&user)

@@ -45,8 +45,8 @@ func (c *UserController) Get(method string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			nameParam, param,_ := c.repo.Param(r)
-			user := c.repo.Get(&nameParam, &param)
+			_, _, id := c.repo.Param(r)
+			user := c.repo.Get(id)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)

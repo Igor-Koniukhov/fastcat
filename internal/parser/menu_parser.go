@@ -30,16 +30,7 @@ func NewRestMenu(r *RestMenuParser) {
 	ParseRestMenu = r
 }
 
-func supplierAppConfigProvider(a *config.AppConfig) *repository.SupplierRepository {
-	repo := repository.NewSupplierRepository(a)
-	repository.NewRepoS(repo)
-	return repo
-}
-func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository {
-	repo := repository.NewProductRepository(a)
-	repository.NewRepoP(repo)
-	return repo
-}
+
 
 var URL = "http://foodapi.true-tech.php.nixdev.co/restaurants"
 var wg sync.WaitGroup
@@ -55,24 +46,22 @@ func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
 }
 
 func (r *RestMenuParser) ParsedDataWriter() {
-	supplierAppConfigProvider(r.App)
-	productAppConfigProvider(r.App)
 
 	parsedSuppliers := r.GetListSuppliers()
-	suppliersInDB, err := repository.RepoS.Create(parsedSuppliers)
-	web.Log.Error(err)
+	suppliersInDB, err := repository.Repo.SupplierRepositoryInterface.Create(parsedSuppliers)
+	web.Log.Error(err, err)
 
 	for _, restaurant := range suppliersInDB.Restaurants {
 		menu := r.GetListMenuItems(restaurant.Id)
 		id := <-r.App.ChanIdSupplier
 		idSoftDel := id - len(suppliersInDB.Restaurants)
-		repository.RepoS.SoftDelete(idSoftDel)
+		repository.Repo.SupplierRepositoryInterface.SoftDelete(idSoftDel)
 		for _, item := range menu.Items {
 			wg.Add(1)
 			go func(id int) {
 				defer wg.Done()
-				repository.RepoP.SoftDelete(idSoftDel)
-				_, _ = repository.RepoP.Create(&item, id)
+				repository.Repo.SupplierRepositoryInterface.SoftDelete(idSoftDel)
+				_, _ = repository.Repo.ProductRepositoryInterface.Create(&item, id)
 			}(id)
 		}
 		wg.Wait()

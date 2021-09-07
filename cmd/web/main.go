@@ -29,6 +29,8 @@ func main() {
 
 	repo := repository.NewRepository(&app)
 	c := controllers.NewControllers(repo)
+	controllers.NewController(c)
+	repository.NewRepo(repo)
 
 	http.HandleFunc("/user/create", c.User.Create( "POST"))
 	http.HandleFunc("/user/", c.User.Get("GET"))

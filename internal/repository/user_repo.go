@@ -12,7 +12,7 @@ import (
 )
 type UserRepositoryInterface interface {
 	Create(u *model.User) (*model.User, error)
-	Get(nameParam, param *string) *model.User
+	Get(id int) *model.User
 	GetAll() *[]model.User
 	Delete(id int) error
 	Update(id int, u *model.User) *model.User
@@ -37,9 +37,9 @@ func (usr UserRepository) Create(u *model.User) (*model.User, error) {
 	return u, err
 }
 
-func (usr UserRepository) Get(nameParam, param *string) *model.User {
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE %s = '%s' ", dr.TableUser, *nameParam, *param)
-	err := usr.App.DB.QueryRow(sqlStmt).Scan(
+func (usr UserRepository) Get(id int) *model.User {
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableUser)
+	err := usr.App.DB.QueryRow(sqlStmt, id).Scan(
 		&user.ID,
 		&user.Name,
 		&user.Email,
