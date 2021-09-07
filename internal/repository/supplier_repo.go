@@ -11,17 +11,18 @@ import (
 	"sync"
 )
 
-type SupplierRepositoryI interface {
-	Create(u *model.Supplier) (*model.Supplier, error)
+
+type SupplierRepositoryInterface interface {
+	Create(supplier *model.Supplier) (*model.Supplier, error)
 	Get(nameParam, param *string, ) *model.Supplier
-	GetAllUS() *[]model.Supplier
+	GetAll() *[]model.Supplier
 	Delete(id int) error
-	Update(id int, u *model.Supplier) *model.Supplier
+	SoftDelete(id int) error
+	Update(id int, supplier *model.Supplier) *model.Supplier
 	Param(r *http.Request) (string, string, int)
 }
 
 var wg sync.WaitGroup
-var RepoS *SupplierRepository
 var supplier model.Supplier
 
 type SupplierRepository struct {
@@ -30,10 +31,6 @@ type SupplierRepository struct {
 
 func NewSupplierRepository(app *config.AppConfig) *SupplierRepository {
 	return &SupplierRepository{App: app}
-}
-
-func NewRepoS(r *SupplierRepository) {
-	RepoS = r
 }
 
 func (s SupplierRepository) Create(suppliers *model.Suppliers) (*model.Suppliers, error) {
@@ -67,7 +64,7 @@ func (s SupplierRepository) Get(nameParam, param *string) *model.Supplier {
 		&supplier.Name,
 		&supplier.Image,
 	)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	return &supplier
 }
 
@@ -101,18 +98,8 @@ func (s SupplierRepository) SoftDelete(id int) error {
 	web.Log.Error(err, err)
 	return nil
 }
-func (s SupplierRepository) GetByName(name string) (int, error) {
-	var id int
-	sqlStmt := fmt.Sprintf("SELECT id FROM %s WHERE name = ? and deleted_at IS null", model.TabSuppliers)
-	err := s.App.DB.QueryRow(sqlStmt, name).Scan(&id)
-	if err != nil {
-		return 0, err
-	}
 
-	return id, nil
-}
-
-func (s SupplierRepository) Update(id int, supplier *model.Supplier, ) *model.Supplier {
+func (s SupplierRepository) Update(id int, supplier *model.Supplier) *model.Supplier {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, image=?, Name=?, Menu=? , WHERE id=?", model.TabSuppliers)
 	_, err := s.App.DB.Exec(sqlStmt, supplier.Id, supplier.Image, supplier.Name, supplier.Menu, id)
 	web.Log.Error(err, err)
@@ -132,10 +119,13 @@ func (s SupplierRepository) Param(r *http.Request) (string, string, int) {
 		id = 0
 	} else {
 		num, err := strconv.Atoi(str)
-		CheckErr(err)
+		web.Log.Error(err, err)
 		paramName = "id"
 		param = str
 		id = num
 	}
 	return param, paramName, id
 }
+
+
+

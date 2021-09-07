@@ -25,14 +25,12 @@ type UserRepository struct{
 
 type Repository struct{
 	UserRepositoryInterface
+	SupplierRepositoryInterface
 }
 
 func NewUserRepository(app *config.AppConfig) *UserRepository {
 	return &UserRepository{App: app}
 }
-
-
-
 
 func (usr UserRepository) Create(u *model.User) (*model.User, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
