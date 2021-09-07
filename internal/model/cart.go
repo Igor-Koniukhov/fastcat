@@ -10,6 +10,7 @@ type Cart struct {
 	UpdatedAt string         `json:"updated_at"`
 
 }
+const TableCarts = "carts"
 
 type CartProducts struct {
 	ID        int `json:"id"`

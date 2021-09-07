@@ -28,6 +28,7 @@ type Repository struct{
 	SupplierRepositoryInterface
 	ProductRepositoryInterface
 	OrderRepositoryInterface
+	CartRepositoryInterface
 }
 
 func NewUserRepository(app *config.AppConfig) *UserRepository {
