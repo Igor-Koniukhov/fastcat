@@ -11,18 +11,18 @@ import (
 	"strings"
 )
 
-type ProductRepositoryI interface {
-	Create(item *model.Item) (*model.Item, error)
+
+type ProductRepositoryInterface interface {
+	Create(item *model.Item, id int) (*model.Item, error)
 	Get(id int) *model.Item
-	GetAllP() *[]model.Item
-	Delete(id int) error
-	Update(id int, u *model.Product) *model.Item
+	GetAll() *[]model.Item
+	Delete(id int) (err error)
+	SoftDelete(id int) error
+	Update(id int, item *model.Item, ) *model.Item
 	Param(r *http.Request) (string, string, int)
 }
 
-var RepoP *ProductRepository
-
-type ProductRepository struct {
+type ProductRepository struct{
 	App *config.AppConfig
 }
 
@@ -30,11 +30,7 @@ func NewProductRepository(app *config.AppConfig) *ProductRepository {
 	return &ProductRepository{App: app}
 }
 
-func NewRepoP(r *ProductRepository) {
-	RepoP = r
-}
-
-func (p *ProductRepository) Create(item *model.Item, id int) (*model.Item, error) {
+func (p ProductRepository) Create(item *model.Item, id int) (*model.Item, error) {
 	stmtSQl := fmt.Sprintf("INSERT INTO %s (name, price, type, image, ingredients, supplier_id) VALUES (?, ?, ?, ?, ?, ?)", model.TabItems)
 	ingredients, err := json.MarshalIndent(item.Ingredients, "", "")
 	stmt, err := p.App.DB.Prepare(stmtSQl)
@@ -66,7 +62,7 @@ func (p *ProductRepository) Create(item *model.Item, id int) (*model.Item, error
 	return item, err
 }
 
-func (p *ProductRepository) Get(id int) model.Item {
+func (p ProductRepository) Get(id int) *model.Item {
 	var product model.Product
 	var item model.Item
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients FROM %s WHERE id = %d ", model.TabItems, id)
@@ -89,18 +85,18 @@ func (p *ProductRepository) Get(id int) model.Item {
 		Type:        product.Type,
 		Ingredients: str,
 	}
-	CheckErr(err)
-	return item
+	web.Log.Error(err, err)
+	return &item
 }
 
-func (p *ProductRepository) GetAll() *[]model.Item {
+func (p ProductRepository) GetAll() *[]model.Item {
 	var product model.Product
 	var items []model.Item
 	var str []string
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients, supplier_id FROM %s", model.TabItems)
 
 	results, err := p.App.DB.Query(sqlStmt)
-	CheckErr(err)
+	web.Log.Error(err, err)
 	for results.Next() {
 		err = results.Scan(
 			&product.Id,
@@ -109,10 +105,8 @@ func (p *ProductRepository) GetAll() *[]model.Item {
 			&product.Image,
 			&product.Type,
 			&product.Ingredients,
-
 		)
-
-		CheckErr(err)
+		web.Log.Error(err, err)
 		json.Unmarshal(product.Ingredients, &str)
 		items = append(items, model.Item{
 			Id:          product.Id,
@@ -127,28 +121,29 @@ func (p *ProductRepository) GetAll() *[]model.Item {
 	return &items
 }
 
-func (p *ProductRepository) Delete(id int) (err error) {
+func (p ProductRepository) Delete(id int) (err error) {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", model.TabItems)
 	_, err = p.App.DB.Exec(sqlStmt, id)
 	fmt.Println(sqlStmt)
 	web.Log.Error(err, err)
 	return
 }
-func (p *ProductRepository) SoftDelete(id int) error {
+
+func (p ProductRepository) SoftDelete(id int) error {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE supplier_id = ?", model.TabItems)
 	_, err := p.App.DB.Exec(sqlStmt, p.App.TimeFormat, id)
 	web.Log.Error(err, err)
 	return nil
 }
 
-func (p *ProductRepository) Update(id int, item *model.Item, ) *model.Item {
+func (p ProductRepository) Update(id int, item *model.Item) *model.Item {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, price=?, image=?, type=?, ingredienst=? , WHERE id=?", model.TabItems)
 	_, err := p.App.DB.Exec(sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
 	web.Log.Error(err, err)
 	return item
 }
 
-func (p *ProductRepository) Param(r *http.Request) (string, string, int) {
+func (p ProductRepository) Param(r *http.Request) (string, string, int) {
 	var paramName string
 	var param string
 	var id int
@@ -161,10 +156,13 @@ func (p *ProductRepository) Param(r *http.Request) (string, string, int) {
 		id = 0
 	} else {
 		num, err := strconv.Atoi(str)
-		CheckErr(err)
+		web.Log.Error(err, err)
 		paramName = "id"
 		param = str
 		id = num
 	}
 	return param, paramName, id
 }
+
+
+

@@ -26,6 +26,7 @@ type UserRepository struct{
 type Repository struct{
 	UserRepositoryInterface
 	SupplierRepositoryInterface
+	ProductRepositoryInterface
 }
 
 func NewUserRepository(app *config.AppConfig) *UserRepository {
