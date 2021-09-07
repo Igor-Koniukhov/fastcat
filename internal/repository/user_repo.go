@@ -23,8 +23,6 @@ type UserRepository struct{
 	App *config.AppConfig
 }
 
-
-
 func NewUserRepository(app *config.AppConfig) *UserRepository {
 	return &UserRepository{App: app}
 }

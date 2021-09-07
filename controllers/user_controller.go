@@ -3,14 +3,13 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
-	"log"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 )
 
-type UserControllerI interface {
+type User interface {
 	Create(method string) http.HandlerFunc
 	Get(method string) http.HandlerFunc
 	GetAllU(method string) http.HandlerFunc
@@ -18,31 +17,15 @@ type UserControllerI interface {
 	Update(method string) http.HandlerFunc
 }
 
-var RepoUser *UserController
 
 type UserController struct {
-	App *config.AppConfig
+	repo repository.UserRepositoryInterface
 }
 
-func NewUserControllers(app *config.AppConfig) *UserController {
-	return &UserController{App: app}
+func NewUserController(repo repository.UserRepositoryInterface) *UserController {
+	return &UserController{repo: repo}
 }
 
-func NewControllersU(r *UserController) {
-	RepoUser = r
-}
-
-func checkError(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func userAppConfigProvider(a *config.AppConfig) *repository.UserRepository {
-	repo := repository.NewUserRepository(a)
-	repository.NewRepoU(repo)
-	return repo
-}
 
 func (c *UserController) Create(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -50,9 +33,8 @@ func (c *UserController) Create(method string) http.HandlerFunc {
 		switch r.Method {
 		case method:
 			json.NewDecoder(r.Body).Decode(&u)
-			_ = userAppConfigProvider(c.App)
-			user, err := repository.RepoU.Create(&u)
-			checkError(err)
+			user, err := c.repo.Create(&u)
+			web.Log.Error(err, err)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
@@ -65,9 +47,8 @@ func (c *UserController) Get(method string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			repo := userAppConfigProvider(c.App)
-			param, nameParam, _ := repo.Param(r)
-			user := repository.RepoU.Get(&nameParam, &param)
+			nameParam, param,_ := c.repo.Param(r)
+			user := c.repo.Get(&nameParam, &param)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
@@ -80,8 +61,7 @@ func (c *UserController) GetAllU(method string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			_ = userAppConfigProvider(c.App)
-			users := repository.RepoU.GetAll()
+			users := c.repo.GetAll()
 			json.NewEncoder(w).Encode(&users)
 		default:
 			methodMessage(w, method)
@@ -93,10 +73,9 @@ func (c *UserController) Delete(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			repo := userAppConfigProvider(c.App)
-			_, _, id := repo.Param(r)
-			err := repository.RepoU.Delete(id)
-			checkError(err)
+			 _, _, id := c.repo.Param(r)
+			err := c.repo.Delete(id)
+			web.Log.Error(err, err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 		default:
 			methodMessage(w, method)
@@ -110,9 +89,8 @@ func (c *UserController) Update(method string) http.HandlerFunc {
 		case method:
 			var u model.User
 			json.NewDecoder(r.Body).Decode(&u)
-			repo := userAppConfigProvider(c.App)
-			_, _, id := repo.Param(r)
-			user := repository.RepoU.Update(id, &u)
+			_, _, id := c.repo.Param(r)
+			user := c.repo.Update(id, &u)
 			json.NewEncoder(w).Encode(&user)
 		default:
 			methodMessage(w, method)
@@ -120,11 +98,6 @@ func (c *UserController) Update(method string) http.HandlerFunc {
 	}
 }
 
-func CheckErr(err error) {
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-}
 func methodMessage(w http.ResponseWriter, m string) {
 	http.Error(w, "Only "+m+" method is allowed", http.StatusMethodNotAllowed)
 
