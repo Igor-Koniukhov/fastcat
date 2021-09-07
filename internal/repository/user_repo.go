@@ -23,13 +23,7 @@ type UserRepository struct{
 	App *config.AppConfig
 }
 
-type Repository struct{
-	UserRepositoryInterface
-	SupplierRepositoryInterface
-	ProductRepositoryInterface
-	OrderRepositoryInterface
-	CartRepositoryInterface
-}
+
 
 func NewUserRepository(app *config.AppConfig) *UserRepository {
 	return &UserRepository{App: app}

@@ -13,7 +13,7 @@ import (
 
 
 type SupplierRepositoryInterface interface {
-	Create(supplier *model.Supplier) (*model.Supplier, error)
+	Create(suppliers *model.Suppliers) (*model.Suppliers, error)
 	Get(nameParam, param *string, ) *model.Supplier
 	GetAll() *[]model.Supplier
 	Delete(id int) error
@@ -21,18 +21,16 @@ type SupplierRepositoryInterface interface {
 	Update(id int, supplier *model.Supplier) *model.Supplier
 	Param(r *http.Request) (string, string, int)
 }
-
 var wg sync.WaitGroup
 var supplier model.Supplier
 
-type SupplierRepository struct {
+type SupplierRepository struct{
 	App *config.AppConfig
 }
 
 func NewSupplierRepository(app *config.AppConfig) *SupplierRepository {
 	return &SupplierRepository{App: app}
 }
-
 func (s SupplierRepository) Create(suppliers *model.Suppliers) (*model.Suppliers, error) {
 	var id int
 	stmtSql := fmt.Sprintf("INSERT INTO %s (name, image) VALUES (?, ?)", model.TabSuppliers)
