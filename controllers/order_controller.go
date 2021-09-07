@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/igor-koniukhov/fastcat/internal/config"
+	web "github.com/igor-koniukhov/webLogger/v3"
 
 	"github.com/igor-koniukhov/fastcat/internal/model"
 
@@ -11,7 +11,7 @@ import (
 	"net/http"
 )
 
-type OrderControllerI interface {
+type Order interface {
 	Create(method string) http.HandlerFunc
 	Get(method string) http.HandlerFunc
 	GetAll(method string) http.HandlerFunc
@@ -19,23 +19,8 @@ type OrderControllerI interface {
 	Update(method string) http.HandlerFunc
 }
 
-var RepoOrder *OrderController
-
 type OrderController struct {
-	App *config.AppConfig
-}
-
-func NewOrderControllers(app *config.AppConfig) *OrderController {
-	return &OrderController{App: app}
-}
-func NewControllersO(r *OrderController) {
-	RepoOrder = r
-}
-func orderAppConfigProvider(a *config.AppConfig) *repository.OrderRepository {
-	repo := repository.NewOrderRepository(a)
-	repository.NewRepoO(repo)
-	return repo
-
+	repo repository.OrderRepositoryInterface
 }
 
 func (ord OrderController) Create( method string) http.HandlerFunc {
@@ -43,13 +28,10 @@ func (ord OrderController) Create( method string) http.HandlerFunc {
 		var o model.Order
 		switch r.Method {
 		case method:
-
 			json.NewDecoder(r.Body).Decode(&ord)
-			orderAppConfigProvider(ord.App)
-			order, err := repository.RepoO.Create(&o)
-			checkError(err)
+			order, err := ord.repo.Create(&o)
+			web.Log.Error(err, err)
 			json.NewEncoder(w).Encode(&order)
-
 		default:
 			methodMessage(w, method)
 		}
@@ -62,9 +44,8 @@ func (ord OrderController) Get(method string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			repo := orderAppConfigProvider(ord.App)
-			param, _, _ := repo.Param(r)
-			order := repository.RepoO.Get(&param)
+			param, _, _ := ord.repo.Param(r)
+			order := ord.repo.Get(&param)
 			json.NewEncoder(w).Encode(&order)
 		default:
 			methodMessage(w, method)
@@ -77,8 +58,7 @@ func (ord OrderController) GetAll(method string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "json")
 		switch r.Method {
 		case method:
-			orderAppConfigProvider(ord.App)
-			order := repository.RepoO.GetAll()
+			order := ord.repo.GetAll()
 			json.NewEncoder(w).Encode(&order)
 		default:
 			methodMessage(w, method)
@@ -91,10 +71,9 @@ func (ord OrderController) Delete(method string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case method:
-			repo := orderAppConfigProvider(ord.App)
-			_, _, id := repo.Param(r)
-			err := repository.RepoO.Delete(id)
-			checkError(err)
+			_, _, id := ord.repo.Param(r)
+			err := ord.repo.Delete(id)
+			web.Log.Error(err, err)
 			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 
 		default:
@@ -109,9 +88,8 @@ func (ord OrderController) Update(method string) http.HandlerFunc {
 		case method:
 			var o model.Order
 			json.NewDecoder(r.Body).Decode(&ord)
-			repo := orderAppConfigProvider(ord.App)
-			_, _, id := repo.Param(r)
-			order := repository.RepoO.Update(id, &o)
+			_, _, id := ord.repo.Param(r)
+			order := ord.repo.Update(id, &o)
 			json.NewEncoder(w).Encode(&order)
 
 		default:
