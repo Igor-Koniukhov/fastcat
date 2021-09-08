@@ -11,7 +11,7 @@ import (
 type SupplierRepositoryInterface interface {
 	Create(suppliers *model.Suppliers) (*model.Suppliers, error)
 	Get(id int) *model.Supplier
-	GetAll() *[]model.Supplier
+	GetAll() []model.Supplier
 	Delete(id int) error
 	SoftDelete(id int) error
 	Update(id int, supplier *model.Supplier) *model.Supplier
@@ -62,7 +62,7 @@ func (s SupplierRepository) Get(id int) *model.Supplier {
 	return &supplier
 }
 
-func (s SupplierRepository) GetAll() *[]model.Supplier {
+func (s SupplierRepository) GetAll() []model.Supplier {
 	var supplier model.Supplier
 	var suppliers []model.Supplier
 	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s ", model.TabSuppliers)
@@ -76,7 +76,7 @@ func (s SupplierRepository) GetAll() *[]model.Supplier {
 		)
 		suppliers = append(suppliers, supplier)
 	}
-	return &suppliers
+	return suppliers
 }
 
 func (s SupplierRepository) Delete(id int) (err error) {

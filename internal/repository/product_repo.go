@@ -12,7 +12,7 @@ import (
 type ProductRepositoryInterface interface {
 	Create(item *model.Item, id int) (*model.Item, error)
 	Get(id int) *model.Item
-	GetAll() *[]model.Item
+	GetAll() []model.Item
 	Delete(id int) (err error)
 	SoftDelete(id int) error
 	Update(id int, item *model.Item, ) *model.Item
@@ -84,7 +84,7 @@ func (p ProductRepository) Get(id int) *model.Item {
 	return &item
 }
 
-func (p ProductRepository) GetAll() *[]model.Item {
+func (p ProductRepository) GetAll() []model.Item {
 	var product model.Product
 	var items []model.Item
 	var str []string
@@ -114,7 +114,7 @@ func (p ProductRepository) GetAll() *[]model.Item {
 			SuppliersID: product.SuppliersID,
 		})
 	}
-	return &items
+	return items
 }
 
 func (p ProductRepository) Delete(id int) (err error) {

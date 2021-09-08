@@ -30,6 +30,7 @@ func main() {
 	go RunUpToDateSuppliersInfo(600)
 
 	http.Handle("/", http.FileServer(http.Dir("./public")))
+
 	srv := new(server.Server)
 	go func() {
 		err := srv.Serve(port, routes(&app))

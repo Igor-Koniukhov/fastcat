@@ -7,15 +7,17 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
 )
+
+var user model.User
+
 type UserRepositoryInterface interface {
 	Create(u *model.User) (*model.User, error)
 	Get(id int) *model.User
-	GetAll() *[]model.User
+	GetAll() []model.User
 	Delete(id int) error
 	Update(id int, u *model.User) *model.User
 }
 
-var user model.User
 type UserRepository struct{
 	App *config.AppConfig
 }
@@ -49,7 +51,7 @@ func (usr UserRepository) Get(id int) *model.User {
 	return &user
 }
 
-func (usr UserRepository) GetAll() *[]model.User {
+func (usr UserRepository) GetAll() []model.User {
 	var users []model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
 	results, err := usr.App.DB.Query(sqlStmt)
@@ -67,7 +69,7 @@ func (usr UserRepository) GetAll() *[]model.User {
 		web.Log.Error(err, err)
 		users = append(users, user)
 	}
-	return &users
+	return users
 }
 
 func (usr UserRepository) Delete(id int) error {

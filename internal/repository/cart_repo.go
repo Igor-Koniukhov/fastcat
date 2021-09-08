@@ -7,15 +7,16 @@ import (
 	web "github.com/igor-koniukhov/webLogger/v3"
 )
 
+var cart model.Cart
+
 type CartRepositoryInterface interface {
 	Create(cart *model.Cart) (*model.Cart, error)
 	Get(nameParam, param *string) *model.Cart	
-	GetAll() *[]model.Cart
+	GetAll() []model.Cart
 	Delete(id int) error
 	Update(id int, u *model.Cart) *model.Cart
 }
 
-var cart model.Cart
 type CartRepository struct{
 	App *config.AppConfig
 }
@@ -44,7 +45,7 @@ func (c CartRepository) Get(nameParam, param *string) *model.Cart {
 	return &cart
 }
 
-func (c CartRepository) GetAll() *[]model.Cart {
+func (c CartRepository) GetAll() []model.Cart {
 	var carts []model.Cart
 	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, items FROM %s", model.TableCarts)
 	results, err := c.App.DB.Query(sqlStmt)
@@ -58,7 +59,7 @@ func (c CartRepository) GetAll() *[]model.Cart {
 		web.Log.Error(err, err)
 		carts = append(carts, cart)
 	}
-	return &carts
+	return carts
 }
 
 func (c CartRepository) Delete(id int) error {
