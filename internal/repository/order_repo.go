@@ -8,6 +8,7 @@ import (
 	web "github.com/igor-koniukhov/webLogger/v3"
 )
 
+var order model.Order
 
 type OrderRepositoryInterface interface {
 	Create(or *model.Order) (*model.Order, error)
@@ -16,10 +17,8 @@ type OrderRepositoryInterface interface {
 	Delete(id int) error
 	Update(id int, ord *model.Order) *model.Order
 }
-var order model.Order
 
 type OrderRepository struct{
-
 	App *config.AppConfig
 }
 

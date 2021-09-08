@@ -8,6 +8,9 @@ import (
 	"sync"
 )
 
+var wg sync.WaitGroup
+var supplier model.Supplier
+
 type SupplierRepositoryInterface interface {
 	Create(suppliers *model.Suppliers) (*model.Suppliers, error)
 	Get(id int) *model.Supplier
@@ -16,9 +19,6 @@ type SupplierRepositoryInterface interface {
 	SoftDelete(id int) error
 	Update(id int, supplier *model.Supplier) *model.Supplier
 }
-
-var wg sync.WaitGroup
-var supplier model.Supplier
 
 type SupplierRepository struct {
 	App *config.AppConfig

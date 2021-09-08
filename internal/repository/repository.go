@@ -2,6 +2,8 @@ package repository
 
 import "github.com/igor-koniukhov/fastcat/internal/config"
 
+var Repo *Repository
+
 type Repository struct{
 	UserRepositoryInterface
 	SupplierRepositoryInterface
@@ -9,7 +11,7 @@ type Repository struct{
 	OrderRepositoryInterface
 	CartRepositoryInterface
 }
-var Repo *Repository
+
 func NewRepository(app *config.AppConfig) *Repository {
 	return &Repository{
 		UserRepositoryInterface:     NewUserRepository(app),
@@ -22,5 +24,4 @@ func NewRepository(app *config.AppConfig) *Repository {
 
 func NewRepo(r *Repository)  {
 	Repo=r
-
 }
