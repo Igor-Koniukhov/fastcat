@@ -1,15 +1,16 @@
 package main
 
 import (
+	"context"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/igor-koniukhov/fastcat/controllers"
 	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
-	"github.com/igor-koniukhov/fastcat/internal/repository"
+	"github.com/igor-koniukhov/fastcat/internal/server"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"github.com/subosito/gotenv"
-	"log"
-	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 )
 
 var app config.AppConfig
@@ -27,41 +28,21 @@ func main() {
 	SetWebLoggerParameters()
 	go RunUpToDateSuppliersInfo(600)
 
-	repo := repository.NewRepository(&app)
-	c := controllers.NewControllers(repo)
-	controllers.NewController(c)
-	repository.NewRepo(repo)
+	srv := new(server.Server)
+	go func() {
+		err := srv.Run(port, routes(&app))
+		web.Log.Fatal(err, err, " got an error while running http server")
+	}()
 
-	http.HandleFunc("/user/create", c.User.Create())
-	http.HandleFunc("/user/", c.User.Get())
-	http.HandleFunc("/users", c.User.GetAll())
-	http.HandleFunc("/user/update/", c.User.Update())
-	http.HandleFunc("/user/delete/", c.User.Delete())
+	web.Log.Info("FastCat application Started")
 
-	http.HandleFunc("/order/create", c.Order.Create())
-	http.HandleFunc("/order/", c.Order.Get())
-	http.HandleFunc("/orders", c.Order.GetAll())
-	http.HandleFunc("/order/update/", c.Order.Update())
-	http.HandleFunc("/order/delete/", c.Order.Delete())
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
+	<-quit
 
-	http.HandleFunc("/supplier/create", c.Supplier.Create())
-	http.HandleFunc("/supplier/", c.Supplier.Get())
-	http.HandleFunc("/suppliers", c.Supplier.GetAll())
-	http.HandleFunc("/supplier/update/", c.Supplier.Update())
-	http.HandleFunc("/supplier/delete/", c.Supplier.Delete())
+	web.Log.Info("FastCat application Shutting Down")
 
-	http.HandleFunc("/product/create", c.Product.Update())
-	http.HandleFunc("/product/", c.Product.Get())
-	http.HandleFunc("/products", c.Product.GetAll())
-	http.HandleFunc("/product/update/", c.Product.Update())
-	http.HandleFunc("/product/delete/", c.Product.Delete())
-
-	http.HandleFunc("/cart/create", c.Cart.Create())
-	http.HandleFunc("/cart/", c.Cart.Get())
-	http.HandleFunc("/cart", c.Cart.GetAll())
-	http.HandleFunc("/cart/update/", c.Cart.Update())
-	http.HandleFunc("/cart/delete/", c.Cart.Delete())
-
-	http.Handle("/", http.FileServer(http.Dir("./public")))
-	log.Fatal(http.ListenAndServe(port, nil))
+	err := srv.Shutdown(context.Background())
+	web.Log.Error(err, err, "got an error on DB connection close")
 }
+

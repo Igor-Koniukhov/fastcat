@@ -58,7 +58,6 @@ func (c *UserController) Delete() http.HandlerFunc {
 		err := c.repo.Delete(id)
 		web.Log.Error(err, err)
 		_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
-
 	}
 }
 
