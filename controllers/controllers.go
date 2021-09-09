@@ -10,8 +10,6 @@ type Controllers struct {
 	Cart
 }
 
-var Controller *Controllers
-
 func NewControllers(repos *repository.Repository) *Controllers {
 	return &Controllers{
 		User:     NewUserController(repos.UserRepository),
@@ -22,6 +20,3 @@ func NewControllers(repos *repository.Repository) *Controllers {
 	}
 }
 
-func NewController(c *Controllers){
-	Controller = c
-}

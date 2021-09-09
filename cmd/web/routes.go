@@ -11,10 +11,10 @@ func routes(app *config.AppConfig) http.Handler {
 
 	repo := repository.NewRepository(app)
 	c := controllers.NewControllers(repo)
-	controllers.NewController(c)
 	repository.NewRepo(repo)
 
 	mux := http.NewServeMux()
+
 
 	mux.HandleFunc("/user/create", c.User.Create())
 	mux.HandleFunc("/user/", c.User.Get())
@@ -46,6 +46,6 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.HandleFunc("/cart/update/", c.Cart.Update())
 	mux.HandleFunc("/cart/delete/", c.Cart.Delete())
 
-	return mux
+	return WriteTo(WriteToPage(mux))
 
 }

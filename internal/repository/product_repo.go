@@ -60,8 +60,8 @@ func (p ProductRepo) Create(item *model.Item, id int) (*model.Item, error) {
 func (p ProductRepo) Get(id int) *model.Item {
 	var product model.Product
 	var item model.Item
-	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients FROM %s WHERE id = %d ", model.TabItems, id)
-	err := p.App.DB.QueryRow(sqlStmt).Scan(
+	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients FROM %s WHERE id = ? ", model.TabItems)
+	err := p.App.DB.QueryRow(sqlStmt, id).Scan(
 		&product.Id,
 		&product.Name,
 		&product.Price,
@@ -88,7 +88,7 @@ func (p ProductRepo) GetAll() []model.Item {
 	var product model.Product
 	var items []model.Item
 	var str []string
-	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients, supplier_id FROM %s", model.TabItems)
+	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients, supplier_id FROM %s WHERE deleted_at IS NULL", model.TabItems)
 
 	results, err := p.App.DB.Query(sqlStmt)
 	web.Log.Error(err, err)

@@ -9,7 +9,6 @@ import (
 )
 
 var wg sync.WaitGroup
-var supplier model.Supplier
 
 type SupplierRepository interface {
 	Create(suppliers *model.Suppliers) (*model.Suppliers, error)
@@ -51,6 +50,7 @@ func (s SupplierRepo) Create(suppliers *model.Suppliers) (*model.Suppliers, erro
 }
 
 func (s SupplierRepo) Get(id int) *model.Supplier {
+	var supplier model.Supplier
 	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s WHERE id = ? ", model.TabSuppliers)
 	fmt.Println(sqlStmt)
 	err := s.App.DB.QueryRow(sqlStmt, id).Scan(
@@ -65,11 +65,11 @@ func (s SupplierRepo) Get(id int) *model.Supplier {
 func (s SupplierRepo) GetAll() []model.Supplier {
 	var supplier model.Supplier
 	var suppliers []model.Supplier
-	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s ", model.TabSuppliers)
+	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s WHERE deleted_at IS NULL", model.TabSuppliers)
 	stmt, err := s.App.DB.Query(sqlStmt)
 	web.Log.Error(err, err)
 	for stmt.Next() {
-		stmt.Scan(
+		_ = stmt.Scan(
 			&supplier.Id,
 			&supplier.Name,
 			&supplier.Image,

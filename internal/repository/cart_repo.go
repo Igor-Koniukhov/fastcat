@@ -7,17 +7,15 @@ import (
 	web "github.com/igor-koniukhov/webLogger/v3"
 )
 
-var cart model.Cart
-
 type CartRepository interface {
 	Create(cart *model.Cart) (*model.Cart, error)
-	Get(nameParam, param *string) *model.Cart	
+	Get(id int) *model.Cart
 	GetAll() []model.Cart
 	Delete(id int) error
 	Update(id int, u *model.Cart) *model.Cart
 }
 
-type CartRepo struct{
+type CartRepo struct {
 	App *config.AppConfig
 }
 
@@ -30,14 +28,15 @@ func (c CartRepo) Create(cart *model.Cart) (*model.Cart, error) {
 	p, err := c.App.DB.Prepare(sqlStmt)
 	defer p.Close()
 	web.Log.Error(err, err)
-	_, err = p.Exec( cart.UserID, cart.ProductID, cart.Items )
+	_, err = p.Exec(cart.UserID, cart.ProductID, cart.Items)
 	web.Log.Error(err, err)
 	return cart, err
 }
 
-func (c CartRepo) Get(nameParam, param *string) *model.Cart {
-	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, item FROM %s WHERE id = '%s' ", model.TableCarts, *param)
-	err := c.App.DB.QueryRow(sqlStmt).Scan(
+func (c CartRepo) Get(id int) *model.Cart {
+	var cart model.Cart
+	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, item FROM %s WHERE id = ? ", model.TableCarts)
+	err := c.App.DB.QueryRow(sqlStmt, id).Scan(
 		&cart.ID,
 		&cart.ProductID,
 		&cart.Items)
@@ -46,6 +45,7 @@ func (c CartRepo) Get(nameParam, param *string) *model.Cart {
 }
 
 func (c CartRepo) GetAll() []model.Cart {
+	var cart model.Cart
 	var carts []model.Cart
 	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, items FROM %s", model.TableCarts)
 	results, err := c.App.DB.Query(sqlStmt)
@@ -83,4 +83,3 @@ func (c CartRepo) Update(id int, cart *model.Cart) *model.Cart {
 	fmt.Println(cart)
 	return cart
 }
-

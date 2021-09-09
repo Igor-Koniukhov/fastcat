@@ -8,8 +8,6 @@ import (
 	web "github.com/igor-koniukhov/webLogger/v3"
 )
 
-var order model.Order
-
 type OrderRepository interface {
 	Create(or *model.Order) (*model.Order, error)
 	Get(id int) *model.Order
@@ -36,6 +34,7 @@ func (o OrderRepo) Create(or *model.Order) (*model.Order, error) {
 }
 
 func (o OrderRepo) Get(id int) *model.Order {
+	var order model.Order
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableOrders)
 	err := o.App.DB.QueryRow(sqlStmt, id).Scan(
 		&order.ID,
@@ -50,6 +49,7 @@ func (o OrderRepo) Get(id int) *model.Order {
 }
 
 func (o OrderRepo) GetAll() *[]model.Order {
+	var order model.Order
 	var orders []model.Order
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableOrders)
 	results, err := o.App.DB.Query(sqlStmt)

@@ -8,8 +8,6 @@ import (
 	web "github.com/igor-koniukhov/webLogger/v3"
 )
 
-var user model.User
-
 type UserRepository interface {
 	Create(u *model.User) (*model.User, error)
 	Get(id int) *model.User
@@ -36,7 +34,8 @@ func (usr UserRepo) Create(u *model.User) (*model.User, error) {
 	return u, err
 }
 
-func (usr UserRepo) Get(id int) *model.User {
+func (usr UserRepo) Get(id int) *model.User{
+	var user model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableUser)
 	err := usr.App.DB.QueryRow(sqlStmt, id).Scan(
 		&user.ID,
@@ -52,6 +51,7 @@ func (usr UserRepo) Get(id int) *model.User {
 }
 
 func (usr UserRepo) GetAll() []model.User {
+	var user model.User
 	var users []model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
 	results, err := usr.App.DB.Query(sqlStmt)
