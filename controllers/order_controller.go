@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/igor-koniukhov/fastcat/internal/config"
+	web "github.com/igor-koniukhov/webLogger/v3"
 
 	"github.com/igor-koniukhov/fastcat/internal/model"
 
@@ -11,111 +11,64 @@ import (
 	"net/http"
 )
 
-type OrderControllerI interface {
-	Create(method string) http.HandlerFunc
-	Get(method string) http.HandlerFunc
-	GetAll(method string) http.HandlerFunc
-	Delete(method string) http.HandlerFunc
-	Update(method string) http.HandlerFunc
+type Order interface {
+	Create() http.HandlerFunc
+	Get() http.HandlerFunc
+	GetAll() http.HandlerFunc
+	Delete() http.HandlerFunc
+	Update() http.HandlerFunc
 }
-
-var RepoOrder *OrderController
 
 type OrderController struct {
-	App *config.AppConfig
+	repo repository.OrderRepository
 }
 
-func NewOrderControllers(app *config.AppConfig) *OrderController {
-	return &OrderController{App: app}
-}
-func NewControllersO(r *OrderController) {
-	RepoOrder = r
-}
-func orderAppConfigProvider(a *config.AppConfig) *repository.OrderRepository {
-	repo := repository.NewOrderRepository(a)
-	repository.NewRepoO(repo)
-	return repo
-
+func NewOrderController(repo repository.OrderRepository) *OrderController {
+	return &OrderController{repo: repo}
 }
 
-func (ord OrderController) Create( method string) http.HandlerFunc {
+func (ord OrderController) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var o model.Order
-		switch r.Method {
-		case method:
-
-			json.NewDecoder(r.Body).Decode(&ord)
-			orderAppConfigProvider(ord.App)
-			order, err := repository.RepoO.Create(&o)
-			checkError(err)
-			json.NewEncoder(w).Encode(&order)
-
-		default:
-			methodMessage(w, method)
-		}
+		json.NewDecoder(r.Body).Decode(&ord)
+		order, err := ord.repo.Create(&o)
+		web.Log.Error(err, err)
+		json.NewEncoder(w).Encode(&order)
 	}
 }
 
-
-func (ord OrderController) Get(method string) http.HandlerFunc {
+func (ord OrderController) Get() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			repo := orderAppConfigProvider(ord.App)
-			param, _, _ := repo.Param(r)
-			order := repository.RepoO.Get(&param)
-			json.NewEncoder(w).Encode(&order)
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		order := ord.repo.Get(id)
+		json.NewEncoder(w).Encode(&order)
 	}
 }
 
-func (ord OrderController) GetAll(method string) http.HandlerFunc {
+func (ord OrderController) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			orderAppConfigProvider(ord.App)
-			order := repository.RepoO.GetAll()
-			json.NewEncoder(w).Encode(&order)
-		default:
-			methodMessage(w, method)
-		}
+		order := ord.repo.GetAll()
+		json.NewEncoder(w).Encode(&order)
 	}
 }
 
-
-func (ord OrderController) Delete(method string) http.HandlerFunc {
+func (ord OrderController) Delete() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			repo := orderAppConfigProvider(ord.App)
-			_, _, id := repo.Param(r)
-			err := repository.RepoO.Delete(id)
-			checkError(err)
-			_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
-
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		err := ord.repo.Delete(id)
+		web.Log.Error(err, err)
+		_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
 	}
 }
 
-func (ord OrderController) Update(method string) http.HandlerFunc {
+func (ord OrderController) Update() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			var o model.Order
-			json.NewDecoder(r.Body).Decode(&ord)
-			repo := orderAppConfigProvider(ord.App)
-			_, _, id := repo.Param(r)
-			order := repository.RepoO.Update(id, &o)
-			json.NewEncoder(w).Encode(&order)
-
-		default:
-			methodMessage(w, method)
-		}
+		var o model.Order
+		_ = json.NewDecoder(r.Body).Decode(&ord)
+		id := param(r)
+		order := ord.repo.Update(id, &o)
+		_ = json.NewEncoder(w).Encode(&order)
 	}
 }

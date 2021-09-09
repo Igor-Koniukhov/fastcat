@@ -19,6 +19,7 @@ type RestMenuParserInterface interface {
 
 type RestMenuParser struct {
 	App *config.AppConfig
+	wg sync.WaitGroup
 }
 
 var ParseRestMenu *RestMenuParser
@@ -30,52 +31,38 @@ func NewRestMenu(r *RestMenuParser) {
 	ParseRestMenu = r
 }
 
-func supplierAppConfigProvider(a *config.AppConfig) *repository.SupplierRepository {
-	repo := repository.NewSupplierRepository(a)
-	repository.NewRepoS(repo)
-	return repo
-}
-func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository {
-	repo := repository.NewProductRepository(a)
-	repository.NewRepoP(repo)
-	return repo
-}
-
-var URL = "http://foodapi.true-tech.php.nixdev.co/restaurants"
-var wg sync.WaitGroup
-
 func (r *RestMenuParser) GetListSuppliers() (suppliers *model.Suppliers) {
+	URL := "http://foodapi.true-tech.php.nixdev.co/restaurants"
 	_ = json.Unmarshal(driver.GetBodyConnection(URL), &suppliers)
 	return
 }
 func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
+	URL := "http://foodapi.true-tech.php.nixdev.co/restaurants"
 	var URLMenu = fmt.Sprintf("%s/%v/menu", URL, id)
 	_ = json.Unmarshal(driver.GetBodyConnection(URLMenu), &menu)
 	return
 }
 
 func (r *RestMenuParser) ParsedDataWriter() {
-	supplierAppConfigProvider(r.App)
-	productAppConfigProvider(r.App)
 
 	parsedSuppliers := r.GetListSuppliers()
-	suppliersInDB, err := repository.RepoS.Create(parsedSuppliers)
-	web.Log.Error(err)
+	suppliersInDB, err := repository.Repo.SupplierRepository.Create(parsedSuppliers)
+	web.Log.Error(err, err)
 
 	for _, restaurant := range suppliersInDB.Restaurants {
 		menu := r.GetListMenuItems(restaurant.Id)
 		id := <-r.App.ChanIdSupplier
 		idSoftDel := id - len(suppliersInDB.Restaurants)
-		repository.RepoS.SoftDelete(idSoftDel)
+		repository.Repo.SupplierRepository.SoftDelete(idSoftDel)
 		for _, item := range menu.Items {
-			wg.Add(1)
+			r.wg.Add(1)
 			go func(id int) {
-				defer wg.Done()
-				repository.RepoP.SoftDelete(idSoftDel)
-				_, _ = repository.RepoP.Create(&item, id)
+				defer r.wg.Done()
+				repository.Repo.ProductRepository.SoftDelete(idSoftDel)
+				_, _ = repository.Repo.ProductRepository.Create(&item, id)
 			}(id)
 		}
-		wg.Wait()
+		r.wg.Wait()
 	}
 }
 

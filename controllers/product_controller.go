@@ -3,110 +3,76 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
-type ProductControllerI interface {
-	Create(method string) http.HandlerFunc
-	Get(method string) http.HandlerFunc
-	GetAllP(method string) http.HandlerFunc
-	Delete(method string) http.HandlerFunc
-	Update(method string) http.HandlerFunc
+type Product interface {
+	Create() http.HandlerFunc
+	Get() http.HandlerFunc
+	GetAll() http.HandlerFunc
+	Delete() http.HandlerFunc
+	Update() http.HandlerFunc
 }
-
-var RepoProducts *ProductController
 
 type ProductController struct {
-	App *config.AppConfig
+	repo repository.ProductRepository
 }
 
-func NewProductControllers(app *config.AppConfig) *ProductController {
-	return &ProductController{App: app}
-}
-func NewControllersP(r *ProductController) {
-	RepoProducts = r
-}
-func productAppConfigProvider(a *config.AppConfig) *repository.ProductRepository {
-	repo := repository.NewProductRepository(a)
-	repository.NewRepoP(repo)
-	return repo
-
+func NewProductController(repo repository.ProductRepository) *ProductController {
+	return &ProductController{repo: repo}
 }
 
-func (p *ProductController) Create(method string) http.HandlerFunc {
+func (p *ProductController) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			productAppConfigProvider(p.App)
 
-		default:
-			methodMessage(w, method)
-		}
 	}
 }
+func  param(r *http.Request) (id int) {
+	fields := strings.Split(r.URL.String(), "/")
+	str := fields[len(fields)-1]
+		id, err := strconv.Atoi(str)
+		web.Log.Error(err, err)
+	return
+}
 
-func (p *ProductController) Get(method string) http.HandlerFunc {
+
+func (p *ProductController) Get() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			repo := productAppConfigProvider(p.App)
-			_, _, id := repo.Param(r)
-			item := repository.RepoP.Get(id)
-
-			json.NewEncoder(w).Encode(&item)
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		item := p.repo.Get(id)
+		json.NewEncoder(w).Encode(&item)
 	}
 }
 
-func (p *ProductController) GetAll(method string) http.HandlerFunc {
+func (p *ProductController) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
-		switch r.Method {
-		case method:
-			 productAppConfigProvider(p.App)
-			items := repository.RepoP.GetAll()
-			json.NewEncoder(w).Encode(&items)
-		default:
-			methodMessage(w, method)
-		}
+		items := p.repo.GetAll()
+		json.NewEncoder(w).Encode(&items)
 	}
 }
 
-func (p *ProductController) Delete(method string) http.HandlerFunc {
+func (p *ProductController) Delete() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			repo := productAppConfigProvider(p.App)
-			_, _, id := repo.Param(r)
-			err := repository.RepoP.Delete(id)
-			web.Log.Error(err, err)
-			_, _ = fmt.Fprintf(w, fmt.Sprintf(" product with %d deleted", id))
-		default:
-			methodMessage(w, method)
-		}
+		id := param(r)
+		err := p.repo.Delete(id)
+		web.Log.Error(err, err)
+		_, _ = fmt.Fprintf(w, fmt.Sprintf(" product with %d deleted", id))
 	}
 }
 
-func (p *ProductController) Update(method string) http.HandlerFunc {
+func (p *ProductController) Update() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case method:
-			productAppConfigProvider(p.App)
-			var item *model.Item
-			json.NewDecoder(r.Body).Decode(&item)
-			repo := supplierAppConfigProvider(p.App)
-			_, _, id := repo.Param(r)
-			item = repository.RepoP.Update(id, item)
-			json.NewEncoder(w).Encode(&item)
-		default:
-			methodMessage(w, method)
-		}
+		var item *model.Item
+		json.NewDecoder(r.Body).Decode(&item)
+		id := param(r)
+		item = p.repo.Update(id, item)
+		json.NewEncoder(w).Encode(&item)
 	}
 }
