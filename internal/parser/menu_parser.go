@@ -48,20 +48,20 @@ func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
 func (r *RestMenuParser) ParsedDataWriter() {
 
 	parsedSuppliers := r.GetListSuppliers()
-	suppliersInDB, err := repository.Repo.SupplierRepositoryInterface.Create(parsedSuppliers)
+	suppliersInDB, err := repository.Repo.SupplierRepository.Create(parsedSuppliers)
 	web.Log.Error(err, err)
 
 	for _, restaurant := range suppliersInDB.Restaurants {
 		menu := r.GetListMenuItems(restaurant.Id)
 		id := <-r.App.ChanIdSupplier
 		idSoftDel := id - len(suppliersInDB.Restaurants)
-		repository.Repo.SupplierRepositoryInterface.SoftDelete(idSoftDel)
+		repository.Repo.SupplierRepository.SoftDelete(idSoftDel)
 		for _, item := range menu.Items {
 			wg.Add(1)
 			go func(id int) {
 				defer wg.Done()
-				repository.Repo.SupplierRepositoryInterface.SoftDelete(idSoftDel)
-				_, _ = repository.Repo.ProductRepositoryInterface.Create(&item, id)
+				repository.Repo.SupplierRepository.SoftDelete(idSoftDel)
+				_, _ = repository.Repo.ProductRepository.Create(&item, id)
 			}(id)
 		}
 		wg.Wait()

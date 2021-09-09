@@ -10,7 +10,7 @@ import (
 
 var user model.User
 
-type UserRepositoryInterface interface {
+type UserRepository interface {
 	Create(u *model.User) (*model.User, error)
 	Get(id int) *model.User
 	GetAll() []model.User
@@ -18,15 +18,15 @@ type UserRepositoryInterface interface {
 	Update(id int, u *model.User) *model.User
 }
 
-type UserRepository struct{
+type UserRepo struct{
 	App *config.AppConfig
 }
 
-func NewUserRepository(app *config.AppConfig) *UserRepository {
-	return &UserRepository{App: app}
+func NewUserRepository(app *config.AppConfig) *UserRepo {
+	return &UserRepo{App: app}
 }
 
-func (usr UserRepository) Create(u *model.User) (*model.User, error) {
+func (usr UserRepo) Create(u *model.User) (*model.User, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
 	p, err := usr.App.DB.Prepare(sqlStmt)
 	defer p.Close()
@@ -36,7 +36,7 @@ func (usr UserRepository) Create(u *model.User) (*model.User, error) {
 	return u, err
 }
 
-func (usr UserRepository) Get(id int) *model.User {
+func (usr UserRepo) Get(id int) *model.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableUser)
 	err := usr.App.DB.QueryRow(sqlStmt, id).Scan(
 		&user.ID,
@@ -51,7 +51,7 @@ func (usr UserRepository) Get(id int) *model.User {
 	return &user
 }
 
-func (usr UserRepository) GetAll() []model.User {
+func (usr UserRepo) GetAll() []model.User {
 	var users []model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
 	results, err := usr.App.DB.Query(sqlStmt)
@@ -72,14 +72,14 @@ func (usr UserRepository) GetAll() []model.User {
 	return users
 }
 
-func (usr UserRepository) Delete(id int) error {
+func (usr UserRepo) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", dr.TableUser)
 	_, err := usr.App.DB.Exec(sqlStmt, id)
 	web.Log.Error(err, err)
 	return err
 }
 
-func (usr UserRepository) Update(id int, u *model.User) *model.User {
+func (usr UserRepo) Update(id int, u *model.User) *model.User {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
 	stmt, err := usr.App.DB.Prepare(sqlStmt)
 	web.Log.Error(err, err)

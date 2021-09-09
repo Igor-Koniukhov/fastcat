@@ -18,10 +18,10 @@ type User interface {
 }
 
 type UserController struct {
-	repo repository.UserRepositoryInterface
+	repo repository.UserRepository
 }
 
-func NewUserController(repo repository.UserRepositoryInterface) *UserController {
+func NewUserController(repo repository.UserRepository) *UserController {
 	return &UserController{repo: repo}
 }
 

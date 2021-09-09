@@ -20,10 +20,10 @@ type Product interface {
 }
 
 type ProductController struct {
-	repo repository.ProductRepositoryInterface
+	repo repository.ProductRepository
 }
 
-func NewProductController(repo repository.ProductRepositoryInterface) *ProductController {
+func NewProductController(repo repository.ProductRepository) *ProductController {
 	return &ProductController{repo: repo}
 }
 

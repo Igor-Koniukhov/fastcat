@@ -20,10 +20,10 @@ type Order interface {
 }
 
 type OrderController struct {
-	repo repository.OrderRepositoryInterface
+	repo repository.OrderRepository
 }
 
-func NewOrderController(repo repository.OrderRepositoryInterface) *OrderController {
+func NewOrderController(repo repository.OrderRepository) *OrderController {
 	return &OrderController{repo: repo}
 }
 

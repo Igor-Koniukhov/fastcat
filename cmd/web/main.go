@@ -34,7 +34,7 @@ func main() {
 	srv := new(server.Server)
 	go func() {
 		err := srv.Serve(port, routes(&app))
-		web.Log.Fatal(err, err, " got an error while running http server")
+		web.Log.Fatal(err, err, " Got an error while running http server")
 	}()
 
 	web.Log.Info("FastCat application Started")
@@ -47,6 +47,6 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	err := srv.Shutdown(ctx)
-	web.Log.Error(err, err, "got an error on DB connection close")
+	web.Log.Error(err, "Error on DB connection close: ", err)
 }
 

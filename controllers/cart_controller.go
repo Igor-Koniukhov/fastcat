@@ -15,10 +15,10 @@ type Cart interface {
 }
 
 type CartController struct {
-	repo repository.CartRepositoryInterface
+	repo repository.CartRepository
 }
 
-func NewCartController(repo repository.CartRepositoryInterface) *CartController {
+func NewCartController(repo repository.CartRepository) *CartController {
 	return &CartController{repo: repo}
 }
 

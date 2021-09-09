@@ -18,10 +18,10 @@ type Supplier interface {
 }
 
 type SupplierController struct {
-	repo repository.SupplierRepositoryInterface
+	repo repository.SupplierRepository
 }
 
-func NewSupplierController(repo repository.SupplierRepositoryInterface) *SupplierController {
+func NewSupplierController(repo repository.SupplierRepository) *SupplierController {
 	return &SupplierController{repo: repo}
 }
 

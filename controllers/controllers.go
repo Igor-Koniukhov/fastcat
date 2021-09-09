@@ -14,11 +14,11 @@ var Controller *Controllers
 
 func NewControllers(repos *repository.Repository) *Controllers {
 	return &Controllers{
-		User:     NewUserController(repos.UserRepositoryInterface),
-		Supplier: NewSupplierController(repos.SupplierRepositoryInterface),
-		Product:  NewProductController(repos.ProductRepositoryInterface),
-		Order:    NewOrderController(repos.OrderRepositoryInterface),
-		Cart:     NewCartController(repos.CartRepositoryInterface),
+		User:     NewUserController(repos.UserRepository),
+		Supplier: NewSupplierController(repos.SupplierRepository),
+		Product:  NewProductController(repos.ProductRepository),
+		Order:    NewOrderController(repos.OrderRepository),
+		Cart:     NewCartController(repos.CartRepository),
 	}
 }
 

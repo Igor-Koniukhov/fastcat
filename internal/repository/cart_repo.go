@@ -9,7 +9,7 @@ import (
 
 var cart model.Cart
 
-type CartRepositoryInterface interface {
+type CartRepository interface {
 	Create(cart *model.Cart) (*model.Cart, error)
 	Get(nameParam, param *string) *model.Cart	
 	GetAll() []model.Cart
@@ -17,15 +17,15 @@ type CartRepositoryInterface interface {
 	Update(id int, u *model.Cart) *model.Cart
 }
 
-type CartRepository struct{
+type CartRepo struct{
 	App *config.AppConfig
 }
 
-func NewCartRepository(app *config.AppConfig) *CartRepository {
-	return &CartRepository{App: app}
+func NewCartRepository(app *config.AppConfig) *CartRepo {
+	return &CartRepo{App: app}
 }
 
-func (c CartRepository) Create(cart *model.Cart) (*model.Cart, error) {
+func (c CartRepo) Create(cart *model.Cart) (*model.Cart, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, product_id, item) VALUES (?, ?, ?)", model.TableCarts)
 	p, err := c.App.DB.Prepare(sqlStmt)
 	defer p.Close()
@@ -35,7 +35,7 @@ func (c CartRepository) Create(cart *model.Cart) (*model.Cart, error) {
 	return cart, err
 }
 
-func (c CartRepository) Get(nameParam, param *string) *model.Cart {
+func (c CartRepo) Get(nameParam, param *string) *model.Cart {
 	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, item FROM %s WHERE id = '%s' ", model.TableCarts, *param)
 	err := c.App.DB.QueryRow(sqlStmt).Scan(
 		&cart.ID,
@@ -45,7 +45,7 @@ func (c CartRepository) Get(nameParam, param *string) *model.Cart {
 	return &cart
 }
 
-func (c CartRepository) GetAll() []model.Cart {
+func (c CartRepo) GetAll() []model.Cart {
 	var carts []model.Cart
 	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, items FROM %s", model.TableCarts)
 	results, err := c.App.DB.Query(sqlStmt)
@@ -62,14 +62,14 @@ func (c CartRepository) GetAll() []model.Cart {
 	return carts
 }
 
-func (c CartRepository) Delete(id int) error {
+func (c CartRepo) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", model.TableCarts)
 	_, err := c.App.DB.Exec(sqlStmt, id)
 	web.Log.Error(err, err)
 	return err
 }
 
-func (c CartRepository) Update(id int, cart *model.Cart) *model.Cart {
+func (c CartRepo) Update(id int, cart *model.Cart) *model.Cart {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, user_id=?, cart_id=?, address_id=?, status=? WHERE id=%d ", model.TableCarts, id)
 	fmt.Println(sqlStmt)
 	stmt, err := c.App.DB.Prepare(sqlStmt)

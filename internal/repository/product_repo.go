@@ -9,7 +9,7 @@ import (
 )
 
 
-type ProductRepositoryInterface interface {
+type ProductRepository interface {
 	Create(item *model.Item, id int) (*model.Item, error)
 	Get(id int) *model.Item
 	GetAll() []model.Item
@@ -18,15 +18,15 @@ type ProductRepositoryInterface interface {
 	Update(id int, item *model.Item, ) *model.Item
 }
 
-type ProductRepository struct{
+type ProductRepo struct{
 	App *config.AppConfig
 }
 
-func NewProductRepository(app *config.AppConfig) *ProductRepository {
-	return &ProductRepository{App: app}
+func NewProductRepository(app *config.AppConfig) *ProductRepo {
+	return &ProductRepo{App: app}
 }
 
-func (p ProductRepository) Create(item *model.Item, id int) (*model.Item, error) {
+func (p ProductRepo) Create(item *model.Item, id int) (*model.Item, error) {
 	stmtSQl := fmt.Sprintf("INSERT INTO %s (name, price, type, image, ingredients, supplier_id) VALUES (?, ?, ?, ?, ?, ?)", model.TabItems)
 	ingredients, err := json.MarshalIndent(item.Ingredients, "", "")
 	stmt, err := p.App.DB.Prepare(stmtSQl)
@@ -57,7 +57,7 @@ func (p ProductRepository) Create(item *model.Item, id int) (*model.Item, error)
 	return item, err
 }
 
-func (p ProductRepository) Get(id int) *model.Item {
+func (p ProductRepo) Get(id int) *model.Item {
 	var product model.Product
 	var item model.Item
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients FROM %s WHERE id = %d ", model.TabItems, id)
@@ -84,7 +84,7 @@ func (p ProductRepository) Get(id int) *model.Item {
 	return &item
 }
 
-func (p ProductRepository) GetAll() []model.Item {
+func (p ProductRepo) GetAll() []model.Item {
 	var product model.Product
 	var items []model.Item
 	var str []string
@@ -117,7 +117,7 @@ func (p ProductRepository) GetAll() []model.Item {
 	return items
 }
 
-func (p ProductRepository) Delete(id int) (err error) {
+func (p ProductRepo) Delete(id int) (err error) {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", model.TabItems)
 	_, err = p.App.DB.Exec(sqlStmt, id)
 	fmt.Println(sqlStmt)
@@ -125,14 +125,14 @@ func (p ProductRepository) Delete(id int) (err error) {
 	return
 }
 
-func (p ProductRepository) SoftDelete(id int) error {
+func (p ProductRepo) SoftDelete(id int) error {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE supplier_id = ?", model.TabItems)
 	_, err := p.App.DB.Exec(sqlStmt, p.App.TimeFormat, id)
 	web.Log.Error(err, err)
 	return nil
 }
 
-func (p ProductRepository) Update(id int, item *model.Item) *model.Item {
+func (p ProductRepo) Update(id int, item *model.Item) *model.Item {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, price=?, image=?, type=?, ingredienst=? , WHERE id=?", model.TabItems)
 	_, err := p.App.DB.Exec(sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
 	web.Log.Error(err, err)
