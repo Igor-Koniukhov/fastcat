@@ -952,3 +952,313 @@
  INFO [19:25:39||2021.09.09] 20- product id 59 -item id   product_repo.go:54  
  INFO [19:33:48||2021.09.09] FastCat application Shutting Down  main.go:46  
  FATAL [19:33:48||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:05:23||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:05:23||2021.09.09] 21- product id 62 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 21- product id 63 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 21- product id 61 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 22- product id 64 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 22- product id 66 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 22- product id 65 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 23- product id 67 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 23- product id 69 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 23- product id 68 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 24- product id 70 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 24- product id 72 -item id   product_repo.go:54  
+ INFO [21:05:23||2021.09.09] 24- product id 71 -item id   product_repo.go:54  
+ ERROR [21:05:31||2021.09.09] Error 1054: Unknown column 'status' in 'field list'  user_repo.go:37  
+ ERROR [21:06:28||2021.09.09] Error 1054: Unknown column 'status' in 'field list'  user_repo.go:37  
+ INFO [21:06:35||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:06:35||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:06:36||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:06:36||2021.09.09] 25- product id 73 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 25- product id 74 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 25- product id 75 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 26- product id 76 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 26- product id 78 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 26- product id 77 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 27- product id 79 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 27- product id 81 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 27- product id 80 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 28- product id 82 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 28- product id 84 -item id   product_repo.go:54  
+ INFO [21:06:36||2021.09.09] 28- product id 83 -item id   product_repo.go:54  
+ ERROR [21:06:39||2021.09.09] Error 1054: Unknown column 'status' in 'field list'  user_repo.go:37  
+ INFO [21:08:22||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:08:22||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:09:00||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:09:00||2021.09.09] 29- product id 85 -item id   product_repo.go:54  
+ INFO [21:09:00||2021.09.09] 29- product id 86 -item id   product_repo.go:54  
+ INFO [21:09:00||2021.09.09] 29- product id 87 -item id   product_repo.go:54  
+ INFO [21:09:00||2021.09.09] 30- product id 88 -item id   product_repo.go:54  
+ INFO [21:09:00||2021.09.09] 30- product id 89 -item id   product_repo.go:54  
+ INFO [21:09:00||2021.09.09] 30- product id 90 -item id   product_repo.go:54  
+ INFO [21:09:01||2021.09.09] 31- product id 91 -item id   product_repo.go:54  
+ INFO [21:09:01||2021.09.09] 31- product id 93 -item id   product_repo.go:54  
+ INFO [21:09:01||2021.09.09] 31- product id 92 -item id   product_repo.go:54  
+ INFO [21:09:01||2021.09.09] 32- product id 94 -item id   product_repo.go:54  
+ INFO [21:09:01||2021.09.09] 32- product id 96 -item id   product_repo.go:54  
+ INFO [21:09:01||2021.09.09] 32- product id 95 -item id   product_repo.go:54  
+ ERROR [21:09:05||2021.09.09] Error 1136: Column count doesn't match value count at row 1  user_repo.go:37  
+ INFO [21:09:42||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:09:42||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:09:42||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:09:43||2021.09.09] 33- product id 98 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 33- product id 99 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 33- product id 97 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 34- product id 100 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 34- product id 102 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 34- product id 101 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 35- product id 103 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 35- product id 104 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 35- product id 105 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 36- product id 106 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 36- product id 107 -item id   product_repo.go:54  
+ INFO [21:09:43||2021.09.09] 36- product id 108 -item id   product_repo.go:54  
+ ERROR [21:11:07||2021.09.09] sql: expected 7 destination arguments in Scan, not 6  user_repo.go:73  
+ ERROR [21:11:07||2021.09.09] sql: expected 7 destination arguments in Scan, not 6  user_repo.go:73  
+ ERROR [21:11:07||2021.09.09] sql: expected 7 destination arguments in Scan, not 6  user_repo.go:73  
+ ERROR [21:11:07||2021.09.09] sql: expected 7 destination arguments in Scan, not 6  user_repo.go:73  
+ INFO [21:12:42||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:12:42||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:12:43||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:12:43||2021.09.09] 37- product id 109 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 37- product id 110 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 37- product id 111 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 38- product id 112 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 38- product id 114 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 38- product id 113 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 39- product id 115 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 39- product id 117 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 39- product id 116 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 40- product id 118 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 40- product id 119 -item id   product_repo.go:54  
+ INFO [21:12:43||2021.09.09] 40- product id 120 -item id   product_repo.go:54  
+ ERROR [21:12:49||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:12:49||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:12:49||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:12:49||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ INFO [21:16:52||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:16:52||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:16:53||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:16:53||2021.09.09] 41- product id 121 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 41- product id 122 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 41- product id 123 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 42- product id 124 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 42- product id 125 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 42- product id 126 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 43- product id 127 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 43- product id 129 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 43- product id 128 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 44- product id 130 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 44- product id 131 -item id   product_repo.go:54  
+ INFO [21:16:53||2021.09.09] 44- product id 132 -item id   product_repo.go:54  
+ ERROR [21:17:04||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:17:04||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:17:04||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:17:04||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ INFO [21:18:08||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:18:08||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:18:09||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:18:09||2021.09.09] 45- product id 133 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 45- product id 134 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 45- product id 135 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 46- product id 136 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 46- product id 138 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 46- product id 137 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 47- product id 139 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 47- product id 141 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 47- product id 140 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 48- product id 143 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 48- product id 142 -item id   product_repo.go:54  
+ INFO [21:18:09||2021.09.09] 48- product id 144 -item id   product_repo.go:54  
+ INFO [21:18:46||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:18:46||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:18:47||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:18:47||2021.09.09] 49- product id 146 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 49- product id 147 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 49- product id 145 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 50- product id 148 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 50- product id 150 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 50- product id 149 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 51- product id 151 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 51- product id 152 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 51- product id 153 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 52- product id 154 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 52- product id 155 -item id   product_repo.go:54  
+ INFO [21:18:47||2021.09.09] 52- product id 156 -item id   product_repo.go:54  
+ INFO [21:19:32||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:19:32||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:19:33||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:19:33||2021.09.09] 53- product id 157 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 53- product id 158 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 53- product id 159 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 54- product id 160 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 54- product id 161 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 54- product id 162 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 55- product id 163 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 55- product id 164 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 55- product id 165 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 56- product id 166 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 56- product id 167 -item id   product_repo.go:54  
+ INFO [21:19:33||2021.09.09] 56- product id 168 -item id   product_repo.go:54  
+ INFO [21:19:56||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:19:56||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:19:57||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:19:57||2021.09.09] 57- product id 169 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 57- product id 170 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 57- product id 171 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 58- product id 172 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 58- product id 173 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 58- product id 174 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 59- product id 175 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 59- product id 177 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 59- product id 176 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 60- product id 178 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 60- product id 179 -item id   product_repo.go:54  
+ INFO [21:19:57||2021.09.09] 60- product id 180 -item id   product_repo.go:54  
+ ERROR [21:20:02||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:20:02||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:20:02||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ ERROR [21:20:02||2021.09.09] sql: Scan error on column index 4, name "deleted_at": converting NULL to string is unsupported  user_repo.go:74  
+ INFO [21:20:54||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:20:54||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:20:55||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:20:55||2021.09.09] 61- product id 181 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 61- product id 182 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 61- product id 183 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 62- product id 184 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 62- product id 186 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 62- product id 185 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 63- product id 187 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 63- product id 188 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 63- product id 189 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 64- product id 190 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 64- product id 191 -item id   product_repo.go:54  
+ INFO [21:20:55||2021.09.09] 64- product id 192 -item id   product_repo.go:54  
+ ERROR [21:22:37||2021.09.09] sql: expected 7 destination arguments in Scan, not 6  user_repo.go:55  
+ INFO [21:23:10||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:23:10||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:23:11||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:23:11||2021.09.09] 65- product id 193 -item id   product_repo.go:54  
+ INFO [21:23:11||2021.09.09] 65- product id 195 -item id   product_repo.go:54  
+ INFO [21:23:11||2021.09.09] 65- product id 194 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 66- product id 196 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 66- product id 197 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 66- product id 198 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 67- product id 199 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 67- product id 200 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 67- product id 201 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 68- product id 202 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 68- product id 203 -item id   product_repo.go:54  
+ INFO [21:23:12||2021.09.09] 68- product id 204 -item id   product_repo.go:54  
+ ERROR [21:25:21||2021.09.09] Error 1054: Unknown column 'phone_number' in 'field list'  user_repo.go:91  
+ INFO [21:26:05||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:26:05||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:26:06||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:26:06||2021.09.09] 69- product id 205 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 69- product id 207 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 69- product id 206 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 70- product id 209 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 70- product id 208 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 70- product id 210 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 71- product id 211 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 71- product id 213 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 71- product id 212 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 72- product id 214 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 72- product id 215 -item id   product_repo.go:54  
+ INFO [21:26:06||2021.09.09] 72- product id 216 -item id   product_repo.go:54  
+ ERROR [21:26:09||2021.09.09] Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE id=5' at line 1  user_repo.go:91  
+ INFO [21:26:49||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:26:49||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:30:32||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:30:32||2021.09.09] 73- product id 217 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 73- product id 219 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 73- product id 218 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 74- product id 220 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 74- product id 222 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 74- product id 221 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 75- product id 223 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 75- product id 224 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 75- product id 225 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 76- product id 226 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 76- product id 227 -item id   product_repo.go:54  
+ INFO [21:30:32||2021.09.09] 76- product id 228 -item id   product_repo.go:54  
+ INFO [21:31:42||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:31:42||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:31:43||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:31:43||2021.09.09] 77- product id 229 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 77- product id 231 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 77- product id 230 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 78- product id 232 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 78- product id 233 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 78- product id 234 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 79- product id 235 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 79- product id 237 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 79- product id 236 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 80- product id 238 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 80- product id 239 -item id   product_repo.go:54  
+ INFO [21:31:43||2021.09.09] 80- product id 240 -item id   product_repo.go:54  
+ INFO [21:33:00||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:33:00||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:33:01||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:33:02||2021.09.09] 81- product id 241 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 81- product id 242 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 81- product id 243 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 82- product id 244 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 82- product id 246 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 82- product id 245 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 83- product id 247 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 83- product id 249 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 83- product id 248 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 84- product id 250 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 84- product id 251 -item id   product_repo.go:54  
+ INFO [21:33:02||2021.09.09] 84- product id 252 -item id   product_repo.go:54  
+ INFO [21:34:35||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:34:35||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:34:36||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:34:36||2021.09.09] 85- product id 253 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 85- product id 255 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 85- product id 254 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 86- product id 256 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 86- product id 257 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 86- product id 258 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 87- product id 259 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 87- product id 260 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 87- product id 261 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 88- product id 263 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 88- product id 262 -item id   product_repo.go:54  
+ INFO [21:34:36||2021.09.09] 88- product id 264 -item id   product_repo.go:54  
+ INFO [21:37:29||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:37:29||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:37:30||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:37:30||2021.09.09] 89- product id 265 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 89- product id 266 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 89- product id 267 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 90- product id 269 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 90- product id 268 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 90- product id 270 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 91- product id 271 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 91- product id 272 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 91- product id 273 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 92- product id 274 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 92- product id 275 -item id   product_repo.go:54  
+ INFO [21:37:30||2021.09.09] 92- product id 276 -item id   product_repo.go:54  
+ ERROR [21:38:10||2021.09.09] strconv.Atoi: parsing "": invalid syntax  product_controller.go:39  
+ INFO [21:38:51||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:38:51||2021.09.09] http: Server closed Got an error while running http server  main.go:37  
+ INFO [21:38:51||2021.09.09] FastCat application Started  main.go:40  
+ INFO [21:38:52||2021.09.09] 93- product id 277 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 93- product id 278 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 93- product id 279 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 94- product id 280 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 94- product id 282 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 94- product id 281 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 95- product id 284 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 95- product id 285 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 95- product id 283 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 96- product id 286 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 96- product id 288 -item id   product_repo.go:54  
+ INFO [21:38:52||2021.09.09] 96- product id 287 -item id   product_repo.go:54  
+ ERROR [21:38:57||2021.09.09] strconv.Atoi: parsing "": invalid syntax  product_controller.go:39  
+ INFO [21:41:54||2021.09.09] FastCat application Shutting Down  main.go:46  
+ FATAL [21:41:54||2021.09.09] http: Server closed Got an error while running http server  main.go:37  

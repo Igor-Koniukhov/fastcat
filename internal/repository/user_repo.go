@@ -6,6 +6,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserRepository interface {
@@ -16,8 +17,10 @@ type UserRepository interface {
 	Update(id int, u *model.User) *model.User
 }
 
-type UserRepo struct{
-	App *config.AppConfig
+type UserRepo struct {
+	App   *config.AppConfig
+	users []*model.User
+	user  *model.User
 }
 
 func NewUserRepository(app *config.AppConfig) *UserRepo {
@@ -25,25 +28,26 @@ func NewUserRepository(app *config.AppConfig) *UserRepo {
 }
 
 func (usr UserRepo) Create(u *model.User) (*model.User, error) {
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, phone_number, password, status) VALUES(?,?,?,?,?) ", dr.TableUser)
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", dr.TableUser)
 	p, err := usr.App.DB.Prepare(sqlStmt)
 	defer p.Close()
 	web.Log.Error(err, err)
-	_, err = p.Exec(u.Name, u.Email, u.PhoneNumber, u.Password, u.Status)
+	pass, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+	web.Log.Error(err, err)
+	_, err = p.Exec(u.Name, u.Email, pass)
 	web.Log.Error(err, err)
 	return u, err
 }
 
-func (usr UserRepo) Get(id int) *model.User{
+func (usr UserRepo) Get(id int) *model.User {
 	var user model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableUser)
 	err := usr.App.DB.QueryRow(sqlStmt, id).Scan(
 		&user.ID,
 		&user.Name,
 		&user.Email,
-		&user.PhoneNumber,
 		&user.Password,
-		&user.Status,
+		&user.DeletedAt,
 		&user.CreatedAT,
 		&user.UpdatedAT)
 	web.Log.Error(err, err)
@@ -61,9 +65,8 @@ func (usr UserRepo) GetAll() []model.User {
 			&user.ID,
 			&user.Name,
 			&user.Email,
-			&user.PhoneNumber,
 			&user.Password,
-			&user.Status,
+			&user.DeletedAt,
 			&user.CreatedAT,
 			&user.UpdatedAT)
 		web.Log.Error(err, err)
@@ -80,25 +83,11 @@ func (usr UserRepo) Delete(id int) error {
 }
 
 func (usr UserRepo) Update(id int, u *model.User) *model.User {
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, phone_number=?, password=?, status=? WHERE id=%d ", dr.TableUser, id)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", dr.TableUser)
 	stmt, err := usr.App.DB.Prepare(sqlStmt)
 	web.Log.Error(err, err)
-	_, err = stmt.Exec(
-		u.ID,
-		u.Name,
-		u.Email,
-		u.PhoneNumber,
-		u.Password,
-		u.Status)
+	_, err = stmt.Exec(u.ID, u.Name, u.Email, u.Password, id)
 	web.Log.Error(err, err)
 	fmt.Println(*u)
 	return u
 }
-
-
-
-
-
-
-
-

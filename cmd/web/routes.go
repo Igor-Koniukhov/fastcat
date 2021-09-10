@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/igor-koniukhov/fastcat/controllers"
+	"github.com/igor-koniukhov/fastcat/internal/auth/handlers"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"net/http"
@@ -15,6 +16,9 @@ func routes(app *config.AppConfig) http.Handler {
 
 	mux := http.NewServeMux()
 
+	http.HandleFunc("/login", handlers.Login)
+	http.HandleFunc("/profile", handlers.GetProfile)
+	http.HandleFunc("/refresh", handlers.Refresh)
 
 	mux.HandleFunc("/user/create", c.User.Create())
 	mux.HandleFunc("/user/", c.User.Get())
