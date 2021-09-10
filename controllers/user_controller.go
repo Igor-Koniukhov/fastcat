@@ -39,7 +39,8 @@ func (c *UserController) Get() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "json")
 		id := param(r)
-		user := c.repo.Get(id)
+		user, err := c.repo.GetUserByID(id)
+		web.Log.Error(err, "message: ", err)
 		json.NewEncoder(w).Encode(&user)
 	}
 }

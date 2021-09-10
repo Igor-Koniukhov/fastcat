@@ -15,10 +15,9 @@ func routes(app *config.AppConfig) http.Handler {
 	repository.NewRepo(repo)
 
 	mux := http.NewServeMux()
-
-	http.HandleFunc("/login", handlers.Login)
-	http.HandleFunc("/profile", handlers.GetProfile)
-	http.HandleFunc("/refresh", handlers.Refresh)
+	mux.Handle("/", http.FileServer(http.Dir("./public")))
+	mux.HandleFunc("/login",AuthMiddleWare(handlers.Login))
+	mux.HandleFunc("/refresh",handlers.Refresh)
 
 	mux.HandleFunc("/user/create", c.User.Create())
 	mux.HandleFunc("/user/", c.User.Get())
@@ -50,6 +49,6 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.HandleFunc("/cart/update/", c.Cart.Update())
 	mux.HandleFunc("/cart/delete/", c.Cart.Delete())
 
-	return WriteTo(WriteToPage(mux))
+	return mux
 
 }

@@ -1,6 +1,9 @@
 package services
 
 import (
+	"fmt"
+	"github.com/igor-koniukhov/fastcat/internal/model"
+	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
 )
@@ -25,11 +28,12 @@ type UserResponse struct {
 
 func TokenResponder(w http.ResponseWriter,logReq *model.LoginRequest) (*LoginResponse, error) {
 
-	user, err := repository.NewUserRepository().GetUserByEmail(logReq.Email)
+	user, err := repository.Repo.GetUserByEmail(logReq.Email)
 	if err != nil {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
 		return nil, err
 	}
+	fmt.Println(user)
 
 	if err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(logReq.Password)); err != nil {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)

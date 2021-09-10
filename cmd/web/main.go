@@ -8,7 +8,6 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/server"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"github.com/subosito/gotenv"
-	"net/http"
 	"os"
 	"os/signal"
 	"time"
@@ -28,8 +27,6 @@ func main() {
 	SetAppConfigParameters(db)
 	SetWebLoggerParameters()
 	go RunUpToDateSuppliersInfo(600)
-
-	http.Handle("/", http.FileServer(http.Dir("./public")))
 
 	srv := new(server.Server)
 	go func() {

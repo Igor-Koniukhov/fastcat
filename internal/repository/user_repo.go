@@ -12,18 +12,18 @@ import (
 
 type UserRepository interface {
 	Create(u *model.User) (*model.User, error)
-	Get(id int) *model.User
+	GetUserByID(id int) (*model.User, error)
 	GetAll() []model.User
 	Delete(id int) error
 	Update(id int, u *model.User) *model.User
 	GetUserByEmail(email string) (*model.User, error)
-	GetUserByID(id int) (*model.User, error)
+
 }
 
 type UserRepo struct {
-	App   *config.AppConfig
-	users []*model.User
-	user  *model.User
+	App *config.AppConfig
+	Users []model.User
+	User  model.User
 }
 
 func NewUserRepository(app *config.AppConfig) *UserRepo {
@@ -42,40 +42,37 @@ func (usr UserRepo) Create(u *model.User) (*model.User, error) {
 	return u, err
 }
 
-func (usr UserRepo) Get(id int) *model.User {
-	var user model.User
+func (usr UserRepo) GetUserByID(id int) (*model.User, error){
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableUser)
 	err := usr.App.DB.QueryRow(sqlStmt, id).Scan(
-		&user.ID,
-		&user.Name,
-		&user.Email,
-		&user.Password,
-		&user.DeletedAt,
-		&user.CreatedAT,
-		&user.UpdatedAT)
+		&usr.User.ID,
+		&usr.User.Name,
+		&usr.User.Email,
+		&usr.User.Password,
+		&usr.User.DeletedAt,
+		&usr.User.CreatedAT,
+		&usr.User.UpdatedAT)
 	web.Log.Error(err, err)
-	return &user
+	return &usr.User, err
 }
 
 func (usr UserRepo) GetAll() []model.User {
-	var user model.User
-	var users []model.User
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
 	results, err := usr.App.DB.Query(sqlStmt)
 	web.Log.Error(err, err)
 	for results.Next() {
 		err = results.Scan(
-			&user.ID,
-			&user.Name,
-			&user.Email,
-			&user.Password,
-			&user.DeletedAt,
-			&user.CreatedAT,
-			&user.UpdatedAT)
+			&usr.User.ID,
+			&usr.User.Name,
+			&usr.User.Email,
+			&usr.User.Password,
+			&usr.User.DeletedAt,
+			&usr.User.CreatedAT,
+			&usr.User.UpdatedAT)
 		web.Log.Error(err, err)
-		users = append(users, user)
+		usr.Users = append(usr.Users, usr.User)
 	}
-	return users
+	return usr.Users
 }
 
 func (usr UserRepo) Delete(id int) error {
@@ -96,19 +93,18 @@ func (usr UserRepo) Update(id int, u *model.User) *model.User {
 }
 
 func (usr UserRepo) GetUserByEmail(email string) (*model.User, error) {
-	for _, user := range usr.users {
-		if user.Email == email {
-			return user, nil
-		}
-	}
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = ? ", dr.TableUser)
+	err := usr.App.DB.QueryRow(sqlStmt, email).Scan(
+		&usr.User.ID,
+		&usr.User.Name,
+		&usr.User.Email,
+		&usr.User.Password,
+		&usr.User.DeletedAt,
+		&usr.User.CreatedAT,
+		&usr.User.UpdatedAT)
+	web.Log.Error(err, err)
+	return &usr.User, err
 	return nil, errors.New("user not found")
 }
 
-func (usr UserRepo) GetUserByID(id int) (*model.User, error) {
-	for _, user := range usr.users {
-		if user.ID == id {
-			return user, nil
-		}
-	}
-	return nil, errors.New("user not found")
-}
+
