@@ -1,6 +1,7 @@
-package repository
+package dbrepo
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
@@ -21,16 +22,17 @@ type SupplierRepository interface {
 
 type SupplierRepo struct {
 	App *config.AppConfig
+	DB *sql.DB
 }
 
-func NewSupplierRepository(app *config.AppConfig) *SupplierRepo {
-	return &SupplierRepo{App: app}
+func NewSupplierRepository(app *config.AppConfig, DB *sql.DB) *SupplierRepo {
+	return &SupplierRepo{App: app, DB: DB}
 }
 func (s SupplierRepo) Create(suppliers *model.Suppliers) (*model.Suppliers, error) {
 	var id int
 	stmtSql := fmt.Sprintf("INSERT INTO %s (name, image) VALUES (?, ?)", model.TabSuppliers)
 
-	stmt, err := s.App.DB.Prepare(stmtSql)
+	stmt, err := s.DB.Prepare(stmtSql)
 	defer stmt.Close()
 
 	for _, restaurant := range suppliers.Restaurants {
@@ -53,7 +55,7 @@ func (s SupplierRepo) Get(id int) *model.Supplier {
 	var supplier model.Supplier
 	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s WHERE id = ? ", model.TabSuppliers)
 	fmt.Println(sqlStmt)
-	err := s.App.DB.QueryRow(sqlStmt, id).Scan(
+	err := s.DB.QueryRow(sqlStmt, id).Scan(
 		&supplier.Id,
 		&supplier.Name,
 		&supplier.Image,
@@ -66,7 +68,7 @@ func (s SupplierRepo) GetAll() []model.Supplier {
 	var supplier model.Supplier
 	var suppliers []model.Supplier
 	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s WHERE deleted_at IS NULL", model.TabSuppliers)
-	stmt, err := s.App.DB.Query(sqlStmt)
+	stmt, err := s.DB.Query(sqlStmt)
 	web.Log.Error(err, err)
 	for stmt.Next() {
 		_ = stmt.Scan(
@@ -81,21 +83,21 @@ func (s SupplierRepo) GetAll() []model.Supplier {
 
 func (s SupplierRepo) Delete(id int) (err error) {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", model.TabSuppliers)
-	_, err = s.App.DB.Exec(sqlStmt, id)
+	_, err = s.DB.Exec(sqlStmt, id)
 	fmt.Println(sqlStmt)
 	web.Log.Error(err, err)
 	return
 }
 func (s SupplierRepo) SoftDelete(id int) error {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE id = ?", model.TabSuppliers)
-	_, err := s.App.DB.Exec(sqlStmt, s.App.TimeFormat, id)
+	_, err := s.DB.Exec(sqlStmt, s.App.TimeFormat, id)
 	web.Log.Error(err, err)
 	return nil
 }
 
 func (s SupplierRepo) Update(id int, supplier *model.Supplier) *model.Supplier {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, image=?, Name=?, Menu=? , WHERE id=?", model.TabSuppliers)
-	_, err := s.App.DB.Exec(sqlStmt, supplier.Id, supplier.Image, supplier.Name, supplier.Menu, id)
+	_, err := s.DB.Exec(sqlStmt, supplier.Id, supplier.Image, supplier.Name, supplier.Menu, id)
 	web.Log.Error(err, err)
 	return supplier
 }

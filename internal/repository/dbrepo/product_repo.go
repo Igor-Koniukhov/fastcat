@@ -1,6 +1,7 @@
-package repository
+package dbrepo
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
@@ -20,21 +21,22 @@ type ProductRepository interface {
 
 type ProductRepo struct{
 	App *config.AppConfig
+	DB *sql.DB
 }
 
-func NewProductRepository(app *config.AppConfig) *ProductRepo {
-	return &ProductRepo{App: app}
+func NewProductRepository(app *config.AppConfig, DB *sql.DB) *ProductRepo {
+	return &ProductRepo{App: app, DB: DB}
 }
 
 func (p ProductRepo) Create(item *model.Item, id int) (*model.Item, error) {
 	stmtSQl := fmt.Sprintf("INSERT INTO %s (name, price, type, image, ingredients, supplier_id) VALUES (?, ?, ?, ?, ?, ?)", model.TabItems)
 	ingredients, err := json.MarshalIndent(item.Ingredients, "", "")
-	stmt, err := p.App.DB.Prepare(stmtSQl)
+	stmt, err := p.DB.Prepare(stmtSQl)
 	defer stmt.Close()
 	web.Log.Error(err)
 
 	stmtRestaurantsItem := fmt.Sprintf("INSERT %s SET  item_id=? ", model.TabSuppliersItems)
-	stmtRest, err := p.App.DB.Prepare(stmtRestaurantsItem)
+	stmtRest, err := p.DB.Prepare(stmtRestaurantsItem)
 	web.Log.Error(err, err)
 	defer stmtRest.Close()
 	result, err := stmt.Exec(
@@ -61,7 +63,7 @@ func (p ProductRepo) Get(id int) *model.Item {
 	var product model.Product
 	var item model.Item
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients FROM %s WHERE id = ? ", model.TabItems)
-	err := p.App.DB.QueryRow(sqlStmt, id).Scan(
+	err := p.DB.QueryRow(sqlStmt, id).Scan(
 		&product.Id,
 		&product.Name,
 		&product.Price,
@@ -90,7 +92,7 @@ func (p ProductRepo) GetAll() []model.Item {
 	var str []string
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients, supplier_id FROM %s WHERE deleted_at IS NULL", model.TabItems)
 
-	results, err := p.App.DB.Query(sqlStmt)
+	results, err := p.DB.Query(sqlStmt)
 	web.Log.Error(err, err)
 	for results.Next() {
 		err = results.Scan(
@@ -119,7 +121,7 @@ func (p ProductRepo) GetAll() []model.Item {
 
 func (p ProductRepo) Delete(id int) (err error) {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", model.TabItems)
-	_, err = p.App.DB.Exec(sqlStmt, id)
+	_, err = p.DB.Exec(sqlStmt, id)
 	fmt.Println(sqlStmt)
 	web.Log.Error(err, err)
 	return
@@ -127,14 +129,14 @@ func (p ProductRepo) Delete(id int) (err error) {
 
 func (p ProductRepo) SoftDelete(id int) error {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE supplier_id = ?", model.TabItems)
-	_, err := p.App.DB.Exec(sqlStmt, p.App.TimeFormat, id)
+	_, err := p.DB.Exec(sqlStmt, p.App.TimeFormat, id)
 	web.Log.Error(err, err)
 	return nil
 }
 
 func (p ProductRepo) Update(id int, item *model.Item) *model.Item {
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, price=?, image=?, type=?, ingredienst=? , WHERE id=?", model.TabItems)
-	_, err := p.App.DB.Exec(sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
+	_, err := p.DB.Exec(sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
 	web.Log.Error(err, err)
 	return item
 }

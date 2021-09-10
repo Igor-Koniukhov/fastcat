@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	"github.com/igor-koniukhov/fastcat/internal/repository"
+	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 	"strconv"
@@ -20,10 +20,10 @@ type Product interface {
 }
 
 type ProductController struct {
-	repo repository.ProductRepository
+	repo dbrepo.ProductRepository
 }
 
-func NewProductController(repo repository.ProductRepository) *ProductController {
+func NewProductController(repo dbrepo.ProductRepository) *ProductController {
 	return &ProductController{repo: repo}
 }
 

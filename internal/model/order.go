@@ -1,5 +1,8 @@
 package model
 
+const TableOrders = "orders"
+const TableAddress = "address"
+
 type Order struct {
 	ID        int  `json:"id"`
 	UserID    int    `json:"user_id"`

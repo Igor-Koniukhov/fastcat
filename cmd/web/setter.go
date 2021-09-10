@@ -1,27 +1,27 @@
 package main
 
 import (
-	"database/sql"
 	"github.com/igor-koniukhov/fastcat/driver"
-	"github.com/igor-koniukhov/webLogger/v3"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"time"
 )
 
 
-func SetAndRun() (db *sql.DB) {
-	db = driver.ConnectMySQLDB()
-	app.DB = db
+func SetAndRun()(*driver.DB, error)  {
+	db, err := driver.ConnectMySQLDB()
+
+	web.Log.Fatal(err, "Cannot connect to database!", err)
 	app.Session = "This is session"
 	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
 
-	logSet := webLogger.NewLogStruct(&webLogger.LogParameters{
-		OutWriter:  webLogger.ConsoleAndFile,
+	logSet := web.NewLogStruct(&web.LogParameters{
+		OutWriter:  web.ConsoleAndFile,
 		FilePath:   "./logs",
 		LogFile:    "/logger.log",
 		TimeFormat: "[15:04:05||2006.01.02]",
 	})
-	webLogger.NewLog(logSet)
-	return
+	web.NewLog(logSet)
+	return db, nil
 }
 
 

@@ -19,13 +19,16 @@ func init() {
 }
 
 func main() {
-	db := SetAndRun()
-	defer db.Close()
-	go RunUpToDateSuppliersInfo(600)
-
 	srv := new(server.Server)
+	db, err := SetAndRun()
+	defer db.MySQL.Close()
+
+	go RunUpToDateSuppliersInfo(600)
 	go func() {
-		err := srv.Serve(os.Getenv("PORT"), routes(&app))
+		err := srv.Serve(
+			os.Getenv("PORT"),
+			routes(&app, db),
+			)
 		web.Log.Fatal(err, err, " Got an error while running http server")
 	}()
 	web.Log.Info("FastCat application Started")
@@ -37,7 +40,7 @@ func main() {
 	web.Log.Info("FastCat application Shutting Down")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	err := srv.Shutdown(ctx)
+	err = srv.Shutdown(ctx)
 	web.Log.Error(err, "Error on DB connection close: ", err)
 }
 

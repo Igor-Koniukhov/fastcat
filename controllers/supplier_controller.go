@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	"github.com/igor-koniukhov/fastcat/internal/repository"
+	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 )
@@ -18,10 +18,10 @@ type Supplier interface {
 }
 
 type SupplierController struct {
-	repo repository.SupplierRepository
+	repo dbrepo.SupplierRepository
 }
 
-func NewSupplierController(repo repository.SupplierRepository) *SupplierController {
+func NewSupplierController(repo dbrepo.SupplierRepository) *SupplierController {
 	return &SupplierController{repo: repo}
 }
 

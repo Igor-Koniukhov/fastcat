@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/internal/model"
-	"github.com/igor-koniukhov/fastcat/internal/repository"
+	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
 )
@@ -17,10 +17,10 @@ type User interface {
 }
 
 type UserController struct {
-	repo repository.UserRepository
+	repo dbrepo.UserRepository
 }
 
-func NewUserController(repo repository.UserRepository) *UserController {
+func NewUserController(repo dbrepo.UserRepository) *UserController {
 	return &UserController{repo: repo}
 }
 

@@ -1,8 +1,7 @@
 package controllers
 
 import (
-
-	"github.com/igor-koniukhov/fastcat/internal/repository"
+	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	"net/http"
 )
 
@@ -15,10 +14,10 @@ type Cart interface {
 }
 
 type CartController struct {
-	repo repository.CartRepository
+	repo dbrepo.CartRepository
 }
 
-func NewCartController(repo repository.CartRepository) *CartController {
+func NewCartController(repo dbrepo.CartRepository) *CartController {
 	return &CartController{repo: repo}
 }
 

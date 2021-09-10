@@ -1,5 +1,6 @@
 package model
 
+const TableUser = "users"
 type User struct {
 	ID        int         `json:"id"`
 	Name      string      `json:"name"`
@@ -9,3 +10,6 @@ type User struct {
 	CreatedAT string      `json:"created_at"`
 	UpdatedAT string      `json:"updated_at"`
 }
+
+
+

@@ -1,5 +1,7 @@
 package model
 
+const TableCarts = "carts"
+
 type Cart struct {
 	ID        int            `json:"id"`
 	UserID    int            `json:"user_id"`
@@ -10,7 +12,6 @@ type Cart struct {
 	UpdatedAt string         `json:"updated_at"`
 
 }
-const TableCarts = "carts"
 
 type CartProducts struct {
 	ID        int `json:"id"`

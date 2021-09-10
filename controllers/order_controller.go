@@ -3,11 +3,11 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	web "github.com/igor-koniukhov/webLogger/v3"
 
 	"github.com/igor-koniukhov/fastcat/internal/model"
 
-	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"net/http"
 )
 
@@ -20,10 +20,10 @@ type Order interface {
 }
 
 type OrderController struct {
-	repo repository.OrderRepository
+	repo dbrepo.OrderRepository
 }
 
-func NewOrderController(repo repository.OrderRepository) *OrderController {
+func NewOrderController(repo dbrepo.OrderRepository) *OrderController {
 	return &OrderController{repo: repo}
 }
 
