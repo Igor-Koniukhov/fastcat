@@ -2,8 +2,6 @@ package services
 
 import (
 	"golang.org/x/crypto/bcrypt"
-	"gopath/auth/model"
-	"gopath/auth/repository"
 	"net/http"
 )
 
