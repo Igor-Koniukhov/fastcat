@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	web "github.com/igor-koniukhov/webLogger/v3"
@@ -58,8 +57,6 @@ func (c *UserController) Delete() http.HandlerFunc {
 		id := param(r)
 		err := c.repo.Delete(id)
 		web.Log.Error(err, err)
-		_, _ = fmt.Fprintf(w, fmt.Sprintf(" user with %d deleted", id))
-
 	}
 }
 

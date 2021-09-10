@@ -12,7 +12,7 @@ import (
 )
 
 type UserRepository interface {
-	Create(u *model.User) (*model.User, error)
+	Create(user *model.User) (*model.User, error)
 	GetUserByID(id int) (*model.User, error)
 	GetAll() []model.User
 	Delete(id int) error
@@ -31,15 +31,18 @@ func NewUserRepository(app *config.AppConfig) *UserRepo {
 	return &UserRepo{App: app}
 }
 
-func (usr UserRepo) Create(u *model.User) (*model.User, error) {
+func (usr UserRepo) Create(user *model.User) (*model.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", dr.TableUser)
-	pass, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+	pass, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	web.Log.Error(err, err)
-	_, err = usr.App.DB.ExecContext(ctx, sqlStmt, u.Name, u.Email, pass)
+	_, err = usr.App.DB.ExecContext(ctx, sqlStmt,
+		user.Name,
+		user.Email,
+		pass)
 	web.Log.Error(err, err)
-	return u, err
+	return user, nil
 }
 
 func (usr UserRepo) GetUserByID(id int) (*model.User, error){
@@ -92,6 +95,7 @@ func (usr UserRepo) Delete(id int) error {
 func (usr UserRepo) Update(id int, user *model.User) *model.User {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
+	fmt.Println(id)
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", dr.TableUser)
 	_, err := usr.App.DB.ExecContext(ctx, sqlStmt,
 		user.ID,
@@ -100,8 +104,6 @@ func (usr UserRepo) Update(id int, user *model.User) *model.User {
 		user.Password,
 		id)
 	web.Log.Error(err, err)
-
-	fmt.Println(*user)
 	return user
 }
 

@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/server"
 	web "github.com/igor-koniukhov/webLogger/v3"
@@ -20,20 +19,15 @@ func init() {
 }
 
 func main() {
-	db := driver.ConnectMySQLDB()
+	db := SetAndRun()
 	defer db.Close()
-	port := os.Getenv("PORT")
-
-	SetAppConfigParameters(db)
-	SetWebLoggerParameters()
 	go RunUpToDateSuppliersInfo(600)
 
 	srv := new(server.Server)
 	go func() {
-		err := srv.Serve(port, routes(&app))
+		err := srv.Serve(os.Getenv("PORT"), routes(&app))
 		web.Log.Fatal(err, err, " Got an error while running http server")
 	}()
-
 	web.Log.Info("FastCat application Started")
 
 	c := make(chan os.Signal, 1)
