@@ -1,12 +1,14 @@
 package dbrepo
 
 import (
+	"context"
 	"database/sql"
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
+	"time"
 )
 
 
@@ -29,17 +31,13 @@ func NewProductRepository(app *config.AppConfig, DB *sql.DB) *ProductRepo {
 }
 
 func (p ProductRepo) Create(item *model.Item, id int) (*model.Item, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	stmtSQl := fmt.Sprintf("INSERT INTO %s (name, price, type, image, ingredients, supplier_id) VALUES (?, ?, ?, ?, ?, ?)", model.TabItems)
 	ingredients, err := json.MarshalIndent(item.Ingredients, "", "")
-	stmt, err := p.DB.Prepare(stmtSQl)
-	defer stmt.Close()
-	web.Log.Error(err)
 
-	stmtRestaurantsItem := fmt.Sprintf("INSERT %s SET  item_id=? ", model.TabSuppliersItems)
-	stmtRest, err := p.DB.Prepare(stmtRestaurantsItem)
-	web.Log.Error(err, err)
-	defer stmtRest.Close()
-	result, err := stmt.Exec(
+	stmtRest := fmt.Sprintf("INSERT %s SET  item_id=? ", model.TabSuppliersItems)
+	result, err := p.DB.ExecContext(ctx, stmtSQl,
 		&item.Name,
 		&item.Price,
 		&item.Type,
@@ -51,7 +49,7 @@ func (p ProductRepo) Create(item *model.Item, id int) (*model.Item, error) {
 	lastInsertedID, err := result.LastInsertId()
 	web.Log.Error(err)
 
-	_, err = stmtRest.Exec(int(lastInsertedID))
+	_, err = p.DB.ExecContext(ctx, stmtRest, int(lastInsertedID))
 
 	web.Log.Info(id, "- product id ", lastInsertedID," -item id " )
 	web.Log.Error(err, err)
