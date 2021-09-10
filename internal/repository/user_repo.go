@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"errors"
 	"fmt"
 	dr "github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
@@ -15,6 +16,8 @@ type UserRepository interface {
 	GetAll() []model.User
 	Delete(id int) error
 	Update(id int, u *model.User) *model.User
+	GetUserByEmail(email string) (*model.User, error)
+	GetUserByID(id int) (*model.User, error)
 }
 
 type UserRepo struct {
@@ -90,4 +93,22 @@ func (usr UserRepo) Update(id int, u *model.User) *model.User {
 	web.Log.Error(err, err)
 	fmt.Println(*u)
 	return u
+}
+
+func (usr UserRepo) GetUserByEmail(email string) (*model.User, error) {
+	for _, user := range usr.users {
+		if user.Email == email {
+			return user, nil
+		}
+	}
+	return nil, errors.New("user not found")
+}
+
+func (usr UserRepo) GetUserByID(id int) (*model.User, error) {
+	for _, user := range usr.users {
+		if user.ID == id {
+			return user, nil
+		}
+	}
+	return nil, errors.New("user not found")
 }
