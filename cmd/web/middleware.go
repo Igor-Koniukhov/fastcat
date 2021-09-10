@@ -6,16 +6,16 @@ import (
 	"github.com/igor-koniukhov/fastcat/services"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"net/http"
+	"os"
 )
 
 
 func  AuthMiddleWare(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request){
-
 		w.Header().Set("Content-Type", "application/json")
 		bearerString := r.Header.Get("Authorization")
 		tokenString := services.GetTokenFromBearerString(bearerString)
-		claims, err := services.ValidateToken(tokenString, services.AccessSecret)
+		claims, err := services.ValidateToken(tokenString, os.Getenv("AccessSecret"))
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusUnauthorized)
 			return

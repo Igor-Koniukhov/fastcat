@@ -4,20 +4,18 @@ import (
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
+	web "github.com/igor-koniukhov/webLogger/v3"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
+	"os"
+	"strconv"
 )
 
-const (
-	RefreshSecret         = "refresh_secret"
-	AccessLifetimeMinutes = 5
-	RefreshLifetimeMinutes = 500
-	AccessSecret          = "access_secret"
-)
+
 
 type LoginResponse struct {
 	AccessToken  string `json:"access_token"`
-	RefreshToken  string `json:"refresh_token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type UserResponse struct {
@@ -26,9 +24,15 @@ type UserResponse struct {
 	Email string `json:"email"`
 }
 
-func TokenResponder(w http.ResponseWriter,logReq *model.LoginRequest) (*LoginResponse, error) {
-
+func TokenResponder(w http.ResponseWriter, logReq *model.LoginRequest) (*LoginResponse, error) {
+	RefreshLifetimeMinutes, err := strconv.Atoi(os.Getenv("RefreshLifetimeMinutes"))
+	web.Log.Error(err, "message: ", err)
+	RefreshAccess := os.Getenv("RefreshAccess")
+	AccessSecret := os.Getenv("AccessSecret")
+	AccessLifetimeMinutes, err := strconv.Atoi(os.Getenv("AccessLifetimeMinutes"))
+	web.Log.Error(err, "message:", err)
 	user, err := repository.Repo.GetUserByEmail(logReq.Email)
+
 	if err != nil {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
 		return nil, err
@@ -41,7 +45,7 @@ func TokenResponder(w http.ResponseWriter,logReq *model.LoginRequest) (*LoginRes
 	}
 
 	accessString, err := GenerateToken(user.ID, AccessLifetimeMinutes, AccessSecret)
-	refreshString, err := GenerateToken(user.ID, RefreshLifetimeMinutes, RefreshSecret)
+	refreshString, err := GenerateToken(user.ID, RefreshLifetimeMinutes, RefreshAccess )
 	if err != nil {
 		http.Error(w, "Something went wrong", http.StatusInternalServerError)
 		return nil, err

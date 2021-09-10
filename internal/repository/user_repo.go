@@ -1,13 +1,14 @@
 package repository
 
 import (
-	"errors"
+	"context"
 	"fmt"
 	dr "github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/model"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"golang.org/x/crypto/bcrypt"
+	"time"
 )
 
 type UserRepository interface {
@@ -15,7 +16,7 @@ type UserRepository interface {
 	GetUserByID(id int) (*model.User, error)
 	GetAll() []model.User
 	Delete(id int) error
-	Update(id int, u *model.User) *model.User
+	Update(id int, user *model.User) *model.User
 	GetUserByEmail(email string) (*model.User, error)
 
 }
@@ -31,20 +32,22 @@ func NewUserRepository(app *config.AppConfig) *UserRepo {
 }
 
 func (usr UserRepo) Create(u *model.User) (*model.User, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", dr.TableUser)
-	p, err := usr.App.DB.Prepare(sqlStmt)
-	defer p.Close()
-	web.Log.Error(err, err)
 	pass, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	web.Log.Error(err, err)
-	_, err = p.Exec(u.Name, u.Email, pass)
+	_, err = usr.App.DB.ExecContext(ctx, sqlStmt, u.Name, u.Email, pass)
 	web.Log.Error(err, err)
 	return u, err
 }
 
 func (usr UserRepo) GetUserByID(id int) (*model.User, error){
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", dr.TableUser)
-	err := usr.App.DB.QueryRow(sqlStmt, id).Scan(
+	row := usr.App.DB.QueryRowContext(ctx, sqlStmt, id)
+	err :=row.Scan(
 		&usr.User.ID,
 		&usr.User.Name,
 		&usr.User.Email,
@@ -53,12 +56,14 @@ func (usr UserRepo) GetUserByID(id int) (*model.User, error){
 		&usr.User.CreatedAT,
 		&usr.User.UpdatedAT)
 	web.Log.Error(err, err)
-	return &usr.User, err
+	return &usr.User, nil
 }
 
 func (usr UserRepo) GetAll() []model.User {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", dr.TableUser)
-	results, err := usr.App.DB.Query(sqlStmt)
+	results, err := usr.App.DB.QueryContext(ctx, sqlStmt)
 	web.Log.Error(err, err)
 	for results.Next() {
 		err = results.Scan(
@@ -76,25 +81,36 @@ func (usr UserRepo) GetAll() []model.User {
 }
 
 func (usr UserRepo) Delete(id int) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", dr.TableUser)
-	_, err := usr.App.DB.Exec(sqlStmt, id)
+	_, err := usr.App.DB.ExecContext(ctx, sqlStmt, id)
 	web.Log.Error(err, err)
-	return err
+	return nil
 }
 
-func (usr UserRepo) Update(id int, u *model.User) *model.User {
+func (usr UserRepo) Update(id int, user *model.User) *model.User {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", dr.TableUser)
-	stmt, err := usr.App.DB.Prepare(sqlStmt)
+	_, err := usr.App.DB.ExecContext(ctx, sqlStmt,
+		user.ID,
+		user.Name,
+		user.Email,
+		user.Password,
+		id)
 	web.Log.Error(err, err)
-	_, err = stmt.Exec(u.ID, u.Name, u.Email, u.Password, id)
-	web.Log.Error(err, err)
-	fmt.Println(*u)
-	return u
+
+	fmt.Println(*user)
+	return user
 }
 
 func (usr UserRepo) GetUserByEmail(email string) (*model.User, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = ? ", dr.TableUser)
-	err := usr.App.DB.QueryRow(sqlStmt, email).Scan(
+	row := usr.App.DB.QueryRowContext(ctx, sqlStmt, email)
+	err :=row.Scan(
 		&usr.User.ID,
 		&usr.User.Name,
 		&usr.User.Email,
@@ -102,9 +118,8 @@ func (usr UserRepo) GetUserByEmail(email string) (*model.User, error) {
 		&usr.User.DeletedAt,
 		&usr.User.CreatedAT,
 		&usr.User.UpdatedAT)
-	web.Log.Error(err, err)
-	return &usr.User, err
-	return nil, errors.New("user not found")
+	web.Log.Error(err, "message: ", err)
+	return &usr.User, nil
 }
 
 

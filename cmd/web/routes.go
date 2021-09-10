@@ -50,5 +50,4 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.HandleFunc("/cart/delete/", c.Cart.Delete())
 
 	return mux
-
 }
