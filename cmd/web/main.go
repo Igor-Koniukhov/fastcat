@@ -20,14 +20,14 @@ func init() {
 
 func main() {
 	srv := new(server.Server)
-	db, err := SetAndRun()
-	defer db.MySQL.Close()
+	driver, err := SetAndRun()
+	defer driver.MySQL.Close()
 
 	go RunUpToDateSuppliersInfo(600)
 	go func() {
 		err := srv.Serve(
 			os.Getenv("PORT"),
-			routes(&app, db),
+			routes(&app, driver.MySQL),
 			)
 		web.Log.Fatal(err, err, " Got an error while running http server")
 	}()

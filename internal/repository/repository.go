@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/igor-koniukhov/fastcat/driver"
+	"database/sql"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 )
@@ -16,13 +16,13 @@ type Repository struct{
 	dbrepo.CartRepository
 }
 
-func NewRepository(app *config.AppConfig, DB *driver.DB) *Repository {
+func NewRepository(app *config.AppConfig, db *sql.DB) *Repository {
 	return &Repository{
-		UserRepository:     dbrepo.NewUserRepository(app, DB.MySQL),
-		SupplierRepository: dbrepo.NewSupplierRepository(app, DB.MySQL),
-		ProductRepository:  dbrepo.NewProductRepository(app, DB.MySQL),
-		OrderRepository:    dbrepo.NewOrderRepository(app, DB.MySQL),
-		CartRepository:     dbrepo.NewCartRepository(app, DB.MySQL),
+		UserRepository:     dbrepo.NewUserRepository(app, db),
+		SupplierRepository: dbrepo.NewSupplierRepository(app, db),
+		ProductRepository:  dbrepo.NewProductRepository(app, db),
+		OrderRepository:    dbrepo.NewOrderRepository(app, db),
+		CartRepository:     dbrepo.NewCartRepository(app, db),
 	}
 }
 

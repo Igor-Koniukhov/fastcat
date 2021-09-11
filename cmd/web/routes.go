@@ -1,15 +1,15 @@
 package main
 
 import (
+	"database/sql"
 	"github.com/igor-koniukhov/fastcat/controllers"
-	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/auth/handlers"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"net/http"
 )
 
-func routes(app *config.AppConfig, db *driver.DB) http.Handler {
+func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 
 	repo := repository.NewRepository(app, db)
 	c := controllers.NewControllers(repo)

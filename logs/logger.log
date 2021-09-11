@@ -2545,3 +2545,66 @@
  INFO [15:17:44||2021.09.10] 460- product id 1378 -item id   product_repo.go:54  
  INFO [15:17:44||2021.09.10] 460- product id 1380 -item id   product_repo.go:54  
  INFO [15:17:44||2021.09.10] 460- product id 1379 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 461- product id 1381 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 461- product id 1382 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 461- product id 1383 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 462- product id 1384 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 462- product id 1386 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 462- product id 1385 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 463- product id 1388 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 463- product id 1387 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 463- product id 1389 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 464- product id 1390 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 464- product id 1392 -item id   product_repo.go:54  
+ INFO [15:27:44||2021.09.10] 464- product id 1391 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 465- product id 1394 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 465- product id 1393 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 465- product id 1395 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 466- product id 1396 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 466- product id 1398 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 466- product id 1397 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 467- product id 1400 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 467- product id 1401 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 467- product id 1399 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 468- product id 1402 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 468- product id 1403 -item id   product_repo.go:54  
+ INFO [15:37:44||2021.09.10] 468- product id 1404 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 469- product id 1405 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 469- product id 1406 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 469- product id 1407 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 470- product id 1408 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 470- product id 1409 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 470- product id 1410 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 471- product id 1411 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 471- product id 1412 -item id   product_repo.go:54  
+ INFO [15:47:44||2021.09.10] 471- product id 1413 -item id   product_repo.go:54  
+ INFO [15:47:45||2021.09.10] 472- product id 1415 -item id   product_repo.go:54  
+ INFO [15:47:45||2021.09.10] 472- product id 1416 -item id   product_repo.go:54  
+ INFO [15:47:45||2021.09.10] 472- product id 1414 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 473- product id 1417 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 473- product id 1418 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 473- product id 1419 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 474- product id 1420 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 474- product id 1422 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 474- product id 1421 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 475- product id 1423 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 475- product id 1425 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 475- product id 1424 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 476- product id 1426 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 476- product id 1428 -item id   product_repo.go:54  
+ INFO [15:57:45||2021.09.10] 476- product id 1427 -item id   product_repo.go:54  
+ INFO [07:25:01||2021.09.11] FastCat application Started  main.go:34  
+ INFO [07:25:02||2021.09.11] 477- product id 1431 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 477- product id 1429 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 477- product id 1430 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 478- product id 1432 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 478- product id 1433 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 478- product id 1434 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 479- product id 1435 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 479- product id 1437 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 479- product id 1436 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 480- product id 1438 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 480- product id 1439 -item id   product_repo.go:54  
+ INFO [07:25:02||2021.09.11] 480- product id 1440 -item id   product_repo.go:54  
+ INFO [07:25:14||2021.09.11] FastCat application Shutting Down  main.go:40  
+ FATAL [07:25:14||2021.09.11] http: Server closed Got an error while running http server  main.go:32  
