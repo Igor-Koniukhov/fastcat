@@ -1,4 +1,4 @@
-package model
+package models
 
 const TableUser = "users"
 type User struct {

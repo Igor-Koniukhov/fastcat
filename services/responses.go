@@ -2,7 +2,7 @@ package services
 
 import (
 	"fmt"
-	"github.com/igor-koniukhov/fastcat/internal/model"
+	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"golang.org/x/crypto/bcrypt"
@@ -24,7 +24,7 @@ type UserResponse struct {
 	Email string `json:"email"`
 }
 
-func TokenResponder(w http.ResponseWriter, logReq *model.LoginRequest) (*LoginResponse, error) {
+func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*LoginResponse, error) {
 	RefreshLifetimeMinutes, err := strconv.Atoi(os.Getenv("RefreshLifetimeMinutes"))
 	web.Log.Error(err, "message: ", err)
 	RefreshAccess := os.Getenv("RefreshAccess")

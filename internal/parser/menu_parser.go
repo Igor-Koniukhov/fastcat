@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
-	"github.com/igor-koniukhov/fastcat/internal/model"
+	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"sync"
 )
 
 type RestMenuParserInterface interface {
-	GetListSuppliers() (suppliers *model.Suppliers)
-	GetListMenuItems(id int) (menu *model.Menu)
+	GetListSuppliers() (suppliers *models.Suppliers)
+	GetListMenuItems(id int) (menu *models.Menu)
 	ParsedDataWriter()
 }
 
@@ -31,12 +31,12 @@ func NewRestMenu(r *RestMenuParser) {
 	ParseRestMenu = r
 }
 
-func (r *RestMenuParser) GetListSuppliers() (suppliers *model.Suppliers) {
+func (r *RestMenuParser) GetListSuppliers() (suppliers *models.Suppliers) {
 	URL := "http://foodapi.true-tech.php.nixdev.co/restaurants"
 	_ = json.Unmarshal(driver.GetBodyConnection(URL), &suppliers)
 	return
 }
-func (r *RestMenuParser) GetListMenuItems(id int) (menu *model.Menu) {
+func (r *RestMenuParser) GetListMenuItems(id int) (menu *models.Menu) {
 	URL := "http://foodapi.true-tech.php.nixdev.co/restaurants"
 	var URLMenu = fmt.Sprintf("%s/%v/menu", URL, id)
 	_ = json.Unmarshal(driver.GetBodyConnection(URLMenu), &menu)

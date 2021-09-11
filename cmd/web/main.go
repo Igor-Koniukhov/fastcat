@@ -21,6 +21,7 @@ func init() {
 func main() {
 	srv := new(server.Server)
 	driver, err := SetAndRun()
+	web.Log.Error(err, "message: ", err)
 	defer driver.MySQL.Close()
 
 	go RunUpToDateSuppliersInfo(600)

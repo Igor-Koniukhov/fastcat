@@ -1,4 +1,4 @@
-package model
+package models
 
 const TabItems = "items"
 const TabSuppliersItems = "suppliers_items"

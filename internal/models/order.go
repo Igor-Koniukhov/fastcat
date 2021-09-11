@@ -1,4 +1,4 @@
-package model
+package models
 
 const TableOrders = "orders"
 const TableAddress = "address"

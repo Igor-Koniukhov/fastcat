@@ -1,8 +1,8 @@
-package handlers
+package auth
 
 import (
 	"encoding/json"
-	"github.com/igor-koniukhov/fastcat/internal/model"
+	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/services"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"log"
@@ -10,7 +10,7 @@ import (
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	logReq := new(model.LoginRequest)
+	logReq := new(models.LoginRequest)
 	if err := json.NewDecoder(r.Body).Decode(&logReq); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -36,7 +36,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func Refresh(w http.ResponseWriter, r *http.Request) {
-	logReq := new(model.LoginRequest)
+	logReq := new(models.LoginRequest)
 	if err := json.NewDecoder(r.Body).Decode(&logReq); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

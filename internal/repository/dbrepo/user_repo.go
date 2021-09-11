@@ -5,37 +5,37 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
-	"github.com/igor-koniukhov/fastcat/internal/model"
+	"github.com/igor-koniukhov/fastcat/internal/models"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"golang.org/x/crypto/bcrypt"
 	"time"
 )
 
 type UserRepository interface {
-	Create(user *model.User) (*model.User, error)
-	GetUserByID(id int) (*model.User, error)
-	GetAll() []model.User
+	Create(user *models.User) (*models.User, error)
+	GetUserByID(id int) (*models.User, error)
+	GetAll() []models.User
 	Delete(id int) error
-	Update(id int, user *model.User) *model.User
-	GetUserByEmail(email string) (*model.User, error)
+	Update(id int, user *models.User) *models.User
+	GetUserByEmail(email string) (*models.User, error)
 
 }
 
 type UserRepo struct {
-	App *config.AppConfig
-	DB *sql.DB
-	Users []model.User
-	User  model.User
+	App   *config.AppConfig
+	DB    *sql.DB
+	Users []models.User
+	User  models.User
 }
 
 func NewUserRepository(app *config.AppConfig, DB *sql.DB) *UserRepo {
 	return &UserRepo{App: app, DB: DB}
 }
 
-func (usr UserRepo) Create(user *model.User) (*model.User, error) {
+func (usr UserRepo) Create(user *models.User) (*models.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", model.TableUser)
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", models.TableUser)
 	pass, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	web.Log.Error(err, err)
 	_, err = usr.DB.ExecContext(ctx, sqlStmt,
@@ -46,10 +46,10 @@ func (usr UserRepo) Create(user *model.User) (*model.User, error) {
 	return user, nil
 }
 
-func (usr UserRepo) GetUserByID(id int) (*model.User, error){
+func (usr UserRepo) GetUserByID(id int) (*models.User, error){
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", model.TableUser)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", models.TableUser)
 	row := usr.DB.QueryRowContext(ctx, sqlStmt, id)
 	err :=row.Scan(
 		&usr.User.ID,
@@ -63,10 +63,10 @@ func (usr UserRepo) GetUserByID(id int) (*model.User, error){
 	return &usr.User, nil
 }
 
-func (usr UserRepo) GetAll() []model.User {
+func (usr UserRepo) GetAll() []models.User {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s", model.TableUser)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s", models.TableUser)
 	results, err := usr.DB.QueryContext(ctx, sqlStmt)
 	web.Log.Error(err, err)
 	for results.Next() {
@@ -87,17 +87,17 @@ func (usr UserRepo) GetAll() []model.User {
 func (usr UserRepo) Delete(id int) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", model.TableUser)
+	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableUser)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt, id)
 	web.Log.Error(err, err)
 	return nil
 }
 
-func (usr UserRepo) Update(id int, user *model.User) *model.User {
+func (usr UserRepo) Update(id int, user *models.User) *models.User {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	fmt.Println(id)
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", model.TableUser)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", models.TableUser)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt,
 		user.ID,
 		user.Name,
@@ -108,10 +108,10 @@ func (usr UserRepo) Update(id int, user *model.User) *model.User {
 	return user
 }
 
-func (usr UserRepo) GetUserByEmail(email string) (*model.User, error) {
+func (usr UserRepo) GetUserByEmail(email string) (*models.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = ? ", model.TableUser)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = ? ", models.TableUser)
 	row := usr.DB.QueryRowContext(ctx, sqlStmt, email)
 	err :=row.Scan(
 		&usr.User.ID,
