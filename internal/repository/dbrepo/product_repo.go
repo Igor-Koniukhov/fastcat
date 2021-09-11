@@ -120,9 +120,8 @@ func (p ProductRepo) GetAll() []models.Item {
 func (p ProductRepo) Delete(id int) (err error) {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", models.TabItems)
 	_, err = p.DB.Exec(sqlStmt, id)
-	fmt.Println(sqlStmt)
 	web.Log.Error(err, err)
-	return
+	return nil
 }
 
 func (p ProductRepo) SoftDelete(id int) error {

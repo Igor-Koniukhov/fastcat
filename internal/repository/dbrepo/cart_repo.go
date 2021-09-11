@@ -33,7 +33,7 @@ func (c CartRepo) Create(cart *models.Cart) (*models.Cart, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, product_id, item) VALUES (?, ?, ?)", models.TableCarts)
 		_, err := c.DB.ExecContext(ctx, sqlStmt, cart.UserID, cart.ProductID, cart.Items)
 	web.Log.Error(err, err)
-	return cart, err
+	return cart, nil
 }
 
 func (c CartRepo) Get(id int) *models.Cart {
@@ -75,7 +75,7 @@ func (c CartRepo) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableCarts)
 	_, err := c.DB.ExecContext(ctx, sqlStmt, id)
 	web.Log.Error(err, err)
-	return err
+	return nil
 }
 
 func (c CartRepo) Update(id int, cart *models.Cart) *models.Cart {
@@ -88,6 +88,5 @@ func (c CartRepo) Update(id int, cart *models.Cart) *models.Cart {
 		cart.ProductID,
 		cart.Items)
 	web.Log.Error(err, err)
-	fmt.Println(cart)
 	return cart
 }

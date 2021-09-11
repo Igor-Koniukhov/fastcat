@@ -81,7 +81,7 @@ func (o OrderRepo) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableOrders)
 	_, err := o.DB.ExecContext(ctx, sqlStmt, id)
 	web.Log.Error(err, err)
-	return err
+	return nil
 }
 
 func (o OrderRepo) Update(id int, ord *models.Order) *models.Order {
@@ -95,7 +95,6 @@ func (o OrderRepo) Update(id int, ord *models.Order) *models.Order {
 		ord.AddressID,
 		ord.Status)
 	web.Log.Error(err, err)
-	fmt.Println(*ord)
 	return ord
 }
 
