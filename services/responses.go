@@ -11,20 +11,7 @@ import (
 	"strconv"
 )
 
-
-
-type LoginResponse struct {
-	AccessToken  string `json:"access_token"`
-	RefreshToken string `json:"refresh_token"`
-}
-
-type UserResponse struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
-}
-
-func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*LoginResponse, error) {
+func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*models.LoginResponse, int, error) {
 	RefreshLifetimeMinutes, err := strconv.Atoi(os.Getenv("RefreshLifetimeMinutes"))
 	web.Log.Error(err, "message: ", err)
 	RefreshAccess := os.Getenv("RefreshAccess")
@@ -35,24 +22,25 @@ func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*LoginR
 
 	if err != nil {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
-		return nil, err
+		return nil, 0, err
 	}
 	fmt.Println(user)
 
 	if err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(logReq.Password)); err != nil {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
-		return nil, err
+		return nil, 0, err
 	}
 
 	accessString, err := GenerateToken(user.ID, AccessLifetimeMinutes, AccessSecret)
-	refreshString, err := GenerateToken(user.ID, RefreshLifetimeMinutes, RefreshAccess )
+	refreshString, err := GenerateToken(user.ID, RefreshLifetimeMinutes, RefreshAccess)
 	if err != nil {
 		http.Error(w, "Something went wrong", http.StatusInternalServerError)
-		return nil, err
+		return nil, 0, err
 	}
-	resp := &LoginResponse{
-		accessString,
-		refreshString,
+	resp := &models.LoginResponse{
+		AccessToken:  accessString,
+		RefreshToken: refreshString,
 	}
-	return resp, err
+
+	return resp, user.ID, nil
 }

@@ -1,7 +1,9 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
+	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"github.com/igor-koniukhov/fastcat/services"
 	web "github.com/igor-koniukhov/webLogger/v3"
@@ -14,7 +16,8 @@ func  AuthMiddleWare(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request){
 		w.Header().Set("Content-Type", "application/json")
 		bearerString := r.Header.Get("Authorization")
-		tokenString := services.GetTokenFromBearerString(bearerString)
+		tokenString, err := services.GetTokenFromBearerString(bearerString)
+		web.Log.Error(err)
 		claims, err := services.ValidateToken(tokenString, os.Getenv("AccessSecret"))
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusUnauthorized)
@@ -27,7 +30,7 @@ func  AuthMiddleWare(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		resp := &services.UserResponse{
+		resp := &models.UserResponse{
 			ID:    user.ID,
 			Name:  user.Name,
 			Email: user.Email,
@@ -36,6 +39,7 @@ func  AuthMiddleWare(next http.HandlerFunc) http.HandlerFunc {
 		w.WriteHeader(http.StatusOK)
 		err = json.NewEncoder(w).Encode(resp)
 		web.Log.Error(err, "message : ", err)
+		r = r.WithContext(context.WithValue(r.Context(), "user_id", resp.ID))
 
 		next.ServeHTTP(w, r)
 	}

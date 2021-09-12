@@ -22,13 +22,13 @@ func main() {
 	srv := new(server.Server)
 	driver, err := SetAndRun()
 	web.Log.Error(err, "message: ", err)
-	defer driver.MySQL.Close()
+	defer driver.SQL.Close()
 
 	go RunUpToDateSuppliersInfo(600)
 	go func() {
 		err := srv.Serve(
 			os.Getenv("PORT"),
-			routes(&app, driver.MySQL),
+			routes(&app, driver.SQL),
 			)
 		web.Log.Fatal(err, err, " Got an error while running http server")
 	}()

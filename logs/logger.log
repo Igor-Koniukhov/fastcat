@@ -2732,3 +2732,1273 @@
  INFO [15:48:08||2021.09.11] 516- product id 1546 -item id   product_repo.go:54  
  INFO [15:48:08||2021.09.11] 516- product id 1547 -item id   product_repo.go:54  
  INFO [15:48:08||2021.09.11] 516- product id 1548 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 517- product id 1549 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 517- product id 1550 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 517- product id 1551 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 518- product id 1552 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 518- product id 1553 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 518- product id 1554 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 519- product id 1555 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 519- product id 1556 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 519- product id 1557 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 520- product id 1558 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 520- product id 1559 -item id   product_repo.go:54  
+ INFO [15:58:08||2021.09.11] 520- product id 1560 -item id   product_repo.go:54  
+ INFO [16:00:00||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:00:00||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:00:01||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:00:01||2021.09.11] 521- product id 1561 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 521- product id 1562 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 521- product id 1563 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 522- product id 1566 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 522- product id 1565 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 522- product id 1564 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 523- product id 1567 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 523- product id 1569 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 523- product id 1568 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 524- product id 1570 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 524- product id 1572 -item id   product_repo.go:54  
+ INFO [16:00:01||2021.09.11] 524- product id 1571 -item id   product_repo.go:54  
+ INFO [16:07:24||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:07:24||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:07:25||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:07:25||2021.09.11] 525- product id 1573 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 525- product id 1575 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 525- product id 1574 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 526- product id 1576 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 526- product id 1577 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 526- product id 1578 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 527- product id 1579 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 527- product id 1581 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 527- product id 1580 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 528- product id 1582 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 528- product id 1584 -item id   product_repo.go:54  
+ INFO [16:07:25||2021.09.11] 528- product id 1583 -item id   product_repo.go:54  
+ INFO [16:12:39||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:12:39||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:12:40||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:12:40||2021.09.11] 529- product id 1585 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 529- product id 1586 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 529- product id 1587 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 530- product id 1588 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 530- product id 1589 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 530- product id 1590 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 531- product id 1591 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 531- product id 1593 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 531- product id 1592 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 532- product id 1594 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 532- product id 1595 -item id   product_repo.go:54  
+ INFO [16:12:40||2021.09.11] 532- product id 1596 -item id   product_repo.go:54  
+ INFO [16:13:26||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:13:26||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:13:27||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:13:27||2021.09.11] 533- product id 1597 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 533- product id 1598 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 533- product id 1599 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 534- product id 1600 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 534- product id 1601 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 534- product id 1602 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 535- product id 1603 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 535- product id 1604 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 535- product id 1605 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 536- product id 1606 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 536- product id 1608 -item id   product_repo.go:54  
+ INFO [16:13:27||2021.09.11] 536- product id 1607 -item id   product_repo.go:54  
+ INFO [16:14:48||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:14:48||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:14:49||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:14:49||2021.09.11] 537- product id 1609 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 537- product id 1611 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 537- product id 1610 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 538- product id 1612 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 538- product id 1613 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 538- product id 1614 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 539- product id 1615 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 539- product id 1617 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 539- product id 1616 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 540- product id 1618 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 540- product id 1620 -item id   product_repo.go:54  
+ INFO [16:14:49||2021.09.11] 540- product id 1619 -item id   product_repo.go:54  
+ INFO [16:15:28||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:15:28||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:15:29||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:15:29||2021.09.11] 541- product id 1621 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 541- product id 1623 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 541- product id 1622 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 542- product id 1624 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 542- product id 1625 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 542- product id 1626 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 543- product id 1627 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 543- product id 1628 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 543- product id 1629 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 544- product id 1630 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 544- product id 1631 -item id   product_repo.go:54  
+ INFO [16:15:29||2021.09.11] 544- product id 1632 -item id   product_repo.go:54  
+ INFO [16:16:48||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:16:48||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:16:48||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:16:49||2021.09.11] 545- product id 1633 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 545- product id 1635 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 545- product id 1634 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 546- product id 1636 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 546- product id 1637 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 546- product id 1638 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 547- product id 1639 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 547- product id 1640 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 547- product id 1641 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 548- product id 1643 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 548- product id 1642 -item id   product_repo.go:54  
+ INFO [16:16:49||2021.09.11] 548- product id 1644 -item id   product_repo.go:54  
+ INFO [16:17:22||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:17:22||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:17:23||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:17:23||2021.09.11] 549- product id 1645 -item id   product_repo.go:54  
+ INFO [16:17:58||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:17:58||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:17:59||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:17:59||2021.09.11] 553- product id 1646 -item id   product_repo.go:54  
+ INFO [16:17:59||2021.09.11] 553- product id 1647 -item id   product_repo.go:54  
+ INFO [16:17:59||2021.09.11] 553- product id 1648 -item id   product_repo.go:54  
+ INFO [16:18:06||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:18:06||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:18:07||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:18:07||2021.09.11] 557- product id 1649 -item id   product_repo.go:54  
+ INFO [16:18:07||2021.09.11] 557- product id 1650 -item id   product_repo.go:54  
+ INFO [16:18:07||2021.09.11] 557- product id 1651 -item id   product_repo.go:54  
+ INFO [16:18:36||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:18:36||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:18:37||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:18:37||2021.09.11] 561- product id 1652 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 561- product id 1654 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 561- product id 1653 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 562- product id 1655 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 562- product id 1656 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 562- product id 1657 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 563- product id 1658 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 563- product id 1659 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 563- product id 1660 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 564- product id 1661 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 564- product id 1663 -item id   product_repo.go:54  
+ INFO [16:18:37||2021.09.11] 564- product id 1662 -item id   product_repo.go:54  
+ INFO [16:20:11||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:20:11||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:20:12||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:20:12||2021.09.11] 565- product id 1664 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 565- product id 1665 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 565- product id 1666 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 566- product id 1667 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 566- product id 1669 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 566- product id 1668 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 567- product id 1670 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 567- product id 1671 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 567- product id 1672 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 568- product id 1674 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 568- product id 1675 -item id   product_repo.go:54  
+ INFO [16:20:12||2021.09.11] 568- product id 1673 -item id   product_repo.go:54  
+ INFO [16:30:12||2021.09.11] 569- product id 1676 -item id   product_repo.go:54  
+ INFO [16:30:12||2021.09.11] 569- product id 1678 -item id   product_repo.go:54  
+ INFO [16:30:12||2021.09.11] 569- product id 1677 -item id   product_repo.go:54  
+ INFO [16:30:12||2021.09.11] 570- product id 1679 -item id   product_repo.go:54  
+ INFO [16:30:12||2021.09.11] 570- product id 1680 -item id   product_repo.go:54  
+ INFO [16:30:12||2021.09.11] 570- product id 1681 -item id   product_repo.go:54  
+ INFO [16:30:13||2021.09.11] 571- product id 1682 -item id   product_repo.go:54  
+ INFO [16:30:13||2021.09.11] 571- product id 1683 -item id   product_repo.go:54  
+ INFO [16:30:13||2021.09.11] 571- product id 1684 -item id   product_repo.go:54  
+ INFO [16:30:13||2021.09.11] 572- product id 1685 -item id   product_repo.go:54  
+ INFO [16:30:13||2021.09.11] 572- product id 1686 -item id   product_repo.go:54  
+ INFO [16:30:13||2021.09.11] 572- product id 1687 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 573- product id 1688 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 573- product id 1689 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 573- product id 1690 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 574- product id 1691 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 574- product id 1693 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 574- product id 1692 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 575- product id 1695 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 575- product id 1694 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 575- product id 1696 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 576- product id 1697 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 576- product id 1698 -item id   product_repo.go:54  
+ INFO [16:40:13||2021.09.11] 576- product id 1699 -item id   product_repo.go:54  
+ INFO [16:43:13||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:43:13||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:43:14||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:43:14||2021.09.11] 577- product id 1700 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 577- product id 1702 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 577- product id 1701 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 578- product id 1703 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 578- product id 1704 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 578- product id 1705 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 579- product id 1706 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 579- product id 1707 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 579- product id 1708 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 580- product id 1709 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 580- product id 1710 -item id   product_repo.go:54  
+ INFO [16:43:14||2021.09.11] 580- product id 1711 -item id   product_repo.go:54  
+ INFO [16:43:55||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:43:55||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:43:56||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:43:56||2021.09.11] 581- product id 1713 -item id   product_repo.go:54  
+ INFO [16:43:56||2021.09.11] 581- product id 1714 -item id   product_repo.go:54  
+ INFO [16:43:56||2021.09.11] 581- product id 1712 -item id   product_repo.go:54  
+ INFO [16:44:07||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:44:07||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:44:08||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:44:08||2021.09.11] 585- product id 1715 -item id   product_repo.go:54  
+ INFO [16:44:08||2021.09.11] 585- product id 1717 -item id   product_repo.go:54  
+ INFO [16:44:08||2021.09.11] 585- product id 1716 -item id   product_repo.go:54  
+ INFO [16:44:08||2021.09.11] 586- product id 1718 -item id   product_repo.go:54  
+ INFO [16:44:08||2021.09.11] 586- product id 1720 -item id   product_repo.go:54  
+ INFO [16:44:08||2021.09.11] 586- product id 1719 -item id   product_repo.go:54  
+ INFO [16:44:09||2021.09.11] 587- product id 1721 -item id   product_repo.go:54  
+ INFO [16:44:09||2021.09.11] 587- product id 1722 -item id   product_repo.go:54  
+ INFO [16:44:09||2021.09.11] 587- product id 1723 -item id   product_repo.go:54  
+ INFO [16:44:09||2021.09.11] 588- product id 1724 -item id   product_repo.go:54  
+ INFO [16:44:09||2021.09.11] 588- product id 1726 -item id   product_repo.go:54  
+ INFO [16:44:09||2021.09.11] 588- product id 1725 -item id   product_repo.go:54  
+ INFO [16:44:53||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:44:53||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:44:54||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:44:54||2021.09.11] 589- product id 1727 -item id   product_repo.go:54  
+ INFO [16:44:54||2021.09.11] 589- product id 1728 -item id   product_repo.go:54  
+ INFO [16:44:55||2021.09.11] 589- product id 1729 -item id   product_repo.go:54  
+ INFO [16:44:55||2021.09.11] 590- product id 1730 -item id   product_repo.go:54  
+ INFO [16:44:55||2021.09.11] 590- product id 1731 -item id   product_repo.go:54  
+ INFO [16:44:55||2021.09.11] 590- product id 1732 -item id   product_repo.go:54  
+ INFO [16:44:56||2021.09.11] 591- product id 1733 -item id   product_repo.go:54  
+ INFO [16:44:56||2021.09.11] 591- product id 1734 -item id   product_repo.go:54  
+ INFO [16:44:56||2021.09.11] 591- product id 1735 -item id   product_repo.go:54  
+ INFO [16:44:57||2021.09.11] 592- product id 1736 -item id   product_repo.go:54  
+ INFO [16:44:57||2021.09.11] 592- product id 1737 -item id   product_repo.go:54  
+ INFO [16:44:57||2021.09.11] 592- product id 1738 -item id   product_repo.go:54  
+ INFO [16:45:27||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:45:27||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:45:28||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:45:28||2021.09.11] 593- product id 1739 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 593- product id 1740 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 593- product id 1741 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 594- product id 1742 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 594- product id 1743 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 594- product id 1744 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 595- product id 1745 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 595- product id 1746 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 595- product id 1747 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 596- product id 1748 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 596- product id 1749 -item id   product_repo.go:54  
+ INFO [16:45:28||2021.09.11] 596- product id 1750 -item id   product_repo.go:54  
+ INFO [16:47:03||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:47:03||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:47:04||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:47:04||2021.09.11] 597- product id 1751 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 597- product id 1752 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 597- product id 1753 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 598- product id 1754 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 598- product id 1755 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 598- product id 1756 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 599- product id 1757 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 599- product id 1758 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 599- product id 1759 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 600- product id 1760 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 600- product id 1761 -item id   product_repo.go:54  
+ INFO [16:47:04||2021.09.11] 600- product id 1762 -item id   product_repo.go:54  
+ INFO [16:48:24||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:48:24||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:48:24||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:48:25||2021.09.11] 601- product id 1763 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 601- product id 1764 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 601- product id 1765 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 602- product id 1766 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 602- product id 1767 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 602- product id 1768 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 603- product id 1769 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 603- product id 1770 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 603- product id 1771 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 604- product id 1772 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 604- product id 1773 -item id   product_repo.go:54  
+ INFO [16:48:25||2021.09.11] 604- product id 1774 -item id   product_repo.go:54  
+ INFO [16:48:39||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:48:39||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:48:40||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:48:40||2021.09.11] 605- product id 1775 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 605- product id 1776 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 605- product id 1777 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 606- product id 1778 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 606- product id 1779 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 606- product id 1780 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 607- product id 1781 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 607- product id 1782 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 607- product id 1783 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 608- product id 1784 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 608- product id 1785 -item id   product_repo.go:54  
+ INFO [16:48:40||2021.09.11] 608- product id 1786 -item id   product_repo.go:54  
+ INFO [16:50:47||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:50:47||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:50:47||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:50:47||2021.09.11] 1- product id 1 -item id   product_repo.go:54  
+ ERROR [16:50:47||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:47||2021.09.11] 1- product id 2 -item id   product_repo.go:54  
+ ERROR [16:50:47||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 1- product id 3 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 2- product id 4 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 2- product id 5 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 2- product id 6 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 3- product id 7 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 3- product id 8 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 3- product id 9 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 4- product id 10 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 4- product id 11 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:50:48||2021.09.11] 4- product id 12 -item id   product_repo.go:54  
+ ERROR [16:50:48||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:38||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:54:38||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:54:39||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:54:39||2021.09.11] 5- product id 13 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 5- product id 15 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 5- product id 14 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 6- product id 16 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 6- product id 18 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 6- product id 17 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 7- product id 20 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 7- product id 21 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 7- product id 19 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 8- product id 22 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 8- product id 23 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:54:39||2021.09.11] 8- product id 24 -item id   product_repo.go:54  
+ ERROR [16:54:39||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:13||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [16:55:13||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [16:55:14||2021.09.11] FastCat application Started  main.go:35  
+ INFO [16:55:14||2021.09.11] 9- product id 25 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 9- product id 26 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 9- product id 27 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 10- product id 28 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 10- product id 30 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 10- product id 29 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 11- product id 31 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 11- product id 32 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 11- product id 33 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 12- product id 34 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 12- product id 36 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [16:55:14||2021.09.11] 12- product id 35 -item id   product_repo.go:54  
+ ERROR [16:55:14||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:58||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:02:58||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:02:59||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:02:59||2021.09.11] 13- product id 37 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 13- product id 39 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 13- product id 38 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 14- product id 40 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 14- product id 42 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 14- product id 41 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 15- product id 43 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 15- product id 45 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 15- product id 44 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 16- product id 46 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 16- product id 47 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:02:59||2021.09.11] 16- product id 48 -item id   product_repo.go:54  
+ ERROR [17:02:59||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:56||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:07:56||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:07:56||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:07:57||2021.09.11] 17- product id 49 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 17- product id 50 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 17- product id 51 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 18- product id 52 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 18- product id 53 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 18- product id 54 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 19- product id 55 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 19- product id 57 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 19- product id 56 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 20- product id 58 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 20- product id 59 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:07:57||2021.09.11] 20- product id 60 -item id   product_repo.go:54  
+ ERROR [17:07:57||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:11||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:08:11||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:08:12||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:08:12||2021.09.11] 21- product id 61 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 21- product id 62 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 21- product id 63 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 22- product id 64 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 22- product id 65 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 22- product id 66 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 23- product id 67 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 23- product id 68 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 23- product id 69 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 24- product id 70 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 24- product id 71 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:12||2021.09.11] 24- product id 72 -item id   product_repo.go:54  
+ ERROR [17:08:12||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:34||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:08:34||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:08:35||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:08:35||2021.09.11] 25- product id 73 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 25- product id 74 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 25- product id 75 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 26- product id 76 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 26- product id 77 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 26- product id 78 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 27- product id 79 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 27- product id 80 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 27- product id 81 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 28- product id 82 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 28- product id 83 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:08:35||2021.09.11] 28- product id 84 -item id   product_repo.go:54  
+ ERROR [17:08:35||2021.09.11] Error 1146: Table 'fastcat_db.suppliers_items' doesn't exist  product_repo.go:55  
+ INFO [17:13:41||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:13:41||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:13:42||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:13:42||2021.09.11] 1- product id 1 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 1- product id 2 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 1- product id 3 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 2- product id 4 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 2- product id 5 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 2- product id 6 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 3- product id 7 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 3- product id 8 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 3- product id 9 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 4- product id 10 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 4- product id 11 -item id   product_repo.go:54  
+ INFO [17:13:42||2021.09.11] 4- product id 12 -item id   product_repo.go:54  
+ INFO [17:20:44||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:20:44||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:20:45||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:20:45||2021.09.11] 5- product id 13 -item id   product_repo.go:54  
+ INFO [17:20:45||2021.09.11] 5- product id 14 -item id   product_repo.go:54  
+ INFO [17:20:45||2021.09.11] 5- product id 15 -item id   product_repo.go:54  
+ INFO [17:20:45||2021.09.11] 6- product id 16 -item id   product_repo.go:54  
+ INFO [17:20:45||2021.09.11] 6- product id 17 -item id   product_repo.go:54  
+ INFO [17:20:45||2021.09.11] 6- product id 18 -item id   product_repo.go:54  
+ INFO [17:20:46||2021.09.11] 7- product id 19 -item id   product_repo.go:54  
+ INFO [17:20:46||2021.09.11] 7- product id 20 -item id   product_repo.go:54  
+ INFO [17:20:46||2021.09.11] 7- product id 21 -item id   product_repo.go:54  
+ INFO [17:20:46||2021.09.11] 8- product id 22 -item id   product_repo.go:54  
+ INFO [17:20:46||2021.09.11] 8- product id 23 -item id   product_repo.go:54  
+ INFO [17:20:46||2021.09.11] 8- product id 24 -item id   product_repo.go:54  
+ INFO [17:20:57||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:20:57||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:20:58||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:20:58||2021.09.11] 9- product id 25 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 9- product id 27 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 9- product id 26 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 10- product id 28 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 10- product id 30 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 10- product id 29 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 11- product id 31 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 11- product id 33 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 11- product id 32 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 12- product id 34 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 12- product id 36 -item id   product_repo.go:54  
+ INFO [17:20:58||2021.09.11] 12- product id 35 -item id   product_repo.go:54  
+ INFO [17:21:58||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:21:58||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:21:59||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:21:59||2021.09.11] 13- product id 37 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 13- product id 38 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 13- product id 39 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 14- product id 40 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 14- product id 41 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 14- product id 42 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 15- product id 43 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 15- product id 45 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 15- product id 44 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 16- product id 46 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 16- product id 48 -item id   product_repo.go:54  
+ INFO [17:21:59||2021.09.11] 16- product id 47 -item id   product_repo.go:54  
+ INFO [17:24:36||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:24:36||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:24:37||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:24:37||2021.09.11] 17- product id 49 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 17- product id 50 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 17- product id 51 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 18- product id 52 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 18- product id 53 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 18- product id 54 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 19- product id 55 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 19- product id 56 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 19- product id 57 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 20- product id 58 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 20- product id 59 -item id   product_repo.go:54  
+ INFO [17:24:37||2021.09.11] 20- product id 60 -item id   product_repo.go:54  
+ INFO [17:25:17||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:25:17||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:25:18||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:25:18||2021.09.11] 21- product id 61 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 21- product id 62 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 21- product id 63 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 22- product id 64 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 22- product id 65 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 22- product id 66 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 23- product id 67 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 23- product id 68 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 23- product id 69 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 24- product id 70 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 24- product id 71 -item id   product_repo.go:54  
+ INFO [17:25:18||2021.09.11] 24- product id 72 -item id   product_repo.go:54  
+ INFO [17:35:18||2021.09.11] 25- product id 73 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 25- product id 74 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 25- product id 75 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 26- product id 76 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 26- product id 77 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 26- product id 78 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 27- product id 79 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 27- product id 80 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 27- product id 81 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 28- product id 82 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 28- product id 83 -item id   product_repo.go:54  
+ INFO [17:35:19||2021.09.11] 28- product id 84 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 29- product id 85 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 29- product id 86 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 29- product id 87 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 30- product id 88 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 30- product id 89 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 30- product id 90 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 31- product id 91 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 31- product id 92 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 31- product id 93 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 32- product id 94 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 32- product id 95 -item id   product_repo.go:54  
+ INFO [17:45:19||2021.09.11] 32- product id 96 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 33- product id 97 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 33- product id 98 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 33- product id 99 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 34- product id 100 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 34- product id 101 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 34- product id 102 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 35- product id 103 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 35- product id 104 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 35- product id 105 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 36- product id 106 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 36- product id 107 -item id   product_repo.go:54  
+ INFO [17:55:20||2021.09.11] 36- product id 108 -item id   product_repo.go:54  
+ INFO [17:58:24||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [17:58:24||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [17:58:25||2021.09.11] FastCat application Started  main.go:35  
+ INFO [17:58:25||2021.09.11] 37- product id 109 -item id   product_repo.go:53  
+ INFO [17:58:25||2021.09.11] 37- product id 110 -item id   product_repo.go:53  
+ INFO [17:58:25||2021.09.11] 37- product id 111 -item id   product_repo.go:53  
+ INFO [17:58:25||2021.09.11] 38- product id 112 -item id   product_repo.go:53  
+ INFO [17:58:25||2021.09.11] 38- product id 113 -item id   product_repo.go:53  
+ INFO [17:58:25||2021.09.11] 38- product id 114 -item id   product_repo.go:53  
+ INFO [17:58:26||2021.09.11] 39- product id 115 -item id   product_repo.go:53  
+ INFO [17:58:26||2021.09.11] 39- product id 116 -item id   product_repo.go:53  
+ INFO [17:58:26||2021.09.11] 39- product id 117 -item id   product_repo.go:53  
+ INFO [17:58:26||2021.09.11] 40- product id 118 -item id   product_repo.go:53  
+ INFO [17:58:26||2021.09.11] 40- product id 119 -item id   product_repo.go:53  
+ INFO [17:58:26||2021.09.11] 40- product id 120 -item id   product_repo.go:53  
+ INFO [18:04:26||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [18:04:26||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [18:04:27||2021.09.11] FastCat application Started  main.go:35  
+ INFO [18:04:27||2021.09.11] 41- product id 121 -item id   product_repo.go:53  
+ INFO [18:04:27||2021.09.11] 41- product id 122 -item id   product_repo.go:53  
+ INFO [18:04:27||2021.09.11] 41- product id 123 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 42- product id 124 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 42- product id 125 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 42- product id 126 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 43- product id 127 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 43- product id 128 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 43- product id 129 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 44- product id 130 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 44- product id 131 -item id   product_repo.go:53  
+ INFO [18:04:28||2021.09.11] 44- product id 132 -item id   product_repo.go:53  
+ INFO [18:09:02||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [18:09:02||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [20:11:11||2021.09.11] FastCat application Started  main.go:35  
+ INFO [20:11:11||2021.09.11] 45- product id 133 -item id   product_repo.go:53  
+ INFO [20:11:11||2021.09.11] 45- product id 134 -item id   product_repo.go:53  
+ INFO [20:11:11||2021.09.11] 45- product id 135 -item id   product_repo.go:53  
+ INFO [20:11:11||2021.09.11] 46- product id 136 -item id   product_repo.go:53  
+ INFO [20:11:11||2021.09.11] 46- product id 137 -item id   product_repo.go:53  
+ INFO [20:11:11||2021.09.11] 46- product id 138 -item id   product_repo.go:53  
+ INFO [20:11:11||2021.09.11] 47- product id 139 -item id   product_repo.go:53  
+ INFO [20:11:12||2021.09.11] 47- product id 140 -item id   product_repo.go:53  
+ INFO [20:11:12||2021.09.11] 47- product id 141 -item id   product_repo.go:53  
+ INFO [20:11:12||2021.09.11] 48- product id 142 -item id   product_repo.go:53  
+ INFO [20:11:12||2021.09.11] 48- product id 143 -item id   product_repo.go:53  
+ INFO [20:11:12||2021.09.11] 48- product id 144 -item id   product_repo.go:53  
+ INFO [20:11:32||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [20:11:32||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [20:21:08||2021.09.11] FastCat application Started  main.go:35  
+ INFO [20:21:08||2021.09.11] 49- product id 145 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 49- product id 146 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 49- product id 147 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 50- product id 148 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 50- product id 149 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 50- product id 150 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 51- product id 151 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 51- product id 152 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 51- product id 153 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 52- product id 154 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 52- product id 155 -item id   product_repo.go:53  
+ INFO [20:21:08||2021.09.11] 52- product id 156 -item id   product_repo.go:53  
+ INFO [20:21:44||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [20:21:44||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [21:22:51||2021.09.11] FastCat application Started  main.go:35  
+ INFO [21:22:51||2021.09.11] 53- product id 157 -item id   product_repo.go:53  
+ INFO [21:22:51||2021.09.11] 53- product id 158 -item id   product_repo.go:53  
+ INFO [21:22:51||2021.09.11] 53- product id 159 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 54- product id 160 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 54- product id 161 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 54- product id 162 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 55- product id 163 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 55- product id 164 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 55- product id 165 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 56- product id 166 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 56- product id 167 -item id   product_repo.go:53  
+ INFO [21:22:52||2021.09.11] 56- product id 168 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 57- product id 169 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 57- product id 170 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 57- product id 171 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 58- product id 172 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 58- product id 173 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 58- product id 174 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 59- product id 175 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 59- product id 176 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 59- product id 177 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 60- product id 178 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 60- product id 179 -item id   product_repo.go:53  
+ INFO [21:32:52||2021.09.11] 60- product id 180 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 61- product id 181 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 61- product id 182 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 61- product id 183 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 62- product id 184 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 62- product id 185 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 62- product id 186 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 63- product id 187 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 63- product id 188 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 63- product id 189 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 64- product id 190 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 64- product id 191 -item id   product_repo.go:53  
+ INFO [21:42:53||2021.09.11] 64- product id 192 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 65- product id 193 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 65- product id 194 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 65- product id 195 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 66- product id 196 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 66- product id 197 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 66- product id 198 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 67- product id 199 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 67- product id 200 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 67- product id 201 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 68- product id 202 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 68- product id 203 -item id   product_repo.go:53  
+ INFO [21:52:53||2021.09.11] 68- product id 204 -item id   product_repo.go:53  
+ INFO [22:01:28||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [22:01:28||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [22:01:55||2021.09.11] FastCat application Started  main.go:35  
+ INFO [22:01:55||2021.09.11] 69- product id 205 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 69- product id 206 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 69- product id 207 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 70- product id 208 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 70- product id 209 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 70- product id 210 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 71- product id 211 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 71- product id 212 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 71- product id 213 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 72- product id 214 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 72- product id 215 -item id   product_repo.go:53  
+ INFO [22:01:55||2021.09.11] 72- product id 216 -item id   product_repo.go:53  
+ INFO [22:11:55||2021.09.11] 73- product id 217 -item id   product_repo.go:53  
+ INFO [22:11:55||2021.09.11] 73- product id 218 -item id   product_repo.go:53  
+ INFO [22:11:55||2021.09.11] 73- product id 219 -item id   product_repo.go:53  
+ INFO [22:11:55||2021.09.11] 74- product id 220 -item id   product_repo.go:53  
+ INFO [22:11:55||2021.09.11] 74- product id 221 -item id   product_repo.go:53  
+ INFO [22:11:55||2021.09.11] 74- product id 222 -item id   product_repo.go:53  
+ INFO [22:11:56||2021.09.11] 75- product id 223 -item id   product_repo.go:53  
+ INFO [22:11:56||2021.09.11] 75- product id 224 -item id   product_repo.go:53  
+ INFO [22:11:56||2021.09.11] 75- product id 225 -item id   product_repo.go:53  
+ INFO [22:11:56||2021.09.11] 76- product id 226 -item id   product_repo.go:53  
+ INFO [22:11:56||2021.09.11] 76- product id 227 -item id   product_repo.go:53  
+ INFO [22:11:56||2021.09.11] 76- product id 228 -item id   product_repo.go:53  
+ INFO [22:12:14||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [22:12:14||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [22:12:14||2021.09.11] FastCat application Started  main.go:35  
+ INFO [22:12:15||2021.09.11] 77- product id 229 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 77- product id 230 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 77- product id 231 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 78- product id 232 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 78- product id 233 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 78- product id 234 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 79- product id 235 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 79- product id 236 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 79- product id 237 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 80- product id 238 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 80- product id 239 -item id   product_repo.go:53  
+ INFO [22:12:15||2021.09.11] 80- product id 240 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 81- product id 241 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 81- product id 242 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 81- product id 243 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 82- product id 244 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 82- product id 245 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 82- product id 246 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 83- product id 247 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 83- product id 248 -item id   product_repo.go:53  
+ INFO [22:22:15||2021.09.11] 83- product id 249 -item id   product_repo.go:53  
+ INFO [22:22:16||2021.09.11] 84- product id 250 -item id   product_repo.go:53  
+ INFO [22:22:16||2021.09.11] 84- product id 251 -item id   product_repo.go:53  
+ INFO [22:22:16||2021.09.11] 84- product id 252 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 85- product id 253 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 85- product id 254 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 85- product id 255 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 86- product id 256 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 86- product id 257 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 86- product id 258 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 87- product id 259 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 87- product id 260 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 87- product id 261 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 88- product id 262 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 88- product id 263 -item id   product_repo.go:53  
+ INFO [22:32:16||2021.09.11] 88- product id 264 -item id   product_repo.go:53  
+ INFO [22:42:16||2021.09.11] 89- product id 265 -item id   product_repo.go:53  
+ INFO [22:42:16||2021.09.11] 89- product id 266 -item id   product_repo.go:53  
+ INFO [22:42:16||2021.09.11] 89- product id 267 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 90- product id 268 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 90- product id 269 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 90- product id 270 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 91- product id 271 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 91- product id 272 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 91- product id 273 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 92- product id 274 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 92- product id 275 -item id   product_repo.go:53  
+ INFO [22:42:17||2021.09.11] 92- product id 276 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 93- product id 277 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 93- product id 278 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 93- product id 279 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 94- product id 280 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 94- product id 281 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 94- product id 282 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 95- product id 283 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 95- product id 284 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 95- product id 285 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 96- product id 286 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 96- product id 287 -item id   product_repo.go:53  
+ INFO [22:52:17||2021.09.11] 96- product id 288 -item id   product_repo.go:53  
+ INFO [22:54:48||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [22:54:48||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [22:54:49||2021.09.11] FastCat application Started  main.go:35  
+ INFO [22:54:49||2021.09.11] 97- product id 289 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 97- product id 290 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 97- product id 291 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 98- product id 292 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 98- product id 293 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 98- product id 294 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 99- product id 295 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 99- product id 296 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 99- product id 297 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 100- product id 298 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 100- product id 299 -item id   product_repo.go:53  
+ INFO [22:54:49||2021.09.11] 100- product id 300 -item id   product_repo.go:53  
+ INFO [23:04:49||2021.09.11] 101- product id 301 -item id   product_repo.go:53  
+ INFO [23:04:49||2021.09.11] 101- product id 302 -item id   product_repo.go:53  
+ INFO [23:04:49||2021.09.11] 101- product id 303 -item id   product_repo.go:53  
+ INFO [23:04:49||2021.09.11] 102- product id 304 -item id   product_repo.go:53  
+ INFO [23:04:49||2021.09.11] 102- product id 305 -item id   product_repo.go:53  
+ INFO [23:04:50||2021.09.11] 102- product id 306 -item id   product_repo.go:53  
+ INFO [23:04:50||2021.09.11] 103- product id 307 -item id   product_repo.go:53  
+ INFO [23:04:50||2021.09.11] 103- product id 308 -item id   product_repo.go:53  
+ INFO [23:04:50||2021.09.11] 103- product id 309 -item id   product_repo.go:53  
+ INFO [23:04:50||2021.09.11] 104- product id 310 -item id   product_repo.go:53  
+ INFO [23:04:50||2021.09.11] 104- product id 311 -item id   product_repo.go:53  
+ INFO [23:04:50||2021.09.11] 104- product id 312 -item id   product_repo.go:53  
+ INFO [23:11:46||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:11:46||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:11:47||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:11:47||2021.09.11] 105- product id 313 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 105- product id 314 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 105- product id 315 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 106- product id 316 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 106- product id 317 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 106- product id 318 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 107- product id 319 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 107- product id 320 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 107- product id 321 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 108- product id 322 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 108- product id 323 -item id   product_repo.go:53  
+ INFO [23:11:47||2021.09.11] 108- product id 324 -item id   product_repo.go:53  
+ INFO [23:15:38||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:15:38||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:15:39||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:15:39||2021.09.11] 109- product id 325 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 109- product id 326 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 109- product id 327 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 110- product id 328 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 110- product id 329 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 110- product id 330 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 111- product id 331 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 111- product id 332 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 111- product id 333 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 112- product id 334 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 112- product id 335 -item id   product_repo.go:53  
+ INFO [23:15:39||2021.09.11] 112- product id 336 -item id   product_repo.go:53  
+ INFO [23:16:11||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:16:11||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:16:12||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:16:12||2021.09.11] 113- product id 337 -item id   product_repo.go:53  
+ INFO [23:16:12||2021.09.11] 113- product id 338 -item id   product_repo.go:53  
+ INFO [23:16:12||2021.09.11] 113- product id 339 -item id   product_repo.go:53  
+ INFO [23:16:12||2021.09.11] 114- product id 340 -item id   product_repo.go:53  
+ INFO [23:16:12||2021.09.11] 114- product id 341 -item id   product_repo.go:53  
+ INFO [23:16:12||2021.09.11] 114- product id 342 -item id   product_repo.go:53  
+ INFO [23:16:13||2021.09.11] 115- product id 343 -item id   product_repo.go:53  
+ INFO [23:16:13||2021.09.11] 115- product id 344 -item id   product_repo.go:53  
+ INFO [23:16:13||2021.09.11] 115- product id 345 -item id   product_repo.go:53  
+ INFO [23:16:13||2021.09.11] 116- product id 346 -item id   product_repo.go:53  
+ INFO [23:16:13||2021.09.11] 116- product id 347 -item id   product_repo.go:53  
+ INFO [23:16:13||2021.09.11] 116- product id 348 -item id   product_repo.go:53  
+ INFO [23:18:31||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:18:31||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:18:32||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:18:32||2021.09.11] 117- product id 349 -item id   product_repo.go:53  
+ INFO [23:18:32||2021.09.11] 117- product id 350 -item id   product_repo.go:53  
+ INFO [23:18:32||2021.09.11] 117- product id 351 -item id   product_repo.go:53  
+ INFO [23:18:32||2021.09.11] 118- product id 352 -item id   product_repo.go:53  
+ INFO [23:18:32||2021.09.11] 118- product id 353 -item id   product_repo.go:53  
+ INFO [23:18:33||2021.09.11] 118- product id 354 -item id   product_repo.go:53  
+ INFO [23:18:33||2021.09.11] 119- product id 355 -item id   product_repo.go:53  
+ INFO [23:18:33||2021.09.11] 119- product id 356 -item id   product_repo.go:53  
+ INFO [23:18:33||2021.09.11] 119- product id 357 -item id   product_repo.go:53  
+ INFO [23:18:33||2021.09.11] 120- product id 358 -item id   product_repo.go:53  
+ INFO [23:18:33||2021.09.11] 120- product id 359 -item id   product_repo.go:53  
+ INFO [23:18:33||2021.09.11] 120- product id 360 -item id   product_repo.go:53  
+ INFO [23:19:31||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:19:31||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:19:32||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:19:32||2021.09.11] 121- product id 361 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 121- product id 362 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 121- product id 363 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 122- product id 364 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 122- product id 365 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 122- product id 366 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 123- product id 367 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 123- product id 368 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 123- product id 369 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 124- product id 370 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 124- product id 371 -item id   product_repo.go:53  
+ INFO [23:19:32||2021.09.11] 124- product id 372 -item id   product_repo.go:53  
+ INFO [23:29:32||2021.09.11] 125- product id 373 -item id   product_repo.go:53  
+ INFO [23:29:32||2021.09.11] 125- product id 374 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 125- product id 375 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 126- product id 376 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 126- product id 377 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 126- product id 378 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 127- product id 379 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 127- product id 380 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 127- product id 381 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 128- product id 382 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 128- product id 383 -item id   product_repo.go:53  
+ INFO [23:29:33||2021.09.11] 128- product id 384 -item id   product_repo.go:53  
+ INFO [23:32:12||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:32:12||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:32:13||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:32:13||2021.09.11] 129- product id 385 -item id   product_repo.go:53  
+ INFO [23:32:13||2021.09.11] 129- product id 386 -item id   product_repo.go:53  
+ INFO [23:32:13||2021.09.11] 129- product id 387 -item id   product_repo.go:53  
+ INFO [23:32:13||2021.09.11] 130- product id 388 -item id   product_repo.go:53  
+ INFO [23:32:13||2021.09.11] 130- product id 389 -item id   product_repo.go:53  
+ INFO [23:32:13||2021.09.11] 130- product id 390 -item id   product_repo.go:53  
+ INFO [23:32:13||2021.09.11] 131- product id 391 -item id   product_repo.go:53  
+ INFO [23:32:13||2021.09.11] 131- product id 392 -item id   product_repo.go:53  
+ INFO [23:32:14||2021.09.11] 131- product id 393 -item id   product_repo.go:53  
+ INFO [23:32:14||2021.09.11] 132- product id 394 -item id   product_repo.go:53  
+ INFO [23:32:14||2021.09.11] 132- product id 395 -item id   product_repo.go:53  
+ INFO [23:32:14||2021.09.11] 132- product id 396 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 133- product id 397 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 133- product id 398 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 133- product id 399 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 134- product id 400 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 134- product id 401 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 134- product id 402 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 135- product id 403 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 135- product id 404 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 135- product id 405 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 136- product id 406 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 136- product id 407 -item id   product_repo.go:53  
+ INFO [23:42:14||2021.09.11] 136- product id 408 -item id   product_repo.go:53  
+ INFO [23:47:31||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:47:31||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:47:32||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:48:33||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:48:33||2021.09.11] 137- product id 409 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 137- product id 410 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 137- product id 411 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 138- product id 412 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 138- product id 413 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 138- product id 414 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 139- product id 415 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 139- product id 416 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 139- product id 417 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 140- product id 418 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 140- product id 419 -item id   product_repo.go:53  
+ INFO [23:48:33||2021.09.11] 140- product id 420 -item id   product_repo.go:53  
+ INFO [23:53:54||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:53:54||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [23:53:55||2021.09.11] FastCat application Started  main.go:35  
+ INFO [23:53:55||2021.09.11] 141- product id 421 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 141- product id 422 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 141- product id 423 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 142- product id 424 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 142- product id 425 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 142- product id 426 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 143- product id 427 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 143- product id 428 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 143- product id 429 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 144- product id 430 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 144- product id 431 -item id   product_repo.go:53  
+ INFO [23:53:55||2021.09.11] 144- product id 432 -item id   product_repo.go:53  
+ INFO [23:56:31||2021.09.11] FastCat application Shutting Down  main.go:41  
+ FATAL [23:56:31||2021.09.11] http: Server closed Got an error while running http server  main.go:33  
+ INFO [08:35:44||2021.09.12] FastCat application Started  main.go:35  
+ INFO [08:35:44||2021.09.12] 145- product id 433 -item id   product_repo.go:53  
+ INFO [08:35:44||2021.09.12] 145- product id 434 -item id   product_repo.go:53  
+ INFO [08:35:44||2021.09.12] 145- product id 435 -item id   product_repo.go:53  
+ INFO [08:35:44||2021.09.12] 146- product id 436 -item id   product_repo.go:53  
+ INFO [08:35:44||2021.09.12] 146- product id 437 -item id   product_repo.go:53  
+ INFO [08:35:44||2021.09.12] 146- product id 438 -item id   product_repo.go:53  
+ INFO [08:35:44||2021.09.12] 147- product id 439 -item id   product_repo.go:53  
+ INFO [08:35:45||2021.09.12] 147- product id 440 -item id   product_repo.go:53  
+ INFO [08:35:45||2021.09.12] 147- product id 441 -item id   product_repo.go:53  
+ INFO [08:35:45||2021.09.12] 148- product id 442 -item id   product_repo.go:53  
+ INFO [08:35:45||2021.09.12] 148- product id 443 -item id   product_repo.go:53  
+ INFO [08:35:45||2021.09.12] 148- product id 444 -item id   product_repo.go:53  
+ INFO [08:36:26||2021.09.12] FastCat application Shutting Down  main.go:41  
+ FATAL [08:36:26||2021.09.12] http: Server closed Got an error while running http server  main.go:33  
+ INFO [08:36:27||2021.09.12] FastCat application Started  main.go:35  
+ INFO [08:36:27||2021.09.12] 149- product id 445 -item id   product_repo.go:53  
+ INFO [08:36:27||2021.09.12] 149- product id 446 -item id   product_repo.go:53  
+ INFO [08:36:27||2021.09.12] 149- product id 447 -item id   product_repo.go:53  
+ INFO [08:36:27||2021.09.12] 150- product id 448 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 150- product id 449 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 150- product id 450 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 151- product id 451 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 151- product id 452 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 151- product id 453 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 152- product id 454 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 152- product id 455 -item id   product_repo.go:53  
+ INFO [08:36:28||2021.09.12] 152- product id 456 -item id   product_repo.go:53  
+ INFO [08:41:54||2021.09.12] FastCat application Shutting Down  main.go:41  
+ FATAL [08:41:54||2021.09.12] http: Server closed Got an error while running http server  main.go:33  
+ INFO [08:41:55||2021.09.12] FastCat application Started  main.go:35  
+ INFO [08:41:55||2021.09.12] 153- product id 457 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 153- product id 458 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 153- product id 459 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 154- product id 460 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 154- product id 461 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 154- product id 462 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 155- product id 463 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 155- product id 464 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 155- product id 465 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 156- product id 466 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 156- product id 467 -item id   product_repo.go:53  
+ INFO [08:41:55||2021.09.12] 156- product id 468 -item id   product_repo.go:53  
+ INFO [08:42:20||2021.09.12] FastCat application Shutting Down  main.go:41  
+ FATAL [08:42:20||2021.09.12] http: Server closed Got an error while running http server  main.go:33  
+ INFO [08:42:21||2021.09.12] FastCat application Started  main.go:35  
+ INFO [08:42:21||2021.09.12] 157- product id 469 -item id   product_repo.go:53  
+ INFO [08:42:21||2021.09.12] 157- product id 470 -item id   product_repo.go:53  
+ INFO [08:42:21||2021.09.12] 157- product id 471 -item id   product_repo.go:53  
+ INFO [08:42:21||2021.09.12] 158- product id 472 -item id   product_repo.go:53  
+ INFO [08:42:21||2021.09.12] 158- product id 473 -item id   product_repo.go:53  
+ INFO [08:42:21||2021.09.12] 158- product id 474 -item id   product_repo.go:53  
+ INFO [08:42:22||2021.09.12] 159- product id 475 -item id   product_repo.go:53  
+ INFO [08:42:22||2021.09.12] 159- product id 476 -item id   product_repo.go:53  
+ INFO [08:42:22||2021.09.12] 159- product id 477 -item id   product_repo.go:53  
+ INFO [08:42:22||2021.09.12] 160- product id 478 -item id   product_repo.go:53  
+ INFO [08:42:22||2021.09.12] 160- product id 479 -item id   product_repo.go:53  
+ INFO [08:42:22||2021.09.12] 160- product id 480 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 161- product id 481 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 161- product id 482 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 161- product id 483 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 162- product id 484 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 162- product id 485 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 162- product id 486 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 163- product id 487 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 163- product id 488 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 163- product id 489 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 164- product id 490 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 164- product id 491 -item id   product_repo.go:53  
+ INFO [08:52:22||2021.09.12] 164- product id 492 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 165- product id 493 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 165- product id 494 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 165- product id 495 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 166- product id 496 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 166- product id 497 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 166- product id 498 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 167- product id 499 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 167- product id 500 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 167- product id 501 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 168- product id 502 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 168- product id 503 -item id   product_repo.go:53  
+ INFO [09:02:22||2021.09.12] 168- product id 504 -item id   product_repo.go:53  
+ INFO [09:12:22||2021.09.12] 169- product id 505 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 169- product id 506 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 169- product id 507 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 170- product id 508 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 170- product id 509 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 170- product id 510 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 171- product id 511 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 171- product id 512 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 171- product id 513 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 172- product id 514 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 172- product id 515 -item id   product_repo.go:53  
+ INFO [09:12:23||2021.09.12] 172- product id 516 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 173- product id 517 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 173- product id 518 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 173- product id 519 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 174- product id 520 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 174- product id 521 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 174- product id 522 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 175- product id 523 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 175- product id 524 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 175- product id 525 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 176- product id 526 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 176- product id 527 -item id   product_repo.go:53  
+ INFO [09:22:23||2021.09.12] 176- product id 528 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 177- product id 529 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 177- product id 530 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 177- product id 531 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 178- product id 532 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 178- product id 533 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 178- product id 534 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 179- product id 535 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 179- product id 536 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 179- product id 537 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 180- product id 538 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 180- product id 539 -item id   product_repo.go:53  
+ INFO [09:32:23||2021.09.12] 180- product id 540 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 181- product id 541 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 181- product id 542 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 181- product id 543 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 182- product id 544 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 182- product id 545 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 182- product id 546 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 183- product id 547 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 183- product id 548 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 183- product id 549 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 184- product id 550 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 184- product id 551 -item id   product_repo.go:53  
+ INFO [09:42:24||2021.09.12] 184- product id 552 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 185- product id 553 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 185- product id 554 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 185- product id 555 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 186- product id 556 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 186- product id 557 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 186- product id 558 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 187- product id 559 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 187- product id 560 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 187- product id 561 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 188- product id 562 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 188- product id 563 -item id   product_repo.go:53  
+ INFO [09:52:24||2021.09.12] 188- product id 564 -item id   product_repo.go:53  
+ INFO [10:02:24||2021.09.12] 189- product id 565 -item id   product_repo.go:53  
+ INFO [10:02:24||2021.09.12] 189- product id 566 -item id   product_repo.go:53  
+ INFO [10:02:24||2021.09.12] 189- product id 567 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 190- product id 568 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 190- product id 569 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 190- product id 570 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 191- product id 571 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 191- product id 572 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 191- product id 573 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 192- product id 574 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 192- product id 575 -item id   product_repo.go:53  
+ INFO [10:02:25||2021.09.12] 192- product id 576 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 193- product id 577 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 193- product id 578 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 193- product id 579 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 194- product id 580 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 194- product id 581 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 194- product id 582 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 195- product id 583 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 195- product id 584 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 195- product id 585 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 196- product id 586 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 196- product id 587 -item id   product_repo.go:53  
+ INFO [10:12:25||2021.09.12] 196- product id 588 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 197- product id 589 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 197- product id 590 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 197- product id 591 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 198- product id 592 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 198- product id 593 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 198- product id 594 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 199- product id 595 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 199- product id 596 -item id   product_repo.go:53  
+ INFO [10:22:25||2021.09.12] 199- product id 597 -item id   product_repo.go:53  
+ INFO [10:22:26||2021.09.12] 200- product id 598 -item id   product_repo.go:53  
+ INFO [10:22:26||2021.09.12] 200- product id 599 -item id   product_repo.go:53  
+ INFO [10:22:26||2021.09.12] 200- product id 600 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 201- product id 601 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 201- product id 602 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 201- product id 603 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 202- product id 604 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 202- product id 605 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 202- product id 606 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 203- product id 607 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 203- product id 608 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 203- product id 609 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 204- product id 610 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 204- product id 611 -item id   product_repo.go:53  
+ INFO [10:32:26||2021.09.12] 204- product id 612 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 205- product id 613 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 205- product id 614 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 205- product id 615 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 206- product id 616 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 206- product id 617 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 206- product id 618 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 207- product id 619 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 207- product id 620 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 207- product id 621 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 208- product id 622 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 208- product id 623 -item id   product_repo.go:53  
+ INFO [10:42:26||2021.09.12] 208- product id 624 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 209- product id 625 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 209- product id 626 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 209- product id 627 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 210- product id 628 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 210- product id 629 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 210- product id 630 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 211- product id 631 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 211- product id 632 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 211- product id 633 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 212- product id 634 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 212- product id 635 -item id   product_repo.go:53  
+ INFO [10:52:27||2021.09.12] 212- product id 636 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 213- product id 637 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 213- product id 638 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 213- product id 639 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 214- product id 640 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 214- product id 641 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 214- product id 642 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 215- product id 643 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 215- product id 644 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 215- product id 645 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 216- product id 646 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 216- product id 647 -item id   product_repo.go:53  
+ INFO [11:02:27||2021.09.12] 216- product id 648 -item id   product_repo.go:53  
+ INFO [11:08:02||2021.09.12] FastCat application Shutting Down  main.go:41  
+ FATAL [11:08:02||2021.09.12] http: Server closed Got an error while running http server  main.go:33  
+ INFO [11:08:03||2021.09.12] FastCat application Started  main.go:35  
+ INFO [11:08:03||2021.09.12] 217- product id 649 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 217- product id 650 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 217- product id 651 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 218- product id 652 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 218- product id 653 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 218- product id 654 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 219- product id 655 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 219- product id 656 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 219- product id 657 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 220- product id 658 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 220- product id 659 -item id   product_repo.go:53  
+ INFO [11:08:03||2021.09.12] 220- product id 660 -item id   product_repo.go:53  
+ INFO [11:13:25||2021.09.12] FastCat application Shutting Down  main.go:41  
+ FATAL [11:13:25||2021.09.12] http: Server closed Got an error while running http server  main.go:33  
+ INFO [11:13:26||2021.09.12] FastCat application Started  main.go:35  
+ INFO [11:13:26||2021.09.12] 221- product id 661 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 221- product id 662 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 221- product id 663 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 222- product id 664 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 222- product id 665 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 222- product id 666 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 223- product id 667 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 223- product id 668 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 223- product id 669 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 224- product id 670 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 224- product id 671 -item id   product_repo.go:53  
+ INFO [11:13:26||2021.09.12] 224- product id 672 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 225- product id 673 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 225- product id 674 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 225- product id 675 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 226- product id 676 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 226- product id 677 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 226- product id 678 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 227- product id 679 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 227- product id 680 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 227- product id 681 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 228- product id 682 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 228- product id 683 -item id   product_repo.go:53  
+ INFO [11:23:26||2021.09.12] 228- product id 684 -item id   product_repo.go:53  
+ INFO [11:33:26||2021.09.12] 229- product id 685 -item id   product_repo.go:53  
+ INFO [11:33:26||2021.09.12] 229- product id 686 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 229- product id 687 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 230- product id 688 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 230- product id 689 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 230- product id 690 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 231- product id 691 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 231- product id 692 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 231- product id 693 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 232- product id 694 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 232- product id 695 -item id   product_repo.go:53  
+ INFO [11:33:27||2021.09.12] 232- product id 696 -item id   product_repo.go:53  
+ INFO [11:38:19||2021.09.12] FastCat application Shutting Down  main.go:41  
+ FATAL [11:38:19||2021.09.12] http: Server closed Got an error while running http server  main.go:33  

@@ -19,7 +19,7 @@ type RestMenuParserInterface interface {
 
 type RestMenuParser struct {
 	App *config.AppConfig
-	wg sync.WaitGroup
+	wg  sync.WaitGroup
 }
 
 var ParseRestMenu *RestMenuParser
@@ -44,7 +44,7 @@ func (r *RestMenuParser) GetListMenuItems(id int) (menu *models.Menu) {
 }
 
 func (r *RestMenuParser) ParsedDataWriter() {
-
+	ch := make(chan int, 1)
 	parsedSuppliers := r.GetListSuppliers()
 	suppliersInDB, err := repository.Repo.SupplierRepository.Create(parsedSuppliers)
 	web.Log.Error(err, err)
@@ -60,12 +60,10 @@ func (r *RestMenuParser) ParsedDataWriter() {
 				defer r.wg.Done()
 				repository.Repo.ProductRepository.SoftDelete(idSoftDel)
 				_, _ = repository.Repo.ProductRepository.Create(&item, id)
+				ch <- 1
 			}(id)
+			<-ch
 		}
 		r.wg.Wait()
 	}
 }
-
-
-
-

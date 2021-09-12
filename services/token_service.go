@@ -1,6 +1,7 @@
 package services
 
 import (
+	"context"
 	"errors"
 	"github.com/golang-jwt/jwt"
 	"strings"
@@ -31,7 +32,6 @@ func ValidateToken(tokenString, secret string) (*JwtCustomClaims, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	claims, ok := token.Claims.(*JwtCustomClaims)
 	if !ok || !token.Valid {
 		return nil, errors.New("failed to parse token claims")
@@ -39,18 +39,23 @@ func ValidateToken(tokenString, secret string) (*JwtCustomClaims, error) {
 	return claims, nil
 }
 
-func GetTokenFromBearerString(input string) string {
+func GetTokenFromBearerString(input string) (string, error) {
 	if input == "" {
-		return ""
+		return "", errors.New("no authorization header received")
 	}
-	parts := strings.Split(input, "Bearer")
-	if len(parts) != 2 {
-		return ""
+	headerParts := strings.Split(input, "Bearer")
+	if len(headerParts) != 2 || headerParts[0] !="Bearer" {
+		return "", errors.New("no authorization header received")
 	}
-
-	token := strings.TrimSpace(parts[1])
+	token := strings.TrimSpace(headerParts[1])
 	if len(token) == 0 {
-		return ""
+		return "", errors.New("authorization token wrong size")
 	}
-	return token
+	return token, nil
+}
+
+func IsAuthenticated(ctx context.Context) (string, bool)  {
+	exists, ok := ctx.Value("user_id").(string)
+	return exists, ok
+
 }

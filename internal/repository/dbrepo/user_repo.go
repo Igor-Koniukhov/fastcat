@@ -46,12 +46,12 @@ func (usr UserRepo) Create(user *models.User) (*models.User, error) {
 	return user, nil
 }
 
-func (usr UserRepo) GetUserByID(id int) (*models.User, error){
+func (usr UserRepo) GetUserByID(id int) (*models.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", models.TableUser)
 	row := usr.DB.QueryRowContext(ctx, sqlStmt, id)
-	err :=row.Scan(
+	err := row.Scan(
 		&usr.User.ID,
 		&usr.User.Name,
 		&usr.User.Email,
@@ -113,7 +113,7 @@ func (usr UserRepo) GetUserByEmail(email string) (*models.User, error) {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = ? ", models.TableUser)
 	row := usr.DB.QueryRowContext(ctx, sqlStmt, email)
-	err :=row.Scan(
+	err := row.Scan(
 		&usr.User.ID,
 		&usr.User.Name,
 		&usr.User.Email,

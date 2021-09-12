@@ -8,7 +8,7 @@ import (
 
 
 func SetAndRun()(*driver.DB, error)  {
-	db, err := driver.ConnectMySQLDB()
+	db, err := driver.ConnectDB("DSN")
 
 	web.Log.Fatal(err, "Cannot connect to database!", err)
 	app.Session = "This is session"

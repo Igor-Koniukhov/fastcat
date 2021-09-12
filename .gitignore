@@ -2,6 +2,8 @@
 *.iml
 out
 gen
+*.exe
+*.exe~
 /node_modules
 /storage/*.key
 /vendor

@@ -7,22 +7,18 @@ import (
 	"time"
 )
 
-var err error
-
 //DB holds the database connection pool
 type DB struct {
-	MySQL *sql.DB
+	SQL *sql.DB
 }
-
 var dbConn = &DB{}
-
 const maxOpenDBConn = 10
 const maxIdleDBConn = 5
 const maxDBLifeTime = 5 * time.Minute
 
-// ConnectSQL creates database pool for MySQL
-func ConnectMySQLDB() (*DB, error) {
-	d, err := NewDatabase()
+// ConnectSQL creates database pool for SQL
+func ConnectDB(DSN string) (*DB, error) {
+	d, err := NewDatabase(DSN)
 	if err != nil {
 		panic(err)
 	}
@@ -30,7 +26,7 @@ func ConnectMySQLDB() (*DB, error) {
 	d.SetMaxIdleConns(maxIdleDBConn)
 	d.SetConnMaxLifetime(maxDBLifeTime)
 
-	dbConn.MySQL = d
+	dbConn.SQL = d
 	err = testDB(d)
 	if err != nil {
 		return nil, err
@@ -46,8 +42,8 @@ func testDB(d *sql.DB) error {
 	return nil
 }
 // NewDatabase creates new DB
-func NewDatabase() (*sql.DB, error) {
-	DSN := os.Getenv("DSN")
+func NewDatabase(dsn string) (*sql.DB, error) {
+	DSN := os.Getenv(dsn)
 	db, err := sql.Open("mysql", DSN)
 	if err != nil {
 		return nil, err

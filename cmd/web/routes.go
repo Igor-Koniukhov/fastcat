@@ -2,9 +2,8 @@ package main
 
 import (
 	"database/sql"
-	"github.com/igor-koniukhov/fastcat/handlers"
-	"github.com/igor-koniukhov/fastcat/internal/auth"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/handlers"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"net/http"
 )
@@ -12,43 +11,45 @@ import (
 func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 
 	repo := repository.NewRepository(app, db)
-	c := handlers.NewHandlers(repo)
+	www := handlers.NewHandlers(repo)
 	repository.NewRepo(repo)
 
 	mux := http.NewServeMux()
+
 	mux.Handle("/", http.FileServer(http.Dir("./public")))
-	mux.HandleFunc("/login",AuthMiddleWare(auth.Login))
-	mux.HandleFunc("/refresh",auth.Refresh)
+	mux.HandleFunc("/login",	AuthMiddleWare(www.User.Login))
+	mux.HandleFunc("/refresh", www.User.Refresh)
+	mux.HandleFunc("/logout", www.User.LogOut)
 
-	mux.HandleFunc("/user/create", c.User.Create)
-	mux.HandleFunc("/user/", c.User.Get)
-	mux.HandleFunc("/users", c.User.GetAll)
-	mux.HandleFunc("/user/update/", c.User.Update)
-	mux.HandleFunc("/user/delete/", c.User.Delete)
+	mux.HandleFunc("/user/create", www.User.Create)
+	mux.HandleFunc("/user/", www.User.Get)
+	mux.HandleFunc("/users", www.User.GetAll)
+	mux.HandleFunc("/user/update/", www.User.Update)
+	mux.HandleFunc("/user/delete/", www.User.Delete)
 
-	mux.HandleFunc("/order/create", c.Order.Create)
-	mux.HandleFunc("/order/", c.Order.Get)
-	mux.HandleFunc("/orders", c.Order.GetAll)
-	mux.HandleFunc("/order/update/", c.Order.Update)
-	mux.HandleFunc("/order/delete/", c.Order.Delete)
+	mux.HandleFunc("/order/create", www.Order.Create)
+	mux.HandleFunc("/order/", www.Order.Get)
+	mux.HandleFunc("/orders", www.Order.GetAll)
+	mux.HandleFunc("/order/update/", www.Order.Update)
+	mux.HandleFunc("/order/delete/", www.Order.Delete)
 
-	mux.HandleFunc("/supplier/create", c.Supplier.Create)
-	mux.HandleFunc("/supplier/", c.Supplier.Get)
-	mux.HandleFunc("/suppliers", c.Supplier.GetAll)
-	mux.HandleFunc("/supplier/update/", c.Supplier.Update)
-	mux.HandleFunc("/supplier/delete/", c.Supplier.Delete)
+	mux.HandleFunc("/supplier/create", www.Supplier.Create)
+	mux.HandleFunc("/supplier/", www.Supplier.Get)
+	mux.HandleFunc("/suppliers", www.Supplier.GetAll)
+	mux.HandleFunc("/supplier/update/", www.Supplier.Update)
+	mux.HandleFunc("/supplier/delete/", www.Supplier.Delete)
 
-	mux.HandleFunc("/product/create", c.Product.Update)
-	mux.HandleFunc("/product/", c.Product.Get)
-	mux.HandleFunc("/products", c.Product.GetAll)
-	mux.HandleFunc("/product/update/", c.Product.Update)
-	mux.HandleFunc("/product/delete/", c.Product.Delete)
+	mux.HandleFunc("/product/create", www.Product.Update)
+	mux.HandleFunc("/product/", www.Product.Get)
+	mux.HandleFunc("/products", www.Product.GetAll)
+	mux.HandleFunc("/product/update/", www.Product.Update)
+	mux.HandleFunc("/product/delete/", www.Product.Delete)
 
-	mux.HandleFunc("/cart/create", c.Cart.Create)
-	mux.HandleFunc("/cart/", c.Cart.Get)
-	mux.HandleFunc("/cart", c.Cart.GetAll)
-	mux.HandleFunc("/cart/update/", c.Cart.Update)
-	mux.HandleFunc("/cart/delete/", c.Cart.Delete)
+	mux.HandleFunc("/cart/create", www.Cart.Create)
+	mux.HandleFunc("/cart/", www.Cart.Get)
+	mux.HandleFunc("/cart", www.Cart.GetAll)
+	mux.HandleFunc("/cart/update/", www.Cart.Update)
+	mux.HandleFunc("/cart/delete/", www.Cart.Delete)
 
 	return mux
 }

@@ -35,6 +35,7 @@ func (p ProductRepo) Create(item *models.Item, id int) (*models.Item, error) {
 	defer cancel()
 	stmtSQl := fmt.Sprintf("INSERT INTO %s (name, price, type, image, ingredients, supplier_id) VALUES (?, ?, ?, ?, ?, ?)", models.TabItems)
 	ingredients, err := json.MarshalIndent(item.Ingredients, "", "")
+	web.Log.Error(err)
 
 	stmtRest := fmt.Sprintf("INSERT %s SET  item_id=? ", models.TabSuppliersItems)
 	result, err := p.DB.ExecContext(ctx, stmtSQl,
@@ -48,20 +49,19 @@ func (p ProductRepo) Create(item *models.Item, id int) (*models.Item, error) {
 	web.Log.Error(err)
 	lastInsertedID, err := result.LastInsertId()
 	web.Log.Error(err)
-
 	_, err = p.DB.ExecContext(ctx, stmtRest, int(lastInsertedID))
-
 	web.Log.Info(id, "- product id ", lastInsertedID," -item id " )
 	web.Log.Error(err, err)
-
 	return item, err
 }
 
 func (p ProductRepo) Get(id int) *models.Item {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	var product models.Product
 	var item models.Item
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients FROM %s WHERE id = ? ", models.TabItems)
-	err := p.DB.QueryRow(sqlStmt, id).Scan(
+	err := p.DB.QueryRowContext(ctx, sqlStmt, id).Scan(
 		&product.Id,
 		&product.Name,
 		&product.Price,
@@ -71,7 +71,8 @@ func (p ProductRepo) Get(id int) *models.Item {
 	)
 	str := []string{string(product.Ingredients)}
 
-	json.Unmarshal(product.Ingredients, &str)
+	err = json.Unmarshal(product.Ingredients, &str)
+	web.Log.Error(err)
 	item = models.Item{
 		Id:          product.Id,
 		Name:        product.Name,
@@ -85,12 +86,14 @@ func (p ProductRepo) Get(id int) *models.Item {
 }
 
 func (p ProductRepo) GetAll() []models.Item {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	var product models.Product
 	var items []models.Item
 	var str []string
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients, supplier_id FROM %s WHERE deleted_at IS NULL", models.TabItems)
 
-	results, err := p.DB.Query(sqlStmt)
+	results, err := p.DB.QueryContext(ctx, sqlStmt)
 	web.Log.Error(err, err)
 	for results.Next() {
 		err = results.Scan(
@@ -103,7 +106,8 @@ func (p ProductRepo) GetAll() []models.Item {
 			&product.SuppliersID,
 		)
 		web.Log.Error(err, err)
-		json.Unmarshal(product.Ingredients, &str)
+		err := json.Unmarshal(product.Ingredients, &str)
+		web.Log.Error(err)
 		items = append(items, models.Item{
 			Id:          product.Id,
 			Name:        product.Name,
@@ -118,22 +122,28 @@ func (p ProductRepo) GetAll() []models.Item {
 }
 
 func (p ProductRepo) Delete(id int) (err error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", models.TabItems)
-	_, err = p.DB.Exec(sqlStmt, id)
+	_, err = p.DB.ExecContext(ctx, sqlStmt, id)
 	web.Log.Error(err, err)
 	return nil
 }
 
 func (p ProductRepo) SoftDelete(id int) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE supplier_id = ?", models.TabItems)
-	_, err := p.DB.Exec(sqlStmt, p.App.TimeFormat, id)
+	_, err := p.DB.ExecContext(ctx, sqlStmt, p.App.TimeFormat, id)
 	web.Log.Error(err, err)
 	return nil
 }
 
 func (p ProductRepo) Update(id int, item *models.Item) *models.Item {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, price=?, image=?, type=?, ingredienst=? , WHERE id=?", models.TabItems)
-	_, err := p.DB.Exec(sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
+	_, err := p.DB.ExecContext(ctx, sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
 	web.Log.Error(err, err)
 	return item
 }
