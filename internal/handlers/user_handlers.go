@@ -7,6 +7,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	"github.com/igor-koniukhov/fastcat/services"
 	web "github.com/igor-koniukhov/webLogger/v3"
+	"html/template"
 	"log"
 	"net/http"
 )
@@ -17,11 +18,11 @@ type User interface {
 	GetAll(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
 	Update(w http.ResponseWriter, r *http.Request)
-	Login(w http.ResponseWriter, r *http.Request)
+	PostLogin(w http.ResponseWriter, r *http.Request)
+	ShowLogin(w http.ResponseWriter, r *http.Request)
 	Refresh(w http.ResponseWriter, r *http.Request)
 	LogOut(w http.ResponseWriter, r *http.Request)
 }
-
 
 type UserHandler struct {
 	repo dbrepo.UserRepository
@@ -75,37 +76,36 @@ func (c *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	err := json.NewEncoder(w).Encode(&user)
 	web.Log.Error(err)
 }
-
-func (c *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
-
-	logReq := new(models.LoginRequest)
-	if err := json.NewDecoder(r.Body).Decode(&logReq); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
+func (c *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
+	cookAuth := &http.Cookie{
+		Name:  "Bearer",
+		Value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZXhwIjoxNjMxNDg0NzE0fQ.b0j7v7JWmpeJ5tV13nq2jXumTWLYIcO_lTZWjOrSwB8",
+		Path:  "/login",
 	}
-	resp, id, err := services.TokenResponder(w, logReq)
+		http.SetCookie(w, cookAuth)
+	tpl, err := template.ParseGlob("public/*html")
 
+	err = tpl.ExecuteTemplate(w, "show-login.html", cookAuth.Value)
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
+func (c *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	web.Log.Error(err)
+	logReq := &models.LoginRequest{
+		Email:    r.Form.Get("checkEmail"),
+		Password: r.Form.Get("checkPass"),
+	}
+	_, id, err := services.TokenResponder(w, logReq)
 	if err != nil {
 		log.Println(err)
-		r = r.WithContext(context.WithValue(r.Context(),"error", "Invalid login credentials"))
+		r = r.WithContext(context.WithValue(r.Context(), "error", "Invalid login credentials"))
 	}
-
 	web.Log.Error(err, "message: ", err)
-	r = r.WithContext(context.WithValue(r.Context(),"user_id", id))
+	r = r.WithContext(context.WithValue(r.Context(), "user_id", id))
 	r.WithContext(context.WithValue(r.Context(), "flash", "logged in successfully"))
-	http.Redirect(w, r, "/", http.StatusSeeOther)
-
-	err = json.NewEncoder(w).Encode(resp)
-	http.SetCookie(w, &http.Cookie{
-		Name:     "Authorisation",
-		Value:    resp.AccessToken,
-		Path:     "/",
-		Secure:   false,
-		HttpOnly: true,
-		SameSite: http.SameSiteLaxMode,
-	},
-
-	)
 }
 
 func (c *UserHandler) Refresh(w http.ResponseWriter, r *http.Request) {
@@ -114,19 +114,23 @@ func (c *UserHandler) Refresh(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	resp, _,  err := services.TokenResponder(w, logReq)
+	resp, _, err := services.TokenResponder(w, logReq)
 	if err != nil {
 		log.Println(err)
-
 	}
 	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(resp)
 	if err != nil {
 		log.Println(err)
 	}
-
 }
 
 func (c *UserHandler) LogOut(w http.ResponseWriter, r *http.Request) {
-http.Redirect(w, r, "/login", http.StatusSeeOther)
+	cookAuth := &http.Cookie{
+		Name:  "Bearer",
+		Value: "",
+		Path:  "/login",
+	}
+	http.SetCookie(w, cookAuth)
+	http.Redirect(w, r, "/login", http.StatusSeeOther)
 }

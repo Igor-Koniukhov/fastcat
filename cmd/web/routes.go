@@ -13,11 +13,9 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	repo := repository.NewRepository(app, db)
 	www := handlers.NewHandlers(repo)
 	repository.NewRepo(repo)
-
 	mux := http.NewServeMux()
-
-	mux.Handle("/", http.FileServer(http.Dir("./public")))
-	mux.HandleFunc("/login",	AuthMiddleWare(www.User.Login))
+	mux.HandleFunc("/login",	AuthMiddleWare(www.User.PostLogin))
+	mux.HandleFunc("/show-login",www.User.ShowLogin)
 	mux.HandleFunc("/refresh", www.User.Refresh)
 	mux.HandleFunc("/logout", www.User.LogOut)
 

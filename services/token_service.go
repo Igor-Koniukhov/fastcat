@@ -43,8 +43,8 @@ func GetTokenFromBearerString(input string) (string, error) {
 	if input == "" {
 		return "", errors.New("no authorization header received")
 	}
-	headerParts := strings.Split(input, "Bearer")
-	if len(headerParts) != 2 || headerParts[0] !="Bearer" {
+	headerParts := strings.Split(input, "Bearer=")
+	if len(headerParts) != 2  {
 		return "", errors.New("no authorization header received")
 	}
 	token := strings.TrimSpace(headerParts[1])

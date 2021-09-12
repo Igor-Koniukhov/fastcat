@@ -30,7 +30,6 @@ func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*models
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
 		return nil, 0, err
 	}
-
 	accessString, err := GenerateToken(user.ID, AccessLifetimeMinutes, AccessSecret)
 	refreshString, err := GenerateToken(user.ID, RefreshLifetimeMinutes, RefreshAccess)
 	if err != nil {
