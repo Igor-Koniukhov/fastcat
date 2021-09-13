@@ -21,7 +21,6 @@ func GenerateToken(userID, lifetimeMinutes int, secret string) (string, error) {
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
 	return token.SignedString([]byte(secret))
 }
 
@@ -57,5 +56,4 @@ func GetTokenFromBearerString(input string) (string, error) {
 func IsAuthenticated(ctx context.Context) (string, bool)  {
 	exists, ok := ctx.Value("user_id").(string)
 	return exists, ok
-
 }

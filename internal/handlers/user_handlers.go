@@ -43,7 +43,7 @@ func (c *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *UserHandler) Get(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "json")
+
 	id := param(r)
 	user, err := c.repo.GetUserByID(id)
 	web.Log.Error(err, "message: ", err)
@@ -53,9 +53,7 @@ func (c *UserHandler) Get(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *UserHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "json")
 	users := c.repo.GetAll()
-	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&users)
 	web.Log.Error(err)
 }
@@ -77,15 +75,14 @@ func (c *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	web.Log.Error(err)
 }
 func (c *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	cookAuth := &http.Cookie{
 		Name:  "Bearer",
-		Value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZXhwIjoxNjMxNDg0NzE0fQ.b0j7v7JWmpeJ5tV13nq2jXumTWLYIcO_lTZWjOrSwB8",
-		Path:  "/login",
+		Value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZXhwIjoxNjMxNTI3MjAyfQ.EQgcjZE5rGkIr941LZ4KFvEqUNk_FR6HeB1dQTOv3Sc",
 	}
-		http.SetCookie(w, cookAuth)
+	http.SetCookie(w, cookAuth)
 	tpl, err := template.ParseGlob("public/*html")
-
-	err = tpl.ExecuteTemplate(w, "show-login.html", cookAuth.Value)
+	err = tpl.ExecuteTemplate(w, "show-login.html", nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -129,8 +126,7 @@ func (c *UserHandler) LogOut(w http.ResponseWriter, r *http.Request) {
 	cookAuth := &http.Cookie{
 		Name:  "Bearer",
 		Value: "",
-		Path:  "/login",
 	}
 	http.SetCookie(w, cookAuth)
-	http.Redirect(w, r, "/login", http.StatusSeeOther)
+	http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 }

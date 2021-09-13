@@ -1,10 +1,6 @@
 package main
 
 import (
-	"context"
-	"encoding/json"
-	"fmt"
-	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"github.com/igor-koniukhov/fastcat/services"
 	web "github.com/igor-koniukhov/webLogger/v3"
@@ -12,11 +8,10 @@ import (
 	"os"
 )
 
-func  AuthMiddleWare(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request){
+func AuthMiddleWare(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 		cookAuth, err := r.Cookie("Bearer")
 		bearerString := cookAuth.String()
-		fmt.Println(bearerString)
 		web.Log.Error(err, err)
 		tokenString, err := services.GetTokenFromBearerString(bearerString)
 		web.Log.Error(err, err)
@@ -30,23 +25,15 @@ func  AuthMiddleWare(next http.HandlerFunc) http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-		resp := &models.UserResponse{
-			ID:    user.ID,
-			Name:  user.Name,
-			Email: user.Email,
+
+		auth := &http.Cookie{
+			Name:  "Authorized",
+			Value: user.Email,
 		}
+		http.SetCookie(w, auth)
+		http.Redirect(w, r, "/users", http.StatusSeeOther)
 		w.WriteHeader(http.StatusOK)
-		err = json.NewEncoder(w).Encode(resp)
-		web.Log.Error(err, "message : ", err)
-		r = r.WithContext(context.WithValue(r.Context(), "user_id", resp.ID))
 		next.ServeHTTP(w, r)
 	}
 }
-
-
-
-
-
-
-
 
