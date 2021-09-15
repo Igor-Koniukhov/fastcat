@@ -5,10 +5,12 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/parser"
 	"github.com/igor-koniukhov/fastcat/internal/server"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"github.com/subosito/gotenv"
-	"net/http"
+	"log"
+
 	"os"
 	"os/signal"
 	"time"
@@ -21,22 +23,27 @@ func init() {
 }
 
 func main() {
-	db := driver.ConnectMySQLDB()
-	defer db.Close()
-	port := os.Getenv("PORT")
-
-	SetAppConfigParameters(db)
-	SetWebLoggerParameters()
-	go RunUpToDateSuppliersInfo(600)
-
-	http.Handle("/", http.FileServer(http.Dir("./public")))
-
 	srv := new(server.Server)
-	go func() {
-		err := srv.Serve(port, routes(&app))
-		web.Log.Fatal(err, err, " Got an error while running http server")
-	}()
+	dr, err := driver.ConnectDB("DSN")
+	if err !=nil {
+		log.Fatal(err)
+	}
+	defer dr.SQL.Close()
+	err = SetAndRun()
+	if err !=nil {
+		log.Fatal(err)
+	}
 
+	   go parser.RunUpToDateSuppliersInfo(600)
+	go func() {
+		err := srv.Serve(
+			os.Getenv("PORT"),
+			routes(&app, dr.SQL),
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
 	web.Log.Info("FastCat application Started")
 
 	c := make(chan os.Signal, 1)
@@ -46,7 +53,27 @@ func main() {
 	web.Log.Info("FastCat application Shutting Down")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	err := srv.Shutdown(ctx)
-	web.Log.Error(err, "Error on DB connection close: ", err)
+	err = srv.Shutdown(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
+
+
+
+func SetAndRun() error  {
+	rest := parser.NewRestMenuParser(&app)
+	parser.NewRestMenu(rest)
+	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
+	app.BearerString = os.Getenv("BearerString")
+	logSet := web.NewLogStruct(&web.LogParameters{
+		OutWriter:  web.ConsoleAndFile,
+		FilePath:   "./logs",
+		LogFile:    "/logger.log",
+		TimeFormat: "[15:04:05||2006.01.02]",
+	})
+	web.NewLog(logSet)
+	return nil
+}
+
 
