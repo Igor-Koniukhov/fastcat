@@ -2,15 +2,15 @@ package main
 
 import (
 	"context"
-	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/parser"
 	"github.com/igor-koniukhov/fastcat/internal/server"
-	"github.com/igor-koniukhov/fastcat/services"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"github.com/subosito/gotenv"
 	"log"
+
 	"os"
 	"os/signal"
 	"time"
@@ -24,17 +24,21 @@ func init() {
 
 func main() {
 	srv := new(server.Server)
-	s := services.NewSetter(&app)
-	driver, err := s.SetAndRun()
-	if err != nil {
-		log.Println(err)
+	dr, err := driver.ConnectDB("DSN")
+	if err !=nil {
+		log.Fatal(err)
 	}
-	defer driver.SQL.Close()
-	go RunUpToDateSuppliersInfo(600)
+	defer dr.SQL.Close()
+	err = SetAndRun()
+	if err !=nil {
+		log.Fatal(err)
+	}
+
+	   go parser.RunUpToDateSuppliersInfo(600)
 	go func() {
 		err := srv.Serve(
 			os.Getenv("PORT"),
-			routes(&app, driver.SQL),
+			routes(&app, dr.SQL),
 		)
 		if err != nil {
 			log.Fatal(err)
@@ -55,13 +59,21 @@ func main() {
 	}
 }
 
-func RunUpToDateSuppliersInfo(t time.Duration) {
 
-	app.ChanIdSupplier = make(chan int,4 )
-	defer close(app.ChanIdSupplier)
-	for {
-		parser.ParseRestMenu.ParsedDataWriter()
-		fmt.Println("Menu is up-to-date ")
-		time.Sleep(time.Second * t)
-	}
+
+func SetAndRun() error  {
+	rest := parser.NewRestMenuParser(&app)
+	parser.NewRestMenu(rest)
+	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
+	app.BearerString = os.Getenv("BearerString")
+	logSet := web.NewLogStruct(&web.LogParameters{
+		OutWriter:  web.ConsoleAndFile,
+		FilePath:   "./logs",
+		LogFile:    "/logger.log",
+		TimeFormat: "[15:04:05||2006.01.02]",
+	})
+	web.NewLog(logSet)
+	return nil
 }
+
+

@@ -50,5 +50,8 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	mux.HandleFunc("/cart/update/", middleware.Auth(www.Cart.Update))
 	mux.HandleFunc("/cart/delete/", middleware.Auth(www.Cart.Delete))
 
+	fileServe := http.FileServer(http.Dir("./static/"))
+	mux.Handle("/static/", http.StripPrefix("/static/", fileServe))
+
 	return mux
 }

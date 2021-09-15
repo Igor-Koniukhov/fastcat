@@ -95,11 +95,11 @@ func (c *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func (c *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-	tpl, err := template.ParseGlob("public/*html")
+	tpl, err := template.ParseGlob("templates/*tmpl")
 	if err != nil {
 		log.Println(err)
 	}
-	err = tpl.ExecuteTemplate(w, "show-login.html", nil)
+	err = tpl.ExecuteTemplate(w, "show-login.tmpl", nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
