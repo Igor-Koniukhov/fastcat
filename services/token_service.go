@@ -1,7 +1,6 @@
 package services
 
 import (
-	"context"
 	"errors"
 	"github.com/golang-jwt/jwt"
 	"strings"
@@ -42,7 +41,7 @@ func GetTokenFromBearerString(input string) (string, error) {
 	if input == "" {
 		return "", errors.New("no authorization header received")
 	}
-	headerParts := strings.Split(input, "Bearer=")
+	headerParts := strings.Split(input, "Bearer")
 	if len(headerParts) != 2  {
 		return "", errors.New("no authorization header received")
 	}
@@ -53,7 +52,3 @@ func GetTokenFromBearerString(input string) (string, error) {
 	return token, nil
 }
 
-func IsAuthenticated(ctx context.Context) (string, bool)  {
-	exists, ok := ctx.Value("user_id").(string)
-	return exists, ok
-}

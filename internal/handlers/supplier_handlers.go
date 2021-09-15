@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"encoding/json"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
-	web "github.com/igor-koniukhov/webLogger/v3"
+	"log"
 	"net/http"
 )
 
@@ -17,21 +18,26 @@ type Supplier interface {
 }
 
 type SupplierHandler struct {
+	App  *config.AppConfig
 	repo dbrepo.SupplierRepository
 }
 
-func NewSupplierHandler(repo dbrepo.SupplierRepository) *SupplierHandler {
-	return &SupplierHandler{repo: repo}
+func NewSupplierHandler(app *config.AppConfig, repo dbrepo.SupplierRepository) *SupplierHandler {
+	return &SupplierHandler{App: app, repo: repo}
 }
 
 func (s *SupplierHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var suppliers models.Suppliers
 	json.NewDecoder(r.Body).Decode(&suppliers)
-	user, err := s.repo.Create(&suppliers)
-	web.Log.Error(err, err)
+	user, _, err := s.repo.Create(&suppliers)
+	if err != nil {
+		log.Println(err)
+	}
 	w.WriteHeader(http.StatusCreated)
 	err = json.NewEncoder(w).Encode(&user)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (s *SupplierHandler) Get(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +46,9 @@ func (s *SupplierHandler) Get(w http.ResponseWriter, r *http.Request) {
 	user := s.repo.Get(id)
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&user)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (s *SupplierHandler) GetAll(w http.ResponseWriter, r *http.Request) {
@@ -48,13 +56,17 @@ func (s *SupplierHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	suppliers := s.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&suppliers)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (s *SupplierHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := param(r)
 	err := s.repo.Delete(id)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	w.WriteHeader(http.StatusAccepted)
 }
 
@@ -65,5 +77,7 @@ func (s *SupplierHandler) Update(w http.ResponseWriter, r *http.Request) {
 	user := s.repo.Update(id, &supplier)
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&user)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }

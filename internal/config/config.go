@@ -9,6 +9,7 @@ type AppConfig struct {
 	TemplateCache  map[string]*template.Template
 	Str            string
 	Session        string
+	BearerString    string
 	Ctx            context.Context
 	ChanIdSupplier chan int
 	ChanMutex      chan int

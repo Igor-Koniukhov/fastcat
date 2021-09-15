@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
-	web "github.com/igor-koniukhov/webLogger/v3"
+	"log"
 	"time"
 )
 
@@ -19,8 +19,8 @@ type CartRepository interface {
 }
 
 type CartRepo struct {
-	App *config.AppConfig
 	DB  *sql.DB
+	App *config.AppConfig
 }
 
 func NewCartRepository(app *config.AppConfig, DB *sql.DB) *CartRepo {
@@ -32,7 +32,10 @@ func (c CartRepo) Create(cart *models.Cart) (*models.Cart, error) {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, product_id, item) VALUES (?, ?, ?)", models.TableCarts)
 		_, err := c.DB.ExecContext(ctx, sqlStmt, cart.UserID, cart.ProductID, cart.Items)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
 	return cart, nil
 }
 
@@ -45,7 +48,9 @@ func (c CartRepo) Get(id int) *models.Cart {
 		&cart.ID,
 		&cart.ProductID,
 		&cart.Items)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return &cart
 }
 
@@ -56,14 +61,18 @@ func (c CartRepo) GetAll() []models.Cart {
 	var carts []models.Cart
 	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, items FROM %s", models.TableCarts)
 	results, err := c.DB.QueryContext(ctx, sqlStmt)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	for results.Next() {
 		err = results.Scan(
 			&cart.ID,
 			&cart.UserID,
 			&cart.ProductID,
 			&cart.Items)
-		web.Log.Error(err, err)
+		if err != nil {
+			log.Println(err)
+		}
 		carts = append(carts, cart)
 	}
 	return carts
@@ -74,7 +83,10 @@ func (c CartRepo) Delete(id int) error {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableCarts)
 	_, err := c.DB.ExecContext(ctx, sqlStmt, id)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
 	return nil
 }
 
@@ -87,6 +99,8 @@ func (c CartRepo) Update(id int, cart *models.Cart) *models.Cart {
 		cart.UserID,
 		cart.ProductID,
 		cart.Items)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return cart
 }

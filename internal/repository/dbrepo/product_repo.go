@@ -8,9 +8,9 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	web "github.com/igor-koniukhov/webLogger/v3"
+	"log"
 	"time"
 )
-
 
 type ProductRepository interface {
 	Create(item *models.Item, id int) (*models.Item, error)
@@ -21,9 +21,9 @@ type ProductRepository interface {
 	Update(id int, item *models.Item, ) *models.Item
 }
 
-type ProductRepo struct{
-	App *config.AppConfig
+type ProductRepo struct {
 	DB *sql.DB
+	App *config.AppConfig
 }
 
 func NewProductRepository(app *config.AppConfig, DB *sql.DB) *ProductRepo {
@@ -35,7 +35,10 @@ func (p ProductRepo) Create(item *models.Item, id int) (*models.Item, error) {
 	defer cancel()
 	stmtSQl := fmt.Sprintf("INSERT INTO %s (name, price, type, image, ingredients, supplier_id) VALUES (?, ?, ?, ?, ?, ?)", models.TabItems)
 	ingredients, err := json.MarshalIndent(item.Ingredients, "", "")
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
 
 	stmtRest := fmt.Sprintf("INSERT %s SET  item_id=? ", models.TabSuppliersItems)
 	result, err := p.DB.ExecContext(ctx, stmtSQl,
@@ -46,13 +49,22 @@ func (p ProductRepo) Create(item *models.Item, id int) (*models.Item, error) {
 		ingredients,
 		id,
 	)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
 	lastInsertedID, err := result.LastInsertId()
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
 	_, err = p.DB.ExecContext(ctx, stmtRest, int(lastInsertedID))
-	web.Log.Info(id, "- product id ", lastInsertedID," -item id " )
-	web.Log.Error(err, err)
-	return item, err
+	web.Log.Info(id, "- product id ", lastInsertedID, " -item id ")
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	return item, nil
 }
 
 func (p ProductRepo) Get(id int) *models.Item {
@@ -72,7 +84,9 @@ func (p ProductRepo) Get(id int) *models.Item {
 	str := []string{string(product.Ingredients)}
 
 	err = json.Unmarshal(product.Ingredients, &str)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 	item = models.Item{
 		Id:          product.Id,
 		Name:        product.Name,
@@ -81,7 +95,9 @@ func (p ProductRepo) Get(id int) *models.Item {
 		Type:        product.Type,
 		Ingredients: str,
 	}
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return &item
 }
 
@@ -94,7 +110,9 @@ func (p ProductRepo) GetAll() []models.Item {
 	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients, supplier_id FROM %s WHERE deleted_at IS NULL", models.TabItems)
 
 	results, err := p.DB.QueryContext(ctx, sqlStmt)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	for results.Next() {
 		err = results.Scan(
 			&product.Id,
@@ -105,9 +123,13 @@ func (p ProductRepo) GetAll() []models.Item {
 			&product.Ingredients,
 			&product.SuppliersID,
 		)
-		web.Log.Error(err, err)
+		if err != nil {
+			log.Println(err)
+		}
 		err := json.Unmarshal(product.Ingredients, &str)
-		web.Log.Error(err)
+		if err != nil {
+			log.Println(err)
+		}
 		items = append(items, models.Item{
 			Id:          product.Id,
 			Name:        product.Name,
@@ -126,16 +148,23 @@ func (p ProductRepo) Delete(id int) (err error) {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", models.TabItems)
 	_, err = p.DB.ExecContext(ctx, sqlStmt, id)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
 	return nil
 }
 
 func (p ProductRepo) SoftDelete(id int) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
+	TimeFormat := time.Now().UTC().Format("2006-01-02 15:04:05.999999")
 	sqlStmt := fmt.Sprintf("UPDATE %s SET deleted_at = ? WHERE supplier_id = ?", models.TabItems)
-	_, err := p.DB.ExecContext(ctx, sqlStmt, p.App.TimeFormat, id)
-	web.Log.Error(err, err)
+	_, err := p.DB.ExecContext(ctx, sqlStmt, TimeFormat, id)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
 	return nil
 }
 
@@ -144,10 +173,8 @@ func (p ProductRepo) Update(id int, item *models.Item) *models.Item {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, price=?, image=?, type=?, ingredienst=? , WHERE id=?", models.TabItems)
 	_, err := p.DB.ExecContext(ctx, sqlStmt, item.Id, item.Name, item.Price, item.Image, item.Type, item.Ingredients, id)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return item
 }
-
-
-
-

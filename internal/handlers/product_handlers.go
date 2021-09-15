@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"encoding/json"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
-	web "github.com/igor-koniukhov/webLogger/v3"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -19,11 +20,12 @@ type Product interface {
 }
 
 type ProductController struct {
+	App *config.AppConfig
 	repo dbrepo.ProductRepository
 }
 
-func NewProductHandler(repo dbrepo.ProductRepository) *ProductController {
-	return &ProductController{repo: repo}
+func NewProductHandler(app *config.AppConfig, repo dbrepo.ProductRepository) *ProductController {
+	return &ProductController{App: app, repo: repo}
 }
 
 func (p *ProductController) Create(w http.ResponseWriter, r *http.Request) {
@@ -34,7 +36,9 @@ func param(r *http.Request) (id int) {
 	fields := strings.Split(r.URL.String(), "/")
 	str := fields[len(fields)-1]
 	id, err := strconv.Atoi(str)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return
 }
 
@@ -44,7 +48,9 @@ func (p *ProductController) Get(w http.ResponseWriter, r *http.Request) {
 	item := p.repo.Get(id)
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&item)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (p *ProductController) GetAll(w http.ResponseWriter, r *http.Request) {
@@ -52,13 +58,17 @@ func (p *ProductController) GetAll(w http.ResponseWriter, r *http.Request) {
 	items := p.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&items)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (p *ProductController) Delete(w http.ResponseWriter, r *http.Request) {
 	id := param(r)
 	err := p.repo.Delete(id)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	w.WriteHeader(http.StatusAccepted)
 }
 
@@ -69,6 +79,7 @@ func (p *ProductController) Update(w http.ResponseWriter, r *http.Request) {
 	item = p.repo.Update(id, item)
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&item)
-	web.Log.Error(err)
-
+	if err != nil {
+		log.Println(err)
+	}
 }

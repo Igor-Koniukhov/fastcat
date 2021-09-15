@@ -1,6 +1,9 @@
 package handlers
 
-import "github.com/igor-koniukhov/fastcat/internal/repository"
+import (
+	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/repository"
+)
 
 type Handlers struct {
 	User
@@ -10,13 +13,13 @@ type Handlers struct {
 	Cart
 }
 
-func NewHandlers(repos *repository.Repository) *Handlers {
+func NewHandlers(app *config.AppConfig, repos *repository.Repository) *Handlers {
 	return &Handlers{
-		User:     NewUserHandler(repos.UserRepository),
-		Supplier: NewSupplierHandler(repos.SupplierRepository),
-		Product:  NewProductHandler(repos.ProductRepository),
-		Order:    NewOrderHandler(repos.OrderRepository),
-		Cart:     NewCartHandler(repos.CartRepository),
+		User:     NewUserHandler(app, repos.UserRepository),
+		Supplier: NewSupplierHandler(app, repos.SupplierRepository),
+		Product:  NewProductHandler(app, repos.ProductRepository),
+		Order:    NewOrderHandler(app, repos.OrderRepository),
+		Cart:     NewCartHandler(app, repos.CartRepository),
 	}
 }
 

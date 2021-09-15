@@ -8,6 +8,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"golang.org/x/crypto/bcrypt"
+	"log"
 	"time"
 )
 
@@ -18,18 +19,17 @@ type UserRepository interface {
 	Delete(id int) error
 	Update(id int, user *models.User) *models.User
 	GetUserByEmail(email string) (*models.User, error)
-
 }
 
 type UserRepo struct {
-	App   *config.AppConfig
 	DB    *sql.DB
 	Users []models.User
 	User  models.User
+	App *config.AppConfig
 }
 
 func NewUserRepository(app *config.AppConfig, DB *sql.DB) *UserRepo {
-	return &UserRepo{App: app, DB: DB}
+	return &UserRepo{ App: app, DB: DB}
 }
 
 func (usr UserRepo) Create(user *models.User) (*models.User, error) {
@@ -37,12 +37,16 @@ func (usr UserRepo) Create(user *models.User) (*models.User, error) {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", models.TableUser)
 	pass, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	_, err = usr.DB.ExecContext(ctx, sqlStmt,
 		user.Name,
 		user.Email,
 		pass)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return user, nil
 }
 
@@ -68,7 +72,9 @@ func (usr UserRepo) GetAll() []models.User {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", models.TableUser)
 	results, err := usr.DB.QueryContext(ctx, sqlStmt)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	for results.Next() {
 		err = results.Scan(
 			&usr.User.ID,
@@ -78,7 +84,9 @@ func (usr UserRepo) GetAll() []models.User {
 			&usr.User.DeletedAt,
 			&usr.User.CreatedAT,
 			&usr.User.UpdatedAT)
-		web.Log.Error(err, err)
+		if err != nil {
+			log.Println(err)
+		}
 		usr.Users = append(usr.Users, usr.User)
 	}
 	return usr.Users
@@ -89,14 +97,15 @@ func (usr UserRepo) Delete(id int) error {
 	defer cancel()
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableUser)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt, id)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return nil
 }
 
 func (usr UserRepo) Update(id int, user *models.User) *models.User {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	fmt.Println(id)
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", models.TableUser)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt,
 		user.ID,
@@ -104,7 +113,9 @@ func (usr UserRepo) Update(id int, user *models.User) *models.User {
 		user.Email,
 		user.Password,
 		id)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	return user
 }
 
@@ -121,7 +132,9 @@ func (usr UserRepo) GetUserByEmail(email string) (*models.User, error) {
 		&usr.User.DeletedAt,
 		&usr.User.CreatedAT,
 		&usr.User.UpdatedAT)
-	web.Log.Error(err, "message: ", err)
+	if err != nil {
+		log.Println(err)
+	}
 	return &usr.User, nil
 }
 

@@ -2,8 +2,9 @@ package handlers
 
 import (
 	"encoding/json"
+	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
-	web "github.com/igor-koniukhov/webLogger/v3"
+	"log"
 
 	"github.com/igor-koniukhov/fastcat/internal/models"
 
@@ -19,21 +20,26 @@ type Order interface {
 }
 
 type OrderController struct {
+	App *config.AppConfig
 	repo dbrepo.OrderRepository
 }
 
-func NewOrderHandler(repo dbrepo.OrderRepository) *OrderController {
-	return &OrderController{repo: repo}
+func NewOrderHandler(app *config.AppConfig, repo dbrepo.OrderRepository) *OrderController {
+	return &OrderController{App: app, repo: repo}
 }
 
 func (ord OrderController) Create(w http.ResponseWriter, r *http.Request) {
 	var o models.Order
 	json.NewDecoder(r.Body).Decode(&o)
 	order, err := ord.repo.Create(&o)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 	w.WriteHeader(http.StatusCreated)
 	err = json.NewEncoder(w).Encode(&order)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (ord OrderController) Get(w http.ResponseWriter, r *http.Request) {
@@ -41,29 +47,40 @@ func (ord OrderController) Get(w http.ResponseWriter, r *http.Request) {
 	order := ord.repo.Get(id)
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&order)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (ord OrderController) GetAll(w http.ResponseWriter, r *http.Request) {
 	order := ord.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&order)
-	web.Log.Error(err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (ord OrderController) Delete(w http.ResponseWriter, r *http.Request) {
 	id := param(r)
 	err := ord.repo.Delete(id)
 	w.WriteHeader(http.StatusAccepted)
-	web.Log.Error(err, err)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func (ord OrderController) Update(w http.ResponseWriter, r *http.Request) {
 	var o models.Order
-	_ = json.NewDecoder(r.Body).Decode(&ord)
+	err:= json.NewDecoder(r.Body).Decode(&ord)
+	if err != nil {
+		log.Println(err)
+	}
 	id := param(r)
 	order := ord.repo.Update(id, &o)
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(&order)
-	web.Log.Error(err)
+	err = json.NewEncoder(w).Encode(&order)
+	if err != nil {
+		log.Println(err)
+	}
 }

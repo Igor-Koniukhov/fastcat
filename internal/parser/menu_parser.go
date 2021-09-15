@@ -7,8 +7,9 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
-	web "github.com/igor-koniukhov/webLogger/v3"
+	"log"
 	"sync"
+
 )
 
 type RestMenuParserInterface interface {
@@ -44,21 +45,26 @@ func (r *RestMenuParser) GetListMenuItems(id int) (menu *models.Menu) {
 }
 
 func (r *RestMenuParser) ParsedDataWriter() {
+
 	ch := make(chan int, 1)
 	parsedSuppliers := r.GetListSuppliers()
-	suppliersInDB, err := repository.Repo.SupplierRepository.Create(parsedSuppliers)
-	web.Log.Error(err, err)
-
+	suppliersInDB,_, err := repository.Repo.SupplierRepository.Create(parsedSuppliers)
+	if err != nil {
+		log.Println(err)
+	}
 	for _, restaurant := range suppliersInDB.Restaurants {
 		menu := r.GetListMenuItems(restaurant.Id)
-		id := <-r.App.ChanIdSupplier
+		id:=<-r.App.ChanIdSupplier
 		idSoftDel := id - len(suppliersInDB.Restaurants)
 		repository.Repo.SupplierRepository.SoftDelete(idSoftDel)
 		for _, item := range menu.Items {
 			r.wg.Add(1)
 			go func(id int) {
 				defer r.wg.Done()
-				repository.Repo.ProductRepository.SoftDelete(idSoftDel)
+				err := repository.Repo.ProductRepository.SoftDelete(idSoftDel)
+				if err !=nil {
+					log.Println(err)
+				}
 				_, _ = repository.Repo.ProductRepository.Create(&item, id)
 				ch <- 1
 			}(id)
@@ -67,3 +73,5 @@ func (r *RestMenuParser) ParsedDataWriter() {
 		r.wg.Wait()
 	}
 }
+
+
