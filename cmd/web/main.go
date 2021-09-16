@@ -6,6 +6,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/parser"
+	"github.com/igor-koniukhov/fastcat/internal/render"
 	"github.com/igor-koniukhov/fastcat/internal/server"
 	web "github.com/igor-koniukhov/webLogger/v3"
 	"github.com/subosito/gotenv"
@@ -64,6 +65,14 @@ func main() {
 func SetAndRun() error  {
 	rest := parser.NewRestMenuParser(&app)
 	parser.NewRestMenu(rest)
+	render.NewTemplateCache(&app)
+	tc, err := render.CreateTemplateCache()
+	if err != nil {
+		log.Fatal("could not parse template cache")
+		return err
+	}
+	app.TemplateCache = tc
+	app.UseTemplateCache = false
 	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
 	app.BearerString = os.Getenv("BearerString")
 	logSet := web.NewLogStruct(&web.LogParameters{

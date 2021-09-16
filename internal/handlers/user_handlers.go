@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
+	"github.com/igor-koniukhov/fastcat/internal/render"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	"github.com/igor-koniukhov/fastcat/services"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -95,13 +95,9 @@ func (c *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func (c *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-	tpl, err := template.ParseGlob("templates/*tmpl")
-	if err != nil {
-		log.Println(err)
-	}
-	err = tpl.ExecuteTemplate(w, "show_login.page.tmpl", nil)
-	if err != nil {
-		log.Fatalln(err)
+	err := render.RenderTemplate(w, r, "show_login.page.tmpl", models.TemplateData{})
+	if err !=nil {
+		log.Fatal("cannot render template")
 	}
 }
 

@@ -3,7 +3,6 @@
 {{define "content"}}
 
     <div class="container">
-        <p>token {{.}}</p>
         <form method="post" action="/login">
             <div class="form-group">
                 <label for="checkEmail">Email address</label>
@@ -14,10 +13,7 @@
                 <label for="checkPass">Password</label>
                 <input type="password" class="form-control" id="checkPass" name="checkPass">
             </div>
-
             <button  class="btn btn-primary">Submit</button>
         </form>
     </div>
-
-
 {{end}}
