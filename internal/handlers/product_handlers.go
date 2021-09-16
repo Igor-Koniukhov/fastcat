@@ -19,16 +19,16 @@ type Product interface {
 	Update(w http.ResponseWriter, r *http.Request)
 }
 
-type ProductController struct {
-	App *config.AppConfig
+type ProductHandler struct {
+	App  *config.AppConfig
 	repo dbrepo.ProductRepository
 }
 
-func NewProductHandler(app *config.AppConfig, repo dbrepo.ProductRepository) *ProductController {
-	return &ProductController{App: app, repo: repo}
+func NewProductHandler(app *config.AppConfig, repo dbrepo.ProductRepository) *ProductHandler {
+	return &ProductHandler{App: app, repo: repo}
 }
 
-func (p *ProductController) Create(w http.ResponseWriter, r *http.Request) {
+func (p *ProductHandler) Create(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
@@ -42,7 +42,7 @@ func param(r *http.Request) (id int) {
 	return
 }
 
-func (p *ProductController) Get(w http.ResponseWriter, r *http.Request) {
+func (p *ProductHandler) Get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "json")
 	id := param(r)
 	item := p.repo.Get(id)
@@ -53,7 +53,7 @@ func (p *ProductController) Get(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (p *ProductController) GetAll(w http.ResponseWriter, r *http.Request) {
+func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "json")
 	items := p.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
@@ -63,7 +63,7 @@ func (p *ProductController) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (p *ProductController) Delete(w http.ResponseWriter, r *http.Request) {
+func (p *ProductHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := param(r)
 	err := p.repo.Delete(id)
 	if err != nil {
@@ -72,7 +72,7 @@ func (p *ProductController) Delete(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusAccepted)
 }
 
-func (p *ProductController) Update(w http.ResponseWriter, r *http.Request) {
+func (p *ProductHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var item *models.Item
 	json.NewDecoder(r.Body).Decode(&item)
 	id := param(r)
@@ -82,4 +82,5 @@ func (p *ProductController) Update(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
+
 }
