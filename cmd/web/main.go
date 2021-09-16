@@ -65,7 +65,7 @@ func main() {
 func SetAndRun() error  {
 	rest := parser.NewRestMenuParser(&app)
 	parser.NewRestMenu(rest)
-	render.NewTemplateCache(&app)
+	render.NewTemplates(&app)
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("could not parse template cache")

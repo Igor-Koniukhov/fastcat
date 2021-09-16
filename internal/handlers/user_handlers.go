@@ -15,6 +15,7 @@ import (
 )
 
 type User interface {
+	ShowRegistration(w http.ResponseWriter, r *http.Request)
 	Create(w http.ResponseWriter, r *http.Request)
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
@@ -34,18 +35,26 @@ type UserHandler struct {
 func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHandler {
 	return &UserHandler{App: app, repo: repo}
 }
+func (c *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request)  {
+	err := render.RenderTemplate(w, r, "registration.page.tmpl", models.TemplateData{})
+	if err !=nil {
+		log.Fatal("cannot render template")
+	}
+
+}
 
 func (c *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var u models.User
-	err := json.NewDecoder(r.Body).Decode(&u)
-	if err != nil {
-		log.Println(err)
-	}
+	err := r.ParseForm()
+	u.Name = r.FormValue("user-name")
+	u.Email = r.FormValue("user-email")
+	u.Password = r.FormValue("password")
 	user, err := c.repo.Create(&u)
 	if err != nil {
 		log.Println(err)
 	}
 	w.WriteHeader(http.StatusCreated)
+	http.Redirect(w,r, "/users", http.StatusSeeOther)
 	err = json.NewEncoder(w).Encode(&user)
 	if err != nil {
 		log.Println(err)

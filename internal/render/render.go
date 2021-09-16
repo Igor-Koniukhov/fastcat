@@ -18,7 +18,7 @@ var (
 	functions       = template.FuncMap{}
 )
 
-func NewTemplateCache(a *config.AppConfig) {
+func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
@@ -71,6 +71,5 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 			tCash[name] = ts
 		}
 	}
-
 	return tCash, nil
 }
