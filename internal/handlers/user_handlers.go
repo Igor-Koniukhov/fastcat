@@ -99,7 +99,7 @@ func (c *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	err = tpl.ExecuteTemplate(w, "show-login.tmpl", nil)
+	err = tpl.ExecuteTemplate(w, "show_login.page.tmpl", nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
