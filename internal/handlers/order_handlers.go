@@ -29,17 +29,10 @@ func NewOrderHandler(app *config.AppConfig, repo dbrepo.OrderRepository) *OrderC
 }
 
 func (ord OrderController) Create(w http.ResponseWriter, r *http.Request) {
-	var o models.Order
-	json.NewDecoder(r.Body).Decode(&o)
-	order, err := ord.repo.Create(&o)
-	if err != nil {
-		log.Println(err)
-	}
 	w.WriteHeader(http.StatusCreated)
-	err = json.NewEncoder(w).Encode(&order)
-	if err != nil {
-		log.Println(err)
-	}
+
+
+
 }
 
 func (ord OrderController) Get(w http.ResponseWriter, r *http.Request) {

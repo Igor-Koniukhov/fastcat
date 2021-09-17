@@ -84,12 +84,13 @@ func (c *UserHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *UserHandler) Delete(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusAccepted)
 	id := param(r)
 	err := c.repo.Delete(id)
 	if err != nil {
 		log.Println(err)
 	}
-	w.WriteHeader(http.StatusAccepted)
+
 }
 
 func (c *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
