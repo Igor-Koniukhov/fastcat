@@ -36,7 +36,7 @@ func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHand
 	return &UserHandler{App: app, repo: repo}
 }
 func (c *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request)  {
-	err := render.RenderTemplate(w, r, "registration.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "registration.page.tmpl", models.TemplateData{})
 	if err !=nil {
 		log.Fatal("cannot render template")
 	}
@@ -104,7 +104,7 @@ func (c *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func (c *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-	err := render.RenderTemplate(w, r, "show_login.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "show_login.page.tmpl", models.TemplateData{})
 	if err !=nil {
 		log.Fatal("cannot render template")
 	}

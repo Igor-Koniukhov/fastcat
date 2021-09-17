@@ -22,7 +22,7 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td models.TemplateData) error {
+func TemplateRender(w http.ResponseWriter, r *http.Request, tmpl string, td models.TemplateData) error {
 	var tc map[string]*template.Template
 	switch app.UseTemplateCache {
 	case app.UseTemplateCache:

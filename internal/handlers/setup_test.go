@@ -4,8 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/handlers/repoForTest"
 	"github.com/igor-koniukhov/fastcat/internal/render"
-	"github.com/igor-koniukhov/fastcat/internal/repository"
+
 	"log"
 	"path/filepath"
 
@@ -20,6 +21,34 @@ var (
 	functions       = template.FuncMap{}
 )
 
+type TestRepository struct{
+	repoForTest.UserTestRepository
+	repoForTest.SupplierTestRepository
+	repoForTest.ProductTestRepository
+	repoForTest.OrderTestRepository
+	repoForTest.CartTestRepository
+}
+
+func NewTestRepository(app *config.AppConfig, db *sql.DB) *TestRepository {
+	return &TestRepository{
+		UserTestRepository:     repoForTest.NewUserTestRepository(app, db),
+		SupplierTestRepository: repoForTest.NewSupplierTestRepository(app, db),
+		ProductTestRepository:  repoForTest.NewProductTestRepository(app, db),
+		OrderTestRepository:    repoForTest.NewOrderTestRepository(app, db),
+		CartTestRepository:     repoForTest.NewCartTestRepository(app, db),
+	}
+}
+
+func NewTestHandlers(app *config.AppConfig, repos *TestRepository) *Handlers {
+	return &Handlers{
+		User:     NewUserHandler(app, repos.UserTestRepository),
+		Supplier: NewSupplierHandler(app, repos.SupplierTestRepository),
+		Product:  NewProductHandler(app, repos.ProductTestRepository),
+		Order:    NewOrderHandler(app, repos.OrderTestRepository),
+		Cart:     NewCartHandler(app, repos.CartTestRepository),
+	}
+}
+
 func getRoutes() http.Handler {
 	render.NewTemplates(&app)
 	tc, err := CreateTestTemplateCache()
@@ -28,11 +57,11 @@ func getRoutes() http.Handler {
 
 	}
 	app.TemplateCache = tc
-	app.UseTemplateCache = false
+	app.UseTemplateCache = true
 
-	repo := repository.NewRepository(&app, db)
-	www := NewHandlers(&app, repo)
-	repository.NewRepo(repo)
+	repo := NewTestRepository(&app, db)
+	www := NewTestHandlers(&app, repo)
+
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/login", www.User.PostLogin)

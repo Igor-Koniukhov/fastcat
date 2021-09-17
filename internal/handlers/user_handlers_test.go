@@ -23,6 +23,9 @@ var theTests = []struct {
 	{"show-login", "/show-login", "GET", []postData{}, http.StatusOK},
 	{"refresh", "/refresh", "GET", []postData{}, http.StatusBadRequest},
 	{"registration", "/registration", "POST", []postData{}, http.StatusOK},
+	{"users", "/users", "GET", []postData{}, http.StatusOK},
+	{"user", "/user/", "GET", []postData{}, http.StatusOK},
+	{"user/create", "/user/create", "POST", []postData{}, http.StatusCreated},
 }
 
 func TestHandlers(t *testing.T) {

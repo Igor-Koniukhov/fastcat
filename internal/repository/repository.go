@@ -29,3 +29,5 @@ func NewRepository(app *config.AppConfig, db *sql.DB) *Repository {
 func NewRepo(r *Repository)  {
 	Repo=r
 }
+
+
