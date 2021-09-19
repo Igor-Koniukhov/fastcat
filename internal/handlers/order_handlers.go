@@ -2,16 +2,22 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
-	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
-	"log"
-
 	"github.com/igor-koniukhov/fastcat/internal/models"
+	"github.com/igor-koniukhov/fastcat/internal/render"
+	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
+	web "github.com/igor-koniukhov/webLogger/v2"
+	"log"
+	"net/url"
+
+
 
 	"net/http"
 )
 
 type Order interface {
+	ShowBlankOrder(w http.ResponseWriter, r *http.Request)
 	Create(w http.ResponseWriter, r *http.Request)
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
@@ -19,23 +25,51 @@ type Order interface {
 	Update(w http.ResponseWriter, r *http.Request)
 }
 
-type OrderController struct {
-	App *config.AppConfig
+type OrderHandler struct {
+	App  *config.AppConfig
 	repo dbrepo.OrderRepository
 }
 
-func NewOrderHandler(app *config.AppConfig, repo dbrepo.OrderRepository) *OrderController {
-	return &OrderController{App: app, repo: repo}
+func NewOrderHandler(app *config.AppConfig, repo dbrepo.OrderRepository) *OrderHandler {
+	return &OrderHandler{App: app, repo: repo}
 }
-
-func (ord OrderController) Create(w http.ResponseWriter, r *http.Request) {
+func (ord OrderHandler) ShowBlankOrder(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
-
-
-
+	render.TemplateRender(w, r, "order.page.tmpl", models.TemplateData{})
 }
 
-func (ord OrderController) Get(w http.ResponseWriter, r *http.Request) {
+func (ord OrderHandler) Create(w http.ResponseWriter, r *http.Request) {
+	var prods []models.Prod
+	w.WriteHeader(http.StatusCreated)
+	orderCookie, err := r.Cookie("Product")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	decodedValue, err := url.QueryUnescape(orderCookie.Value)
+	err = json.Unmarshal([]byte(decodedValue), &prods)
+	for _, v := range prods{
+		fmt.Println(v.Title, v.Price)
+	}
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	fmt.Println(decodedValue)
+	err = r.ParseMultipartForm(32<<20)
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+
+	user := &models.User{
+		Name:  r.Form.Get("name"),
+		Email: r.Form.Get("email"),
+		Phone: r.Form.Get("phone"),
+	}
+fmt.Println(user, prods)
+}
+
+func (ord OrderHandler) Get(w http.ResponseWriter, r *http.Request) {
 	id := param(r)
 	order := ord.repo.Get(id)
 	w.WriteHeader(http.StatusOK)
@@ -45,7 +79,7 @@ func (ord OrderController) Get(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (ord OrderController) GetAll(w http.ResponseWriter, r *http.Request) {
+func (ord OrderHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	order := ord.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&order)
@@ -54,7 +88,7 @@ func (ord OrderController) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (ord OrderController) Delete(w http.ResponseWriter, r *http.Request) {
+func (ord OrderHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := param(r)
 	err := ord.repo.Delete(id)
 	w.WriteHeader(http.StatusAccepted)
@@ -63,9 +97,9 @@ func (ord OrderController) Delete(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (ord OrderController) Update(w http.ResponseWriter, r *http.Request) {
+func (ord OrderHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var o models.Order
-	err:= json.NewDecoder(r.Body).Decode(&ord)
+	err := json.NewDecoder(r.Body).Decode(&ord)
 	if err != nil {
 		log.Println(err)
 	}

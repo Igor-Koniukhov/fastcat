@@ -4,10 +4,13 @@ const TableOrders = "orders"
 const TableAddress = "address"
 
 type Order struct {
-	ID        int  `json:"id"`
+	ID        int    `json:"id"`
 	UserID    int    `json:"user_id"`
-	CartID    int    `json:"cart_id"`
-	AddressID int    `json:"address_id"`
+	Product   string `json:"product"`
+	Price     string `json:"price"`
+	UserName  string `json:"user"`
+	UserEmail string `json:"user_email"`
+	Phone     string `json:"phone"`
 	Status    string `json:"status"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
@@ -23,4 +26,11 @@ type Address struct {
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
 }
-
+ type Ord struct {
+ 	Products []Item
+ 	User User
+ }
+type Prod struct {
+	Title string `json:"title"`
+	Price string `json:"price"`
+}

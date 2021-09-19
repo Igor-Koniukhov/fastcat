@@ -153,11 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 orderModalList.insertAdjacentHTML('afterbegin', generateModalProduct(img, title, priceString, id));
 
                 let obj = {};
-                obj.title = title;
-                obj.price = priceString;
+                obj.title = stringWithoutSpaces(title);
+                obj.price = stringWithoutSpaces(priceString);
                 productArray.push(obj);
             }
-
+            let string = JSON.stringify(productArray)
+            console.log(string)
+            document.cookie = "Product="+encodeURIComponent(string)+";path=/order/create";
             console.log(productArray)
         },
         isClose: () => {
@@ -232,11 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     document.querySelector('.modal-cart').addEventListener('click', (e) => {
-        if (e.target.classList.contains('order-product__delete')) {
+
+        if (e.target.classList.contains('.order-product__delete')) {
+            console.log("hello")
             let id = e.target.closest('.order-modal__product').dataset.id;
             let cartProduct = document.querySelector(`.cart-content__product[data-id="${id}"]`).closest('.cart-content__item');
             deleteProducts(cartProduct)
             e.target.closest('.order-modal__product').remove();
+            updateStorage();
         }
     });
 

@@ -206,7 +206,7 @@ ul {
     border: unset;
     background-color: transparent;
     cursor: pointer;
-    background-image: url("/static/img/icons/trash.svg");
+    background-image: url("/templates/statictes/static/img/icons/trash.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

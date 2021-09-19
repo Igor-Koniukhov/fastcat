@@ -28,7 +28,8 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	mux.Handle("/user/update/", m.Auth(http.HandlerFunc(www.User.Update)))
 	mux.Handle("/user/delete/", m.Auth(http.HandlerFunc(www.User.Delete)))
 
-	mux.Handle("/order/create", m.Auth(http.HandlerFunc(www.Order.Create)))
+	mux.Handle("/order/blank", http.HandlerFunc(www.Order.ShowBlankOrder))
+	mux.Handle("/order/create", http.HandlerFunc(www.Order.Create))
 	mux.Handle("/order/", m.Auth(http.HandlerFunc(www.Order.Get)))
 	mux.Handle("/orders", m.Auth(http.HandlerFunc(www.Order.GetAll)))
 	mux.Handle("/order/update/", m.Auth(http.HandlerFunc(www.Order.Update)))
@@ -41,6 +42,7 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 
 	mux.Handle("/product/create", m.Auth(http.HandlerFunc(www.Product.Update)))
 	mux.HandleFunc("/product/", www.Product.Get)
+	mux.HandleFunc("/products/selected", www.Product.GetByTime)
 	mux.HandleFunc("/products", www.Product.GetAll)
 	mux.Handle("/product/update/", m.Auth(http.HandlerFunc(www.Product.Update)))
 	mux.Handle("/product/delete/", m.Auth(http.HandlerFunc(www.Product.Delete)))

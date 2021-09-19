@@ -155,7 +155,7 @@ func (c *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 		Value: user.Email,
 	}
 	http.SetCookie(w, auth)
-	http.Redirect(w, r, "/users", http.StatusSeeOther)
+	http.Redirect(w, r, "/products", http.StatusSeeOther)
 	w.WriteHeader(http.StatusOK)
 }
 

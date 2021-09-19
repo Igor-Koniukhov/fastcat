@@ -16,6 +16,7 @@ import (
 type Product interface {
 	Create(w http.ResponseWriter, r *http.Request)
 	Get(w http.ResponseWriter, r *http.Request)
+	GetByTime(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
 	Update(w http.ResponseWriter, r *http.Request)
@@ -54,9 +55,23 @@ func (p *ProductHandler) Get(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 }
+func (p *ProductHandler) GetByTime(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "json")
+	id := param(r)
+	item := p.repo.Get(id)
+	w.WriteHeader(http.StatusOK)
+	err := json.NewEncoder(w).Encode(&item)
+	if err != nil {
+		log.Println(err)
+	}
+}
 
 func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "json")
+	setPCook := &http.Cookie{
+		Name:  "Product",
+		Value: "",
+	}
+	http.SetCookie(w, setPCook)
 	items := p.repo.GetAll()
 	var supp []models.Supplier
 	for i := 0; i < len(items)-1; i++ {
