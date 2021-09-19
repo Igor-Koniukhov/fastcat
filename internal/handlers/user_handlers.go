@@ -46,6 +46,9 @@ func (c *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request)  
 func (c *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var u models.User
 	err := r.ParseForm()
+	if err != nil {
+		log.Println(err)
+	}
 	u.Name = r.FormValue("user-name")
 	u.Email = r.FormValue("user-email")
 	u.Password = r.FormValue("password")
@@ -95,11 +98,14 @@ func (c *UserHandler) Delete(w http.ResponseWriter, r *http.Request) {
 
 func (c *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var u models.User
-	json.NewDecoder(r.Body).Decode(&u)
+	err := json.NewDecoder(r.Body).Decode(&u)
+	if err != nil {
+		log.Println(err)
+	}
 	id := param(r)
 	user := c.repo.Update(id, &u)
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(&user)
+	err = json.NewEncoder(w).Encode(&user)
 	if err != nil {
 		log.Println(err)
 	}
@@ -125,7 +131,7 @@ func (c *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 		Email:    r.Form.Get("checkEmail"),
 		Password: r.Form.Get("checkPass"),
 	}
-	_, id, err := services.TokenResponder(w, logReq)
+	_, _, err = services.TokenResponder(w, logReq)
 	if err != nil {
 		log.Println(err)
 		r = r.WithContext(context.WithValue(r.Context(), "error", "Invalid login credentials"))
@@ -151,8 +157,6 @@ func (c *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 	http.SetCookie(w, auth)
 	http.Redirect(w, r, "/users", http.StatusSeeOther)
 	w.WriteHeader(http.StatusOK)
-	r = r.WithContext(context.WithValue(r.Context(), "user_id", id))
-	r.WithContext(context.WithValue(r.Context(), "flash", "logged in successfully"))
 }
 
 func (c *UserHandler) Refresh(w http.ResponseWriter, r *http.Request) {

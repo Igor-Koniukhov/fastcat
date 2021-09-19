@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
-	web "github.com/igor-koniukhov/webLogger/v3"
+	web "github.com/igor-koniukhov/webLogger/v2"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"time"

@@ -3,6 +3,7 @@
     --color-dark: #4d4d4d;
     --color-light: #808080;
     --color-accent: #5d71dd;
+    --color-yellow: #ffc107;
     --gutter: 20px;
 }
 
@@ -58,7 +59,7 @@ ul {
     border-radius: 4px;
     width: 100%;
     color: #fff;
-    background-color: var(--color-accent);
+    background-color: var(--color-yellow);
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
@@ -141,8 +142,9 @@ ul {
 
 .cart-content {
     cursor: default;
-    width: 490px;
+    max-width: 500px;
     position: absolute;
+    z-index: 100;
     top: 100%;
     right: 0;
     background-color: #fff;
@@ -150,6 +152,7 @@ ul {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    overflow-y: scroll;
 }
 
 .cart.active:hover .cart-content {
@@ -162,9 +165,6 @@ ul {
     padding-top: 90px;
 }
 
-.cart-content__list {
-    max-height: 330px;
-}
 
 .cart-product {
     display: flex;
@@ -224,14 +224,6 @@ ul {
     box-shadow: var(--button-shadow);
 }
 
-.cart-content__bottom {
-    padding: 20px;
-    border-top: 1px solid #eaeaea;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .cart-content__fullprice {
     font-size: 14px;
     line-height: 20px;
@@ -276,9 +268,8 @@ ul {
 }
 
 .order-modal {
-    padding: 40px;
-    width: 592px;
-    min-height: 542px;
+    max-width: 600px;
+    width: 100%;
 }
 
 .order-modal__top {
@@ -334,14 +325,8 @@ ul {
     color: var(--color-light);
 }
 
-
-
 .order-modal__btn.open::after {
     transform: translateY(-50%) rotate(180deg);
-}
-
-.order {
-    padding: 0 40px;
 }
 
 .order__label {
@@ -426,20 +411,11 @@ ul {
     color: var(--color-light);
 }
 
-.product {
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    padding: 20px;
-    padding-top: 9px;
-    font-size: 14px;
-    background-color: #fff;
-}
-
 .product__image {
     position: relative;
     overflow: hidden;
     display: block;
-    height: 162px;
+    height: 200px;
 }
 
 .image-switch {
@@ -450,11 +426,6 @@ ul {
     width: 100%;
     height: 100%;
     display: flex;
-}
-
-.image-switch__item {
-    flex-grow: 1;
-    cursor: pointer;
 }
 
 .image-switch__img {
@@ -476,7 +447,6 @@ ul {
 .image-switch__img img {
     display: block;
     max-width: 100%;
-    height: 100%;
     object-fit: cover;
 }
 
@@ -513,8 +483,6 @@ ul {
     background-color: var(--color-accent);
 }
 
-
-/* product-page cart ------------------------------*/
 .product__title {
     margin-bottom: 8px;
     font-weight: 400;
@@ -529,32 +497,18 @@ ul {
     margin-bottom: 20px;
 }
 
-.product__rating {
-    margin-right: 10px;
-    display: inline-flex;
-    align-items: center;
-    color: var(--color-accent);
-    font-weight: 600;
-}
-
-.product__rating svg {
-    fill: currentColor;
-    margin-right: 8px;
-}
 
 .product__testimonials {
     color: var(--color-light);
 }
 
 .product__info {
-    margin-bottom: 17px;
     font-size: 12px;
     color: var(--color-light);
 }
 
 .product__term {
     display: block;
-    margin-bottom: 7px;
 }
 
 .product__available {
@@ -562,15 +516,16 @@ ul {
 }
 
 .product-price {
-    margin-bottom: 17px;
-    display: flex;
-    align-items: center;
+   color: #ffffff;
+    position: absolute;
+    z-index: 24;
 }
 
 .product-price__current {
     margin-right: 12px;
     font-size: 24px;
-    color: var(--color-dark);
+    color: #ffffff;
+    text-decoration: underline red;
 }
 
 .product-price__old {
@@ -578,30 +533,17 @@ ul {
     color: var(--color-light);
     text-decoration: line-through;
 }
-
-/*-----------end-------------*/
-
-/*----------greed---start----*/
-.container {
-    max-width: 1234px;
+.product{
     margin: 0 auto;
+    display: flex;
+    max-width: 320px;
+    flex-direction: column;
+    padding: 1px;
+    justify-content: center;
     width: 100%;
-    padding: 0 var(--gutter);
-
+    border: 1px solid rgba(128, 128, 128, .3);
+    border-radius: 5px;
 }
-
-.grid-container {
-    width: 100%;
-    display: grid;
-    grid-gap: var(--gutter);
-    grid-template-columns: repeat(3, 1fr);
+.product__btn{
+    margin-top:auto;
 }
-
-.products-grid {
-    grid-column: 3 span;
-    display: grid;
-    grid-gap: var(--gutter);
-    grid-template-columns: repeat(3, 1fr);
-}
-
-/*------greeds------end------------*/

@@ -4,10 +4,12 @@ github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfC
 github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/golang-jwt/jwt v3.2.2+incompatible h1:IfV12K8xAKAnZqdXVzCZ+TOjboZ2keLg81eXfW3O+oY=
 github.com/golang-jwt/jwt v3.2.2+incompatible/go.mod h1:8pz2t5EyA70fFQQSrl6XZXzqecmYZeUEB8OUGHkxJ+I=
-github.com/igor-koniukhov/webLogger/v3 v3.0.0-20210905192324-823ffd4d8b3c h1:/k7MAohBD0msYIHglMNC8O752nHr7uUNSaMa6gT1vjA=
-github.com/igor-koniukhov/webLogger/v3 v3.0.0-20210905192324-823ffd4d8b3c/go.mod h1:1FmMtWFmfVUP79IK1NF0n002tzg1NtqDgJVS5J2HD+M=
-github.com/joho/godotenv v1.3.0 h1:Zjp+RcGpHhGlrMbJzXTrZZPrWj+1vfm90La1wgB6Bhc=
-github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
+github.com/igor-koniukhov/webLogger/v2 v2.1.1 h1:mo1HgSj2C5kNp2BEj4iOReDM9sIFWmWpYOGygQlggQw=
+github.com/igor-koniukhov/webLogger/v2 v2.1.1/go.mod h1:ypQyQ4Wt8kSw/tpwU2Achgr//D4ChYdPrVWX40T8CVg=
+github.com/igor-koniukhov/webLogger/v2 v2.1.2 h1:JmKocf5uEfYU9dqCK2YQkg29RcilKU6s9efPyW3hJtE=
+github.com/igor-koniukhov/webLogger/v2 v2.1.2/go.mod h1:ypQyQ4Wt8kSw/tpwU2Achgr//D4ChYdPrVWX40T8CVg=
+github.com/igor-koniukhov/webLogger/v3 v3.0.0-20210917153934-d91541926e5c h1:UZtZdwXytW9J6kGgxiADlv6PAefp719Ngdhx0QwYOfs=
+github.com/igor-koniukhov/webLogger/v3 v3.0.0-20210917153934-d91541926e5c/go.mod h1:1FmMtWFmfVUP79IK1NF0n002tzg1NtqDgJVS5J2HD+M=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
@@ -23,7 +25,6 @@ golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1/go.mod h1:oPkhp1MJrh7nUepCBc
 golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
 golang.org/x/text v0.3.3/go.mod h1:5Zoc/QRtKVWzQhOtBMvqHzDpF6irO9z98xDceosuGiQ=
 golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
-gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c h1:dUUwHk2QECo/6vqA44rthZ8ie2QXMNeKRTHCNY2nXvo=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=

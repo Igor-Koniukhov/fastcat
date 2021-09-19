@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
+	"github.com/igor-koniukhov/fastcat/internal/render"
+	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	"log"
 	"net/http"
@@ -56,11 +58,14 @@ func (p *ProductHandler) Get(w http.ResponseWriter, r *http.Request) {
 func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "json")
 	items := p.repo.GetAll()
-	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(&items)
-	if err != nil {
-		log.Println(err)
+	var supp []models.Supplier
+	for i := 0; i < len(items)-1; i++ {
+		s := repository.Repo.SupplierRepository.Get(items[i].SuppliersID)
+		supp = append(supp, *s)
 	}
+
+	w.WriteHeader(http.StatusOK)
+	render.TemplateRender(w, r, "product.page.tmpl", models.TemplateData{Products: items, Suppliers: supp})
 }
 
 func (p *ProductHandler) Delete(w http.ResponseWriter, r *http.Request) {
@@ -74,11 +79,14 @@ func (p *ProductHandler) Delete(w http.ResponseWriter, r *http.Request) {
 
 func (p *ProductHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var item *models.Item
-	json.NewDecoder(r.Body).Decode(&item)
+	err := json.NewDecoder(r.Body).Decode(&item)
+	if err != nil {
+		log.Println(err)
+	}
 	id := param(r)
 	item = p.repo.Update(id, item)
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(&item)
+	err = json.NewEncoder(w).Encode(&item)
 	if err != nil {
 		log.Println(err)
 	}

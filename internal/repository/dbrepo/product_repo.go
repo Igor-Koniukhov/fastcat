@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
-	web "github.com/igor-koniukhov/webLogger/v3"
+	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
 	"time"
 )
@@ -22,7 +22,7 @@ type ProductRepository interface {
 }
 
 type ProductRepo struct {
-	DB *sql.DB
+	DB  *sql.DB
 	App *config.AppConfig
 }
 
@@ -33,7 +33,7 @@ func NewProductRepository(app *config.AppConfig, DB *sql.DB) *ProductRepo {
 func (p ProductRepo) Create(item *models.Item, id int) (*models.Item, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	stmtSQl := fmt.Sprintf("INSERT INTO %s (name, price, type, image, ingredients, supplier_id) VALUES (?, ?, ?, ?, ?, ?)", models.TabItems)
+	stmtSQl := fmt.Sprintf("INSERT INTO %s (image, ingredients, name, price, type,  supplier_id) VALUES (?, ?, ?, ?, ?, ?)", models.TabItems)
 	ingredients, err := json.MarshalIndent(item.Ingredients, "", "")
 	if err != nil {
 		log.Println(err)
@@ -42,11 +42,11 @@ func (p ProductRepo) Create(item *models.Item, id int) (*models.Item, error) {
 
 	stmtRest := fmt.Sprintf("INSERT %s SET  item_id=? ", models.TabSuppliersItems)
 	result, err := p.DB.ExecContext(ctx, stmtSQl,
+		&item.Image,
+		ingredients,
 		&item.Name,
 		&item.Price,
 		&item.Type,
-		&item.Image,
-		ingredients,
 		id,
 	)
 	if err != nil {
@@ -72,14 +72,14 @@ func (p ProductRepo) Get(id int) *models.Item {
 	defer cancel()
 	var product models.Product
 	var item models.Item
-	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients FROM %s WHERE id = ? ", models.TabItems)
+	sqlStmt := fmt.Sprintf("SELECT id, image, ingredients, name, price, type FROM %s WHERE id = ? ", models.TabItems)
 	err := p.DB.QueryRowContext(ctx, sqlStmt, id).Scan(
 		&product.Id,
+		&product.Image,
+		&product.Ingredients,
 		&product.Name,
 		&product.Price,
-		&product.Image,
 		&product.Type,
-		&product.Ingredients,
 	)
 	str := []string{string(product.Ingredients)}
 
@@ -89,11 +89,11 @@ func (p ProductRepo) Get(id int) *models.Item {
 	}
 	item = models.Item{
 		Id:          product.Id,
+		Image:       product.Image,
+		Ingredients: str,
 		Name:        product.Name,
 		Price:       product.Price,
-		Image:       product.Image,
 		Type:        product.Type,
-		Ingredients: str,
 	}
 	if err != nil {
 		log.Println(err)
@@ -107,7 +107,7 @@ func (p ProductRepo) GetAll() []models.Item {
 	var product models.Product
 	var items []models.Item
 	var str []string
-	sqlStmt := fmt.Sprintf("SELECT id, name, price, image, type, ingredients, supplier_id FROM %s WHERE deleted_at IS NULL", models.TabItems)
+	sqlStmt := fmt.Sprintf("SELECT id, image, ingredients, name, price, type, supplier_id FROM %s WHERE deleted_at IS NULL", models.TabItems)
 
 	results, err := p.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
@@ -116,11 +116,11 @@ func (p ProductRepo) GetAll() []models.Item {
 	for results.Next() {
 		err = results.Scan(
 			&product.Id,
+			&product.Image,
+			&product.Ingredients,
 			&product.Name,
 			&product.Price,
-			&product.Image,
 			&product.Type,
-			&product.Ingredients,
 			&product.SuppliersID,
 		)
 		if err != nil {

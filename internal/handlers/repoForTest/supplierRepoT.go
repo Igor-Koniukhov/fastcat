@@ -4,10 +4,8 @@ import (
 	"database/sql"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
-	"sync"
 )
 
-var wg sync.WaitGroup
 
 type SupplierTestRepository interface {
 	Create(suppliers *models.Suppliers) (*models.Suppliers, int, error)

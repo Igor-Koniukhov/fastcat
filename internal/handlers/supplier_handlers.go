@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
+	"github.com/igor-koniukhov/fastcat/internal/render"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	"log"
 	"net/http"
@@ -28,7 +29,10 @@ func NewSupplierHandler(app *config.AppConfig, repo dbrepo.SupplierRepository) *
 
 func (s *SupplierHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var suppliers models.Suppliers
-	json.NewDecoder(r.Body).Decode(&suppliers)
+	err := json.NewDecoder(r.Body).Decode(&suppliers)
+	if err != nil {
+		log.Println(err)
+	}
 	user, _, err := s.repo.Create(&suppliers)
 	if err != nil {
 		log.Println(err)
@@ -55,10 +59,8 @@ func (s *SupplierHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "json")
 	suppliers := s.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(&suppliers)
-	if err != nil {
-		log.Println(err)
-	}
+
+render.TemplateRender(w, r, "supplier.page.tmpl", models.TemplateData{Suppliers: suppliers})
 }
 
 func (s *SupplierHandler) Delete(w http.ResponseWriter, r *http.Request) {
@@ -72,11 +74,14 @@ func (s *SupplierHandler) Delete(w http.ResponseWriter, r *http.Request) {
 
 func (s *SupplierHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var supplier models.Supplier
-	json.NewDecoder(r.Body).Decode(&supplier)
+	err := json.NewDecoder(r.Body).Decode(&supplier)
+	if err != nil {
+		log.Println(err)
+	}
 	id := param(r)
 	user := s.repo.Update(id, &supplier)
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(&user)
+	err = json.NewEncoder(w).Encode(&user)
 	if err != nil {
 		log.Println(err)
 	}

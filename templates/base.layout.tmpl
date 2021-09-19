@@ -80,9 +80,6 @@
                 <div class="cart__text navbar-brand"><span class="cart__quantity">0</span>
                 </div>
                 <div class="cart-content">
-                    <ul class="cart-content__list" data-simplebar>
-
-                    </ul>
                     <div class="cart-content__bottom">
                         <div class="cart-content__fullprice">
                             <span>Sum:</span>
@@ -92,7 +89,13 @@
                                 data-graph-animation="fadeInUp">Go to cart
                         </button>
                     </div>
+                    <form action="/show-cart" class="cart-content__list" data-simplebar>
+
+                    </form>
+
+
                 </div>
+
             </div>
         </div>
     </nav>
@@ -102,13 +105,19 @@
     </div></header>
 
 <main>
+    <div class="main-wrapper-content">
+        <section class="first-section restaurant-list">
 
     {{block "content" .}}
 
 
         {{end}}
+        </section>
 
-
+    </div>
+    <div class="wrapper-roll-up roll-up">
+        <img class="roll-up-button" src="../static/img/rocket-2-go.png" alt="roll-up">
+    </div>
 </main>
 
 <div class="modal-cart">
@@ -123,12 +132,12 @@
                 <div class="order-modal__summ order-modal__info-item">Total amount: <span>568</span></div>
                 <div class="order-modal__products order-modal__info-item">
                     <button class="order-modal__btn">Orders details:</button>
-                    <ul class="order-modal__list">
+                    <form class="order-modal__list">
 
-                    </ul>
+                    </form>
                 </div>
             </div>
-            <form action="#" class="order-modal__form order">
+            <form action="/order" method="post" class="order-modal__form order">
                 <input type="hidden" name="theme" value="Обратный звонок">
                 <input type="hidden" name="admin_email[]" value="ikoniukhov@gmail.com">
                 <input type="hidden" name="form_subject" value="Заявка с сайта">
@@ -199,9 +208,13 @@
         </div>
     </div>
 </footer>
+
 <script src="static/js/simplebar.js"></script>
 <script src="static/libs/modal/modal.js"></script>
 <script src="static/js/product.js"></script>
+<script src="static/js/cart.js"></script>
+<script src="static/js/modal-log-in.js"></script>
+<script src="static/js/script.js"></script>
 
 </body>
 </html>
