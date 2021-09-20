@@ -1,0 +1,176 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="main-wrapper-content">
+        <section class="first-section restaurant-list">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="text-center p-2 dancing-sm"><strong class=" text-center mb-5"><span
+                                        class="underline-word">Fast</span> <span
+                                        style="color: #ffc107">Cat</span>ering Company</strong></h2>
+
+                        <p>FastCat is passionate about food and bringing people evermore choice. There are amazing
+                            restaurants everywhere that we believe everyone should have access to.</p>
+                        <p>But FastCat’s mission is not only to make sure that the restaurants in your area are
+                            available to you when and where you want them - we want to go further and bring new
+                            restaurants to your area so you have even more choice of amazing food.</p>
+                        <p>FastCat’s Editions platform does exactly that: helping restaurants expand to new areas.
+                            Editions identifies the cuisines that people want but do not have access to locally and then
+                            invests in restaurants who excel in those foods to help them set-up in those local
+                            areas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <h2 class="text-center mb-5 dancing-sm">Food delivery in Kharkiv:</h2>
+                <div class="row" style="padding: 0 15px;">
+                    <div class="col-12 m-auto">
+                        <form method="post" action="/suppliers/selected">
+                            <div class="row p-2 all-items-inline">
+
+                                <div class="col-md-4 col-sm-12 ">
+                                    <a class="btn btn-in-line frame" href="/products">See All products</a>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12">
+                                    <div class="frame col-12">
+                                        <select class="form-control schedule" id="schedule" name="schedule">
+                                            {{range .Suppliers}}
+                                                <option>{{.WorkingHours.Opening}}--{{.WorkingHours.Closing}}</option>
+                                            {{end}}
+                                        </select>
+                                        <div class="col-2 ">
+                                            <button type="submit " class="btn btn-in-line m-auto">Choose</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row ">
+                    {{ range .Suppliers}}
+                        <div class="col-lg-6 col-md-4 mb-3 suppliers-icons items-cover background-img m-auto">
+                            <form method="post" action="/suppliers-products">
+                                <input type="text" value="{{.Id}}" hidden id="supplier_id" name="supplier_id">
+                                <button class="btn-icon-wrapper"></button>
+                                <div class=" text-center">
+                                    <div class="icon-title icon-title_suppliers text-center">
+                                        <h3 style="color: #ffffff">{{.Name}}</h3>
+                                        <p><b>{{.Type}}</b></p>
+                                    </div>
+                                    <div class=" suppliers-img "
+                                         style="background-image: url({{.Image}})">
+                                        <div class=" restaurant-icon restaurant-icon_square">
+                                            <img src="{{.Image}}" alt="{{.Name}} {{.Type}}" style="display: none;">
+                                        </div>
+                                    </div>
+
+                                    <div class="bottom-title">
+                                        <p>Opens: {{.WorkingHours.Opening}} Closes: {{.WorkingHours.Closing}}</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {{end}}
+                </div>
+
+            </div>
+        </section>
+        <section class="second-section">
+            <div class="section-decoration section-decoration-120"
+                 style="background-image: url(../static/img/section-decor/divider2_desktop.svg);"></div>
+            <div class="wrapper-content wrapper-content-yellow">
+                <div class="container">
+                    <h3 class="text-center dancing-sm"><span class="underline-word">Fast</span> <span
+                                style="color: #ff0000">Cat</span></h3>
+                    <div class="row">
+                        <div class="col-md-4 cos-sm-12">
+                            <h5 class="text-center dancing-sm">Faster than rocket</h5>
+                            <ul class="text-center">
+                                <li>You orders we serves</li>
+                                <li>You put down your phone - we on a road</li>
+                                <li>Time works wonders - we makes work</li>
+                                <li>No pain no gaine</li>
+                                <li>All in good time</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 cos-sm-12"><img class="cat-on-delivery" src="../static/img/fast-cat-2.png"
+                                                             alt="cat on a bike"></div>
+
+                        <div class="col-md-4 cos-sm-12">
+                            <h5 class="text-center dancing-sm">Safer than home</h5>
+                            <ul class="text-center">
+                                <li>Every vegetable has its season</li>
+                                <li>One man’s meat is another man’s poison</li>
+                                <li>In skating over thin ice our safety is in our speed</li>
+                                <li>A ship in harbour is safe, but that is not what ships are built for</li>
+                                <li>Half a loaf is better than no bread</li>
+                                <li>No song, no supper</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-decoration section-decoration-120"
+                 style="background-image: url(../static/img/section-decor/divider3_desktop.svg);"></div>
+
+        </section>
+        <section>
+            <div class="wrapper-content">
+                <div class="container">
+                    <h3 class="text-center dancing-sm"><span class="underline-word">Fast</span> <span
+                                style="color: #ff0000">Cat</span> could deliver everything at time</h3>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 d-flex justify-content-center">
+                            <div class="direction-col">
+                                <a class="icon-reference" href="#"></a>
+                                <img class="restaurant-icon" src="../static/img/delivery.jpg" alt="">
+                                <div class="icon-title">become a courier</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 d-flex justify-content-center">
+                            <div class="direction-col">
+                                <a class="icon-reference" href="#"></a>
+                                <img class="restaurant-icon" src="../static/img/cook-cat.jpeg" alt="">
+                                <div class="icon-title">become a partner</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 d-flex justify-content-center">
+                            <div class="direction-col">
+                                <a class="icon-reference" href="#"></a>
+                                <img class="restaurant-icon" src="../static/img/vacansy.png" alt="">
+                                <div class="icon-title">vacancies</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrapper-roll-up roll-up">
+        <img class="roll-up-button" src="../static/img/rocket-2-go.png" alt="roll-up">
+    </div>
+
+    <div class="modals">
+        <div class="modal-custom">
+            <button class="mod-btn"></button>
+            <button class="mobile-close" data-swipe-threshold="20" data-swipe-timeout="500"
+                    data-swipe-ignore="false"></button>
+            <form action="/login" class="modal__form form">
+                <label for="email_login">Email:</label>
+                <input type="email" class="form__input" id="email_login" name="email_login"
+                       placeholder="your@email.com">
+
+                <label for="pass_login">Password</label>
+                <input type="tel" class="form__input" id="pass_login" name="pass_login" placeholder="password">
+
+                <button class="form__btn button-custom">Log-in</button>
+            </form>
+        </div>
+    </div>
+    </main>
+{{end}}
