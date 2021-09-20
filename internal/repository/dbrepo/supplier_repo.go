@@ -11,12 +11,13 @@ import (
 	"time"
 )
 
-var wg sync.WaitGroup
+
 
 type SupplierRepository interface {
 	Create(suppliers *models.Suppliers) (*models.Suppliers, int, error)
 	Get(id int) *models.Supplier
 	GetAll() []models.Supplier
+	GetAllBySchedule(start, end string) []models.Supplier
 	Delete(id int) error
 	SoftDelete(id int) error
 	Update(id int, supplier *models.Supplier) *models.Supplier
@@ -25,6 +26,7 @@ type SupplierRepository interface {
 type SupplierRepo struct {
 	DB  *sql.DB
 	App *config.AppConfig
+	wg sync.WaitGroup
 }
 
 func NewSupplierRepository(app *config.AppConfig, DB *sql.DB) *SupplierRepo {
@@ -35,11 +37,15 @@ func (s SupplierRepo) Create(suppliers *models.Suppliers) (*models.Suppliers, in
 	defer cancel()
 	var id int
 	var err error
-	stmtSql := fmt.Sprintf("INSERT INTO %s (name, image) VALUES (?, ?)", models.TabSuppliers)
-	for _, restaurant := range suppliers.Restaurants {
+	stmtSql := fmt.Sprintf("INSERT INTO %s (name, type, image, opening, closing) VALUES (?, ?, ?, ?, ?)", models.TabSuppliers)
+	for _, restaurant := range suppliers.Suppliers {
 		result, err := s.DB.ExecContext(ctx, stmtSql,
 			restaurant.Name,
-			restaurant.Image)
+			restaurant.Type,
+			restaurant.Image,
+			restaurant.WorkingHours.Opening,
+			restaurant.WorkingHours.Closing,
+			)
 		if err != nil {
 			log.Println(err)
 		}
@@ -48,13 +54,14 @@ func (s SupplierRepo) Create(suppliers *models.Suppliers) (*models.Suppliers, in
 			log.Println(err)
 		}
 		id = int(lastInsertedID)
-		wg.Add(1)
+
+		s.wg.Add(1)
 		go func(id int) {
 			s.App.ChanIdSupplier <- id
-			wg.Done()
+			s.wg.Done()
 		}(id)
 	}
-	wg.Wait()
+	s.wg.Wait()
 
 	return suppliers, id, err
 }
@@ -63,15 +70,19 @@ func (s SupplierRepo) Get(id int) *models.Supplier {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var supplier models.Supplier
-	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s WHERE id = ? ", models.TabSuppliers)
+	sqlStmt := fmt.Sprintf("SELECT id, name, type, image, opening, closing FROM %s WHERE id = ? ", models.TabSuppliers)
 	err := s.DB.QueryRowContext(ctx, sqlStmt, id).Scan(
 		&supplier.Id,
 		&supplier.Name,
+		&supplier.Type,
 		&supplier.Image,
+		&supplier.WorkingHours.Opening,
+		&supplier.WorkingHours.Closing,
 	)
 	if err != nil {
 		log.Println(err)
 	}
+
 	return &supplier
 }
 
@@ -80,7 +91,7 @@ func (s SupplierRepo) GetAll() []models.Supplier {
 	defer cancel()
 	var supplier models.Supplier
 	var suppliers []models.Supplier
-	sqlStmt := fmt.Sprintf("SELECT id, name, image FROM %s WHERE deleted_at IS NULL", models.TabSuppliers)
+	sqlStmt := fmt.Sprintf("SELECT id, name, type, image, opening, closing FROM %s WHERE deleted_at IS NULL", models.TabSuppliers)
 	stmt, err := s.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
 		log.Println(err)
@@ -89,10 +100,39 @@ func (s SupplierRepo) GetAll() []models.Supplier {
 		_ = stmt.Scan(
 			&supplier.Id,
 			&supplier.Name,
+			&supplier.Type,
 			&supplier.Image,
+			&supplier.WorkingHours.Opening,
+			&supplier.WorkingHours.Closing,
 		)
 		suppliers = append(suppliers, supplier)
 	}
+
+	return suppliers
+}
+
+func (s SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var supplier models.Supplier
+	var suppliers []models.Supplier
+	sqlStmt := fmt.Sprintf("SELECT id, name, type, image, opening, closing FROM %s WHERE deleted_at IS NULL AND opening='%s' AND closing='%s' ", models.TabSuppliers, start, end)
+	stmt, err := s.DB.QueryContext(ctx, sqlStmt)
+	if err != nil {
+		log.Println(err)
+	}
+	for stmt.Next() {
+		_ = stmt.Scan(
+			&supplier.Id,
+			&supplier.Name,
+			&supplier.Type,
+			&supplier.Image,
+			&supplier.WorkingHours.Opening,
+			&supplier.WorkingHours.Closing,
+		)
+		suppliers = append(suppliers, supplier)
+	}
+
 	return suppliers
 }
 
@@ -123,8 +163,14 @@ func (s SupplierRepo) SoftDelete(id int) error {
 func (s SupplierRepo) Update(id int, supplier *models.Supplier) *models.Supplier {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, image=?, Name=?, Menu=? , WHERE id=?", models.TabSuppliers)
-	_, err := s.DB.ExecContext(ctx, sqlStmt, supplier.Id, supplier.Image, supplier.Name, supplier.Menu, id)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?,name=?, type=?, image=?,  opening=?, closing=? , WHERE id=?", models.TabSuppliers)
+	_, err := s.DB.ExecContext(ctx, sqlStmt,
+		supplier.Id,
+		supplier.Name,
+		supplier.Type,
+		supplier.Image,
+		supplier.WorkingHours.Opening,
+		supplier.WorkingHours.Closing, id)
 	if err != nil {
 		log.Println(err)
 	}

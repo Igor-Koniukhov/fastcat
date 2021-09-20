@@ -27,14 +27,16 @@ func NewOrderRepository(app *config.AppConfig, DB *sql.DB) *OrderRepo {
 	return &OrderRepo{App:app, DB: DB}
 }
 func (o OrderRepo) Create(or *models.Order) (*models.Order, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, cart_id, address_id, status) VALUES (?, ?, ?, ?)", models.TableOrders)
+	//ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	//defer cancel()
+	/*sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, cart_id, address_id, status) VALUES (?, ?, ?, ?)", models.TableOrders)
 	_, err := o.DB.ExecContext(ctx, sqlStmt, or.UserID, or.CartID, or.AddressID, or.Status)
 	if err != nil {
 		log.Println(err)
 		return nil, err
-	}
+	}*/
+	fmt.Println(or)
+
 	return or, nil
 }
 
@@ -46,8 +48,8 @@ func (o OrderRepo) Get(id int) *models.Order {
 	err := o.DB.QueryRowContext(ctx, sqlStmt, id).Scan(
 		&order.ID,
 		&order.UserID,
-		&order.CartID,
-		&order.AddressID,
+
+
 		&order.Status,
 		&order.CreatedAt,
 		&order.UpdatedAt)
@@ -71,8 +73,8 @@ func (o OrderRepo) GetAll() *[]models.Order {
 		err = results.Scan(
 			&order.ID,
 			&order.UserID,
-			&order.CartID,
-			&order.AddressID,
+
+
 			&order.Status,
 			&order.CreatedAt,
 			&order.UpdatedAt)
@@ -103,8 +105,8 @@ func (o OrderRepo) Update(id int, ord *models.Order) *models.Order {
 	_, err := o.DB.ExecContext(ctx, sqlStmt,
 		ord.ID,
 		ord.UserID,
-		ord.CartID,
-		ord.AddressID,
+
+
 		ord.Status)
 	if err != nil {
 		log.Println(err)

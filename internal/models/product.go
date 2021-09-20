@@ -19,11 +19,11 @@ type Menu struct {
 
 type Item struct {
 	Id          int      `json:"id"`
+	Image       string   `json:"image"`
+	Ingredients []string `json:"ingredients"`
 	Name        string   `json:"name"`
 	Price       float64  `json:"price"`
-	Image       string   `json:"image"`
 	Type        string   `json:"type"`
-	Ingredients []string `json:"ingredients"`
 	SuppliersID int      `json:"suppliers_id"`
 }
 
