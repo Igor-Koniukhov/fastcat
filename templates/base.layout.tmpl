@@ -1,3 +1,4 @@
+
 {{define "base"}}
     <!doctype html>
     <html lang="en">
@@ -39,7 +40,7 @@
     <header class="second-header ">
         <nav class="navbar navbar-expand-md navbar-light bg-yellow-custom">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/index.html"><img class="logo-cat" src="../static/img/fast-cat.png"
+                <a class="navbar-brand" href="/"><img class="logo-cat" src="../static/img/fast-cat.png"
                                                                 alt="fast cat - symbol of fast catering"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -49,10 +50,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about.html">About</a>
+                            <a class="nav-link" href="/about">About</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -61,12 +62,12 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item log-in" href="#">Log in</a></li>
-                                <li><a class="dropdown-item" href="/registration.html">Registration</a></li>
+                                <li><a class="dropdown-item" href="/registration">Registration</a></li>
 
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/contacts.html">Contacts</a>
+                            <a class="nav-link" href="/contacts">Contacts</a>
                         </li>
 
                     </ul>
@@ -94,10 +95,7 @@
                         <form class="cart-content__list" data-simplebar>
 
                         </form>
-
-
                     </div>
-
                 </div>
             </div>
         </nav>
@@ -129,8 +127,8 @@
             <div class="modal__container order-modal" role="dialog" aria-modal="true" data-graph-target="modal-cart">
                 <div class="modal-cart-content order-modal__content">
                     <div class="order-modal__top">
-                        <h2 class="order-modal__title">Conferm order</h2>
-                        <span class="order-modal__number">Order № 34</span>
+                        <h2 class="order-modal__title">Confirm order</h2>
+                        <span class="order-modal__number">Order № </span>
                     </div>
                     <div class="order-modal__info">
                         <div class="order-modal__quantity order-modal__info-item">Products: <span>3 шт</span></div>
@@ -207,7 +205,6 @@
 
                         </ul>
                     </div>
-
                 </div>
             </div>
             <hr>
@@ -216,13 +213,11 @@
             </div>
         </div>
     </footer>
-
     <script src="../static/js/simplebar.js"></script>
     <script src="../static/libs/modal/modal.js"></script>
     <script src="../static/js/cart.js"></script>
     <script src="../static/js/modal-log-in.js"></script>
     <script src="../static/js/script.js"></script>
-
     </body>
     </html>
 

@@ -16,6 +16,10 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	repository.NewRepo(repo)
 
 	mux := http.NewServeMux()
+	mux.HandleFunc("/", www.Supplier.Home)
+
+	mux.HandleFunc("/about", www.User.AboutUs)
+	mux.HandleFunc("/contacts", www.User.Contacts)
 	mux.HandleFunc("/login", www.User.PostLogin)
 	mux.HandleFunc("/show-login", www.User.ShowLogin)
 	mux.HandleFunc("/refresh", www.User.Refresh)
@@ -37,12 +41,13 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	mux.Handle("/supplier/create", m.Auth(http.HandlerFunc(www.Supplier.Create)))
 	mux.HandleFunc("/supplier/", www.Supplier.Get)
 	mux.HandleFunc("/suppliers", www.Supplier.GetAll)
+	mux.HandleFunc("/suppliers/selected", www.Supplier.GetAllBySchedule)
 	mux.Handle("/supplier/update/", m.Auth(http.HandlerFunc(www.Supplier.Update)))
 	mux.Handle("/supplier/delete/", m.Auth(http.HandlerFunc(www.Supplier.Delete)))
 
 	mux.Handle("/product/create", m.Auth(http.HandlerFunc(www.Product.Update)))
 	mux.HandleFunc("/product/", www.Product.Get)
-	mux.HandleFunc("/products/selected", www.Product.GetByTime)
+	mux.HandleFunc("/suppliers-products", www.Product.GetAllBySupplierID)
 	mux.HandleFunc("/products", www.Product.GetAll)
 	mux.Handle("/product/update/", m.Auth(http.HandlerFunc(www.Product.Update)))
 	mux.Handle("/product/delete/", m.Auth(http.HandlerFunc(www.Product.Delete)))

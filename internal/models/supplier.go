@@ -5,8 +5,8 @@ type Suppliers struct {
 }
 
 type WorkingHours struct {
-	Closing string `json:"closing"`
 	Opening string `json:"opening"`
+	Closing string `json:"closing"`
 }
 
 type Supplier struct {

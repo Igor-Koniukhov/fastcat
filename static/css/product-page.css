@@ -13,6 +13,7 @@ html {
 }
 
 * {
+
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -206,7 +207,7 @@ ul {
     border: unset;
     background-color: transparent;
     cursor: pointer;
-    background-image: url("/templates/statictes/static/img/icons/trash.svg");
+    background-image: url("/static/img/icons/trash.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -270,6 +271,8 @@ ul {
 .order-modal {
     max-width: 600px;
     width: 100%;
+    margin: auto 0;
+    display: block;
 }
 
 .order-modal__top {
@@ -415,7 +418,7 @@ ul {
     position: relative;
     overflow: hidden;
     display: block;
-    height: 200px;
+    height: 300px;
 }
 
 .image-switch {
@@ -534,6 +537,16 @@ ul {
     text-decoration: line-through;
 }
 .product{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid rgba(128, 128, 128, .3);
+    border-radius: 5px;
+}
+.suppliers{
     margin: 0 auto;
     display: flex;
     max-width: 320px;

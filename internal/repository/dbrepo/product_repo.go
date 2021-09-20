@@ -14,8 +14,10 @@ import (
 
 type ProductRepository interface {
 	Create(item *models.Item, id int) (*models.Item, error)
+	GetBySchedule(id int) []models.Item
 	Get(id int) *models.Item
 	GetAll() []models.Item
+	GetAllBySupplierID(id int) []models.Item
 	Delete(id int) (err error)
 	SoftDelete(id int) error
 	Update(id int, item *models.Item, ) *models.Item
@@ -39,7 +41,6 @@ func (p ProductRepo) Create(item *models.Item, id int) (*models.Item, error) {
 		log.Println(err)
 		return nil, err
 	}
-
 	stmtRest := fmt.Sprintf("INSERT %s SET  item_id=? ", models.TabSuppliersItems)
 	result, err := p.DB.ExecContext(ctx, stmtSQl,
 		&item.Image,
@@ -101,6 +102,48 @@ func (p ProductRepo) Get(id int) *models.Item {
 	return &item
 }
 
+func (p ProductRepo) GetBySchedule(id int) []models.Item {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var product models.Product
+	var items []models.Item
+	var str []string
+	sqlStmt := fmt.Sprintf("SELECT id, image, ingredients, name, price, type, supplier_id FROM %s WHERE deleted_at IS NULL ", models.TabItems)
+
+	results, err := p.DB.QueryContext(ctx, sqlStmt)
+	if err != nil {
+		log.Println(err)
+	}
+	for results.Next() {
+		err = results.Scan(
+			&product.Id,
+			&product.Image,
+			&product.Ingredients,
+			&product.Name,
+			&product.Price,
+			&product.Type,
+			&product.SuppliersID,
+		)
+		if err != nil {
+			log.Println(err)
+		}
+		err := json.Unmarshal(product.Ingredients, &str)
+		if err != nil {
+			log.Println(err)
+		}
+		items = append(items, models.Item{
+			Id:          product.Id,
+			Name:        product.Name,
+			Price:       product.Price,
+			Image:       product.Image,
+			Type:        product.Type,
+			Ingredients: str,
+			SuppliersID: product.SuppliersID,
+		})
+	}
+	return items
+}
+
 func (p ProductRepo) GetAll() []models.Item {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
@@ -110,6 +153,47 @@ func (p ProductRepo) GetAll() []models.Item {
 	sqlStmt := fmt.Sprintf("SELECT id, image, ingredients, name, price, type, supplier_id FROM %s WHERE deleted_at IS NULL", models.TabItems)
 
 	results, err := p.DB.QueryContext(ctx, sqlStmt)
+	if err != nil {
+		log.Println(err)
+	}
+	for results.Next() {
+		err = results.Scan(
+			&product.Id,
+			&product.Image,
+			&product.Ingredients,
+			&product.Name,
+			&product.Price,
+			&product.Type,
+			&product.SuppliersID,
+		)
+		if err != nil {
+			log.Println(err)
+		}
+		err := json.Unmarshal(product.Ingredients, &str)
+		if err != nil {
+			log.Println(err)
+		}
+		items = append(items, models.Item{
+			Id:          product.Id,
+			Name:        product.Name,
+			Price:       product.Price,
+			Image:       product.Image,
+			Type:        product.Type,
+			Ingredients: str,
+			SuppliersID: product.SuppliersID,
+		})
+	}
+	return items
+}
+func (p ProductRepo) GetAllBySupplierID(id int) []models.Item {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var product models.Product
+	var items []models.Item
+	var str []string
+	sqlStmt := fmt.Sprintf("SELECT id, image, ingredients, name, price, type, supplier_id FROM %s WHERE deleted_at IS NULL AND supplier_id=?", models.TabItems)
+
+	results, err := p.DB.QueryContext(ctx, sqlStmt, id)
 	if err != nil {
 		log.Println(err)
 	}

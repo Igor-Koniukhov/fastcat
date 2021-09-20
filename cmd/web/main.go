@@ -35,7 +35,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//go parser.RunUpToDateSuppliersInfo(600)
+	go parser.RunUpToDateSuppliersInfo(600)
 
 	if err != nil {
 		log.Fatal(err)

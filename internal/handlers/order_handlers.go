@@ -11,8 +11,6 @@ import (
 	"log"
 	"net/url"
 
-
-
 	"net/http"
 )
 
@@ -35,12 +33,18 @@ func NewOrderHandler(app *config.AppConfig, repo dbrepo.OrderRepository) *OrderH
 }
 func (ord OrderHandler) ShowBlankOrder(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
-	render.TemplateRender(w, r, "order.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "order.page.tmpl", models.TemplateData{})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
 }
 
 func (ord OrderHandler) Create(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		web.Log.Fatal(err)
+	}
 	var prods []models.Prod
-	w.WriteHeader(http.StatusCreated)
 	orderCookie, err := r.Cookie("Product")
 	if err != nil {
 		log.Fatal(err)
@@ -48,25 +52,20 @@ func (ord OrderHandler) Create(w http.ResponseWriter, r *http.Request) {
 	}
 	decodedValue, err := url.QueryUnescape(orderCookie.Value)
 	err = json.Unmarshal([]byte(decodedValue), &prods)
-	for _, v := range prods{
+	for _, v := range prods {
 		fmt.Println(v.Title, v.Price)
 	}
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
-	fmt.Println(decodedValue)
-	err = r.ParseMultipartForm(32<<20)
-	if err != nil {
-		web.Log.Fatal(err)
-	}
-
 	user := &models.User{
 		Name:  r.Form.Get("name"),
 		Email: r.Form.Get("email"),
 		Phone: r.Form.Get("phone"),
 	}
-fmt.Println(user, prods)
+	web.Log.Info(user, prods)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func (ord OrderHandler) Get(w http.ResponseWriter, r *http.Request) {

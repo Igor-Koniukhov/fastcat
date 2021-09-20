@@ -17,6 +17,7 @@ type SupplierRepository interface {
 	Create(suppliers *models.Suppliers) (*models.Suppliers, int, error)
 	Get(id int) *models.Supplier
 	GetAll() []models.Supplier
+	GetAllBySchedule(start, end string) []models.Supplier
 	Delete(id int) error
 	SoftDelete(id int) error
 	Update(id int, supplier *models.Supplier) *models.Supplier
@@ -42,8 +43,9 @@ func (s SupplierRepo) Create(suppliers *models.Suppliers) (*models.Suppliers, in
 			restaurant.Name,
 			restaurant.Type,
 			restaurant.Image,
+			restaurant.WorkingHours.Opening,
 			restaurant.WorkingHours.Closing,
-			restaurant.WorkingHours.Opening)
+			)
 		if err != nil {
 			log.Println(err)
 		}
@@ -80,6 +82,7 @@ func (s SupplierRepo) Get(id int) *models.Supplier {
 	if err != nil {
 		log.Println(err)
 	}
+
 	return &supplier
 }
 
@@ -99,8 +102,33 @@ func (s SupplierRepo) GetAll() []models.Supplier {
 			&supplier.Name,
 			&supplier.Type,
 			&supplier.Image,
-			&supplier.WorkingHours.Closing,
 			&supplier.WorkingHours.Opening,
+			&supplier.WorkingHours.Closing,
+		)
+		suppliers = append(suppliers, supplier)
+	}
+
+	return suppliers
+}
+
+func (s SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var supplier models.Supplier
+	var suppliers []models.Supplier
+	sqlStmt := fmt.Sprintf("SELECT id, name, type, image, opening, closing FROM %s WHERE deleted_at IS NULL AND opening='%s' AND closing='%s' ", models.TabSuppliers, start, end)
+	stmt, err := s.DB.QueryContext(ctx, sqlStmt)
+	if err != nil {
+		log.Println(err)
+	}
+	for stmt.Next() {
+		_ = stmt.Scan(
+			&supplier.Id,
+			&supplier.Name,
+			&supplier.Type,
+			&supplier.Image,
+			&supplier.WorkingHours.Opening,
+			&supplier.WorkingHours.Closing,
 		)
 		suppliers = append(suppliers, supplier)
 	}
