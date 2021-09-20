@@ -43,7 +43,6 @@ func main() {
 
 	if err != nil {
 		log.Fatal(err, err)
-
 	}
 	go func() {
 		err := srv.Serve(
@@ -55,11 +54,9 @@ func main() {
 		}
 	}()
 	web.Log.Info("FastCat application Started")
-
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)
 	<-c
-
 	web.Log.Info("FastCat application Shutting Down")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
