@@ -26,6 +26,9 @@
                                 </h3>
                                 <div class="ingredients-title">
                                     <p><span class="product-price__current">{{.Price}}</span><span>$</span></p>
+                                    <p><span class="product-id" hidden>{{.Id}}</span><span></span></p>
+                                    <p><span class="supplier-id" hidden>{{.SuppliersID}}</span><span></span></p>
+
                                     <span class="product__term">{{.Type}}:</span>
                                     <p>{{ range .Ingredients}}
                                             <span>{{.}}</span>,

@@ -11,7 +11,7 @@ import (
 )
 
 type OrderRepository interface {
-	Create(or *models.Order) (*models.Order, error)
+	Create(ord *models.Order) (*models.Order, error)
 	Get(id int) *models.Order
 	GetAll() *[]models.Order
 	Delete(id int) error
@@ -26,62 +26,67 @@ type OrderRepo struct {
 func NewOrderRepository(app *config.AppConfig, DB *sql.DB) *OrderRepo {
 	return &OrderRepo{App:app, DB: DB}
 }
-func (o OrderRepo) Create(or *models.Order) (*models.Order, error) {
-	//ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	//defer cancel()
-	/*sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, cart_id, address_id, status) VALUES (?, ?, ?, ?)", models.TableOrders)
-	_, err := o.DB.ExecContext(ctx, sqlStmt, or.UserID, or.CartID, or.AddressID, or.Status)
+func (o OrderRepo) Create(ord *models.Order) (*models.Order, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (supplier_id, cart_id, title, price, quantity, status, ) VALUES (?, ?, ?, ?, ?, ?)", models.TableOrders)
+	_, err := o.DB.ExecContext(ctx, sqlStmt,
+		ord.SupplierId,
+		ord.BodyOrder.CartId,
+		ord.BodyOrder.Title,
+		ord.BodyOrder.Price,
+		ord.BodyOrder.Quantity,
+		ord.BodyOrder.Status)
 	if err != nil {
 		log.Println(err)
 		return nil, err
-	}*/
-	fmt.Println(or)
-
-	return or, nil
+	}
+	fmt.Println(ord)
+	return ord, nil
 }
 
 func (o OrderRepo) Get(id int) *models.Order {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	var order models.Order
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", models.TableOrders)
+	var ord models.Order
+	sqlStmt := fmt.Sprintf("SELECT id, supplier_id, cart_id, title, price, quantity, status FROM %s WHERE supplier_id = ? ", models.TableOrders)
 	err := o.DB.QueryRowContext(ctx, sqlStmt, id).Scan(
-		&order.ID,
-		&order.UserID,
-
-
-		&order.Status,
-		&order.CreatedAt,
-		&order.UpdatedAt)
+		&ord.ID,
+		&ord.SupplierId,
+		&ord.BodyOrder.CartId,
+		&ord.BodyOrder.Title,
+		&ord.BodyOrder.Price,
+		&ord.BodyOrder.Quantity,
+		&ord.BodyOrder.Status)
 	if err != nil {
 		log.Println(err)
 	}
-	return &order
+	return &ord
 }
 
 func (o OrderRepo) GetAll() *[]models.Order {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	var order models.Order
+	var ord models.Order
 	var orders []models.Order
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s", models.TableOrders)
+	sqlStmt := fmt.Sprintf("SELECT id, supplier_id, cart_id, title, price, quantity, status FROM %s", models.TableOrders)
 	results, err := o.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
 		log.Println(err)
 	}
 	for results.Next() {
 		err = results.Scan(
-			&order.ID,
-			&order.UserID,
-
-
-			&order.Status,
-			&order.CreatedAt,
-			&order.UpdatedAt)
+			&ord.ID,
+			&ord.SupplierId,
+			&ord.BodyOrder.CartId,
+			&ord.BodyOrder.Title,
+			&ord.BodyOrder.Price,
+			&ord.BodyOrder.Quantity,
+			&ord.BodyOrder.Status)
 		if err != nil {
 			log.Println(err)
 		}
-		orders = append(orders, order)
+		orders = append(orders, ord)
 	}
 	return &orders
 }
@@ -101,13 +106,15 @@ func (o OrderRepo) Delete(id int) error {
 func (o OrderRepo) Update(id int, ord *models.Order) *models.Order {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, user_id=?, cart_id=?, address_id=?, status=? WHERE id=%d ", models.TableOrders, id)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, supplier_id=?, cart_id=?, cart_id=?, title=? price=?, quantity=?, status=? WHERE id=%d ", models.TableOrders, id)
 	_, err := o.DB.ExecContext(ctx, sqlStmt,
 		ord.ID,
-		ord.UserID,
-
-
-		ord.Status)
+		ord.SupplierId,
+		ord.BodyOrder.CartId,
+		ord.BodyOrder.Title,
+		ord.BodyOrder.Price,
+		ord.BodyOrder.Quantity,
+		ord.BodyOrder.Status)
 	if err != nil {
 		log.Println(err)
 	}

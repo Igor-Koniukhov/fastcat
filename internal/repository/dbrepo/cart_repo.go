@@ -11,11 +11,11 @@ import (
 )
 
 type CartRepository interface {
-	Create(cart *models.Cart) (*models.Cart, error)
-	Get(id int) *models.Cart
-	GetAll() []models.Cart
+	Create(cart *models.CartResponse) (*models.CartResponse, error)
+	Get(id int) *models.CartResponse
+	GetAll() []models.CartResponse
 	Delete(id int) error
-	Update(id int, u *models.Cart) *models.Cart
+	Update(id int, u *models.CartResponse) *models.CartResponse
 }
 
 type CartRepo struct {
@@ -27,11 +27,15 @@ func NewCartRepository(app *config.AppConfig, DB *sql.DB) *CartRepo {
 	return &CartRepo{App: app, DB: DB}
 }
 
-func (c CartRepo) Create(cart *models.Cart) (*models.Cart, error) {
+func (c CartRepo) Create(cart *models.CartResponse) (*models.CartResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, product_id, item) VALUES (?, ?, ?)", models.TableCarts)
-		_, err := c.DB.ExecContext(ctx, sqlStmt, cart.UserID, cart.ProductID, cart.Items)
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, address_delivery, order_body, amount) VALUES (?, ?, ?, ?)", models.TableCarts)
+		_, err := c.DB.ExecContext(ctx, sqlStmt,
+			&cart.User.ID,
+			&cart.AddressDelivery,
+			&cart.OrderBody,
+			&cart.Amount)
 	if err != nil {
 		log.Println(err)
 		return nil, err
@@ -39,27 +43,29 @@ func (c CartRepo) Create(cart *models.Cart) (*models.Cart, error) {
 	return cart, nil
 }
 
-func (c CartRepo) Get(id int) *models.Cart {
+func (c CartRepo) Get(id int) *models.CartResponse {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	var cart models.Cart
-	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, item FROM %s WHERE id = ? ", models.TableCarts)
+	var cart models.CartResponse
+	sqlStmt := fmt.Sprintf("SELECT id, user_id, address_delivery, order_body, amount FROM %s WHERE id = ? ", models.TableCarts)
 	err := c.DB.QueryRowContext(ctx, sqlStmt, id).Scan(
 		&cart.ID,
-		&cart.ProductID,
-		&cart.Items)
+		&cart.User.ID,
+		&cart.AddressDelivery,
+		&cart.OrderBody,
+		&cart.Amount)
 	if err != nil {
 		log.Println(err)
 	}
 	return &cart
 }
 
-func (c CartRepo) GetAll() []models.Cart {
+func (c CartRepo) GetAll() []models.CartResponse {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	var cart models.Cart
-	var carts []models.Cart
-	sqlStmt := fmt.Sprintf("SELECT id, user_id, product_id, items FROM %s", models.TableCarts)
+	var cart models.CartResponse
+	var carts []models.CartResponse
+	sqlStmt := fmt.Sprintf("SELECT id, user_id, address_delivery, order_body, amount FROM %s", models.TableCarts)
 	results, err := c.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
 		log.Println(err)
@@ -67,9 +73,10 @@ func (c CartRepo) GetAll() []models.Cart {
 	for results.Next() {
 		err = results.Scan(
 			&cart.ID,
-			&cart.UserID,
-			&cart.ProductID,
-			&cart.Items)
+			&cart.User.ID,
+			&cart.AddressDelivery,
+			&cart.OrderBody,
+			&cart.Amount)
 		if err != nil {
 			log.Println(err)
 		}
@@ -90,15 +97,15 @@ func (c CartRepo) Delete(id int) error {
 	return nil
 }
 
-func (c CartRepo) Update(id int, cart *models.Cart) *models.Cart {
+func (c CartRepo) Update(id int, cart *models.CartResponse) *models.CartResponse {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, user_id=?, cart_id=?, address_id=?, status=? WHERE id=%d ", models.TableCarts, id)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, user_id=?, address_delivery=?, order_body=? WHERE id=%d ", models.TableCarts, id)
 	_, err := c.DB.ExecContext(ctx, sqlStmt,
-		cart.Items,
-		cart.UserID,
-		cart.ProductID,
-		cart.Items)
+		cart.ID,
+		cart.User.ID,
+		cart.AddressDelivery,
+		cart.OrderBody)
 	if err != nil {
 		log.Println(err)
 	}

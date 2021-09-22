@@ -7,11 +7,11 @@ import (
 )
 
 type OrderTestRepository interface {
-	Create(or *models.Order) (*models.Order, error)
-	Get(id int) *models.Order
-	GetAll() *[]models.Order
+	Create(or *models.Cart) (*models.Cart, error)
+	Get(id int) *models.Cart
+	GetAll() *[]models.Cart
 	Delete(id int) error
-	Update(id int, ord *models.Order) *models.Order
+	Update(id int, ord *models.Cart) *models.Cart
 }
 
 type OrderTestRepo struct {
@@ -23,17 +23,17 @@ func NewOrderTestRepository(app *config.AppConfig, DB *sql.DB) *OrderTestRepo {
 	return &OrderTestRepo{App: app, DB: DB}
 }
 
-func (o OrderTestRepo) Create(or *models.Order) (*models.Order, error) {
+func (o OrderTestRepo) Create(or *models.Cart) (*models.Cart, error) {
 
 	return nil, nil
 }
 
-func (o OrderTestRepo) Get(id int) *models.Order {
+func (o OrderTestRepo) Get(id int) *models.Cart {
 
 	return nil
 }
 
-func (o OrderTestRepo) GetAll() *[]models.Order {
+func (o OrderTestRepo) GetAll() *[]models.Cart {
 
 	return nil
 }
@@ -43,7 +43,7 @@ func (o OrderTestRepo) Delete(id int) error {
 	return nil
 }
 
-func (o OrderTestRepo) Update(id int, ord *models.Order) *models.Order {
+func (o OrderTestRepo) Update(id int, ord *models.Cart) *models.Cart {
 
 	return nil
 }

@@ -34,12 +34,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	go parser.RunUpToDateSuppliersInfo(600)
-
-	if err != nil {
-		log.Fatal(err)
-	}
+	//go parser.RunUpToDateSuppliersInfo(600)
 
 	if err != nil {
 		log.Fatal(err, err)
@@ -75,7 +70,6 @@ func SetAndRun() error {
 		log.Fatal("could not parse template cache")
 		return err
 	}
-
 	app.TemplateCache = tc
 	app.UseTemplateCache = false
 	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")

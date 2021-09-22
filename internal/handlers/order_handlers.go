@@ -2,16 +2,14 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/render"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
-	"net/url"
-
 	"net/http"
+
 )
 
 type Order interface {
@@ -40,32 +38,7 @@ func (ord OrderHandler) ShowBlankOrder(w http.ResponseWriter, r *http.Request) {
 }
 
 func (ord OrderHandler) Create(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
-		web.Log.Fatal(err)
-	}
-	var prods []models.Prod
-	orderCookie, err := r.Cookie("Product")
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-	decodedValue, err := url.QueryUnescape(orderCookie.Value)
-	err = json.Unmarshal([]byte(decodedValue), &prods)
-	for _, v := range prods {
-		fmt.Println(v.Title, v.Price)
-	}
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-	user := &models.User{
-		Name:  r.Form.Get("name"),
-		Email: r.Form.Get("email"),
-		Phone: r.Form.Get("phone"),
-	}
-	web.Log.Info(user, prods)
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+
 }
 
 func (ord OrderHandler) Get(w http.ResponseWriter, r *http.Request) {

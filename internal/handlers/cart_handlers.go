@@ -2,11 +2,14 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
+	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
 	"net/http"
+	"net/url"
 )
 
 type Cart interface {
@@ -27,20 +30,35 @@ func NewCartHandler(app *config.AppConfig, repo dbrepo.CartRepository) *CartHand
 }
 
 func (c CartHandler) Create(w http.ResponseWriter, r *http.Request){
-	var cart models.Cart
-	err := json.NewDecoder(r.Body).Decode(&cart)
+	err := r.ParseForm()
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
 	}
-	crt, err := c.repo.Create(&cart)
+	orderCookie, err := r.Cookie("Product")
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
+		return
 	}
-	w.WriteHeader(http.StatusCreated)
-	err = json.NewEncoder(w).Encode(&crt)
+	orderBody, err := url.QueryUnescape(orderCookie.Value)
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
+		return
 	}
+	p:= r.Form.Get("prodInfo")
+	fmt.Println(p, "this is prodinfo")
+	user := &models.User{
+		Name:  r.Form.Get("name"),
+		Email: r.Form.Get("email"),
+		Phone: r.Form.Get("phone"),
+	}
+	or := &models.CartResponse{
+		User:            *user,
+		AddressDelivery: r.Form.Get("address"),
+		OrderBody:     orderBody,
+		Amount:          r.Form.Get("amount"),
+	}
+	web.Log.Info( or)
+	//http.Redirect(w, r, "/products", http.StatusSeeOther)
 }
 
 func (c CartHandler) Get(w http.ResponseWriter, r *http.Request) {
@@ -74,7 +92,7 @@ func (c CartHandler) Delete(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c CartHandler) Update(w http.ResponseWriter, r *http.Request) {
-	var cart models.Cart
+	var cart models.CartResponse
 	err:= json.NewDecoder(r.Body).Decode(&cart)
 	if err != nil {
 		log.Println(err)
