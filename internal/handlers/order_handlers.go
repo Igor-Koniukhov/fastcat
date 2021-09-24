@@ -31,7 +31,7 @@ func NewOrderHandler(app *config.AppConfig, repo dbrepo.OrderRepository) *OrderH
 }
 func (ord OrderHandler) ShowBlankOrder(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
-	err := render.TemplateRender(w, r, "order.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "order.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		web.Log.Fatal(err)
 	}

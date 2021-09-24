@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					<div class="cart-product__text">
 						<h3 class="cart-product__title">${title}</h3>
 						<span class="cart-product__price">${normalPrice(price)}</span>
-						<span class="product-id" hidden>${normalPrice(idProd)}</span>
-						<span class="supplier-id" hidden>${normalPrice(idSupp)}</span>												
+						<span class="product-id" hidden>${idProd}</span>
+						<span class="supplier-id" hidden>${idSupp}</span>												
 					</div>
 					<button class="cart-product__delete" aria-label="Delete order"></button>
 				</article>
@@ -129,10 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="col-3">
                     <input type="number" class="order-product__price" value="${normalPrice(price)}" name="price" readonly >
                     </div>                   
-                    <input type="number" class="product-id" value="${normalPrice(idProd)}" name="idProd" readonly hidden>              
-                    
-                    <input type="number" class="supplier-id" value="${normalPrice(idSupp)}" name="idSupp" readonly hidden>
-                    <input type="text" class="prod-info" value= '${normalPrice(prodInfo)}' name="prodInfo" readonly hidden>
+                    <input type="number" class="product-id" value='${idProd}' name="idProd" readonly hidden>             
+                    <input type="number" class="supplier-id" value='${idSupp}' name="idSupp" readonly hidden>
+                    <input type="text" class="prod-info" value= '${prodInfo}' name="prodInfo" readonly hidden>
                     
                     
                     <button type="button" class="order-product__delete product__btn btn btn-success btn-small col-3" hidden disabled>remove</button>
@@ -233,8 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
             printQuantity();
             countSumm();
             printFullPrice();
-
-
             document.querySelectorAll('.cart-content__product').forEach(el => {
                 let id = el.dataset.id;
                 console.log(id)
@@ -274,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(prodInfo())
 
         console.log(productInfo)
-        document.cookie = "Product=" + encodeURIComponent(productInfo) + ";path=/order/create";
+        document.cookie = "Product=" + encodeURIComponent(productInfo) + ";path=/cart/create";
         console.log(productArray)
 
         localStorage.removeItem('products');

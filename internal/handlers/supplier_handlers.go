@@ -33,7 +33,7 @@ func NewSupplierHandler(app *config.AppConfig, repo dbrepo.SupplierRepository) *
 func (s *SupplierHandler) Home(w http.ResponseWriter, r *http.Request) {
 	suppliers := s.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
-	err := render.TemplateRender(w, r, "home.page.tmpl", models.TemplateData{Suppliers: suppliers})
+	err := render.TemplateRender(w, r, "home.page.tmpl", &models.TemplateData{Suppliers: suppliers})
 	if err != nil {
 		web.Log.Fatal(err)
 	}
@@ -45,15 +45,12 @@ func (s *SupplierHandler) Create(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	user, _, err := s.repo.Create(&suppliers)
+	_, _, err = s.repo.Create(&suppliers)
 	if err != nil {
 		log.Println(err)
 	}
 	w.WriteHeader(http.StatusCreated)
-	err = json.NewEncoder(w).Encode(&user)
-	if err != nil {
-		log.Println(err)
-	}
+
 }
 
 func (s *SupplierHandler) Get(w http.ResponseWriter, r *http.Request) {
@@ -61,7 +58,7 @@ func (s *SupplierHandler) Get(w http.ResponseWriter, r *http.Request) {
 	id := param(r)
 	supplier := s.repo.Get(id)
 	w.WriteHeader(http.StatusOK)
-	err := render.TemplateRender(w, r, "suppliersProducts.page.tmpl", models.TemplateData{Supplier: *supplier})
+	err := render.TemplateRender(w, r, "suppliersProducts.page.tmpl", &models.TemplateData{Supplier: supplier})
 	if err != nil {
 		log.Println(err)
 	}
@@ -70,7 +67,7 @@ func (s *SupplierHandler) Get(w http.ResponseWriter, r *http.Request) {
 func (s *SupplierHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	suppliers := s.repo.GetAll()
 	w.WriteHeader(http.StatusOK)
-	err := render.TemplateRender(w, r, "suppliers.page.tmpl", models.TemplateData{Suppliers: suppliers})
+	err := render.TemplateRender(w, r, "suppliers.page.tmpl", &models.TemplateData{Suppliers: suppliers})
 	if err != nil {
 		web.Log.Fatal(err)
 	}
@@ -86,7 +83,7 @@ func (s *SupplierHandler) GetAllBySchedule(w http.ResponseWriter, r *http.Reques
 	end := schedule[1]
 	suppliers := s.repo.GetAllBySchedule(start, end)
 	w.WriteHeader(http.StatusOK)
-	err = render.TemplateRender(w, r, "suppliers.page.tmpl", models.TemplateData{Suppliers: suppliers})
+	err = render.TemplateRender(w, r, "suppliers.page.tmpl", &models.TemplateData{Suppliers: suppliers})
 	if err != nil {
 		web.Log.Fatal(err)
 	}

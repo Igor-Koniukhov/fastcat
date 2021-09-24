@@ -25,27 +25,54 @@ type UserRepo struct {
 	DB    *sql.DB
 	Users []models.User
 	User  models.User
-	App *config.AppConfig
+	App   *config.AppConfig
 }
 
 func NewUserRepository(app *config.AppConfig, DB *sql.DB) *UserRepo {
-	return &UserRepo{ App: app, DB: DB}
+	return &UserRepo{App: app, DB: DB}
 }
 
 func (usr UserRepo) Create(user *models.User) (*models.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", models.TableUser)
+	tx, err := usr.DB.BeginTx(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", models.TableUsers)
 	pass, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		log.Println(err)
 	}
-	_, err = usr.DB.ExecContext(ctx, sqlStmt,
+	res, err := tx.ExecContext(ctx, sqlStmt,
 		user.Name,
 		user.Email,
 		pass)
 	if err != nil {
 		log.Println(err)
+		return nil, err
+	}
+	userId, err :=res.LastInsertId()
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+
+	sqlStmtSession := fmt.Sprintf("INSERT INTO %s (users_id, session) VALUES(?, ?) ", models.Sessions)
+	if err != nil {
+		log.Println(err)
+	}
+	_, err = tx.ExecContext(ctx, sqlStmtSession,
+		userId,
+		pass,
+	)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	if err = tx.Commit(); err != nil {
+		return nil, err
 	}
 	return user, nil
 }
@@ -53,7 +80,7 @@ func (usr UserRepo) Create(user *models.User) (*models.User, error) {
 func (usr UserRepo) GetUserByID(id int) (*models.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", models.TableUser)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE id = ? ", models.TableUsers)
 	row := usr.DB.QueryRowContext(ctx, sqlStmt, id)
 	err := row.Scan(
 		&usr.User.ID,
@@ -70,7 +97,7 @@ func (usr UserRepo) GetUserByID(id int) (*models.User, error) {
 func (usr UserRepo) GetAll() []models.User {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s", models.TableUser)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s", models.TableUsers)
 	results, err := usr.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
 		log.Println(err)
@@ -95,7 +122,7 @@ func (usr UserRepo) GetAll() []models.User {
 func (usr UserRepo) Delete(id int) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableUser)
+	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableUsers)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt, id)
 	if err != nil {
 		log.Println(err)
@@ -106,7 +133,7 @@ func (usr UserRepo) Delete(id int) error {
 func (usr UserRepo) Update(id int, user *models.User) *models.User {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", models.TableUser)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", models.TableUsers)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt,
 		user.ID,
 		user.Name,
@@ -122,7 +149,7 @@ func (usr UserRepo) Update(id int, user *models.User) *models.User {
 func (usr UserRepo) GetUserByEmail(email string) (*models.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = ? ", models.TableUser)
+	sqlStmt := fmt.Sprintf("SELECT * FROM %s WHERE email = ? ", models.TableUsers)
 	row := usr.DB.QueryRowContext(ctx, sqlStmt, email)
 	err := row.Scan(
 		&usr.User.ID,
@@ -137,5 +164,3 @@ func (usr UserRepo) GetUserByEmail(email string) (*models.User, error) {
 	}
 	return &usr.User, nil
 }
-
-

@@ -37,7 +37,7 @@ func (p *ProductHandler) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func param(r *http.Request) (id int) {
-	fields := strings.Split(r.URL.String(), "=")
+	fields := strings.Split(r.URL.String(), "/")
 	str := fields[len(fields)-1]
 	id, err := strconv.Atoi(str)
 	if err != nil {
@@ -75,7 +75,7 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 	products := p.repo.GetAllBySupplierID(id)
 
 	w.WriteHeader(http.StatusOK)
-	render.TemplateRender(w, r, "products.page.tmpl", models.TemplateData{Products: products, Supplier: *supplier})
+	err = render.TemplateRender(w, r, "products.page.tmpl", &models.TemplateData{Products: products, Supplier: supplier})
 	if err !=nil {
 		web.Log.Fatal(err)
 	}
@@ -94,7 +94,7 @@ func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 		supp = append(supp, *s)
 	}
 	w.WriteHeader(http.StatusOK)
-	err := render.TemplateRender(w, r, "products.page.tmpl", models.TemplateData{Products: items, Suppliers: supp})
+	err := render.TemplateRender(w, r, "products.page.tmpl", &models.TemplateData{Products: items, Suppliers: supp})
 	if err != nil {
 		web.Log.Fatal(err)
 	}

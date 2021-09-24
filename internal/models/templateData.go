@@ -2,9 +2,9 @@ package models
 
 type TemplateData struct {
 	Suppliers []Supplier
-	Supplier Supplier
-	Products []Item
-
+	Supplier  *Supplier
+	Products  []Item
+	Cart      *Cart
 	StringMap map[string]string
 	IntMap    map[string]int
 	FloatMap  map[string]float32

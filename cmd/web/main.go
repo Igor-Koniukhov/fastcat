@@ -20,7 +20,10 @@ import (
 var app config.AppConfig
 
 func init() {
-	gotenv.Load()
+	err := gotenv.Load()
+	if err !=nil {
+		web.Log.Fatal(err)
+	}
 }
 
 func main() {

@@ -4,6 +4,7 @@
     <div class="content">
 
         <div class="container">
+    {{if .Supplier}}
             <h2>{{.Supplier.Name}}</h2>
             <p style="text-transform: capitalize; text-decoration: underline red;"> {{.Supplier.Type}}</p>
             <p> {{.Supplier.WorkingHours.Opening}}</p>
@@ -14,8 +15,8 @@
                         <span class="underline-word">Available</span>
                         <span style="color: #ffc107"></span> to delivery</strong>
                 </h2>
-
             </div>
+                {{end}}
             <div class=" row ">
                 {{ range .Products}}
                     <div class=" col-lg-4 col-md-6">
@@ -28,7 +29,6 @@
                                     <p><span class="product-price__current">{{.Price}}</span><span>$</span></p>
                                     <p><span class="product-id" hidden>{{.Id}}</span><span></span></p>
                                     <p><span class="supplier-id" hidden>{{.SuppliersID}}</span><span></span></p>
-
                                     <span class="product__term">{{.Type}}:</span>
                                     <p>{{ range .Ingredients}}
                                             <span>{{.}}</span>,

@@ -39,7 +39,7 @@ func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHand
 	return &UserHandler{App: app, repo: repo}
 }
 func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "registration.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "registration.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		log.Fatal("cannot render template")
 	}
@@ -48,7 +48,7 @@ func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) 
 
 func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	err := render.TemplateRender(w, r, "about.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "about.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
@@ -56,7 +56,7 @@ func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
 }
 func (us *UserHandler) Contacts(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	err := render.TemplateRender(w, r, "contacts.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "contacts.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
@@ -72,16 +72,26 @@ func (us *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 	u.Name = r.FormValue("user-name")
 	u.Email = r.FormValue("user-email")
 	u.Password = r.FormValue("password")
-	user, err := us.repo.Create(&u)
+	user, err := us.repo.GetUserByEmail(u.Email)
+	if err !=nil {
+		web.Log.Fatal(err)
+		return
+	}
+	if u.Email == user.Email {
+		http.Error(w,"User with such email addresses already exists", http.StatusForbidden)
+		return
+	}
+	user, err = us.repo.Create(&u)
 	if err != nil {
 		log.Println(err)
 	}
+	c := &http.Cookie{
+		Name: "Authorization",
+		Value: u.Email,
+	}
+	http.SetCookie(w, c)
 	w.WriteHeader(http.StatusCreated)
-	http.Redirect(w, r, "/users", http.StatusSeeOther)
-	err = json.NewEncoder(w).Encode(&user)
-	if err != nil {
-		log.Println(err)
-	}
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func (us *UserHandler) Get(w http.ResponseWriter, r *http.Request) {
@@ -130,7 +140,7 @@ func (us *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func (us *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "show_login.page.tmpl", models.TemplateData{})
+	err := render.TemplateRender(w, r, "show_login.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		log.Fatal("cannot render template")
 	}

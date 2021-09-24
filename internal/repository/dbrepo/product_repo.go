@@ -82,6 +82,9 @@ func (p ProductRepo) Get(id int) *models.Item {
 		&product.Price,
 		&product.Type,
 	)
+	if err != nil {
+		log.Println(err)
+	}
 	str := []string{string(product.Ingredients)}
 
 	err = json.Unmarshal(product.Ingredients, &str)

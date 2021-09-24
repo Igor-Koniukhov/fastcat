@@ -32,7 +32,7 @@ type SupplierRepo struct {
 func NewSupplierRepository(app *config.AppConfig, DB *sql.DB) *SupplierRepo {
 	return &SupplierRepo{App: app, DB: DB}
 }
-func (s SupplierRepo) Create(suppliers *models.Suppliers) (*models.Suppliers, int, error) {
+func (s *SupplierRepo) Create(suppliers *models.Suppliers) (*models.Suppliers, int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var id int
@@ -66,7 +66,7 @@ func (s SupplierRepo) Create(suppliers *models.Suppliers) (*models.Suppliers, in
 	return suppliers, id, err
 }
 
-func (s SupplierRepo) Get(id int) *models.Supplier {
+func (s *SupplierRepo) Get(id int) *models.Supplier {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var supplier models.Supplier
@@ -86,7 +86,7 @@ func (s SupplierRepo) Get(id int) *models.Supplier {
 	return &supplier
 }
 
-func (s SupplierRepo) GetAll() []models.Supplier {
+func (s *SupplierRepo) GetAll() []models.Supplier {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var supplier models.Supplier
@@ -111,7 +111,7 @@ func (s SupplierRepo) GetAll() []models.Supplier {
 	return suppliers
 }
 
-func (s SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
+func (s *SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var supplier models.Supplier
@@ -136,7 +136,7 @@ func (s SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
 	return suppliers
 }
 
-func (s SupplierRepo) Delete(id int) (err error) {
+func (s *SupplierRepo) Delete(id int) (err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=? ", models.TabSuppliers)
@@ -147,7 +147,7 @@ func (s SupplierRepo) Delete(id int) (err error) {
 	}
 	return
 }
-func (s SupplierRepo) SoftDelete(id int) error {
+func (s *SupplierRepo) SoftDelete(id int) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	TimeFormat := time.Now().UTC().Format("2006-01-02 15:04:05.999999")
@@ -160,7 +160,7 @@ func (s SupplierRepo) SoftDelete(id int) error {
 	return nil
 }
 
-func (s SupplierRepo) Update(id int, supplier *models.Supplier) *models.Supplier {
+func (s *SupplierRepo) Update(id int, supplier *models.Supplier) *models.Supplier {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?,name=?, type=?, image=?,  opening=?, closing=? , WHERE id=?", models.TabSuppliers)
