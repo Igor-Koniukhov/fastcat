@@ -19,6 +19,8 @@ type Product interface {
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAllBySupplierID(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
+	FetchAll(w http.ResponseWriter, r *http.Request)
+	GetJson(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
 	Update(w http.ResponseWriter, r *http.Request)
 }
@@ -97,6 +99,27 @@ func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusOK)
 	err := render.TemplateRender(w, r, "products.page.tmpl", &models.TemplateData{Products: items, Suppliers: supp})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+}
+func (p *ProductHandler) GetJson(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	items := p.repo.GetAll()
+
+	err := json.NewEncoder(w).Encode(&items)
+	if err != nil{
+		web.Log.Error(err)
+		return
+	}
+
+}
+
+func (p *ProductHandler) FetchAll(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	w.WriteHeader(http.StatusOK)
+	err := render.TemplateRender(w, r, "fetched.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		web.Log.Fatal(err)
 	}
