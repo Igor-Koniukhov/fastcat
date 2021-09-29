@@ -4,6 +4,8 @@
     <div class="content">
 
         <div class="container">
+
+          <p> Hello{{.NameForGreet}}</p>
     {{if .Supplier}}
             <h2>{{.Supplier.Name}}</h2>
             <p style="text-transform: capitalize; text-decoration: underline red;"> {{.Supplier.Type}}</p>

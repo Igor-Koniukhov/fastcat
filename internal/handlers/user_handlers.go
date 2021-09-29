@@ -19,7 +19,7 @@ type User interface {
 	ShowRegistration(w http.ResponseWriter, r *http.Request)
 	AboutUs(w http.ResponseWriter, r *http.Request)
 	Contacts(w http.ResponseWriter, r *http.Request)
-	Create(w http.ResponseWriter, r *http.Request)
+	SingUp(w http.ResponseWriter, r *http.Request)
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
@@ -39,7 +39,7 @@ func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHand
 	return &UserHandler{App: app, repo: repo}
 }
 func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "registration.page.tmpl", &models.TemplateData{})
+	err := render.TemplateRender(w, r, "sign_up.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		log.Fatal("cannot render template")
 	}
@@ -63,35 +63,128 @@ func (us *UserHandler) Contacts(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (us *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
+func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
+	/*err := r.ParseForm()
+	if err != nil {
+		log.Println(err)
+	}*/
 	var u models.User
+
+		u.Name = r.FormValue("user-name")
+		u.Email = r.FormValue("user-email")
+		u.Password = r.FormValue("password")
+
+	if us.checkUserExist(u.Email){
+		web.Log.Fatal("user already exists")
+		http.Redirect(w, r, "/registration", http.StatusSeeOther)
+		return
+	}
+
+
+		_, err := us.repo.Create(&u)
+		if err != nil {
+			log.Println(err)
+		}
+		/*userReq := &models.LoginRequest{
+			Email:    user.Email,
+			Password: user.Password,
+		}
+		resp, _, err := services.TokenResponder(w, userReq)
+		if err != nil {
+			web.Log.Error(err)
+			return
+		}
+		c := &http.Cookie{
+			Name:  "Authorization",
+			Value: resp.RefreshToken,
+		}*/
+		//http.SetCookie(w, c)
+
+
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+	return
+
+}
+func (us *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
+	err := render.TemplateRender(w, r, "show_login.page.tmpl", &models.TemplateData{})
+	if err != nil {
+		log.Fatal("cannot render template")
+	}
+}
+
+func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
+	setAuth := &http.Cookie{
+		Name:  "Authorization",
+		Value: us.App.BearerString,
+	}
+	http.SetCookie(w, setAuth)
 	err := r.ParseForm()
 	if err != nil {
 		log.Println(err)
 	}
-	u.Name = r.FormValue("user-name")
-	u.Email = r.FormValue("user-email")
-	u.Password = r.FormValue("password")
-	user, err := us.repo.GetUserByEmail(u.Email)
-	if err !=nil {
-		web.Log.Fatal(err)
-		return
+	logReq := &models.LoginRequest{
+		Email:    r.Form.Get("checkEmail"),
+		Password: r.Form.Get("checkPass"),
 	}
-	if u.Email == user.Email {
-		http.Error(w,"User with such email addresses already exists", http.StatusForbidden)
-		return
+	resp, _, err := services.TokenResponder(w, logReq)
+	if err != nil {
+		log.Println(err)
+		r = r.WithContext(context.WithValue(r.Context(), "error", "Invalid login credentials"))
 	}
-	user, err = us.repo.Create(&u)
+	tokenString, err := services.GetTokenFromBearerString("Authorization" + setAuth.Value)
 	if err != nil {
 		log.Println(err)
 	}
-	c := &http.Cookie{
-		Name: "Authorization",
-		Value: u.Email,
+	claims, err := services.ValidateToken(tokenString, os.Getenv("AccessSecret"))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
 	}
-	http.SetCookie(w, c)
-	w.WriteHeader(http.StatusCreated)
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+	user, err := repository.Repo.GetUserByID(claims.ID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	auth := &http.Cookie{
+		Name:  user.Email,
+		Value: resp.RefreshToken,
+	}
+	us.App.NameForGreet = user.Name
+	http.SetCookie(w, auth)
+	http.Redirect(w, r, "/products", http.StatusSeeOther)
+	w.WriteHeader(http.StatusOK)
+}
+
+func (us *UserHandler) Refresh(w http.ResponseWriter, r *http.Request) {
+	logReq := new(models.LoginRequest)
+	if err := json.NewDecoder(r.Body).Decode(&logReq); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	resp, _, err := services.TokenResponder(w, logReq)
+	if err != nil {
+		log.Println(err)
+	}
+	w.WriteHeader(http.StatusOK)
+	err = json.NewEncoder(w).Encode(resp)
+	if err != nil {
+		log.Println(err)
+	}
+}
+
+func (us *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
+	cookies := r.Cookies()
+	if len(cookies) >= 0 {
+		for _, ck := range cookies {
+			if ck.Name == "Authorization" || ck.Name == "Bearer" {
+				ck.MaxAge = -1
+				http.SetCookie(w, ck)
+			}
+		}
+		http.Redirect(w, r, "/show-login", http.StatusSeeOther)
+		return
+	}
 }
 
 func (us *UserHandler) Get(w http.ResponseWriter, r *http.Request) {
@@ -108,6 +201,7 @@ func (us *UserHandler) Get(w http.ResponseWriter, r *http.Request) {
 }
 
 func (us *UserHandler) GetAll(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	users := us.repo.GetAll()
 	err := json.NewEncoder(w).Encode(&users)
 	if err != nil {
@@ -139,82 +233,13 @@ func (us *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 }
-func (us *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "show_login.page.tmpl", &models.TemplateData{})
-	if err != nil {
-		log.Fatal("cannot render template")
-	}
-}
 
-func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
-	setAuth := &http.Cookie{
-		Name:  "Bearer",
-		Value: us.App.BearerString,
-	}
-	http.SetCookie(w, setAuth)
-	err := r.ParseForm()
-	if err != nil {
-		log.Println(err)
-	}
-	logReq := &models.LoginRequest{
-		Email:    r.Form.Get("checkEmail"),
-		Password: r.Form.Get("checkPass"),
-	}
-	_, _, err = services.TokenResponder(w, logReq)
-	if err != nil {
-		log.Println(err)
-		r = r.WithContext(context.WithValue(r.Context(), "error", "Invalid login credentials"))
-	}
-	tokenString, err := services.GetTokenFromBearerString("Bearer" + setAuth.Value)
-	if err != nil {
-		log.Println(err)
-	}
-	claims, err := services.ValidateToken(tokenString, os.Getenv("AccessSecret"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusUnauthorized)
-		return
-	}
-	user, err := repository.Repo.GetUserByID(claims.ID)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-	auth := &http.Cookie{
-		Name:  "Authorized",
-		Value: user.Email,
-	}
-	http.SetCookie(w, auth)
-	http.Redirect(w, r, "/products", http.StatusSeeOther)
-	w.WriteHeader(http.StatusOK)
-}
+func (us UserHandler)checkUserExist(email string) (ok bool)  {
+	user, _ := us.repo.GetUserByEmail(email)
 
-func (us *UserHandler) Refresh(w http.ResponseWriter, r *http.Request) {
-	logReq := new(models.LoginRequest)
-	if err := json.NewDecoder(r.Body).Decode(&logReq); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
+	if ok := email == user.Email; ok {
+		web.Log.Info("users exists ", ok)
+		return ok
 	}
-	resp, _, err := services.TokenResponder(w, logReq)
-	if err != nil {
-		log.Println(err)
-	}
-	w.WriteHeader(http.StatusOK)
-	err = json.NewEncoder(w).Encode(resp)
-	if err != nil {
-		log.Println(err)
-	}
-}
-
-func (us *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
-	cookies := r.Cookies()
-	if len(cookies) >= 0 {
-		for _, ck := range cookies {
-			if ck.Name == "Authorized" || ck.Name == "Bearer" {
-				ck.MaxAge = -1
-				http.SetCookie(w, ck)
-			}
-		}
-		http.Redirect(w, r, "/show-login", http.StatusSeeOther)
-	}
-	http.Redirect(w, r, "/users", http.StatusSeeOther)
+	return ok
 }

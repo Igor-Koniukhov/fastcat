@@ -11,12 +11,12 @@ import (
 )
 
 func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*models.LoginResponse, int, error) {
+	RefreshAccess := os.Getenv("RefreshAccess")
 	RefreshLifetimeMinutes, err := strconv.Atoi(os.Getenv("RefreshLifetimeMinutes"))
 	if err != nil {
 		log.Println(err)
 		return nil, 0, err
 	}
-	RefreshAccess := os.Getenv("RefreshAccess")
 	AccessSecret := os.Getenv("AccessSecret")
 	AccessLifetimeMinutes, err := strconv.Atoi(os.Getenv("AccessLifetimeMinutes"))
 	if err != nil {

@@ -73,15 +73,17 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 	}
 	supplier := repository.Repo.SupplierRepository.Get(id)
 	products := p.repo.GetAllBySupplierID(id)
+	userGreet := p.App.NameForGreet
 
 	w.WriteHeader(http.StatusOK)
-	err = render.TemplateRender(w, r, "products.page.tmpl", &models.TemplateData{Products: products, Supplier: supplier})
+	err = render.TemplateRender(w, r, "products.page.tmpl", &models.TemplateData{Products: products, Supplier: supplier,NameForGreet: userGreet})
 	if err !=nil {
 		web.Log.Fatal(err)
 	}
 }
 
 func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	setPCookie := &http.Cookie{
 		Name:  "Product",
 		Value: "",

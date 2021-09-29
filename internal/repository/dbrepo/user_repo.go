@@ -8,7 +8,6 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"golang.org/x/crypto/bcrypt"
-	"log"
 	"time"
 )
 
@@ -43,35 +42,35 @@ func (usr UserRepo) Create(user *models.User) (*models.User, error) {
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", models.TableUsers)
 	pass, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
+		return nil, err
 	}
 	res, err := tx.ExecContext(ctx, sqlStmt,
 		user.Name,
 		user.Email,
 		pass)
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
 		return nil, err
 	}
 	userId, err :=res.LastInsertId()
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
 		return nil, err
 	}
 
 	sqlStmtSession := fmt.Sprintf("INSERT INTO %s (users_id, session) VALUES(?, ?) ", models.Sessions)
-	if err != nil {
-		log.Println(err)
-	}
+
 	_, err = tx.ExecContext(ctx, sqlStmtSession,
 		userId,
 		pass,
 	)
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
 		return nil, err
 	}
 	if err = tx.Commit(); err != nil {
+		web.Log.Fatal(err)
 		return nil, err
 	}
 	return user, nil
@@ -90,7 +89,10 @@ func (usr UserRepo) GetUserByID(id int) (*models.User, error) {
 		&usr.User.DeletedAt,
 		&usr.User.CreatedAT,
 		&usr.User.UpdatedAT)
-	web.Log.Error(err, err)
+	if err != nil {
+		web.Log.Fatal(err)
+		return nil, err
+	}
 	return &usr.User, nil
 }
 
@@ -100,7 +102,8 @@ func (usr UserRepo) GetAll() []models.User {
 	sqlStmt := fmt.Sprintf("SELECT * FROM %s", models.TableUsers)
 	results, err := usr.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
+		return nil
 	}
 	for results.Next() {
 		err = results.Scan(
@@ -112,7 +115,8 @@ func (usr UserRepo) GetAll() []models.User {
 			&usr.User.CreatedAT,
 			&usr.User.UpdatedAT)
 		if err != nil {
-			log.Println(err)
+			web.Log.Fatal(err)
+			return nil
 		}
 		usr.Users = append(usr.Users, usr.User)
 	}
@@ -125,7 +129,8 @@ func (usr UserRepo) Delete(id int) error {
 	sqlStmt := fmt.Sprintf("DELETE FROM %s WHERE id=?", models.TableUsers)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt, id)
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
+		return err
 	}
 	return nil
 }
@@ -141,7 +146,8 @@ func (usr UserRepo) Update(id int, user *models.User) *models.User {
 		user.Password,
 		id)
 	if err != nil {
-		log.Println(err)
+		web.Log.Fatal(err)
+		return nil
 	}
 	return user
 }
@@ -160,7 +166,8 @@ func (usr UserRepo) GetUserByEmail(email string) (*models.User, error) {
 		&usr.User.CreatedAT,
 		&usr.User.UpdatedAT)
 	if err != nil {
-		log.Println(err)
+		web.Log.Error(err)
+		return nil, err
 	}
 	return &usr.User, nil
 }

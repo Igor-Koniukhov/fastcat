@@ -26,7 +26,7 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	mux.HandleFunc("/logout", www.User.Logout)
 
 	mux.HandleFunc("/registration", www.User.ShowRegistration)
-	mux.HandleFunc("/user/create", www.User.Create)
+	mux.HandleFunc("/signup", www.User.SingUp)
 	mux.Handle("/user/", m.Auth(http.HandlerFunc(www.User.Get)))
 	mux.HandleFunc("/users", www.User.GetAll)
 	mux.Handle("/user/update/", m.Auth(http.HandlerFunc(www.User.Update)))

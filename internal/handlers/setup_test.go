@@ -70,7 +70,7 @@ func getRoutes() http.Handler {
 	mux.HandleFunc("/logout", www.User.Logout)
 
 	mux.HandleFunc("/registration", www.User.ShowRegistration)
-	mux.HandleFunc("/user/create", www.User.Create)
+	mux.HandleFunc("/user/create", www.User.SingUp)
 	mux.HandleFunc("/user/", www.User.Get)//check handler without Auth
 	mux.HandleFunc("/users", www.User.GetAll)
 	mux.HandleFunc("/user/update/", www.User.Update)//check handler without Auth
