@@ -26,9 +26,14 @@
             </div>
         </div>
     </div>
-
     <script>
-
+        let field = document.querySelector('.field')
+        window.addEventListener('load', () =>{
+            field.classList.add('hidden_field');
+            setTimeout(()=> {
+                field.remove();
+            }, 1000);
+        })
         const products = (name, price, id, suppliersID, type, image, ingredients) => {
             return `
                 <div class="product  ">
