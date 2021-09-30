@@ -1,6 +1,9 @@
 {{template "base" .}}
 
 {{define "content"}}
+    <div class="field">
+        <div class="spiner"></div>
+    </div>
     <div class="content">
         <div class="container">
             <div class="row" id="input">
@@ -25,6 +28,7 @@
     </div>
 
     <script>
+
         const products = (name, price, id, suppliersID, type, image, ingredients) => {
             return `
                 <div class="product  ">
@@ -50,30 +54,26 @@
                 <button class="product__btn btn">Add to cart</button>
             </div> `
         };
-        const generateItems = (data, ms) => {
+        const generateItems = (data)=>{
             for (let i = 0; i < data.length; i++) {
-                setTimeout(() => {
-                    let p = products(
-                        data[i].name,
-                        data[i].price,
-                        data[i].id,
-                        data[i].supplier_id,
-                        data[i].type,
-                        data[i].image,
-                        data[i].ingredients.map(ingr => `<span>${ingr}</span>`).join(", ")
-                    )
-                    input.insertAdjacentHTML('afterbegin', `<div class=" col-lg-4 col-md-6">${p}</div>`);
-                }, ms)
+                let p = products(
+                    data[i].name,
+                    data[i].price,
+                    data[i].id,
+                    data[i].supplier_id,
+                    data[i].type,
+                    data[i].image,
+                    data[i].ingredients.map(ingr => `<span>${ingr}</span>`).join(", ")
+                )
+                input.insertAdjacentHTML('afterbegin', `<div class=" col-lg-4 col-md-6">${p}</div>`);
             }
         }
-
-        let url = "http://localhost:8080/products-json";
-        fetch(url)
-            .then((resp) => {
-                return resp.json()
-            })
+        fetch("http://localhost:8080/products-json")
+            .then((resp) => resp.json())
             .then((data) => {
-                generateItems(data, 1000)
+                setTimeout(() => {
+                    generateItems(data)
+                }, 1000)
             });
 
     </script>
