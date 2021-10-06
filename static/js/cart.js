@@ -74,11 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         updateStorage();
     };
 
-    productsBtn.forEach(el => {
+  productsBtn.forEach(el => {
 
         el.closest('.product').setAttribute('data-id', randomId++);
 
         el.addEventListener('click', (e) => {
+
             let self = e.currentTarget;
             let parent = self.closest('.product');
             let id = parent.dataset.id;
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             self.disabled = true;
         });
     });
+
 
     cartProductsList.addEventListener('click', (e) => {
         if (e.target.classList.contains('cart-product__delete')) {

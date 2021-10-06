@@ -1,0 +1,95 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="field">
+        <div class="spiner"></div>
+    </div>
+    <div class="content">
+        <div class="container">
+
+            <div onload="" class="row" id="input">
+
+            </div>
+
+        </div>
+        <div class="modals">
+            <div class="modal-custom">
+                <button class="mod-btn"></button>
+                <button class="mobile-close" data-swipe-threshold="20" data-swipe-timeout="500"
+                        data-swipe-ignore="false"></button>
+                <form class="modal__form form">
+                    <label for="email_login">Email:</label>
+                    <input type="email" class="form__input" id="email_login" name="email_login"
+                           placeholder="your@email.com">
+                    <label for="pass_login">Password</label>
+                    <input type="tel" class="form__input" id="pass_login" name="pass_login" placeholder="password">
+                    <button class="form__btn button-custom">Log-in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const products = (name, price, id, suppliersID, type, image, ingredients) => {
+                return `
+            <div class=" col-lg-4 col-md-6">
+                <div class="product  product-fetched" id="product${id}" >
+                <div class="product__image">
+                <h3 class="product__title icon-title text-center">${name}</h3>
+                <div class="ingredients-title">
+                <p><span class="product-price__current">${price}</span><span>$</span></p>
+            <p><span class="product-id" hidden>${id}</span><span></span></p>
+            <p><span class="supplier-id" hidden >${suppliersID}</span><span></span></p>
+            <span class="product__term">${type}:</span>
+            <p> ${ingredients}</p>
+            </div>
+            <div class="product__switch image-switch">
+                <div class="image-switch__item items-cover background-img"
+            style="background-image: url(${image})">
+                <div class="image-switch__img restaurant-icon restaurant-icon_square">
+                <img src="${image}" alt="${name} ${type}" style="display: none;" id="img${id}">
+                </div>
+                </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+                </div>
+                <button  class="product__btn btn" value='${id}'>Add to cart</button>
+            </div>
+        </div>`
+            };
+            let arr = []
+            const generateItems = (data) => {
+
+                for (let i = 0; i < data.length; i++) {
+                    let p = products(
+                        data[i].name,
+                        data[i].price,
+                        data[i].id,
+                        data[i].supplier_id,
+                        data[i].type,
+                        data[i].image,
+                        data[i].ingredients.map(ingr => `<span>${ingr}</span>`).join(", ")
+                    )
+                   arr.unshift(p)
+                }
+                localStorage.setItem("items", JSON.stringify(arr))
+                return arr
+            }
+            fetch("http://localhost:8090/products-json")
+                .then((resp) => resp.json())
+                .then((data) => {
+                    arr = generateItems(data)
+                    let it = JSON.parse(localStorage.getItem("items"))
+                    console.log(it[1])
+                    it.map(x => {
+                        input.insertAdjacentHTML('afterbegin',x );
+                    })
+                });
+        });
+
+
+    </script>
+
+{{end}}

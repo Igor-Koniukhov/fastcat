@@ -49,6 +49,8 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	mux.HandleFunc("/product/", www.Product.Get)
 	mux.HandleFunc("/suppliers-products", www.Product.GetAllBySupplierID)
 	mux.HandleFunc("/products", www.Product.GetAll)
+	mux.HandleFunc("/products-json", www.Product.GetJson)
+	mux.HandleFunc("/fetch", www.Product.FetchAll)
 	mux.Handle("/product/update/", m.Auth(http.HandlerFunc(www.Product.Update)))
 	mux.Handle("/product/delete/", m.Auth(http.HandlerFunc(www.Product.Delete)))
 
