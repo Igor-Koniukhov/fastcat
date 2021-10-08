@@ -2,14 +2,12 @@
 {{define "content"}}
     <div class="content">
         <div class="container">
-
             <div class="container">
                 <h2 class="text-center mb-5 dancing-sm">Food delivery in Kharkiv:</h2>
                 <div class="row" style="padding: 0 15px;">
                     <div class="col-12 m-auto">
-                        <form method="post" action="/suppliers/selected">
+                        <form  action="/suppliers/selected">
                             <div class="row p-2 all-items-inline">
-
                                 <div class="col-md-4 col-sm-12 ">
                                     <a class="btn btn-in-line frame" href="/products">See All products</a>
                                 </div>
@@ -24,9 +22,7 @@
                                             <button type="submit " class="btn btn-in-line m-auto">Choose</button>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -34,7 +30,7 @@
                 <div class="row ">
                     {{ range .Suppliers}}
                         <div class="col-lg-6 col-md-4 mb-3 suppliers-icons items-cover background-img m-auto">
-                            <form method="post" action="/suppliers-products">
+                            <form  action="/suppliers-products">
                                 <input type="text" value="{{.Id}}" hidden id="supplier_id" name="supplier_id">
                                 <button class="btn-icon-wrapper"></button>
                                 <div class=" text-center">
@@ -48,7 +44,6 @@
                                             <img src="{{.Image}}" alt="{{.Name}} {{.Type}}" style="display: none;">
                                         </div>
                                     </div>
-
                                     <div class="bottom-title">
                                         <p>Opens: {{.WorkingHours.Opening}} Closes: {{.WorkingHours.Closing}}</p>
                                     </div>
@@ -57,9 +52,7 @@
                         </div>
                     {{end}}
                 </div>
-
             </div>
-
             <div class="height"></div>
         </div>
         <div class="modals">

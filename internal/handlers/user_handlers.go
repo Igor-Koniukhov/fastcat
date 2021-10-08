@@ -9,6 +9,7 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
 	"github.com/igor-koniukhov/fastcat/services"
+	"github.com/igor-koniukhov/fastcat/services/router"
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
 	"net/http"
@@ -43,76 +44,48 @@ func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) 
 	if err != nil {
 		log.Fatal("cannot render template")
 	}
-
-}
-
-func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
+}
+func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
 	err := render.TemplateRender(w, r, "about.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
 	}
+	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) Contacts(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
 	err := render.TemplateRender(w, r, "contacts.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
 	}
+	w.WriteHeader(http.StatusOK)
 }
-
 func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
-	/*err := r.ParseForm()
-	if err != nil {
-		log.Println(err)
-	}*/
 	var u models.User
-
 		u.Name = r.FormValue("user-name")
 		u.Email = r.FormValue("user-email")
 		u.Password = r.FormValue("password")
-
 	if us.checkUserExist(u.Email){
 		web.Log.Fatal("user already exists")
 		http.Redirect(w, r, "/registration", http.StatusSeeOther)
 		return
 	}
-
-
 		_, err := us.repo.Create(&u)
 		if err != nil {
 			log.Println(err)
 		}
-		/*userReq := &models.LoginRequest{
-			Email:    user.Email,
-			Password: user.Password,
-		}
-		resp, _, err := services.TokenResponder(w, userReq)
-		if err != nil {
-			web.Log.Error(err)
-			return
-		}
-		c := &http.Cookie{
-			Name:  "Authorization",
-			Value: resp.RefreshToken,
-		}*/
-		//http.SetCookie(w, c)
-
-
-
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 	return
-
 }
 func (us *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
 	err := render.TemplateRender(w, r, "show_login.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		log.Fatal("cannot render template")
 	}
+	w.WriteHeader(http.StatusOK)
 }
-
 func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 	setAuth := &http.Cookie{
 		Name:  "Authorization",
@@ -188,55 +161,50 @@ func (us *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
 }
 
 func (us *UserHandler) Get(w http.ResponseWriter, r *http.Request) {
-	id := param(r)
+	id := router.GetKeyInt(r, ":id")
 	user, err := us.repo.GetUserByID(id)
 	if err != nil {
 		log.Println(err)
 	}
-	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(&user)
 	if err != nil {
 		log.Println(err)
 	}
+	w.WriteHeader(http.StatusOK)
 }
-
 func (us *UserHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 	users := us.repo.GetAll()
 	err := json.NewEncoder(w).Encode(&users)
 	if err != nil {
 		log.Println(err)
 	}
+	w.WriteHeader(http.StatusOK)
 }
-
 func (us *UserHandler) Delete(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusAccepted)
-	id := param(r)
+	id := router.GetKeyInt(r, ":id")
 	err := us.repo.Delete(id)
 	if err != nil {
 		log.Println(err)
 	}
-
+	w.WriteHeader(http.StatusAccepted)
 }
-
 func (us *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var u models.User
 	err := json.NewDecoder(r.Body).Decode(&u)
 	if err != nil {
 		log.Println(err)
 	}
-	id := param(r)
+	id := router.GetKeyInt(r, ":id")
 	user := us.repo.Update(id, &u)
-	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(&user)
 	if err != nil {
 		log.Println(err)
 	}
+	w.WriteHeader(http.StatusOK)
 }
 
 func (us UserHandler)checkUserExist(email string) (ok bool)  {
 	user, _ := us.repo.GetUserByEmail(email)
-
 	if ok := email == user.Email; ok {
 		web.Log.Info("users exists ", ok)
 		return ok

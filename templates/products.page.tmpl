@@ -4,8 +4,6 @@
     <div class="content">
 
         <div class="container">
-
-          <p> Hello{{.NameForGreet}}</p>
     {{if .Supplier}}
             <h2>{{.Supplier.Name}}</h2>
             <p style="text-transform: capitalize; text-decoration: underline red;"> {{.Supplier.Type}}</p>
@@ -19,10 +17,10 @@
                 </h2>
             </div>
                 {{end}}
-            <div class=" row ">
+            <div class="row">
                 {{ range .Products}}
                     <div class=" col-lg-4 col-md-6">
-                        <div class="product  ">
+                        <div class="product ">
                             <div class="product__image">
                                 <h3 class="product__title icon-title text-center">
                                     {{.Name}}

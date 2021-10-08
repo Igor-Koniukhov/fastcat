@@ -7,15 +7,14 @@ import (
 	"github.com/igor-koniukhov/fastcat/internal/render"
 	"github.com/igor-koniukhov/fastcat/internal/repository"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
+	"github.com/igor-koniukhov/fastcat/services/router"
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
 	"net/http"
 	"strconv"
-	"strings"
 )
 
 type Product interface {
-	Create(w http.ResponseWriter, r *http.Request)
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAllBySupplierID(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
@@ -33,35 +32,18 @@ type ProductHandler struct {
 func NewProductHandler(app *config.AppConfig, repo dbrepo.ProductRepository) *ProductHandler {
 	return &ProductHandler{App: app, repo: repo}
 }
-
-func (p *ProductHandler) Create(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusCreated)
-}
-
-func param(r *http.Request) (id int) {
-	fields := strings.Split(r.URL.String(), "/")
-	str := fields[len(fields)-1]
-	id, err := strconv.Atoi(str)
-	if err != nil {
-		log.Println(err)
-	}
-	return
-}
-
 func (p *ProductHandler) Get(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "json")
-	id := param(r)
+	id := router.GetKeyInt(r, ":id")
 	item := p.repo.Get(id)
-	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(&item)
 	if err != nil {
 		log.Println(err)
 	}
+	w.WriteHeader(http.StatusOK)
 }
-
 func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
-	if err !=nil {
+	if err != nil {
 		web.Log.Error(err)
 	}
 	setPCookie := &http.Cookie{
@@ -70,22 +52,25 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 	}
 	http.SetCookie(w, setPCookie)
 	id, err := strconv.Atoi(r.Form.Get("supplier_id"))
-	if err !=nil {
+	if err != nil {
 		web.Log.Error(err)
 	}
 	supplier := repository.Repo.SupplierRepository.Get(id)
 	products := p.repo.GetAllBySupplierID(id)
 	userGreet := p.App.NameForGreet
 
-	w.WriteHeader(http.StatusOK)
-	err = render.TemplateRender(w, r, "products.page.tmpl", &models.TemplateData{Products: products, Supplier: supplier,NameForGreet: userGreet})
-	if err !=nil {
+	err = render.TemplateRender(w, r, "products.page.tmpl",
+		&models.TemplateData{
+			Products:     products,
+			Supplier:     supplier,
+			NameForGreet: userGreet,
+		})
+	if err != nil {
 		web.Log.Fatal(err)
 	}
+	w.WriteHeader(http.StatusOK)
 }
-
 func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 	setPCookie := &http.Cookie{
 		Name:  "Product",
 		Value: "",
@@ -97,55 +82,51 @@ func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 		s := repository.Repo.SupplierRepository.Get(items[i].SuppliersID)
 		supp = append(supp, *s)
 	}
-	w.WriteHeader(http.StatusOK)
-	err := render.TemplateRender(w, r, "products.page.tmpl", &models.TemplateData{Products: items, Suppliers: supp})
+	err := render.TemplateRender(w, r, "products.page.tmpl",
+		&models.TemplateData{
+			Products:  items,
+			Suppliers: supp,
+		})
 	if err != nil {
 		web.Log.Fatal(err)
 	}
+	w.WriteHeader(http.StatusOK)
 }
 func (p *ProductHandler) GetJson(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 	items := p.repo.GetAll()
-
 	err := json.NewEncoder(w).Encode(&items)
-	if err != nil{
+	if err != nil {
 		web.Log.Error(err)
 		return
 	}
-
-}
-
-func (p *ProductHandler) FetchAll(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-
 	w.WriteHeader(http.StatusOK)
+}
+func (p *ProductHandler) FetchAll(w http.ResponseWriter, r *http.Request) {
 	err := render.TemplateRender(w, r, "fetched.page.tmpl", &models.TemplateData{})
 	if err != nil {
 		web.Log.Fatal(err)
 	}
+	w.WriteHeader(http.StatusOK)
 }
-
 func (p *ProductHandler) Delete(w http.ResponseWriter, r *http.Request) {
-	id := param(r)
+	id := router.GetKeyInt(r, ":id")
 	err := p.repo.Delete(id)
 	if err != nil {
 		log.Println(err)
 	}
 	w.WriteHeader(http.StatusAccepted)
 }
-
 func (p *ProductHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var item *models.Item
 	err := json.NewDecoder(r.Body).Decode(&item)
 	if err != nil {
 		log.Println(err)
 	}
-	id := param(r)
+	id := router.GetKeyInt(r, ":id")
 	item = p.repo.Update(id, item)
-	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(&item)
 	if err != nil {
 		log.Println(err)
 	}
-
+	w.WriteHeader(http.StatusOK)
 }

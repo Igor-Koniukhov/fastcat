@@ -1,16 +1,12 @@
 {{template "base" .}}
 
 {{define "content"}}
-    <div class="field">
-        <div class="spiner"></div>
-    </div>
+
     <div class="content">
         <div class="container">
-
             <div onload="" class="row" id="input">
 
             </div>
-
         </div>
         <div class="modals">
             <div class="modal-custom">
@@ -82,14 +78,11 @@
                 .then((data) => {
                     arr = generateItems(data)
                     let it = JSON.parse(localStorage.getItem("items"))
-                    console.log(it[1])
                     it.map(x => {
                         input.insertAdjacentHTML('afterbegin',x );
                     })
                 });
         });
-
-
     </script>
 
 {{end}}
