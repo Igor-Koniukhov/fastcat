@@ -1,7 +1,7 @@
 package models
 
 const TableUsers = "users"
-const Sessions = "sessions"
+const TableSessions = "sessions"
 
 type User struct {
 	ID        int         `json:"id"`

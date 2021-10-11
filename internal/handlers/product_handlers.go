@@ -46,24 +46,16 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 	if err != nil {
 		web.Log.Error(err)
 	}
-	setPCookie := &http.Cookie{
-		Name:  "Product",
-		Value: "",
-	}
-	http.SetCookie(w, setPCookie)
 	id, err := strconv.Atoi(r.Form.Get("supplier_id"))
 	if err != nil {
 		web.Log.Error(err)
 	}
 	supplier := repository.Repo.SupplierRepository.Get(id)
 	products := p.repo.GetAllBySupplierID(id)
-	userGreet := p.App.NameForGreet
-
 	err = render.TemplateRender(w, r, "products.page.tmpl",
 		&models.TemplateData{
 			Products:     products,
 			Supplier:     supplier,
-			NameForGreet: userGreet,
 		})
 	if err != nil {
 		web.Log.Fatal(err)

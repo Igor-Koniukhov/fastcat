@@ -7,7 +7,9 @@ import (
 
 type AppConfig struct {
 	TemplateCache    map[string]*template.Template
+	TemplateInfo     map[string]string
 	UseTemplateCache bool
+	ErrMessage       string
 	Str              string
 	Session          string
 	BearerString     string

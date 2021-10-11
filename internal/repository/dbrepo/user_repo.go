@@ -3,6 +3,7 @@ package dbrepo
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
@@ -12,7 +13,10 @@ import (
 )
 
 type UserRepository interface {
-	Create(user *models.User) (*models.User, error)
+	Create(user *models.User) (*models.User, int, error)
+	SetUserSession(id int, token *models.LoginResponse) error
+	GetUserSession(email string ) (*models.LoginResponse, error )
+	UpdateSetUserSession(id int, token *models.LoginResponse) error
 	GetUserByID(id int) (*models.User, error)
 	GetAll() []models.User
 	Delete(id int) error
@@ -31,49 +35,97 @@ func NewUserRepository(app *config.AppConfig, DB *sql.DB) *UserRepo {
 	return &UserRepo{App: app, DB: DB}
 }
 
-func (usr UserRepo) Create(user *models.User) (*models.User, error) {
+func (usr UserRepo) Create(user *models.User) (*models.User, int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	tx, err := usr.DB.BeginTx(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	defer tx.Rollback()
 	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", models.TableUsers)
 	pass, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		web.Log.Fatal(err)
-		return nil, err
+		return nil, 0, err
 	}
-	res, err := tx.ExecContext(ctx, sqlStmt,
+	res, err := usr.DB.ExecContext(ctx, sqlStmt,
 		user.Name,
 		user.Email,
 		pass)
 	if err != nil {
 		web.Log.Fatal(err)
-		return nil, err
+		return nil, 0, err
 	}
-	userId, err :=res.LastInsertId()
+	userId, err := res.LastInsertId()
 	if err != nil {
 		web.Log.Fatal(err)
-		return nil, err
+		return nil, 0, err
 	}
+	return user, int(userId), nil
+}
 
-	sqlStmtSession := fmt.Sprintf("INSERT INTO %s (users_id, session) VALUES(?, ?) ", models.Sessions)
-
-	_, err = tx.ExecContext(ctx, sqlStmtSession,
-		userId,
-		pass,
+func (usr UserRepo) SetUserSession(id int, token *models.LoginResponse) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	sqlStmtSession := fmt.Sprintf("INSERT INTO %s (users_id, session) VALUES(?, ?) ", models.TableSessions)
+	tokenBearer := models.LoginResponse{
+		AccessToken:  "Bearer" + token.AccessToken,
+		RefreshToken: "Bearer" + token.RefreshToken,
+	}
+	tok, err := json.Marshal(&tokenBearer)
+	if err != nil {
+		web.Log.Error(err)
+		return err
+	}
+	_, err = usr.DB.ExecContext(ctx, sqlStmtSession,
+		id,
+		string(tok),
 	)
 	if err != nil {
 		web.Log.Fatal(err)
-		return nil, err
+		return err
 	}
-	if err = tx.Commit(); err != nil {
+	return nil
+}
+func (usr UserRepo) UpdateSetUserSession(id int, token *models.LoginResponse) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	sqlStmtSession := fmt.Sprintf("UPDATE %s SET session=? WHERE users_id=? ", models.TableSessions)
+	tokenBearer := models.LoginResponse{
+		AccessToken:  "Bearer" + token.AccessToken,
+		RefreshToken: "Bearer" + token.RefreshToken,
+	}
+	tok, err := json.Marshal(&tokenBearer)
+	if err != nil {
+		web.Log.Error(err)
+		return err
+	}
+	_, err = usr.DB.ExecContext(ctx, sqlStmtSession, string(tok), id)
+	if err != nil {
 		web.Log.Fatal(err)
+		return err
+	}
+
+	return nil
+}
+
+func (usr UserRepo) GetUserSession(email string ) (*models.LoginResponse, error ){
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	 user, err := usr.GetUserByEmail(email)
+	 if err !=nil{
+	 	web.Log.Error(err)
+	 	return nil, err
+	 }
+	sqlStmtSession := fmt.Sprintf("SELECT session FROM %s  WHERE  users_id = ? ", models.TableSessions)
+		var usersSessions models.UsersSessions
+	row := usr.DB.QueryRowContext(ctx, sqlStmtSession, user.ID)
+	var token *models.LoginResponse
+	row.Scan(
+		&usersSessions.Session,
+		)
+	err = json.Unmarshal([]byte(usersSessions.Session), &token)
+		if err!=nil{
+		web.Log.Error(err)
 		return nil, err
 	}
-	return user, nil
+	return token, nil
 }
 
 func (usr UserRepo) GetUserByID(id int) (*models.User, error) {

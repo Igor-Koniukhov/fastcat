@@ -39,6 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
             field.remove();
         }, 1000);
     })
+    let logout = document.querySelector(".dropdown-item-logout")
+
+    let login = document.querySelector(".dropdown-item-login")
+    let allCookies = document.cookie;
+    let nk = allCookies.split(";")
+    for (let i =0; i < nk.length; i++){
+        if (nk[i].trim().split("=")[0]==="User"){
+            logout.classList.remove("item-hidden")
+            login.classList.add("item-hidden")
+            userGreeting.innerText = `Hi, ${nk[i].trim().split("=")[1]}!`
+        }
+    }
+
+
+    let imgSrcArr = []
+let suppliersImg = document.getElementsByClassName("suppliers-img")
+
+        for (let i =0; i < suppliersImg.length; i++){
+            imgSrcArr.push(suppliersImg[i].getAttribute("src"))
+            suppliersImg[i] = new Image();
+            console.log(suppliersImg[i].baseURI)
+            suppliersImg[i].src = imgSrcArr[i];
+
+            console.log(suppliersImg[i].src)
+
+        }
+
+
+
 });
 
 

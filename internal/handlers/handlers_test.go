@@ -21,7 +21,7 @@ var theTests = []struct {
 }{
 	{"login", "/login", "POST", []postData{}, http.StatusUnauthorized},
 	{"show-login", "/show-login", "GET", []postData{}, http.StatusOK},
-	{"refresh", "/refresh", "GET", []postData{}, http.StatusBadRequest},
+	{"refreshToken", "/refreshToken", "GET", []postData{}, http.StatusBadRequest},
 	{"logout", "/logout", "GET", []postData{}, http.StatusOK},
 	{"registration", "/registration", "POST", []postData{}, http.StatusOK},
 	{"users", "/users", "GET", []postData{}, http.StatusOK},

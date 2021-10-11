@@ -66,7 +66,7 @@ func getRoutes() http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/login", www.User.PostLogin)
 	mux.HandleFunc("/show-login", www.User.ShowLogin)
-	mux.HandleFunc("/refresh", www.User.Refresh)
+	mux.HandleFunc("/refreshToken", www.User.Refresh)
 	mux.HandleFunc("/logout", www.User.Logout)
 
 	mux.HandleFunc("/registration", www.User.ShowRegistration)
