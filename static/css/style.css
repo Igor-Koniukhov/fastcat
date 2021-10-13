@@ -889,8 +889,9 @@ ul {
     text-align: center;
 
 }
-.field{
-    display: flex;
+/*.field{
+    display: none;
+    !*display: flex;*!
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -902,12 +903,12 @@ ul {
     z-index: 100;
     transition: 0.6s;
 
-}
+}*/
 .hidden_field{
     background-color: rgba(255, 235, 59, .1);
 }
 
-.spiner {
+/*.spiner {
     width : 77px;
     height: 77px;
     border: 7px solid rgba(156, 39, 176, 0.9);
@@ -920,7 +921,7 @@ ul {
     100% {
         transform: rotate(360deg);
     }
-}
+}*/
 input.form-control[value]{
     opacity: 0.8;
 }

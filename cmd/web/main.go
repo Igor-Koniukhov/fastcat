@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"github.com/go-redis/redis/v7"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
@@ -16,7 +17,7 @@ import (
 	"os/signal"
 	"time"
 )
-
+var  client *redis.Client
 var app config.AppConfig
 
 func init() {
@@ -24,6 +25,7 @@ func init() {
 	if err !=nil {
 		web.Log.Fatal(err)
 	}
+
 }
 
 func main() {

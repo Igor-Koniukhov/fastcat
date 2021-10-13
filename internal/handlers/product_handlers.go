@@ -18,7 +18,6 @@ type Product interface {
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAllBySupplierID(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
-	FetchAll(w http.ResponseWriter, r *http.Request)
 	GetJson(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
 	Update(w http.ResponseWriter, r *http.Request)
@@ -63,11 +62,6 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 	w.WriteHeader(http.StatusOK)
 }
 func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	setPCookie := &http.Cookie{
-		Name:  "Product",
-		Value: "",
-	}
-	http.SetCookie(w, setPCookie)
 	items := p.repo.GetAll()
 	var supp []models.Supplier
 	for i := 0; i < len(items)-1; i++ {
@@ -93,13 +87,7 @@ func (p *ProductHandler) GetJson(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusOK)
 }
-func (p *ProductHandler) FetchAll(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "fetched.page.tmpl", &models.TemplateData{})
-	if err != nil {
-		web.Log.Fatal(err)
-	}
-	w.WriteHeader(http.StatusOK)
-}
+
 func (p *ProductHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := router.GetKeyInt(r, ":id")
 	err := p.repo.Delete(id)

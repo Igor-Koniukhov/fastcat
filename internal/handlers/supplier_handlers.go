@@ -31,6 +31,7 @@ type SupplierHandler struct {
 func NewSupplierHandler(app *config.AppConfig, repo dbrepo.SupplierRepository) *SupplierHandler {
 	return &SupplierHandler{App: app, repo: repo}
 }
+
 func (s *SupplierHandler) Home(w http.ResponseWriter, r *http.Request) {
 	suppliers := s.repo.GetAll()
 	err := render.TemplateRender(w, r, "home.page.tmpl",

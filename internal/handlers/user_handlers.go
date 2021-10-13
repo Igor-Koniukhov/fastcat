@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/render"
@@ -11,11 +12,11 @@ import (
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
 	"net/http"
-	"os"
 )
 
 type User interface {
 	ShowRegistration(w http.ResponseWriter, r *http.Request)
+	StatusPage(w http.ResponseWriter, r *http.Request)
 	AboutUs(w http.ResponseWriter, r *http.Request)
 	Contacts(w http.ResponseWriter, r *http.Request)
 	SingUp(w http.ResponseWriter, r *http.Request)
@@ -26,6 +27,7 @@ type User interface {
 	PostLogin(w http.ResponseWriter, r *http.Request)
 	ShowLogin(w http.ResponseWriter, r *http.Request)
 	Logout(w http.ResponseWriter, r *http.Request)
+	RefreshToken(w http.ResponseWriter, r *http.Request)
 }
 
 type UserHandler struct {
@@ -35,6 +37,17 @@ type UserHandler struct {
 
 func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHandler {
 	return &UserHandler{App: app, repo: repo}
+}
+func (us *UserHandler) StatusPage(w http.ResponseWriter, r *http.Request) {
+	//Get data from context
+	if auth := r.Context().Value("Authorization"); auth != nil {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("Authorized " + auth.(string) + "\n"))
+		fmt.Println(auth.(string), "-Author")
+	} else {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("Not Logged in"))
+	}
 }
 func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) {
 	err := render.TemplateRender(w, r, "sign_up.page.tmpl", &models.TemplateData{StringMap: us.App.TemplateInfo})
@@ -78,7 +91,6 @@ func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/registration", http.StatusSeeOther)
 		return
 	}
-
 	_, id, err := us.repo.Create(&u)
 	if err != nil {
 		log.Println(err)
@@ -88,16 +100,26 @@ func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
 		web.Log.Error(err)
 		return
 	}
+	setAccess := &http.Cookie{
+		Name:       "Authorization",
+		Value:      "Bearer "+token.AccessToken,
+		HttpOnly:   true,
+		SameSite:   0,
+	}
+	http.SetCookie(w, setAccess)
 	err = us.repo.SetUserSession(id, token)
 	if err != nil {
 		web.Log.Error(err)
 		return
 	}
-	setAuth := &http.Cookie{
-		Name:  "Authorization",
-		Value: token.AccessToken,
+	setRefresh := &http.Cookie{
+		Name:  "Refresh",
+		Value: token.RefreshToken,
+		HttpOnly:   true,
+		SameSite:   0,
 	}
-	http.SetCookie(w, setAuth)
+	http.SetCookie(w, setRefresh)
+
 	userGreet := &http.Cookie{
 		Name:  "User",
 		Value: u.Name,
@@ -107,8 +129,8 @@ func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
 	return
 }
 func (us *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-	_, err := r.Cookie("Authorization")
-	if err == nil {
+	_, err :=r.Cookie("Authorization")
+	if err==nil  {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 	err = render.TemplateRender(w, r, "show_login.page.tmpl", &models.TemplateData{
@@ -132,40 +154,38 @@ func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 	mapForAutoFill["Email"] = logReq.Email
 	mapForAutoFill["Password"] = logReq.Password
 	us.App.TemplateInfo = mapForAutoFill
-	token, err := us.repo.GetUserSession(logReq.Email)
-	if err != nil {
+
+	if ok := us.checkUserExists(logReq.Email);!ok {
 		us.App.ErrMessage = "User dose not exist"
 		http.Redirect(w, r, "/show-login", http.StatusSeeOther)
-		web.Log.Error(err)
+		web.Log.Info(logReq.Email," ", ok)
 		return
 	}
 	us.App.ErrMessage = ""
-	_, _, err = services.TokenResponder(w, logReq)
+	token, id, err := services.TokenResponder(w, logReq)
 	if err != nil {
 		web.Log.Error(err)
 		us.App.ErrMessage = "Invalid credentials"
 		http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 		return
 	}
-	us.App.ErrMessage = ""
-	tokenString, err := services.GetTokenFromBearerString(token.AccessToken)
-	if err != nil {
-		web.Log.Error(err)
-		return
-	}
-	auth := &http.Cookie{
+	setAccess := &http.Cookie{
 		Name:  "Authorization",
-		Value: token.AccessToken,
+		Value: "Bearer "+token.RefreshToken,
+		HttpOnly:   true,
+		SameSite:   0,
 	}
-	http.SetCookie(w, auth)
+	http.SetCookie(w, setAccess)
+	setRefresh := &http.Cookie{
+		Name:  "Refresh",
+		Value: token.RefreshToken,
+		HttpOnly:   true,
+		SameSite:   0,
+	}
+	http.SetCookie(w, setRefresh)
+	us.App.ErrMessage = ""
 
-	claims, err := services.ValidateToken(tokenString, os.Getenv("AccessSecret"))
-	if err != nil {
-		web.Log.Error(err)
-		us.refreshToken(w, r, logReq)
-		return
-	}
-	u, err := us.repo.GetUserByID(claims.ID)
+	u, err := us.repo.GetUserByID(id)
 	if err != nil {
 		web.Log.Error(err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -183,7 +203,7 @@ func (us *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
 	cookies := r.Cookies()
 	if len(cookies) >= 0 {
 		for _, ck := range cookies {
-			if ck.Name == "Authorization" || ck.Name == "User" {
+			if ck.Name == "Authorization" || ck.Name == "User" || ck.Name == "Refresh" {
 				ck.MaxAge = -1
 				http.SetCookie(w, ck)
 			}
@@ -229,41 +249,65 @@ func (us *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 	id := router.GetKeyInt(r, ":id")
 	user := us.repo.Update(id, &u)
+
 	err = json.NewEncoder(w).Encode(&user)
 	if err != nil {
 		log.Println(err)
 	}
 	w.WriteHeader(http.StatusOK)
 }
-func (us UserHandler) refreshToken(w http.ResponseWriter, r *http.Request, logReq *models.LoginRequest) error {
+func (us UserHandler) RefreshToken(w http.ResponseWriter, r *http.Request)  {
 	us.App.ErrMessage = "refreshToken token"
-	resp, id, err := services.TokenResponder(w, logReq)
+	refresh, err :=r.Cookie("Refresh")
 	if err != nil {
 		web.Log.Error(err)
-		return err
+		return
 	}
-	err = us.repo.UpdateSetUserSession(id, resp)
+	auth, err :=r.Cookie("Authorization")
 	if err != nil {
 		web.Log.Error(err)
-		return err
+		return
 	}
-	user, err := us.repo.GetUserByID(id)
+	auth.MaxAge=-1
+	claims, err := services.ValidateToken(refresh.Value, services.RefreshSecret)
 	if err != nil {
 		web.Log.Error(err)
-		return err
+		return
 	}
-	auth := &http.Cookie{
+	refresh.MaxAge=-1
+	token, err := services.TokenGenerator(w, claims.ID)
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	user, err := us.repo.GetUserByID(claims.ID)
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	setAccess := &http.Cookie{
 		Name:  "Authorization",
-		Value: resp.AccessToken,
+		Value: "Bearer "+token.RefreshToken,
+		HttpOnly:   true,
+		SameSite:   0,
+		MaxAge: 0,
 	}
-	http.SetCookie(w, auth)
+	http.SetCookie(w, setAccess)
+	setRefresh := &http.Cookie{
+		Name:  "Refresh",
+		Value: token.RefreshToken,
+		HttpOnly:   true,
+		SameSite:   0,
+	}
+	http.SetCookie(w, setRefresh)
+
 	userGreet := &http.Cookie{
 		Name:  "User",
 		Value: user.Name,
 	}
 	http.SetCookie(w, userGreet)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
-	return nil
+	return
 }
 func (us UserHandler) checkUserExists(email string) (ok bool) {
 	user, err := us.repo.GetUserByEmail(email)

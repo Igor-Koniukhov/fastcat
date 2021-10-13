@@ -11,8 +11,10 @@ import (
 	"strconv"
 )
 
-func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*models.LoginResponse, int, error) {
+var RefreshSecret = os.Getenv("RefreshAccess")
+var AccessSecret = os.Getenv("AccessSecret")
 
+func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*models.LoginResponse, int, error) {
 	user, err := repository.Repo.GetUserByEmail(logReq.Email)
 	if err != nil {
 		web.Log.Error(err)
@@ -33,13 +35,11 @@ func TokenResponder(w http.ResponseWriter, logReq *models.LoginRequest) (*models
 }
 
 func TokenGenerator(w http.ResponseWriter, id int) (*models.LoginResponse, error) {
-	RefreshAccess := os.Getenv("RefreshAccess")
 	RefreshLifetimeMinutes, err := strconv.Atoi(os.Getenv("RefreshLifetimeMinutes"))
 	if err != nil {
 		log.Println(err)
 		return nil, err
 	}
-	AccessSecret := os.Getenv("AccessSecret")
 	AccessLifetimeMinutes, err := strconv.Atoi(os.Getenv("AccessLifetimeMinutes"))
 	if err != nil {
 		log.Println(err)
@@ -50,7 +50,7 @@ func TokenGenerator(w http.ResponseWriter, id int) (*models.LoginResponse, error
 		log.Println(err)
 		return nil, err
 	}
-	refreshString, err := GenerateToken(id, RefreshLifetimeMinutes, RefreshAccess)
+	refreshString, err := GenerateToken(id, RefreshLifetimeMinutes, RefreshSecret)
 	if err != nil {
 		http.Error(w, "Something went wrong", http.StatusInternalServerError)
 		return nil, err

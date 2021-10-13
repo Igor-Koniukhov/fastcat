@@ -14,7 +14,11 @@
                                name="checkEmail"
                                aria-describedby="emailHelp"
                                value="{{.StringMap.Email}}">
-                        <small id="emailHelp" class="form-text" style="color: red; opacity: 0.6;">{{if .ErrorMessage}}{{.ErrorMessage}}{{end}}</small>
+                        <small  id="emailHelp"
+                                class="form-text"
+                                style="color: red; opacity: 0.6;">
+                            {{if .ErrorMessage}}{{.ErrorMessage}}{{end}}
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="checkPass">Password</label>

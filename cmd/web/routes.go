@@ -16,14 +16,16 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	repository.NewRepo(repo)
 
 	mux := router.NewRoutServeMux()
-	mux.GET("/", www.Supplier.Home)
+	mux.GET("/", mux.CORS(www.Supplier.Home))
 	mux.GET("/registration", mux.CORS(www.User.ShowRegistration))
 	mux.POST("/sign-up", mux.CORS(www.User.SingUp))
 	mux.GET("/show-login", www.User.ShowLogin)
 	mux.POST("/login", mux.CORS(www.User.PostLogin))
+	mux.GET("/refresh", www.User.RefreshToken)
 	mux.GET("/logout", www.User.Logout)
 
 	mux.GET("/about", www.User.AboutUs)
+	mux.GET("/status", m.Auth(www.User.StatusPage))
 	mux.GET("/contacts", www.User.Contacts)
 	mux.GET("/user/:id", mux.CORS(m.Auth(www.User.Get)))
 	mux.GET("/users", www.User.GetAll)
@@ -46,7 +48,6 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	mux.GET("/suppliers-products", m.Auth(www.Product.GetAllBySupplierID))
 	mux.GET("/products", m.Auth(www.Product.GetAll))
 	mux.GET("/products-json", mux.JSON(www.Product.GetJson))
-	mux.GET("/fetch", mux.CORS(www.Product.FetchAll))
 	mux.PUT("/product/update/:id", mux.CORS(m.Auth(www.Product.Update)))
 	mux.DEL("/product/delete/:id", mux.CORS(m.Auth(www.Product.Delete)))
 
