@@ -12,7 +12,6 @@ import (
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"github.com/subosito/gotenv"
 	"log"
-
 	"os"
 	"os/signal"
 	"time"
@@ -25,7 +24,6 @@ func init() {
 	if err !=nil {
 		web.Log.Fatal(err)
 	}
-
 }
 
 func main() {

@@ -1,4 +1,4 @@
-package middleware
+package handlers
 
 import (
 	"context"
@@ -7,10 +7,10 @@ import (
 	"net/http"
 )
 
-func Auth(next http.HandlerFunc) http.HandlerFunc {
+func (us *UserHandler) Auth(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		auth, err := r.Cookie("Authorization")
-		if err!=nil {
+		if err != nil {
 			http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 			return
 		}
@@ -34,7 +34,3 @@ func Auth(next http.HandlerFunc) http.HandlerFunc {
 		}
 	}
 }
-
-
-
-

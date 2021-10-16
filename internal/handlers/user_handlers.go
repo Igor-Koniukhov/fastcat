@@ -27,6 +27,7 @@ type User interface {
 	PostLogin(w http.ResponseWriter, r *http.Request)
 	ShowLogin(w http.ResponseWriter, r *http.Request)
 	Logout(w http.ResponseWriter, r *http.Request)
+	Auth(next http.HandlerFunc) http.HandlerFunc
 	RefreshToken(w http.ResponseWriter, r *http.Request)
 }
 
