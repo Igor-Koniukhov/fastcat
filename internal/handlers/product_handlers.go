@@ -55,6 +55,7 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 		&models.TemplateData{
 			Products:     products,
 			Supplier:     supplier,
+			StringMap: p.App.TemplateInfo,
 		})
 	if err != nil {
 		web.Log.Fatal(err)
@@ -72,6 +73,7 @@ func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 		&models.TemplateData{
 			Products:  items,
 			Suppliers: supp,
+			StringMap: p.App.TemplateInfo,
 		})
 	if err != nil {
 		web.Log.Fatal(err)

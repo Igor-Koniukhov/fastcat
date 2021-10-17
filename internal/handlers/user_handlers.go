@@ -27,7 +27,8 @@ type User interface {
 	PostLogin(w http.ResponseWriter, r *http.Request)
 	ShowLogin(w http.ResponseWriter, r *http.Request)
 	Logout(w http.ResponseWriter, r *http.Request)
-	Auth(next http.HandlerFunc) http.HandlerFunc
+	AuthSet(next http.HandlerFunc) http.HandlerFunc
+	AuthCheck(next http.HandlerFunc) http.HandlerFunc
 	RefreshToken(w http.ResponseWriter, r *http.Request)
 }
 
@@ -58,7 +59,7 @@ func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) 
 	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "about.page.tmpl", &models.TemplateData{})
+	err := render.TemplateRender(w, r, "about.page.tmpl", &models.TemplateData{StringMap: us.App.TemplateInfo})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
@@ -66,7 +67,7 @@ func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) Contacts(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "contacts.page.tmpl", &models.TemplateData{})
+	err := render.TemplateRender(w, r, "contacts.page.tmpl", &models.TemplateData{StringMap: us.App.TemplateInfo})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
@@ -77,16 +78,18 @@ func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
 	var u models.User
 	u.Name = r.FormValue("user-name")
 	u.Email = r.FormValue("user-email")
+	u.Tel = r.FormValue("user-tel")
 	u.Password = r.FormValue("password")
 	mapForAutoFill := make(map[string]string)
 	mapForAutoFill["Name"] = u.Name
 	mapForAutoFill["Email"] = u.Email
+	mapForAutoFill["Tel"] = u.Tel
 	mapForAutoFill["Password"] = u.Password
 	userCookie, err := r.Cookie("User")
-	if err==nil{
+	if err == nil {
 		mapForAutoFill["UserName"] = userCookie.Value
 	}
-	us.App.TemplateInfo = mapForAutoFill
+
 	if us.checkUserExists(u.Email) {
 		mapForAutoFill["ErrorExistsUser"] = "User already exists!"
 		http.Redirect(w, r, "/registration", http.StatusSeeOther)
@@ -101,26 +104,21 @@ func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
 		web.Log.Error(err)
 		return
 	}
-	setAccess := &http.Cookie{
-		Name:       "Authorization",
-		Value:      "Bearer "+token.AccessToken,
-		HttpOnly:   true,
-		SameSite:   0,
-	}
-	http.SetCookie(w, setAccess)
+	mapForAutoFill["Authorization"] = "Bearer " + token.AccessToken
+	us.App.TemplateInfo = mapForAutoFill
 	err = us.repo.SetUserSession(id, token)
 	if err != nil {
 		web.Log.Error(err)
 		return
 	}
+
 	setRefresh := &http.Cookie{
-		Name:  "Refresh",
-		Value: token.RefreshToken,
-		HttpOnly:   true,
-		SameSite:   0,
+		Name:     "Refresh",
+		Value:    token.RefreshToken,
+		HttpOnly: true,
+		SameSite: 0,
 	}
 	http.SetCookie(w, setRefresh)
-
 	userGreet := &http.Cookie{
 		Name:  "User",
 		Value: u.Name,
@@ -130,11 +128,7 @@ func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
 	return
 }
 func (us *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-	_, err :=r.Cookie("Authorization")
-	if err==nil  {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-	}
-	err = render.TemplateRender(w, r, "show_login.page.tmpl", &models.TemplateData{
+	err := render.TemplateRender(w, r, "show_login.page.tmpl", &models.TemplateData{
 		ErrorMessage: us.App.ErrMessage,
 		StringMap:    us.App.TemplateInfo})
 	if err != nil {
@@ -154,12 +148,11 @@ func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 	mapForAutoFill := make(map[string]string)
 	mapForAutoFill["Email"] = logReq.Email
 	mapForAutoFill["Password"] = logReq.Password
-	us.App.TemplateInfo = mapForAutoFill
 
-	if ok := us.checkUserExists(logReq.Email);!ok {
+	if ok := us.checkUserExists(logReq.Email); !ok {
 		us.App.ErrMessage = "User dose not exist"
 		http.Redirect(w, r, "/show-login", http.StatusSeeOther)
-		web.Log.Info(logReq.Email," ", ok)
+		web.Log.Info(logReq.Email, " ", ok)
 		return
 	}
 	us.App.ErrMessage = ""
@@ -170,18 +163,12 @@ func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 		return
 	}
-	setAccess := &http.Cookie{
-		Name:  "Authorization",
-		Value: "Bearer "+token.RefreshToken,
-		HttpOnly:   true,
-		SameSite:   0,
-	}
-	http.SetCookie(w, setAccess)
+	mapForAutoFill["Authorization"] = "Bearer " + token.AccessToken
 	setRefresh := &http.Cookie{
-		Name:  "Refresh",
-		Value: token.RefreshToken,
-		HttpOnly:   true,
-		SameSite:   0,
+		Name:     "Refresh",
+		Value:    token.RefreshToken,
+		HttpOnly: true,
+		SameSite: 0,
 	}
 	http.SetCookie(w, setRefresh)
 	us.App.ErrMessage = ""
@@ -192,6 +179,9 @@ func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+	mapForAutoFill["Name"] = u.Name
+	mapForAutoFill["Tel"] = u.Tel
+	us.App.TemplateInfo = mapForAutoFill
 	userGreet := &http.Cookie{
 		Name:  "User",
 		Value: u.Name,
@@ -204,7 +194,7 @@ func (us *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
 	cookies := r.Cookies()
 	if len(cookies) >= 0 {
 		for _, ck := range cookies {
-			if ck.Name == "Authorization" || ck.Name == "User" || ck.Name == "Refresh" {
+			if ck.Name == "User" || ck.Name == "Refresh" {
 				ck.MaxAge = -1
 				http.SetCookie(w, ck)
 			}
@@ -257,25 +247,19 @@ func (us *UserHandler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusOK)
 }
-func (us UserHandler) RefreshToken(w http.ResponseWriter, r *http.Request)  {
+func (us UserHandler) RefreshToken(w http.ResponseWriter, r *http.Request) {
 	us.App.ErrMessage = "refreshToken token"
-	refresh, err :=r.Cookie("Refresh")
+	refresh, err := r.Cookie("Refresh")
 	if err != nil {
 		web.Log.Error(err)
 		return
 	}
-	auth, err :=r.Cookie("Authorization")
-	if err != nil {
-		web.Log.Error(err)
-		return
-	}
-	auth.MaxAge=-1
 	claims, err := services.ValidateToken(refresh.Value, services.RefreshSecret)
 	if err != nil {
 		web.Log.Error(err)
 		return
 	}
-	refresh.MaxAge=-1
+	refresh.MaxAge = -1
 	token, err := services.TokenGenerator(w, claims.ID)
 	if err != nil {
 		web.Log.Error(err)
@@ -286,19 +270,13 @@ func (us UserHandler) RefreshToken(w http.ResponseWriter, r *http.Request)  {
 		web.Log.Error(err)
 		return
 	}
-	setAccess := &http.Cookie{
-		Name:  "Authorization",
-		Value: "Bearer "+token.RefreshToken,
-		HttpOnly:   true,
-		SameSite:   0,
-		MaxAge: 0,
-	}
-	http.SetCookie(w, setAccess)
+	us.App.TemplateInfo["Authorization"] ="Bearer " + token.AccessToken
+
 	setRefresh := &http.Cookie{
-		Name:  "Refresh",
-		Value: token.RefreshToken,
-		HttpOnly:   true,
-		SameSite:   0,
+		Name:     "Refresh",
+		Value:    token.RefreshToken,
+		HttpOnly: true,
+		SameSite: 0,
 	}
 	http.SetCookie(w, setRefresh)
 
@@ -317,7 +295,7 @@ func (us UserHandler) checkUserExists(email string) (ok bool) {
 		return ok
 	}
 	if ok := email == user.Email; ok {
-		web.Log.Info(email," - User exists ", ok)
+		web.Log.Info(email, " - User exists ", ok)
 		return ok
 	}
 	return ok

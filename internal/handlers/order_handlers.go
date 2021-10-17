@@ -59,6 +59,7 @@ func (ord OrderHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusOK)
 }
+
 func (ord OrderHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := router.GetKeyInt(r, ":id")
 	err := ord.repo.Delete(id)

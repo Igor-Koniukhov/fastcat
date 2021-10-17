@@ -20,6 +20,7 @@ type Cart interface {
 	GetAll(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
 	Update(w http.ResponseWriter, r *http.Request)
+	GetAllByUserID(w http.ResponseWriter, r *http.Request)
 }
 
 type CartHandler struct {
@@ -31,6 +32,9 @@ func NewCartHandler(app *config.AppConfig, repo dbrepo.CartRepository) *CartHand
 	return &CartHandler{App: app, repo: repo}
 }
 func (c CartHandler) Create(w http.ResponseWriter, r *http.Request) {
+	str := r.Context().Value("user_id")
+	userId := str.(int)
+
 	err := r.ParseForm()
 	if err != nil {
 		web.Log.Fatal(err)
@@ -55,22 +59,25 @@ func (c CartHandler) Create(w http.ResponseWriter, r *http.Request) {
 	user := &models.User{
 		Name:  r.Form.Get("name"),
 		Email: r.Form.Get("email"),
-		Phone: r.Form.Get("phone"),
+		Tel:   r.Form.Get("phone"),
 	}
-	userB, err := json.Marshal(user)
+	userString, err := json.Marshal(user)
 	if err != nil {
 		web.Log.Fatal(err)
 	}
 	or := &models.CartResponse{
-		User:            userB,
+		UserID:          userId,
+		User:            userString,
 		AddressDelivery: r.Form.Get("address"),
 		CartBody:        []byte(p),
 		Amount:          r.Form.Get("amount"),
 	}
+
 	_, id, err := c.repo.Create(or)
 	if err != nil {
 		web.Log.Fatal(err)
 	}
+
 	url := fmt.Sprintf("/cart/%d", id)
 	http.Redirect(w, r, url, http.StatusSeeOther)
 }
@@ -87,10 +94,28 @@ func (c CartHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	cart := c.repo.GetAll()
 	err := json.NewEncoder(w).Encode(&cart)
 	if err != nil {
-		log.Println(err)
+		web.Log.Error(err)
+		return
 	}
 	w.WriteHeader(http.StatusOK)
 }
+func (c CartHandler) GetAllByUserID(w http.ResponseWriter, r *http.Request){
+	userId := r.Context().Value("user_id")
+	id := userId.(int)
+	carts, err := c.repo.GetAllByUserID(id)
+	if err !=nil {
+		web.Log.Error(err)
+	}
+	err = render.TemplateRender(w, r, "user_cabinet.page.tmpl",
+		&models.TemplateData{
+			UserCabinetInfo: carts,
+		})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+	w.WriteHeader(http.StatusOK)
+}
+
 func (c CartHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := router.GetKeyInt(r, ":id")
 	err := c.repo.Delete(id)

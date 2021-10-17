@@ -18,6 +18,7 @@ type CartRepository interface {
 	GetAll() []models.CartResponse
 	Delete(id int) error
 	Update(id int, u *models.CartResponse) *models.CartResponse
+	GetAllByUserID(id int) ([]models.Cart, error)
 }
 
 type CartRepo struct {
@@ -29,21 +30,22 @@ func NewCartRepository(app *config.AppConfig, DB *sql.DB) *CartRepo {
 	return &CartRepo{App: app, DB: DB}
 }
 
-func (c CartRepo) Create(cart *models.CartResponse) (*models.CartResponse, int,  error) {
+func (c CartRepo) Create(cart *models.CartResponse) (*models.CartResponse, int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (user, address_delivery, cart_body, amount) VALUES (?, ?, ?, ?)", models.TableCarts)
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (user_id, user, address_delivery, cart_body, amount) VALUES (?, ?, ?, ?, ?)", models.TableCarts)
 	result, err := c.DB.ExecContext(ctx, sqlStmt,
+		&cart.UserID,
 		&cart.User,
 		&cart.AddressDelivery,
 		&cart.CartBody,
 		&cart.Amount)
 	if err != nil {
 		log.Println(err)
-		return nil, 0,  err
+		return nil, 0, err
 	}
-	 id, _ := result.LastInsertId()
-	return cart, int(id),  nil
+	id, _ := result.LastInsertId()
+	return cart, int(id), nil
 }
 
 func (c CartRepo) Get(id int) *models.Cart {
@@ -64,7 +66,7 @@ func (c CartRepo) Get(id int) *models.Cart {
 	var carts []models.CartBody
 	err = json.Unmarshal(cart.User, &user)
 	if err != nil {
-		web.Log.Error(err)
+		web.Log.Error(err, cart.User, user)
 	}
 	err = json.Unmarshal(cart.CartBody, &carts)
 	if err != nil {
@@ -78,8 +80,59 @@ func (c CartRepo) Get(id int) *models.Cart {
 		CartBodies:      carts,
 		Amount:          cart.Amount,
 	}
-	fmt.Println(crt.CartBodies)
+
 	return crt
+}
+
+func (c CartRepo) GetAllByUserID(id int) ([]models.Cart, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var cart models.CartResponse
+	var carts []models.Cart
+	var user *models.User
+	var cartBody []models.CartBody
+
+	sqlStmt := fmt.Sprintf("SELECT id, user, address_delivery, cart_body, amount, status, created_at FROM %s WHERE user_id = ? ", models.TableCarts)
+	result, err := c.DB.QueryContext(ctx, sqlStmt, id)
+	if err != nil {
+		web.Log.Info(err)
+	}
+	for result.Next() {
+		err := result.Scan(
+			&cart.ID,
+			&cart.User,
+			&cart.AddressDelivery,
+			&cart.CartBody,
+			&cart.Amount,
+			&cart.Status,
+			&cart.CreatedAt,
+		)
+		if err != nil {
+			web.Log.Error(err)
+			return nil, err
+		}
+
+		err = json.Unmarshal(cart.User, &user)
+		if err != nil {
+			web.Log.Error(err, cart.User, user)
+		}
+		err = json.Unmarshal(cart.CartBody, &cartBody)
+		if err != nil {
+			web.Log.Error(err)
+		}
+
+		crt := &models.Cart{
+			ID:              cart.ID,
+			User:            *user,
+			AddressDelivery: cart.AddressDelivery,
+			CartBodies:      cartBody,
+			Amount:          cart.Amount,
+			Status:          cart.Status,
+			CreatedAt:       cart.CreatedAt,
+		}
+		carts = append(carts, *crt)
+	}
+	return carts, nil
 }
 
 func (c CartRepo) GetAll() []models.CartResponse {

@@ -39,7 +39,7 @@
                             <div class="mb-3 col-md-12">
                                 <label for="email-client" name="email-client" class="form-label">Email address</label>
                                 <input type="email" class="form-control" id="email-client" name="email-client"
-                                       placeholder="name@example.com">
+                                       placeholder="name@example.com"{{if .StringMap.Email}} value="{{.StringMap.Email}}"{{end}}>
                             </div>
                             <div class="mb-3 col-md-12 col-sm-12">
                                 <label for="text-area" class="form-label">Write massage</label>

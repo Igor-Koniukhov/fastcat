@@ -1,0 +1,33 @@
+{{template "base" .}}
+
+{{define "content"}}
+<div class="content">
+    <div class="container">
+        <h3 class="mb-5">User orders story:</h3>
+        <div class="row">
+            {{ range .UserCabinetInfo}}
+                <div class="content-cart mb-2 col-lg-6 col-md-6">
+                    <div class="user-info">
+                        <h5><span>Order id:</span> {{.ID}}</h5>
+                        <h6><span>Client:</span>{{ .User.Name}}</h6>
+                        <p><span>Address:</span>{{.AddressDelivery}}</p>
+                        <p><span>Email:</span>{{.User.Email}}</p>
+                        <p><span>Phone:</span>{{.User.Tel}}</p>
+
+                    </div>
+                    <div class="cart-body">
+                        {{range .CartBodies}}
+                            <p><span>Supplier ID:</span>{{.SupplierID}} - ordered:</p>
+                            <ol>
+                                <li style="list-style: decimal;">{{.Title}}  {{.Price}} $</li>
+                            </ol>
+                        {{end}}
+                        <p><span>Amount: </span>{{.Amount}}</p>
+                        <p><span>Status:</span>{{.Status}} - {{.CreatedAt}}</p>
+                    </div>
+                </div>
+            {{end}}
+        </div>
+    </div>
+    {{end}}
+</div>

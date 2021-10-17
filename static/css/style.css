@@ -763,7 +763,6 @@ ul {
 }
 
 .order-product__price {
-    max-width: 100px;
     border: unset;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -922,9 +921,38 @@ ul {
         transform: rotate(360deg);
     }
 }*/
+.nav-link-cabinet{
+    font-size: 12px;
+    font-weight: bolder;
+    opacity: 1;
+}
 input.form-control[value]{
     opacity: 0.8;
 }
 .item-hidden{
     display: none;
+}
+.active-nav{
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+.content-cart{
+    border: 1px solid rgba(0,0,0,.4);
+    border-radius: 5px;
+    padding: 15px;
+    color: #361c1c;
+    box-shadow: 2px 3px 3px rgba(0,0,0,.4);
+}
+.cart-body{
+    padding-left: 15px;
+    border-left: 2px solid red;
+}
+.user-info h6{
+    text-transform: capitalize;
+}
+.content-cart span{
+    display: inline-block;
+    max-width: 90px;
+    width: 100%;
+    font-weight: bolder;
 }

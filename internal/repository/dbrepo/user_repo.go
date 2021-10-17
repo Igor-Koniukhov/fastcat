@@ -38,7 +38,7 @@ func NewUserRepository(app *config.AppConfig, DB *sql.DB) *UserRepo {
 func (usr UserRepo) Create(user *models.User) (*models.User, int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, password) VALUES(?,?,?) ", models.TableUsers)
+	sqlStmt := fmt.Sprintf("INSERT INTO %s (name, email, tel, password) VALUES(?,?,?,?) ", models.TableUsers)
 	pass, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		web.Log.Fatal(err)
@@ -47,6 +47,7 @@ func (usr UserRepo) Create(user *models.User) (*models.User, int, error) {
 	res, err := usr.DB.ExecContext(ctx, sqlStmt,
 		user.Name,
 		user.Email,
+		user.Tel,
 		pass)
 	if err != nil {
 		web.Log.Fatal(err)
@@ -101,7 +102,6 @@ func (usr UserRepo) UpdateSetUserSession(id int, token *models.LoginResponse) er
 		web.Log.Fatal(err)
 		return err
 	}
-
 	return nil
 }
 
@@ -137,6 +137,7 @@ func (usr UserRepo) GetUserByID(id int) (*models.User, error) {
 		&usr.User.ID,
 		&usr.User.Name,
 		&usr.User.Email,
+		&usr.User.Tel,
 		&usr.User.Password,
 		&usr.User.DeletedAt,
 		&usr.User.CreatedAT,
@@ -162,6 +163,7 @@ func (usr UserRepo) GetAll() []models.User {
 			&usr.User.ID,
 			&usr.User.Name,
 			&usr.User.Email,
+			&usr.User.Tel,
 			&usr.User.Password,
 			&usr.User.DeletedAt,
 			&usr.User.CreatedAT,
@@ -190,11 +192,12 @@ func (usr UserRepo) Delete(id int) error {
 func (usr UserRepo) Update(id int, user *models.User) *models.User {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, password=? WHERE id=? ", models.TableUsers)
+	sqlStmt := fmt.Sprintf("UPDATE %s SET id=?, name=?, email=?, tel=?, password=? WHERE id=? ", models.TableUsers)
 	_, err := usr.DB.ExecContext(ctx, sqlStmt,
 		user.ID,
 		user.Name,
 		user.Email,
+		user.Tel,
 		user.Password,
 		id)
 	if err != nil {
@@ -213,6 +216,7 @@ func (usr UserRepo) GetUserByEmail(email string) (*models.User, error) {
 		&usr.User.ID,
 		&usr.User.Name,
 		&usr.User.Email,
+		&usr.User.Tel,
 		&usr.User.Password,
 		&usr.User.DeletedAt,
 		&usr.User.CreatedAT,

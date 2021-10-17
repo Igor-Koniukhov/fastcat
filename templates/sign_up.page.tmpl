@@ -46,6 +46,19 @@
                                 <small class="form-text"
                                        style="color: red; opacity: 0.6;">{{.StringMap.ErrorExistsUser}}</small>
                             </div>
+                            <div class="col-md-12">
+                                <label for="user-tel" class="form-label">Phone</label>
+                                <input
+                                        type="tel"
+                                        class="form-control"
+                                        id="user-tel"
+                                        name="user-tel"
+                                        value="{{.StringMap.Tel}}"
+                                        {{if .StringMap.UserName}} readonly{{end}}
+                                >
+                                <small class="form-text"
+                                       style="color: red; opacity: 0.6;">{{.StringMap.ErrorExistsUser}}</small>
+                            </div>
 
                             <div class="col-md-12">
                                 <label for="password" class="form-label">Password</label>

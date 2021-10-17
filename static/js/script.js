@@ -41,15 +41,26 @@ document.addEventListener('DOMContentLoaded', () => {
     })*/
     let logout = document.querySelector(".dropdown-item-logout");
     let login = document.querySelector(".dropdown-item-login");
+    let cabinet = document.querySelector(".nav-link-cabinet");
     let allCookies = document.cookie;
     let nk = allCookies.split(";")
+
+    if(userGreeting.innerText===''){
+        localStorage.removeItem("products")
+    }
+    localStorage.removeItem("products")
     for (let i =0; i < nk.length; i++){
         if (nk[i].trim().split("=")[0]==="User"){
             logout.classList.remove("item-hidden");
             login.classList.add("item-hidden");
             userGreeting.innerText = `Hi, ${nk[i].trim().split("=")[1]}!`
+
         }
     }
+    if (userGreeting.innerText.length > 0){
+        cabinet.classList.remove("item-hidden")
+    }
+
 
 });
 

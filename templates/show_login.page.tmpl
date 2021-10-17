@@ -17,6 +17,7 @@
                         <small  id="emailHelp"
                                 class="form-text"
                                 style="color: red; opacity: 0.6;">
+                            {{if .StringMap.Expired}}{{.StringMap.Expired}}{{end}}
                             {{if .ErrorMessage}}{{.ErrorMessage}}{{end}}
                         </small>
                     </div>
@@ -28,12 +29,25 @@
                                name="checkPass"
                                value="{{.StringMap.Password}}">
                     </div>
-                    <button  class="btn btn-primary btn-sm mb-2 mt-5">Sing In</button>
+                    <div class="form-group">
+                        <input type="password"
+                               class="form-control"
+                               id="auth_access"
+                               name="auth_access"
+                               value="{{.StringMap.Authorization}}" hidden>
+                    </div>
+
+                    <button  class="btn btn-primary btn-sm mb-2 mt-5"  {{if .StringMap.Expired}}hidden{{end}}>Sing In</button>
                 </form>
-                <p>New to FastCat? Create an account.</p>
-                <form action="/registration">
+                <p  {{if .StringMap.Expired}} style="display: none" {{end}}>New to FastCat? Create an account.</p>
+                <form action="/registration"  {{if .StringMap.Expired}} hidden {{end}}>
                     <button class="btn btn-warning btn-sm mb-5">Sing Up</button>
                 </form>
+                {{if .StringMap.Expired}}
+                <form action="/refresh">
+                    <button class="btn btn-warning btn-sm mb-5">Refresh</button>
+                </form>
+                {{end}}
             </div>
         </div>
 

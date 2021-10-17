@@ -65,13 +65,17 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item dropdown-item-login" href="/show-login">Log In</a></li>
-                                <li><a class="dropdown-item dropdown-item-logout item-hidden" href="/logout">Log Out</a></li>
+                                <li><a class="dropdown-item dropdown-item-logout item-hidden" href="/logout">Log Out</a>
+                                </li>
                                 <li><a class="dropdown-item" href="/registration">Sing Up</a></li>
 
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contacts">Contacts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-cabinet item-hidden" id="cabinet" style = "color: #333" href="/cabinet">Cabinet</a>
                         </li>
 
                     </ul>
@@ -155,17 +159,21 @@
                         <input type="hidden" name="theme" value="Обратный звонок">
                         <input type="hidden" name="admin_email[]" value="ikoniukhov@gmail.com">
                         <input type="hidden" name="form_subject" value="Заявка с сайта">
+                        <input type="hidden" id="orderInfo" name="order_info" value="" >
                         <label class="order__label">
                             <span class="order__text">Your Name</span>
-                            <input type="text" name="name" class="order__input">
+                            <input type="text" name="name" class="order__input"
+                                    {{if .StringMap.Name}} value="{{.StringMap.Name}}"{{end}}>
                         </label>
                         <label class="order__label">
                             <span class="order__text">Phone number</span>
-                            <input type="tel" name="phone" class="order__input" placeholder="+3 (___)___-__-__">
+                            <input type="tel" name="phone" class="order__input" placeholder="+3 (___)___-__-__"
+                                    {{if .StringMap.Tel}} value="{{.StringMap.Tel}}"{{end}}>
                         </label>
                         <label class="order__label">
                             <span class="order__text">Email address</span>
-                            <input type="email" name="email" class="order__input" placeholder="post@gmail.com">
+                            <input type="email" name="email" class="order__input" placeholder="post@gmail.com"
+                                    {{if .StringMap.Email}} value="{{.StringMap.Email}}"{{end}}>
                         </label>
                         <label class="order__label">
                             <span class="order__text">Address delivery</span>
@@ -231,7 +239,7 @@
     </footer>
     <script src="../static/js/simplebar.js"></script>
     <script src="../static/libs/modal/modal.js"></script>
-    <script  src="../static/js/cart.js"></script>
+    <script src="../static/js/cart.js"></script>
     <script src="../static/js/script.js"></script>
     </body>
     </html>

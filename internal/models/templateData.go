@@ -6,6 +6,7 @@ type TemplateData struct {
 	LoginRequest LoginRequest
 	Products     []Item
 	Cart         *Cart
+	UserCabinetInfo  []Cart
 	ErrorMessage string
 	UserName     string
 	StringMap    map[string]string

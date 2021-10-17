@@ -14,6 +14,7 @@ type OrderRepository interface {
 	Create(ord *models.Order) (*models.Order, error)
 	Get(id int) *models.Order
 	GetAll() *[]models.Order
+	GetAllByUserID(id int) []models.Cart
 	Delete(id int) error
 	Update(id int, ord *models.Order) *models.Order
 }
@@ -41,7 +42,7 @@ func (o OrderRepo) Create(ord *models.Order) (*models.Order, error) {
 		log.Println(err)
 		return nil, err
 	}
-	fmt.Println(ord)
+
 	return ord, nil
 }
 
@@ -89,6 +90,34 @@ func (o OrderRepo) GetAll() *[]models.Order {
 		orders = append(orders, ord)
 	}
 	return &orders
+}
+func (o OrderRepo) GetAllByUserID(id int) []models.Cart {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var cart models.Cart
+	var carts []models.Cart
+	sqlStmt := fmt.Sprintf("SELECT id, user, address_delivery, cart_body, amount, status, created_at, updated_at status FROM %s WHERE user_id=? AND status = 'accepted' ", models.TableCarts)
+	results, err := o.DB.QueryContext(ctx, sqlStmt)
+	if err != nil {
+		log.Println(err)
+	}
+	for results.Next() {
+		err = results.Scan(
+			&cart.ID,
+			&cart.User,
+			&cart.UserID,
+			&cart.AddressDelivery,
+			&cart.CartBodies,
+			&cart.Amount,
+			&cart.Status,
+			&cart.CreatedAt,
+			)
+		if err != nil {
+			log.Println(err)
+		}
+		carts = append(carts, cart)
+	}
+	return carts
 }
 
 func (o OrderRepo) Delete(id int) error {

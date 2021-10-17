@@ -7,12 +7,12 @@ type User struct {
 	ID        int         `json:"id"`
 	Name      string      `json:"name"`
 	Email     string      `json:"email"`
-	Phone     string      `json:"phone"`
+	Tel       string      `json:"tel"`
 	Password  string      `json:"password"`
 	DeletedAt interface{} `json:"deleted_at"`
 	CreatedAT string      `json:"created_at"`
 	UpdatedAT string      `json:"updated_at"`
-	Session *UsersSessions
+	Session   *UsersSessions
 }
 
 type UsersSessions struct {

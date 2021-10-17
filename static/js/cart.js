@@ -70,16 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
         productParent.remove();
 
         printQuantity();
-
         updateStorage();
     };
 
-  productsBtn.forEach(el => {
+    productsBtn.forEach(el => {
 
         el.closest('.product').setAttribute('data-id', randomId++);
 
         el.addEventListener('click', (e) => {
-
+console.log(productArray)
             let self = e.currentTarget;
             let parent = self.closest('.product');
             let id = parent.dataset.id;
@@ -88,12 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let idProd = parent.querySelector('.product-id').textContent;
             let idSupp = parent.querySelector('.supplier-id').textContent;
             let priceString = stringWithoutSpaces(parent.querySelector('.product-price__current').textContent);
-            let priceNumber = parseInt(stringWithoutSpaces(parent.querySelector('.product-price__current').textContent));
+            let priceNumber = parseInt(parent.querySelector('.product-price__current').textContent);
 
             plusFullPrice(priceNumber);
             printFullPrice();
 
-            cartProductsList.querySelector('.simplebar-content').insertAdjacentHTML('afterbegin', generateCartProduct(img, title, priceString, id, idProd, idSupp));
+            cartProductsList.querySelector('.simplebar-content')
+                .insertAdjacentHTML('afterbegin', generateCartProduct(img, title, priceString, id, idProd, idSupp));
             printQuantity();
             updateStorage();
             self.disabled = true;
@@ -124,17 +124,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			<div class="form-group order-modal__item">
 				<article class="order-modal__product order-product" data-id="${id}">				
 					<img src="${img}" alt="" class="order-product__img">
+					
 					<div class="order-product__text row">					
 					<div class="col-6">
-					<input type="text" class="order-product__title" value="${stringWithoutSpaces(title)}" name="prodName" readonly >
+					<input type="text" class="order-product__title"  value="${title.trim()}" name="prodName" readonly >
                     </div>
                     <div class="col-3">
                     <input type="number" class="order-product__price" value="${normalPrice(price)}" name="price" readonly >
                     </div>                   
                     <input type="number" class="product-id" value='${idProd}' name="idProd" readonly hidden>             
                     <input type="number" class="supplier-id" value='${idSupp}' name="idSupp" readonly hidden>
-                    <input type="text" class="prod-info" value= '${prodInfo}' name="prodInfo" readonly hidden>
-                    
+                    <input type="text" class="prod-info" value= '${prodInfo}' name="prodInfo" readonly hidden>                   
                     
                     <button type="button" class="order-product__delete product__btn btn btn-success btn-small col-3" hidden disabled>remove</button>
                                        						
@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return stringWithoutSpaces(JSON.stringify(productArray))
     }
 
+
     const modalCart = new CartModal({
         isOpen: (modalCart) => {
             let array = cartProductsList.querySelector('.simplebar-content').children;
@@ -157,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.order-modal__quantity span').textContent = `${length} шт`;
             document.querySelector('.order-modal__summ input').value = `${fullprice}`;
             for (item of array) {
-                console.log(item)
                 let img = item.querySelector('.cart-product__img').getAttribute('src');
                 let title = item.querySelector('.cart-product__title').textContent;
                 let priceString = stringWithoutSpaces(item.querySelector('.cart-product__price').textContent);
@@ -179,7 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     id,
                     idProdString,
                     idSuppString,
-                    pi));
+                    pi
+                ));
             }
 
         },
@@ -270,12 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.order__btn').addEventListener('click', (e) => {
         let productInfo = JSON.stringify(productArray)
-        console.log(prodInfo())
 
-        console.log(productInfo)
         document.cookie = "Product=" + encodeURIComponent(productInfo) + ";path=/cart/create";
-        console.log(productArray)
 
         localStorage.removeItem('products');
     });
+
 });
