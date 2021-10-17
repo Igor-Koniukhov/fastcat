@@ -23,37 +23,50 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container ">
                 <h2 class="text-center mb-5 dancing-sm">Food delivery in Kharkiv:</h2>
-                <div class="row" style="padding: 0 15px;">
-                    <div class="col-12 m-auto">
+                <div class="row mb-3" style="padding: 0 15px;">
+                    <div class="col-md-4 col-sm-8 m-auto">
                         <form method="get" action="/suppliers/selected">
-                            <div class="row p-2 all-items-inline">
-                                <div class="col-md-4 col-sm-12 ">
-                                    <a class="btn btn-in-line frame" href="/products">See All products</a>
-                                </div>
-                                <div class="form-group col-md-8 col-sm-12">
-                                    <div class="frame col-12">
+                                <div class="form-group ">
+                                    <div class="frame col-9">
                                         <select class="form-control schedule" id="schedule" name="schedule">
-                                            {{range .Suppliers}}
-                                                <option>{{.WorkingHours.Opening}}--{{.WorkingHours.Closing}}</option>
+                                            {{range .StringSliceMap.Schedule}}
+                                                <option>{{.}}</option>
                                             {{end}}
                                         </select>
-                                        <div class="col-2 ">
+                                        <div class="col-3 ">
                                             <button type="submit " class="btn btn-in-line m-auto">Choose</button>
                                         </div>
                                     </div>
-
                                 </div>
-
-                            </div>
                         </form>
                     </div>
+                    <div class="col-md-4 col-sm-8 m-auto">
+                        <form method="get" action="/suppliers/type">
+                                <div class="form-group ">
+                                    <div class="frame col-9">
+                                        <select class="form-control schedule" id="type" name="type">
+                                            {{range .StringSliceMap.Types}}
+                                                <option>{{.}}</option>
+                                            {{end}}
+                                        </select>
+                                        <div class="col-3">
+                                            <button type="submit " class="btn btn-in-line m-auto">Choose</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3 col-sm-8 m-auto ">
+                        <a class="btn btn-in-line frame" href="/products">See All products</a>
+                    </div>
+
                 </div>
                 <div class="row ">
                     {{ range .Suppliers}}
                         <div class="col-lg-6 col-md-4 mb-3 suppliers-icons items-cover background-img m-auto">
-                            <form  action="/suppliers-products">
+                            <form action="/suppliers-products">
                                 <input type="text" value="{{.Id}}" hidden id="supplier_id" name="supplier_id">
                                 <button class="btn-icon-wrapper"></button>
                                 <div class=" text-center">
@@ -62,7 +75,7 @@
                                         <p><b>{{.Type}}</b></p>
                                     </div>
                                     <div>
-                                    <img class="suppliers-img" alt="{{.Name}} {{.Type}}" src="{{.Image}}" >
+                                        <img class="suppliers-img" alt="{{.Name}} {{.Type}}" src="{{.Image}}">
                                         <div class=" restaurant-icon restaurant-icon_square">
                                             <img src="{{.Image}}" alt="{{.Name}} {{.Type}}" style="display: none;">
                                         </div>
@@ -127,21 +140,21 @@
                         <div class="col-md-4 col-sm-12 d-flex justify-content-center">
                             <div class="direction-col">
                                 <a class="icon-reference" href="#"></a>
-                                <img class="restaurant-icon" src="../static/img/delivery.jpg" alt="">
+                                <img class="restaurant-icon items-cover" src="../static/img/delivery.jpg" alt="">
                                 <div class="icon-title">become a courier</div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 d-flex justify-content-center">
                             <div class="direction-col">
                                 <a class="icon-reference" href="#"></a>
-                                <img class="restaurant-icon" src="../static/img/cook-cat.jpeg" alt="">
+                                <img class="restaurant-icon items-cover" src="../static/img/cook-cat.jpeg" alt="">
                                 <div class="icon-title">become a partner</div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 d-flex justify-content-center">
                             <div class="direction-col">
                                 <a class="icon-reference" href="#"></a>
-                                <img class="restaurant-icon" src="../static/img/vacansy.png" alt="">
+                                <img class="restaurant-icon items-cover" src="../static/img/vacansy.png" alt="">
                                 <div class="icon-title">vacancies</div>
                             </div>
                         </div>

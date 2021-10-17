@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/render"
@@ -16,7 +15,6 @@ import (
 
 type User interface {
 	ShowRegistration(w http.ResponseWriter, r *http.Request)
-	StatusPage(w http.ResponseWriter, r *http.Request)
 	AboutUs(w http.ResponseWriter, r *http.Request)
 	Contacts(w http.ResponseWriter, r *http.Request)
 	SingUp(w http.ResponseWriter, r *http.Request)
@@ -40,17 +38,7 @@ type UserHandler struct {
 func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHandler {
 	return &UserHandler{App: app, repo: repo}
 }
-func (us *UserHandler) StatusPage(w http.ResponseWriter, r *http.Request) {
-	//Get data from context
-	if auth := r.Context().Value("Authorization"); auth != nil {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Authorized " + auth.(string) + "\n"))
-		fmt.Println(auth.(string), "-Author")
-	} else {
-		w.WriteHeader(http.StatusNotFound)
-		w.Write([]byte("Not Logged in"))
-	}
-}
+
 func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) {
 	err := render.TemplateRender(w, r, "sign_up.page.tmpl", &models.TemplateData{StringMap: us.App.TemplateInfo})
 	if err != nil {
@@ -191,6 +179,7 @@ func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {
+	w.Header().Del("Authorization")
 	cookies := r.Cookies()
 	if len(cookies) >= 0 {
 		for _, ck := range cookies {

@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/helpers"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"html/template"
 	"log"
@@ -15,7 +16,9 @@ import (
 var (
 	app             *config.AppConfig
 	pathToTemplates = "./templates"
-	functions       = template.FuncMap{}
+	functions       = template.FuncMap{
+		"UniqArr": helpers.Unique,
+	}
 )
 
 func NewTemplates(a *config.AppConfig) {

@@ -126,10 +126,10 @@ console.log(productArray)
 					<img src="${img}" alt="" class="order-product__img">
 					
 					<div class="order-product__text row">					
-					<div class="col-6">
+					<div class="col-md-6 col-sm-12">
 					<input type="text" class="order-product__title"  value="${title.trim()}" name="prodName" readonly >
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3 col-sm-12">
                     <input type="number" class="order-product__price" value="${normalPrice(price)}" name="price" readonly >
                     </div>                   
                     <input type="number" class="product-id" value='${idProd}' name="idProd" readonly hidden>             
@@ -157,6 +157,7 @@ console.log(productArray)
 
             document.querySelector('.order-modal__quantity span').textContent = `${length} шт`;
             document.querySelector('.order-modal__summ input').value = `${fullprice}`;
+            let obj = {};
             for (item of array) {
                 let img = item.querySelector('.cart-product__img').getAttribute('src');
                 let title = item.querySelector('.cart-product__title').textContent;
@@ -165,7 +166,7 @@ console.log(productArray)
                 let idSuppString = stringWithoutSpaces(item.querySelector('.supplier-id').textContent);
                 let id = item.querySelector('.cart-product').dataset.id;
 
-                let obj = {};
+
                 obj.product_id = idProdString
                 obj.supplier_id = idSuppString
                 obj.title = stringWithoutSpaces(title);

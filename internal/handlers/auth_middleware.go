@@ -27,6 +27,7 @@ func (us *UserHandler) AuthCheck(next http.HandlerFunc) http.HandlerFunc {
 				http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 				return
 			}
+			us.App.TemplateInfo["Expired"]=""
 
 			ctx := context.WithValue(r.Context(), "user_id", creds.ID)
 			next.ServeHTTP(w, r.WithContext(ctx))

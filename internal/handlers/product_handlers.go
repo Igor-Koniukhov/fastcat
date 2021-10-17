@@ -17,6 +17,7 @@ import (
 type Product interface {
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAllBySupplierID(w http.ResponseWriter, r *http.Request)
+	GetAllByType(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
 	GetJson(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
@@ -53,8 +54,33 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 	products := p.repo.GetAllBySupplierID(id)
 	err = render.TemplateRender(w, r, "products.page.tmpl",
 		&models.TemplateData{
-			Products:     products,
-			Supplier:     supplier,
+			Products:  products,
+			Supplier:  supplier,
+			StringMap: p.App.TemplateInfo,
+		})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+	w.WriteHeader(http.StatusOK)
+}
+func (p *ProductHandler) GetAllByType(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		web.Log.Error(err)
+	}
+	prodType := r.Form.Get("prodType")
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	products, err := p.repo.GetAllByType(prodType)
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	err = render.TemplateRender(w, r, "products.page.tmpl",
+		&models.TemplateData{
+			Products:  products,
 			StringMap: p.App.TemplateInfo,
 		})
 	if err != nil {
@@ -63,17 +89,24 @@ func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Reque
 	w.WriteHeader(http.StatusOK)
 }
 func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	items := p.repo.GetAll()
+	items, uniqTypeArr, err := p.repo.GetAll()
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
 	var supp []models.Supplier
 	for i := 0; i < len(items)-1; i++ {
 		s := repository.Repo.SupplierRepository.Get(items[i].SuppliersID)
 		supp = append(supp, *s)
 	}
-	err := render.TemplateRender(w, r, "products.page.tmpl",
+	uniqMapArr := make(map[string][]string)
+	uniqMapArr["ProdTypes"]=uniqTypeArr
+	err = render.TemplateRender(w, r, "products.page.tmpl",
 		&models.TemplateData{
 			Products:  items,
 			Suppliers: supp,
 			StringMap: p.App.TemplateInfo,
+			StringSliceMap: uniqMapArr,
 		})
 	if err != nil {
 		web.Log.Fatal(err)
@@ -81,8 +114,12 @@ func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (p *ProductHandler) GetJson(w http.ResponseWriter, r *http.Request) {
-	items := p.repo.GetAll()
-	err := json.NewEncoder(w).Encode(&items)
+	items, _, err := p.repo.GetAll()
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	err = json.NewEncoder(w).Encode(&items)
 	if err != nil {
 		web.Log.Error(err)
 		return

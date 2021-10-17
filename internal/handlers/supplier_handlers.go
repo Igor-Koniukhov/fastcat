@@ -18,6 +18,7 @@ type Supplier interface {
 	Create(w http.ResponseWriter, r *http.Request)
 	Get(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
+	GetAllByType(w http.ResponseWriter, r *http.Request)
 	GetAllBySchedule(w http.ResponseWriter, r *http.Request)
 	Delete(w http.ResponseWriter, r *http.Request)
 	Update(w http.ResponseWriter, r *http.Request)
@@ -33,10 +34,14 @@ func NewSupplierHandler(app *config.AppConfig, repo dbrepo.SupplierRepository) *
 }
 
 func (s *SupplierHandler) Home(w http.ResponseWriter, r *http.Request) {
-	suppliers := s.repo.GetAll()
-	err := render.TemplateRender(w, r, "home.page.tmpl",
+	suppliers, mapUniqSlices, err := s.repo.GetAll()
+	if err != nil {
+		web.Log.Error(err)
+	}
+	err = render.TemplateRender(w, r, "home.page.tmpl",
 		&models.TemplateData{
 			Suppliers: suppliers,
+			StringSliceMap: mapUniqSlices,
 		})
 	if err != nil {
 		web.Log.Fatal(err)
@@ -69,8 +74,12 @@ func (s *SupplierHandler) Get(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (s *SupplierHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	suppliers := s.repo.GetAll()
-	err := render.TemplateRender(w, r, "suppliers.page.tmpl",
+	suppliers,_, err := s.repo.GetAll()
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	err = render.TemplateRender(w, r, "suppliers.page.tmpl",
 		&models.TemplateData{
 			Suppliers: suppliers,
 		})
@@ -88,7 +97,31 @@ func (s *SupplierHandler) GetAllBySchedule(w http.ResponseWriter, r *http.Reques
 	schedule := strings.Split(string, "--")
 	start := schedule[0]
 	end := schedule[1]
-	suppliers := s.repo.GetAllBySchedule(start, end)
+	suppliers, err := s.repo.GetAllBySchedule(start, end)
+	if err != nil {
+		web.Log.Error(err)
+	}
+	err = render.TemplateRender(w, r, "suppliers.page.tmpl",
+		&models.TemplateData{
+			Suppliers: suppliers,
+		})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+	w.WriteHeader(http.StatusOK)
+}
+func (s *SupplierHandler) GetAllByType(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+	typeSupp := r.Form.Get("type")
+
+	suppliers, err := s.repo.GetAllByType(typeSupp)
+	if err != nil {
+		web.Log.Error(err)
+	}
+
 	err = render.TemplateRender(w, r, "suppliers.page.tmpl",
 		&models.TemplateData{
 			Suppliers: suppliers,

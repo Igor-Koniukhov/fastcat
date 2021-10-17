@@ -3,12 +3,13 @@
 {{define "content"}}
 <div class="content">
     <div class="container">
-        <h3 class="mb-5">User orders story:</h3>
+        <h2 class="dancing-sm" style="color: red">Cabinet</h2>
+        <h3 class="mb-5 dancing-sm">User orders story:</h3>
         <div class="row">
             {{ range .UserCabinetInfo}}
                 <div class="content-cart mb-2 col-lg-6 col-md-6">
                     <div class="user-info">
-                        <h5><span>Order id:</span> {{.ID}}</h5>
+                        <h5><span class="dancing-sm" style="font-size: 25px;">Order id:</span> <i style="color: red">{{.ID}}</i></h5>
                         <h6><span>Client:</span>{{ .User.Name}}</h6>
                         <p><span>Address:</span>{{.AddressDelivery}}</p>
                         <p><span>Email:</span>{{.User.Email}}</p>
@@ -16,10 +17,10 @@
 
                     </div>
                     <div class="cart-body">
-                        {{range .CartBodies}}
+                        {{range .CartBodies }}
                             <p><span>Supplier ID:</span>{{.SupplierID}} - ordered:</p>
                             <ol>
-                                <li style="list-style: decimal;">{{.Title}}  {{.Price}} $</li>
+                                <li> {{.Title}}  {{.Price}} $</li>
                             </ol>
                         {{end}}
                         <p><span>Amount: </span>{{.Amount}}</p>

@@ -26,7 +26,6 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	mux.GET("/logout", www.AuthSet(www.User.Logout))
 
 	mux.GET("/about", www.AuthSet(www.User.AboutUs))
-	mux.GET("/status", www.AuthCheck(www.AuthSet(www.User.StatusPage)))
 	mux.GET("/contacts", www.AuthSet(www.User.Contacts))
 	mux.GET("/user/:id", mux.CORS(www.AuthCheck(www.AuthSet(www.User.Get))))
 	mux.GET("/users", www.AuthSet(www.User.GetAll))
@@ -41,12 +40,14 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 
 	mux.GET("/supplier/:id", www.AuthCheck(www.AuthSet(www.Supplier.Get)))
 	mux.GET("/suppliers", www.AuthCheck(www.AuthSet(www.Supplier.GetAll)))
+	mux.GET("/suppliers/type", www.AuthCheck(www.AuthSet(www.Supplier.GetAllByType)))
 	mux.GET("/suppliers/selected", www.AuthCheck(www.AuthSet(www.Supplier.GetAllBySchedule)))
 	mux.PUT("/supplier/update/:id", mux.CORS(www.AuthCheck(www.AuthSet(www.Supplier.Update))))
 	mux.DEL("/supplier/delete/:id", mux.CORS(www.AuthCheck(www.AuthSet(www.Supplier.Delete))))
 
 	mux.GET("/product/:id", www.AuthCheck(www.AuthSet(www.Product.Get)))
 	mux.GET("/suppliers-products", www.AuthCheck(www.AuthSet(www.Product.GetAllBySupplierID)))
+	mux.GET("/products/type", www.AuthCheck(www.AuthSet(www.Product.GetAllByType)))
 	mux.GET("/products", www.AuthCheck(www.AuthSet(www.Product.GetAll)))
 	mux.GET("/products-json", mux.JSON(www.Product.GetJson))
 	mux.PUT("/product/update/:id", mux.CORS(www.AuthCheck(www.AuthSet(www.Product.Update))))

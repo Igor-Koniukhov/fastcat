@@ -5,7 +5,9 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/helpers"
 	"github.com/igor-koniukhov/fastcat/internal/models"
+	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
 	"sync"
 	"time"
@@ -16,8 +18,9 @@ import (
 type SupplierRepository interface {
 	Create(suppliers *models.Suppliers) (*models.Suppliers, int, error)
 	Get(id int) *models.Supplier
-	GetAll() []models.Supplier
-	GetAllBySchedule(start, end string) []models.Supplier
+	GetAll() ([]models.Supplier, map[string][]string, error)
+	GetAllBySchedule(start, end string) ([]models.Supplier, error)
+	GetAllByType(t string) ([]models.Supplier,  error)
 	Delete(id int) error
 	SoftDelete(id int) error
 	Update(id int, supplier *models.Supplier) *models.Supplier
@@ -86,18 +89,22 @@ func (s *SupplierRepo) Get(id int) *models.Supplier {
 	return &supplier
 }
 
-func (s *SupplierRepo) GetAll() []models.Supplier {
+func (s *SupplierRepo) GetAll() ([]models.Supplier, map[string][]string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var supplier models.Supplier
 	var suppliers []models.Supplier
+	var typeSuppArray []string
+	var scheduleSuppArray []string
+	mapUniqSlices := make(map[string][]string)
 	sqlStmt := fmt.Sprintf("SELECT id, name, type, image, opening, closing FROM %s WHERE deleted_at IS NULL", models.TabSuppliers)
 	stmt, err := s.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
-		log.Println(err)
+		web.Log.Error(err)
+		return nil,  nil, err
 	}
 	for stmt.Next() {
-		_ = stmt.Scan(
+		err = stmt.Scan(
 			&supplier.Id,
 			&supplier.Name,
 			&supplier.Type,
@@ -105,13 +112,23 @@ func (s *SupplierRepo) GetAll() []models.Supplier {
 			&supplier.WorkingHours.Opening,
 			&supplier.WorkingHours.Closing,
 		)
+		if err != nil {
+			web.Log.Error(err)
+			return nil, nil,  err
+		}
 		suppliers = append(suppliers, supplier)
+		typeSuppArray = append(typeSuppArray, supplier.Type)
+		scheduleSuppArray=append(scheduleSuppArray,supplier.WorkingHours.Opening+"--"+supplier.WorkingHours.Closing)
 	}
+	tp := helpers.UniqueStringArray(typeSuppArray)
+	schl := helpers.UniqueStringArray(scheduleSuppArray)
+	mapUniqSlices["Types"] =tp
+	mapUniqSlices["Schedule"]=schl
 
-	return suppliers
+	return suppliers, mapUniqSlices, err
 }
 
-func (s *SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
+func (s *SupplierRepo) GetAllBySchedule(start, end string) ([]models.Supplier, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var supplier models.Supplier
@@ -119,10 +136,11 @@ func (s *SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
 	sqlStmt := fmt.Sprintf("SELECT id, name, type, image, opening, closing FROM %s WHERE deleted_at IS NULL AND opening='%s' AND closing='%s' ", models.TabSuppliers, start, end)
 	stmt, err := s.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
-		log.Println(err)
+		web.Log.Error(err)
+		return nil, err
 	}
 	for stmt.Next() {
-		_ = stmt.Scan(
+		err = stmt.Scan(
 			&supplier.Id,
 			&supplier.Name,
 			&supplier.Type,
@@ -130,10 +148,43 @@ func (s *SupplierRepo) GetAllBySchedule(start, end string) []models.Supplier {
 			&supplier.WorkingHours.Opening,
 			&supplier.WorkingHours.Closing,
 		)
+		if err != nil {
+			web.Log.Error(err)
+			return nil, err
+		}
 		suppliers = append(suppliers, supplier)
 	}
 
-	return suppliers
+	return suppliers, err
+}
+func (s *SupplierRepo) GetAllByType(t string) ([]models.Supplier, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var supplier models.Supplier
+	var suppliers []models.Supplier
+	sqlStmt := fmt.Sprintf("SELECT id, name, type, image, opening, closing FROM %s WHERE deleted_at IS NULL AND type='%s' ", models.TabSuppliers, t)
+	fmt.Println(sqlStmt)
+	stmt, err := s.DB.QueryContext(ctx, sqlStmt)
+	if err != nil {
+		web.Log.Error(err)
+		return nil, err
+	}
+	for stmt.Next() {
+		err = stmt.Scan(
+			&supplier.Id,
+			&supplier.Name,
+			&supplier.Type,
+			&supplier.Image,
+			&supplier.WorkingHours.Opening,
+			&supplier.WorkingHours.Closing,
+		)
+		if err != nil {
+			web.Log.Error(err)
+			return nil, err
+		}
+		suppliers = append(suppliers, supplier)
+	}
+	return suppliers, nil
 }
 
 func (s *SupplierRepo) Delete(id int) (err error) {

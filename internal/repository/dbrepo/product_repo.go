@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/helpers"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	web "github.com/igor-koniukhov/webLogger/v2"
 	"log"
@@ -16,8 +17,9 @@ type ProductRepository interface {
 	Create(item *models.Item, id int) (*models.Item, error)
 	GetBySchedule(id int) []models.Item
 	Get(id int) *models.Item
-	GetAll() []models.Item
+	GetAll() ([]models.Item, []string, error)
 	GetAllBySupplierID(id int) []models.Item
+	GetAllByType(t string) ([]models.Item, error)
 	Delete(id int) (err error)
 	SoftDelete(id int) error
 	Update(id int, item *models.Item, ) *models.Item
@@ -147,17 +149,19 @@ func (p ProductRepo) GetBySchedule(id int) []models.Item {
 	return items
 }
 
-func (p ProductRepo) GetAll() []models.Item {
+func (p ProductRepo) GetAll() ([]models.Item, []string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var product models.Product
 	var items []models.Item
 	var str []string
+	var arrProdType []string
 	sqlStmt := fmt.Sprintf("SELECT id, image, ingredients, name, price, type, supplier_id FROM %s WHERE deleted_at IS NULL", models.TabItems)
 
 	results, err := p.DB.QueryContext(ctx, sqlStmt)
 	if err != nil {
-		log.Println(err)
+		web.Log.Error(err)
+		return nil, nil, err
 	}
 	for results.Next() {
 		err = results.Scan(
@@ -170,11 +174,13 @@ func (p ProductRepo) GetAll() []models.Item {
 			&product.SuppliersID,
 		)
 		if err != nil {
-			log.Println(err)
+			web.Log.Error(err)
+			return nil, nil, err
 		}
 		err := json.Unmarshal(product.Ingredients, &str)
 		if err != nil {
-			log.Println(err)
+			web.Log.Error(err)
+			return nil, nil, err
 		}
 		items = append(items, models.Item{
 			Id:          product.Id,
@@ -185,8 +191,10 @@ func (p ProductRepo) GetAll() []models.Item {
 			Ingredients: str,
 			SuppliersID: product.SuppliersID,
 		})
+		arrProdType = append(arrProdType, product.Type)
 	}
-	return items
+	uniqArr := helpers.UniqueStringArray(arrProdType)
+	return items, uniqArr, err
 }
 func (p ProductRepo) GetAllBySupplierID(id int) []models.Item {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
@@ -228,6 +236,50 @@ func (p ProductRepo) GetAllBySupplierID(id int) []models.Item {
 		})
 	}
 	return items
+}
+func (p ProductRepo) GetAllByType(t string) ([]models.Item, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var product models.Product
+	var items []models.Item
+	var str []string
+	sqlStmt := fmt.Sprintf("SELECT id, image, ingredients, name, price, type, supplier_id FROM %s WHERE deleted_at IS NULL AND type=?", models.TabItems)
+
+	results, err := p.DB.QueryContext(ctx, sqlStmt, t)
+	if err != nil {
+		web.Log.Error(err)
+		return nil, err
+	}
+	for results.Next() {
+		err = results.Scan(
+			&product.Id,
+			&product.Image,
+			&product.Ingredients,
+			&product.Name,
+			&product.Price,
+			&product.Type,
+			&product.SuppliersID,
+		)
+		if err != nil {
+			web.Log.Error(err)
+			return nil, err
+		}
+		err := json.Unmarshal(product.Ingredients, &str)
+		if err != nil {
+			web.Log.Error(err)
+			return nil, err
+		}
+		items = append(items, models.Item{
+			Id:          product.Id,
+			Name:        product.Name,
+			Price:       product.Price,
+			Image:       product.Image,
+			Type:        product.Type,
+			Ingredients: str,
+			SuppliersID: product.SuppliersID,
+		})
+	}
+	return items, err
 }
 
 func (p ProductRepo) Delete(id int) (err error) {

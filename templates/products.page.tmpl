@@ -16,6 +16,30 @@
                     </h2>
                 </div>
             {{end}}
+            <div class="col-12 m-auto">
+                <form method="get" action="/products/type">
+                    <div class="row p-2 all-items-inline">
+                        <div class="col-md-4 col-sm-12 ">
+                            <a class="btn btn-in-line frame" href="/products">See All products</a>
+                        </div>
+                        <div class="form-group col-md-8 col-sm-12">
+                            <div class="frame col-12">
+                                <select class="form-control schedule" id="prodType" name="prodType">
+
+                                    {{range .StringSliceMap.ProdTypes}}
+                                        <option>{{.}}</option>
+                                    {{end}}
+
+                                </select>
+                                <div class="col-2 ">
+                                    <button type="submit " class="btn btn-in-line m-auto">Choose</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
             <div class="row">
                 {{ range .Products}}
                     <div class=" col-lg-4 col-md-6">
