@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let fixedHeaderHeight = fixedHeader.getBoundingClientRect().height
         let support = document.querySelector('.header-support')
 
-
         if (document.body.scrollTop >= topTriggerScrollButton) {
             scrollUpButton.classList.add('fixed');
             scrollUpButton.style.display = "block";
@@ -32,13 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo(0, 0);
     };
 
-    /*let field = document.querySelector('.field')
+    let field = document.querySelector('.field')
     window.addEventListener('load', () => {
         field.classList.add('hidden_field');
         setTimeout(() => {
             field.remove();
         }, 1000);
-    })*/
+    })
     let logout = document.querySelector(".dropdown-item-logout");
     let login = document.querySelector(".dropdown-item-login");
     let cabinet = document.querySelector(".nav-link-cabinet");
@@ -54,13 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
             logout.classList.remove("item-hidden");
             login.classList.add("item-hidden");
             userGreeting.innerText = `Hi, ${nk[i].trim().split("=")[1]}!`
-
         }
     }
     if (userGreeting.innerText.length > 0){
         cabinet.classList.remove("item-hidden")
     }
-
 
 });
 

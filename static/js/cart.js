@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector(`.product[data-id="${id}"]`).querySelector('.product__btn').disabled = false;
 
         let currentPrice = parseFloat(stringWithoutSpaces(productParent.querySelector('.cart-product__price').innerHTML));
-        console.log(currentPrice, " curr")
+
         minusFullPrice(currentPrice);
         printFullPrice();
         productParent.remove();
@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartProductsList.addEventListener('click', (e) => {
         if (e.target.classList.contains('cart-product__delete')) {
+            console.log('click')
             deleteProducts(e.target.closest('.cart-content__item'));
         }
     });
@@ -189,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         },
         isClose: () => {
+            location.reload()
             console.log('closed');
         }
     });

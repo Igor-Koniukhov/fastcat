@@ -14,7 +14,6 @@ func routes(app *config.AppConfig, db *sql.DB) http.Handler {
 	www := handlers.NewHandlers(app, repo)
 	repository.NewRepo(repo)
 
-
 	mux := router.NewRoutServeMux()
 
 	mux.GET("/", mux.CORS(www.AuthSet(www.Supplier.Home)))

@@ -33,35 +33,26 @@ class CartModal {
 	events() {
 		document.addEventListener('click', function(e) {
 		 	const clickedElement = e.target.closest(`[data-graph-path]`);
+
 		 	if (clickedElement) {
 				let target = clickedElement.dataset.graphPath;
 				let animation = clickedElement.dataset.graphAnimation;
 				let speed =  clickedElement.dataset.graphSpeed;
 				this.animation = animation ? animation : 'fade';
 				this.speed = speed ? parseInt(speed) : 300;
-				this.nextWindow = document.querySelector(`[data-graph-target="${target}"]`); 
+				this.nextWindow = document.querySelector(`[data-graph-target="${target}"]`);
 				this.open();
 				return;
 			}
 
 			if (e.target.closest('.modal__close')) {
+
 				this.close();
 				return;
 			}
 		}.bind(this));
 
-		window.addEventListener('keydown', function(e) {
-			if (e.keyCode == 27) {
-				if (this.modalContainer.classList.contains('modal-open')) {
-					this.close();
-				}
-			}
 
-			if (e.which == 9 && this.isOpened) {
-				this.focusCatch(e);
-				return;
-			}
-		}.bind(this));
 
 		this.modalCart.addEventListener('click', function(e) {
 			if (!e.target.classList.contains('modal__container') && !e.target.closest('.modal__container') && this.isOpened) {
@@ -178,4 +169,4 @@ class CartModal {
 	}
 }
 
-// new Modal().open('second');
+ //new Modal().open('second');
