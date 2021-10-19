@@ -12,9 +12,9 @@
             <p>Address Delivery: {{.Cart.AddressDelivery}}</p>
             <p>Ordered: </p>
             {{ range .Cart.CartBodies}}
-                <p>Product: {{.Title}} , Price: {{.Price}}</p>
+                <p>Product: {{.Title}} , Price: {{.Price}} $</p>
             {{end}}
-            <p> Amount: {{.Cart.Amount}}</p>
+            <p> Amount: {{.Cart.Amount}} $</p>
         </div>
     </div>
 {{end}}

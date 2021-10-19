@@ -26,11 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const plusFullPrice = (currentPrice) => {
-        return price += currentPrice;
+        return  price += currentPrice;
+
     };
 
     const minusFullPrice = (currentPrice) => {
-        return price -= currentPrice;
+         return price -= currentPrice;
+
     };
 
     const printQuantity = () => {
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const printFullPrice = () => {
-        fullPrice.textContent = `${price} `;
+        fullPrice.textContent = `${price.toFixed(2)} `;
     };
 
     const generateCartProduct = (img, title, price, id, idProd, idSupp) => {
@@ -64,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let id = productParent.querySelector('.cart-product').dataset.id;
         document.querySelector(`.product[data-id="${id}"]`).querySelector('.product__btn').disabled = false;
 
-        let currentPrice = parseInt(stringWithoutSpaces(productParent.querySelector('.cart-product__price').textContent));
+        let currentPrice = parseFloat(stringWithoutSpaces(productParent.querySelector('.cart-product__price').innerHTML));
+        console.log(currentPrice, " curr")
         minusFullPrice(currentPrice);
         printFullPrice();
         productParent.remove();
@@ -78,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.closest('.product').setAttribute('data-id', randomId++);
 
         el.addEventListener('click', (e) => {
-console.log(productArray)
+
             let self = e.currentTarget;
             let parent = self.closest('.product');
             let id = parent.dataset.id;
@@ -87,7 +90,7 @@ console.log(productArray)
             let idProd = parent.querySelector('.product-id').textContent;
             let idSupp = parent.querySelector('.supplier-id').textContent;
             let priceString = stringWithoutSpaces(parent.querySelector('.product-price__current').textContent);
-            let priceNumber = parseInt(parent.querySelector('.product-price__current').textContent);
+            let priceNumber = parseFloat(parent.querySelector('.product-price__current').textContent);
 
             plusFullPrice(priceNumber);
             printFullPrice();
@@ -157,7 +160,7 @@ console.log(productArray)
 
             document.querySelector('.order-modal__quantity span').textContent = `${length} шт`;
             document.querySelector('.order-modal__summ input').value = `${fullprice}`;
-            let obj = {};
+
             for (item of array) {
                 let img = item.querySelector('.cart-product__img').getAttribute('src');
                 let title = item.querySelector('.cart-product__title').textContent;
@@ -166,7 +169,7 @@ console.log(productArray)
                 let idSuppString = stringWithoutSpaces(item.querySelector('.supplier-id').textContent);
                 let id = item.querySelector('.cart-product').dataset.id;
 
-
+                let obj = {};
                 obj.product_id = idProdString
                 obj.supplier_id = idSuppString
                 obj.title = stringWithoutSpaces(title);
