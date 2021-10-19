@@ -1,0 +1,145 @@
+
+.button-custom {
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #fff;
+    background-color: #e63939;
+}
+
+.content {
+    padding: 100px;
+}
+
+.log-in {
+    padding: 15px;
+    font-weight: 700;
+}
+
+.modals {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 100;
+
+}
+
+.modal-custom {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 300px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.mod-btn {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 20px;
+    height: 20px;
+    border: unset;
+    border-radius: 5px;
+    background-color: #ffc107;
+    background-image: url("../img/icons/close.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-color: transparent;*/
+}
+
+.form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form__input {
+    height: 40px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+}
+
+.form__btn {
+    height: 40px;
+    border-radius: 5px;
+}
+
+.mobile-close {
+    display: none;
+}
+
+.is-open {
+    display: block;
+}
+
+
+
+@media (max-width: 576px) {
+    .modal {
+        padding: 50px 30px;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        transform: translateY(150vh);
+        width: 100%;
+        height: 75vh;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        transition: transform 0.3s;
+    }
+
+    .modal-custom {
+        width: 100%;
+        max-width: 320px;
+
+    }
+
+    .visible {
+        transform: translateY(0);
+        transition: transform 0.3s;
+    }
+
+    .modal__btn {
+        display: none;
+    }
+
+    .form {
+        margin: 30px 0;
+    }
+
+    .mobile-close {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: block;
+        background-color: transparent;
+    }
+
+    .mobile-close::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 2px;
+        background-color: #bfbfbf;
+    }
+
+    .is-open {
+        display: block;
+    }
+}
