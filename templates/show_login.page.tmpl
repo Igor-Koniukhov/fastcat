@@ -1,0 +1,56 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 ">
+                <h2 class="mt-5 mb-3"{{if .StringMap.Expired}} style="display: none;" {{end}}>Login</h2>
+    {{if .StringMap.Expired}}<h2 class="mt-5 mb-3">Session expired</h2>{{end}}
+                <form  method="post" action="/login">
+                    <div class="form-group">
+                        <label for="checkEmail">Email address</label>
+                        <input type="email"
+                               class="form-control"
+                               id="checkEmail"
+                               name="checkEmail"
+                               aria-describedby="emailHelp"
+                               value="{{.StringMap.Email}}">
+                        <small  id="emailHelp"
+                                class="form-text"
+                                style="color: red; opacity: 0.6;">
+                            {{if .StringMap.Expired}}{{.StringMap.Expired}}{{end}}
+                            {{if .ErrorMessage}}{{.ErrorMessage}}{{end}}
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkPass">Password</label>
+                        <input type="password"
+                               class="form-control"
+                               id="checkPass"
+                               name="checkPass"
+                               value="{{.StringMap.Password}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password"
+                               class="form-control"
+                               id="auth_access"
+                               name="auth_access"
+                               value="{{.StringMap.Authorization}}" hidden>
+                    </div>
+
+                    <button  class="btn btn-primary btn-sm mb-2 mt-5"  {{if .StringMap.Expired}}hidden{{end}}>Sing In</button>
+                </form>
+                <p  {{if .StringMap.Expired}} style="display: none" {{end}}>New to FastCat? Create an account.</p>
+                <form action="/registration"  {{if .StringMap.Expired}} hidden {{end}}>
+                    <button class="btn btn-warning btn-sm mb-5">Sing Up</button>
+                </form>
+                {{if .StringMap.Expired}}
+                <form action="/refresh">
+                    <button class="btn btn-warning btn-sm mt-3 mb-5">Refresh</button>
+                </form>
+                {{end}}
+            </div>
+        </div>
+
+    </div>
+{{end}}

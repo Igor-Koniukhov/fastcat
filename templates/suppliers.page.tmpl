@@ -1,0 +1,59 @@
+{{template "base" .}}
+{{define "content"}}
+    <div class="content">
+        <div class="container">
+            <div class="container">
+                <h2 class="text-center mb-5 dancing-sm">Food delivery in Kharkiv:</h2>
+                <div class="row" style="padding: 0 15px;">
+                    <div class="col-12 m-auto">
+                        <form  action="/suppliers/selected">
+                            <div class="row p-2 all-items-inline">
+                                <div class="col-md-4 col-sm-12 ">
+                                    <a class="btn btn-in-line frame" href="/products">See All products</a>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12">
+                                    <div class="frame col-12">
+                                        <select class="form-control schedule" id="schedule" name="schedule">
+                                            {{range .Suppliers}}
+                                                <option>{{.WorkingHours.Opening}}--{{.WorkingHours.Closing}}</option>
+                                            {{end}}
+                                        </select>
+                                        <div class="col-2 ">
+                                            <button type="submit " class="btn btn-in-line m-auto">Choose</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row ">
+                    {{ range .Suppliers}}
+                        <div class="col-lg-6 col-md-4 mb-3 suppliers-icons items-cover background-img m-auto">
+                            <form  action="/suppliers-products">
+                                <input type="text" value="{{.Id}}" hidden id="supplier_id" name="supplier_id">
+                                <button class="btn-icon-wrapper"></button>
+                                <div class=" text-center">
+                                    <div class="icon-title icon-title_suppliers text-center">
+                                        <h3 style="color: #ffffff">{{.Name}}</h3>
+                                        <p><b>{{.Type}}</b></p>
+                                    </div>
+                                    <div class=" suppliers-img "
+                                         style="background-image: url({{.Image}})">
+                                        <div class=" restaurant-icon restaurant-icon_square">
+                                            <img src="{{.Image}}" alt="{{.Name}} {{.Type}}" style="display: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bottom-title">
+                                        <p>Opens: {{.WorkingHours.Opening}} Closes: {{.WorkingHours.Closing}}</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {{end}}
+                </div>
+            </div>
+            <div class="height"></div>
+        </div>
+    </div>
+{{end}}

@@ -1,0 +1,88 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="main-wrapper-content">
+        <section class="first-section">
+            <div class="container">
+                <div class="row">
+                    <h1 class="text-center burger-go-background dancing-sm"><span
+                                style="color: red;">Registration </span><span
+                                style="color: #ffc107">form</span></h1>
+                    {{if .StringMap.UserName}}
+                        <div class="row justify-content-center mb-2">
+                            <div class="col-md-8">
+                                <p>Hi, {{.StringMap.UserName}}! You are, already sing up! My congratulations!</p>
+                                <form action="/logout">
+                                    <button type="button" class="btn btn-warning btn-sm">Log Out</button>
+                                </form>
+                            </div>
+                        </div>
+                    {{end}}
+                    <div class="col d-flex justify-content-center">
+                        <form class="row g-3 col-md-8" method="post" action="/sign-up">
+                            <div class="col-md-12">
+                                <label for="user-name" class="form-label">Name</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="user-name"
+                                        name="user-name"
+                                        placeholder="First name & Last name"
+                                        value="{{.StringMap.Name}}"
+                                        {{if .StringMap.UserName}} readonly{{end}}
+                                >
+
+                            </div>
+                            <div class="col-md-12">
+                                <label for="user-email" class="form-label">Email</label>
+                                <input
+                                        type="email"
+                                        class="form-control"
+                                        id="user-email"
+                                        name="user-email"
+                                        value="{{.StringMap.Email}}"
+                                        {{if .StringMap.UserName}} readonly{{end}}
+                                >
+                                <small class="form-text"
+                                       style="color: red; opacity: 0.6;">{{.StringMap.ErrorExistsUser}}</small>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="user-tel" class="form-label">Phone</label>
+                                <input
+                                        type="tel"
+                                        class="form-control"
+                                        id="user-tel"
+                                        name="user-tel"
+                                        value="{{.StringMap.Tel}}"
+                                        {{if .StringMap.UserName}} readonly{{end}}
+                                >
+                                <small class="form-text"
+                                       style="color: red; opacity: 0.6;">{{.StringMap.ErrorExistsUser}}</small>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="password" class="form-label">Password</label>
+                                <input
+                                        type="password"
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        value="{{.StringMap.Password}}"
+                                        {{if .StringMap.UserName}} readonly{{end}}
+                                >
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary btn-sm mb-5">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrapper-roll-up roll-up">
+        <img class="roll-up-button" src="../static/img/rocket-2-go.png" alt="roll-up">
+    </div>
+
+{{end}}

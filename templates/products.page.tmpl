@@ -1,0 +1,78 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="content">
+        <div class="container">
+            {{if .Supplier}}
+                <h2>{{.Supplier.Name}}</h2>
+                <p style="text-transform: capitalize; text-decoration: underline red;"> {{.Supplier.Type}}</p>
+                <p> {{.Supplier.WorkingHours.Opening}}</p>
+                <p>  {{.Supplier.WorkingHours.Closing}}</p>
+                <div class="col-lg-8 col-md-6">
+                    <h2 class="text-center p-2 dancing-sm">
+                        <strong class=" text-center mb-5">
+                            <span class="underline-word">Available</span>
+                            <span style="color: #ffc107"></span> to delivery</strong>
+                    </h2>
+                </div>
+            {{end}}
+            <div class="col-12 m-auto">
+                <form method="get" action="/products/type">
+                    <div class="row p-2 all-items-inline">
+                        <div class="col-md-4 col-sm-12 ">
+                            <a class="btn btn-in-line frame" href="/products">See All products</a>
+                        </div>
+                        <div class="form-group col-md-8 col-sm-12">
+                            <div class="frame col-12">
+                                <select class="form-control schedule" id="prodType" name="prodType">
+
+                                    {{range .StringSliceMap.ProdTypes}}
+                                        <option>{{.}}</option>
+                                    {{end}}
+
+                                </select>
+                                <div class="col-2 ">
+                                    <button type="submit " class="btn btn-in-line m-auto">Choose</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                {{ range .Products}}
+                    <div class=" col-lg-4 col-md-6">
+                        <div class="product ">
+                            <div class="product__image">
+                                <h3 class="product__title icon-title text-center">
+                                    {{.Name}}
+                                </h3>
+                                <div class="ingredients-title">
+                                    <p><span class="product-price__current">{{.Price}}</span><span>$</span></p>
+                                    <p><span class="product-id" hidden>{{.Id}}</span><span></span></p>
+                                    <p><span class="supplier-id" hidden>{{.SuppliersID}}</span><span></span></p>
+                                    <span class="product__term">{{.Type}}:</span>
+                                    <p>{{ range .Ingredients}}
+                                            <span>{{.}}</span>,
+                                        {{end}}</p>
+                                </div>
+                                <div class="product__switch image-switch">
+                                    <div class="image-switch__item items-cover background-img"
+                                         style="background-image: url({{.Image}})">
+                                        <div class="image-switch__img restaurant-icon restaurant-icon_square">
+                                            <img src="{{.Image}}" alt="{{.Name}} {{.Type}}" style="display: none;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+                            </div>
+
+                            <button class="product__btn btn">Add to cart</button>
+                        </div>
+                    </div>
+                {{ end}}
+            </div>
+        </div>
+    </div>
+{{end}}

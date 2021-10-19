@@ -1,20 +1,151 @@
 package handlers
 
 import (
-	"github.com/igor-koniukhov/fastcat/controllers"
+	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/models"
+	"github.com/igor-koniukhov/fastcat/internal/render"
+	"github.com/igor-koniukhov/fastcat/internal/repository"
+	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
+	"github.com/igor-koniukhov/fastcat/services/router"
+	web "github.com/igor-koniukhov/webLogger/v2"
+	"log"
 	"net/http"
+	"strconv"
 )
 
-func ProductHandlers(app *config.AppConfig)  {
+type Product interface {
+	Get(w http.ResponseWriter, r *http.Request)
+	GetAllBySupplierID(w http.ResponseWriter, r *http.Request)
+	GetAllByType(w http.ResponseWriter, r *http.Request)
+	GetAll(w http.ResponseWriter, r *http.Request)
+	GetJson(w http.ResponseWriter, r *http.Request)
+	Delete(w http.ResponseWriter, r *http.Request)
+	Update(w http.ResponseWriter, r *http.Request)
+}
 
-	repo := controllers.NewProductControllers(app)
-	controllers.NewControllersP(repo)
-	pc := controllers.RepoProducts
+type ProductHandler struct {
+	App  *config.AppConfig
+	repo dbrepo.ProductRepository
+}
 
-	http.HandleFunc("/product/create", pc.CreateProduct( "POST"))
-	http.HandleFunc("/product/", pc.GetProduct( "GET"))
-	http.HandleFunc("/products", pc.GetAllProducts( "GET"))
-	http.HandleFunc("/product/update/", pc.UpdateProduct( "PUT"))
-	http.HandleFunc("/product/delete/", pc.DeleteProduct( "DELETE"))
+func NewProductHandler(app *config.AppConfig, repo dbrepo.ProductRepository) *ProductHandler {
+	return &ProductHandler{App: app, repo: repo}
+}
+func (p *ProductHandler) Get(w http.ResponseWriter, r *http.Request) {
+	id := router.GetKeyInt(r, ":id")
+	item := p.repo.Get(id)
+	err := json.NewEncoder(w).Encode(&item)
+	if err != nil {
+		log.Println(err)
+	}
+	w.WriteHeader(http.StatusOK)
+}
+func (p *ProductHandler) GetAllBySupplierID(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		web.Log.Error(err)
+	}
+	id, err := strconv.Atoi(r.Form.Get("supplier_id"))
+	if err != nil {
+		web.Log.Error(err)
+	}
+	supplier := repository.Repo.SupplierRepository.Get(id)
+	products := p.repo.GetAllBySupplierID(id)
+	err = render.TemplateRender(w, r, "products.page.tmpl",
+		&models.TemplateData{
+			Products:  products,
+			Supplier:  supplier,
+			StringMap: p.App.TemplateInfo,
+		})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+	w.WriteHeader(http.StatusOK)
+}
+func (p *ProductHandler) GetAllByType(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		web.Log.Error(err)
+	}
+	prodType := r.Form.Get("prodType")
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	products, err := p.repo.GetAllByType(prodType)
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	err = render.TemplateRender(w, r, "products.page.tmpl",
+		&models.TemplateData{
+			Products:  products,
+			StringMap: p.App.TemplateInfo,
+		})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+	w.WriteHeader(http.StatusOK)
+}
+func (p *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
+	items, uniqTypeArr, err := p.repo.GetAll()
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	var supp []models.Supplier
+	for i := 0; i < len(items)-1; i++ {
+		s := repository.Repo.SupplierRepository.Get(items[i].SuppliersID)
+		supp = append(supp, *s)
+	}
+	uniqMapArr := make(map[string][]string)
+	uniqMapArr["ProdTypes"]=uniqTypeArr
+	err = render.TemplateRender(w, r, "products.page.tmpl",
+		&models.TemplateData{
+			Products:  items,
+			Suppliers: supp,
+			StringMap: p.App.TemplateInfo,
+			StringSliceMap: uniqMapArr,
+		})
+	if err != nil {
+		web.Log.Fatal(err)
+	}
+	w.WriteHeader(http.StatusOK)
+}
+func (p *ProductHandler) GetJson(w http.ResponseWriter, r *http.Request) {
+	items, _, err := p.repo.GetAll()
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	err = json.NewEncoder(w).Encode(&items)
+	if err != nil {
+		web.Log.Error(err)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
+
+func (p *ProductHandler) Delete(w http.ResponseWriter, r *http.Request) {
+	id := router.GetKeyInt(r, ":id")
+	err := p.repo.Delete(id)
+	if err != nil {
+		log.Println(err)
+	}
+	w.WriteHeader(http.StatusAccepted)
+}
+func (p *ProductHandler) Update(w http.ResponseWriter, r *http.Request) {
+	var item *models.Item
+	err := json.NewDecoder(r.Body).Decode(&item)
+	if err != nil {
+		log.Println(err)
+	}
+	id := router.GetKeyInt(r, ":id")
+	item = p.repo.Update(id, item)
+	err = json.NewEncoder(w).Encode(&item)
+	if err != nil {
+		log.Println(err)
+	}
+	w.WriteHeader(http.StatusOK)
 }

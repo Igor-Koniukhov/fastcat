@@ -1,0 +1,20 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="content">
+        <div class="container">
+            <p>Thank you for your order! We are on the road! You can watch for your order history in your cabinet.</p>
+            <h2>Your order: </h2>
+            <p>Cart ID: {{.Cart.ID}}</p>
+
+            <p>Client: {{.Cart.User.Name}}</p>
+            <p>Email: {{.Cart.User.Email}}</p>
+            <p>Address Delivery: {{.Cart.AddressDelivery}}</p>
+            <p>Ordered: </p>
+            {{ range .Cart.CartBodies}}
+                <p>Product: {{.Title}} , Price: {{.Price}} $</p>
+            {{end}}
+            <p> Amount: {{.Cart.Amount}} $</p>
+        </div>
+    </div>
+{{end}}
