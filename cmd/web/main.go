@@ -76,7 +76,7 @@ func SetAndRun() error {
 	app.UseTemplateCache = true
 	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
 	logSet := web.NewLogStruct(&web.LogParameters{
-		OutWriter:  web.ConsoleAndFile,
+		OutWriter:  web.Console,
 		FilePath:   "./logs",
 		LogFile:    "/logger.log",
 		TimeFormat: "[15:04:05||2006.01.02]",

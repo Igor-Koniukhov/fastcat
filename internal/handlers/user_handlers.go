@@ -40,14 +40,16 @@ func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHand
 }
 
 func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "sign_up.page.tmpl", &models.TemplateData{StringMap: us.App.TemplateInfo})
+	err := render.TemplateRender(w, r, "sign_up.page.tmpl",
+		&models.TemplateData{StringMap: us.App.TemplateInfo})
 	if err != nil {
 		log.Fatal("cannot render template")
 	}
 	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "about.page.tmpl", &models.TemplateData{StringMap: us.App.TemplateInfo})
+	err := render.TemplateRender(w, r, "about.page.tmpl",
+		&models.TemplateData{StringMap: us.App.TemplateInfo})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
@@ -55,7 +57,8 @@ func (us *UserHandler) AboutUs(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) Contacts(w http.ResponseWriter, r *http.Request) {
-	err := render.TemplateRender(w, r, "contacts.page.tmpl", &models.TemplateData{StringMap: us.App.TemplateInfo})
+	err := render.TemplateRender(w, r, "contacts.page.tmpl",
+		&models.TemplateData{StringMap: us.App.TemplateInfo})
 	if err != nil {
 		web.Log.Fatal(err)
 		return
@@ -174,8 +177,9 @@ func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 		Name:  "User",
 		Value: u.Name,
 	}
+	w.Header().Set("Authorization", "Bearer " + token.AccessToken)
 	http.SetCookie(w, userGreet)
-	http.Redirect(w, r, "/products", http.StatusSeeOther)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) Logout(w http.ResponseWriter, r *http.Request) {

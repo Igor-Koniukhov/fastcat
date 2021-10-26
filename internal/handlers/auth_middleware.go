@@ -9,7 +9,8 @@ import (
 
 func (us *UserHandler) AuthCheck(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		auth := us.App.TemplateInfo["Authorization"]
+		auth := w.Header().Get("Authorization")
+
 		if auth == "" {
 			http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 			return
@@ -23,11 +24,11 @@ func (us *UserHandler) AuthCheck(next http.HandlerFunc) http.HandlerFunc {
 			creds, err := services.ValidateToken(tokenString, services.AccessSecret)
 			if err != nil {
 				web.Log.Error(err, "expired")
-				us.App.TemplateInfo["Expired"]="token expired"
+				us.App.TemplateInfo["Expired"] = "token expired"
 				http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 				return
 			}
-			us.App.TemplateInfo["Expired"]=""
+			us.App.TemplateInfo["Expired"] = ""
 
 			ctx := context.WithValue(r.Context(), "user_id", creds.ID)
 			next.ServeHTTP(w, r.WithContext(ctx))
@@ -39,8 +40,7 @@ func (us *UserHandler) AuthCheck(next http.HandlerFunc) http.HandlerFunc {
 
 func (us *UserHandler) AuthSet(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		auth := us.App.TemplateInfo["Authorization"]
-		w.Header().Set("Authorization", auth)
+		w.Header().Set("Authorization", us.App.TemplateInfo["Authorization"])
 		next.ServeHTTP(w, r)
 
 	}

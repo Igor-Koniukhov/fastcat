@@ -50,7 +50,7 @@ func TemplateRender(w http.ResponseWriter, r *http.Request, tmpl string, td *mod
 }
 
 func CreateTemplateCache() (map[string]*template.Template, error) {
-	tCash := map[string]*template.Template{}
+	tCash := make(map[string]*template.Template)
 	pages, err := filepath.Glob(fmt.Sprintf("%v/*page.tmpl", pathToTemplates))
 	if err != nil {
 		return tCash, err
