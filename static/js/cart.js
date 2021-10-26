@@ -277,9 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.order__btn').addEventListener('click', (e) => {
         let productInfo = JSON.stringify(productArray)
-
         document.cookie = "Product=" + encodeURIComponent(productInfo) + ";path=/cart/create";
-
         localStorage.removeItem('products');
     });
 

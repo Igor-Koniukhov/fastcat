@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"github.com/go-redis/redis/v7"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/igor-koniukhov/fastcat/driver"
 	"github.com/igor-koniukhov/fastcat/internal/config"
@@ -16,7 +15,7 @@ import (
 	"os/signal"
 	"time"
 )
-var  client *redis.Client
+
 var app config.AppConfig
 
 func init() {
@@ -27,8 +26,8 @@ func init() {
 }
 
 func main() {
-	srv := new(server.Server)
-	dr, err := driver.ConnectDB("DSN")
+	srv := &server.Server{}
+	dr, err := driver.ConnectDB()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//go parser.RunUpToDateSuppliersInfo(600)
+	go parser.RunUpToDateSuppliersInfo(600)
 
 	if err != nil {
 		log.Fatal(err, err)

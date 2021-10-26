@@ -16,9 +16,9 @@ const maxOpenDBConn = 10
 const maxIdleDBConn = 5
 const maxDBLifeTime = 5 * time.Minute
 
-// ConnectSQL creates database pool for SQL
-func ConnectDB(DSN string) (*DB, error) {
-	d, err := NewDatabase("mysql", DSN)
+// ConnectDB creates database pool for SQL
+func ConnectDB() (*DB, error) {
+	d, err := NewDatabase("mysql", "DSN")
 	if err != nil {
 		panic(err)
 	}
