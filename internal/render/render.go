@@ -27,10 +27,9 @@ func NewTemplates(a *config.AppConfig) {
 
 func TemplateRender(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) error {
 	var tc map[string]*template.Template
-	switch app.UseTemplateCache {
-	case app.UseTemplateCache:
+	if app.UseTemplateCache {
 		tc = app.TemplateCache
-	default:
+	}else {
 		tc, _ = CreateTemplateCache()
 	}
 	t, ok := tc[tmpl]

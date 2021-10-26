@@ -36,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	go parser.RunUpToDateSuppliersInfo(600)
+	//go parser.RunUpToDateSuppliersInfo(600)
 
 	if err != nil {
 		log.Fatal(err, err)
@@ -73,7 +73,7 @@ func SetAndRun() error {
 		return err
 	}
 	app.TemplateCache = tc
-	app.UseTemplateCache = false
+	app.UseTemplateCache = true
 	app.TimeFormat = time.Now().UTC().Format("2006-01-02 15:04:05.999999")
 	logSet := web.NewLogStruct(&web.LogParameters{
 		OutWriter:  web.ConsoleAndFile,
