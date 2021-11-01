@@ -10,7 +10,6 @@ import (
 func (us *UserHandler) AuthCheck(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		auth := w.Header().Get("Authorization")
-
 		if auth == "" {
 			http.Redirect(w, r, "/show-login", http.StatusSeeOther)
 			return

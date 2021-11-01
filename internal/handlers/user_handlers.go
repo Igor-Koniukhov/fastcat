@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"github.com/igor-koniukhov/fastcat/internal/config"
+	"github.com/igor-koniukhov/fastcat/internal/forms"
 	"github.com/igor-koniukhov/fastcat/internal/models"
 	"github.com/igor-koniukhov/fastcat/internal/render"
 	"github.com/igor-koniukhov/fastcat/internal/repository/dbrepo"
@@ -40,8 +41,15 @@ func NewUserHandler(app *config.AppConfig, repo dbrepo.UserRepository) *UserHand
 }
 
 func (us *UserHandler) ShowRegistration(w http.ResponseWriter, r *http.Request) {
+	var emptyRegistration models.User
+	data := make(map[string]interface{})
+	data["registration"] = emptyRegistration
 	err := render.TemplateRender(w, r, "sign_up.page.tmpl",
-		&models.TemplateData{StringMap: us.App.TemplateInfo})
+		&models.TemplateData{
+			StringMap: us.App.TemplateInfo,
+			Form:      forms.New(nil),
+			Data:      data,
+		})
 	if err != nil {
 		log.Fatal("cannot render template")
 	}
@@ -66,16 +74,36 @@ func (us *UserHandler) Contacts(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
-	var u models.User
-	u.Name = r.FormValue("user-name")
-	u.Email = r.FormValue("user-email")
-	u.Tel = r.FormValue("user-tel")
-	u.Password = r.FormValue("password")
+	err := r.ParseForm()
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	u := models.User{
+		Name:     r.Form.Get("user-name"),
+		Email:    r.Form.Get("user-email"),
+		Tel:      r.Form.Get("user-tel"),
+		Password: r.Form.Get("password"),
+	}
+	form := forms.New(r.PostForm)
+	form.Required("user-name", "user-email", "user-tel", "password")
+	form.MinLength("user-name", 3, r)
+
+	if !form.Valid() {
+		data := make(map[string]interface{})
+		data["registration"] = u
+		err := render.TemplateRender(w, r, "sign_up.page.tmpl",
+			&models.TemplateData{
+				Form: form,
+				Data: data,
+			})
+		if err != nil {
+			log.Fatal("cannot render template")
+		}
+		return
+	}
+
 	mapForAutoFill := make(map[string]string)
-	mapForAutoFill["Name"] = u.Name
-	mapForAutoFill["Email"] = u.Email
-	mapForAutoFill["Tel"] = u.Tel
-	mapForAutoFill["Password"] = u.Password
 	userCookie, err := r.Cookie("User")
 	if err == nil {
 		mapForAutoFill["UserName"] = userCookie.Value
@@ -177,7 +205,7 @@ func (us *UserHandler) PostLogin(w http.ResponseWriter, r *http.Request) {
 		Name:  "User",
 		Value: u.Name,
 	}
-	w.Header().Set("Authorization", "Bearer " + token.AccessToken)
+	w.Header().Set("Authorization", "Bearer "+token.AccessToken)
 	http.SetCookie(w, userGreet)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 	w.WriteHeader(http.StatusOK)
@@ -263,7 +291,7 @@ func (us UserHandler) RefreshToken(w http.ResponseWriter, r *http.Request) {
 		web.Log.Error(err)
 		return
 	}
-	us.App.TemplateInfo["Authorization"] ="Bearer " + token.AccessToken
+	us.App.TemplateInfo["Authorization"] = "Bearer " + token.AccessToken
 
 	setRefresh := &http.Cookie{
 		Name:     "Refresh",

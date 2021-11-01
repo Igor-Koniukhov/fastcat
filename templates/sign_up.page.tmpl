@@ -18,43 +18,59 @@
                             </div>
                         </div>
                     {{end}}
+
+                    {{$reg := index .Data "registration"}}
+
                     <div class="col d-flex justify-content-center">
                         <form class="row g-3 col-md-8" method="post" action="/sign-up">
                             <div class="col-md-12">
                                 <label for="user-name" class="form-label">Name</label>
+                                {{with .Form.Errors.Get "user-name"}}
+                                    <label class="text-danger">{{.}}</label>
+                                {{end}}
                                 <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control {{with .Form.Errors.Get "user-name"}}
+                                                is-invalid
+                                        {{end}}"
                                         id="user-name"
                                         name="user-name"
                                         placeholder="First name & Last name"
-                                        value="{{.StringMap.Name}}"
-                                        {{if .StringMap.UserName}} readonly{{end}}
+                                        value="{{$reg.Name}}"
+
                                 >
 
                             </div>
                             <div class="col-md-12">
                                 <label for="user-email" class="form-label">Email</label>
+                                {{with .Form.Errors.Get "user-email"}}
+                                    <label class="text-danger">{{.}}</label>
+                                {{end}}
                                 <input
                                         type="email"
-                                        class="form-control"
+                                        class="form-control {{with .Form.Errors.Get "user-email"}}
+                                                is-invalid
+                                        {{end}}"
                                         id="user-email"
                                         name="user-email"
-                                        value="{{.StringMap.Email}}"
-                                        {{if .StringMap.UserName}} readonly{{end}}
-                                >
+                                        value="{{$reg.Email}}"
+                                        >
                                 <small class="form-text"
                                        style="color: red; opacity: 0.6;">{{.StringMap.ErrorExistsUser}}</small>
                             </div>
                             <div class="col-md-12">
                                 <label for="user-tel" class="form-label">Phone</label>
+                                {{with .Form.Errors.Get "user-tel"}}
+                                    <label class="text-danger">{{.}}</label>
+                                {{end}}
                                 <input
                                         type="tel"
-                                        class="form-control"
+                                        class="form-control {{with .Form.Errors.Get "user-tel"}}
+                                                is-invalid
+                                        {{end}}"
                                         id="user-tel"
                                         name="user-tel"
-                                        value="{{.StringMap.Tel}}"
-                                        {{if .StringMap.UserName}} readonly{{end}}
+                                        value="{{$reg.Tel}}"
                                 >
                                 <small class="form-text"
                                        style="color: red; opacity: 0.6;">{{.StringMap.ErrorExistsUser}}</small>
@@ -62,13 +78,18 @@
 
                             <div class="col-md-12">
                                 <label for="password" class="form-label">Password</label>
+                                {{with .Form.Errors.Get "password"}}
+                                    <label class="text-danger">{{.}}</label>
+                                {{end}}
                                 <input
                                         type="password"
-                                        class="form-control"
+                                        class="form-control {{with .Form.Errors.Get "password"}}
+                                                is-invalid
+                                        {{end}}"
                                         id="password"
                                         name="password"
-                                        value="{{.StringMap.Password}}"
-                                        {{if .StringMap.UserName}} readonly{{end}}
+                                        value="{{$reg.Password}}"
+
                                 >
                             </div>
 

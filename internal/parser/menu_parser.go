@@ -57,14 +57,14 @@ func (r *RestMenuParser) GetListMenuItems(id int) (menu *models.Menu, err error)
 
 func (r *RestMenuParser) ParsedDataWriter() error {
 	parsedSuppliers, err := r.GetListSuppliers()
-	ch := make(chan int, 1)
-	defer close(ch)
-	r.App.ChanIdSupplier = make(chan int, len(parsedSuppliers.Suppliers))
-	defer close(r.App.ChanIdSupplier)
 	if err != nil {
 		web.Log.Fatal(err)
 		return err
 	}
+	ch := make(chan int, 1)
+	defer close(ch)
+	r.App.ChanIdSupplier = make(chan int, len(parsedSuppliers.Suppliers))
+	defer close(r.App.ChanIdSupplier)
 	suppliersInDB, _, err := repository.Repo.SupplierRepository.Create(parsedSuppliers)
 	if err != nil {
 		web.Log.Fatal(err)
