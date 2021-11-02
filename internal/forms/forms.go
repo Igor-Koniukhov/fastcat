@@ -2,10 +2,19 @@ package forms
 
 import (
 	"fmt"
+	"github.com/asaskevich/govalidator"
 	"net/http"
 	"net/url"
 	"strings"
 )
+
+type FormI interface {
+	Valid() bool
+	Required(fields ...string)
+	Has(field string, r *http.Request) bool
+	MinLength(field string, length int, r *http.Request) bool
+	IsEmail(field string)
+}
 
 // Form creates a custom form struct, embeds a url.Values object
 type Form struct {
@@ -27,6 +36,7 @@ func New(data url.Values) *Form {
 	}
 
 }
+
 // Required checks for required fields
 func (f *Form) Required(fields ...string) {
 	for _, field := range fields {
@@ -55,4 +65,12 @@ func (f *Form) MinLength(field string, length int, r *http.Request) bool {
 		return false
 	}
 	return true
+}
+
+//IsEmail checks for valid email address
+func (f *Form) IsEmail(field string) {
+	if !govalidator.IsEmail(f.Get(field)) {
+		f.Errors.Add(field, "Invalid email address")
+	}
+
 }

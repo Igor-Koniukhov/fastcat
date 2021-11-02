@@ -88,6 +88,7 @@ func (us *UserHandler) SingUp(w http.ResponseWriter, r *http.Request) {
 	form := forms.New(r.PostForm)
 	form.Required("user-name", "user-email", "user-tel", "password")
 	form.MinLength("user-name", 3, r)
+	form.IsEmail("user-email")
 
 	if !form.Valid() {
 		data := make(map[string]interface{})
