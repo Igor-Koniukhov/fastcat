@@ -1,0 +1,10 @@
+create_table("users") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("name", "string", {"default": ""})
+  t.Column("email", "string", {"default": ""})
+  t.Column("tel", "string", {"default": ""})
+  t.Column("password", "string", {"size": 60})
+  t.Column("deleted_at", "timestamp", {"null": true})
+  t.Column("created_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP"})
+  t.Column("updated_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"})
+}

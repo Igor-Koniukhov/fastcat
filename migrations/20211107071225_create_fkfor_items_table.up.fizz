@@ -1,0 +1,5 @@
+add_foreign_key("items", "supplier_id", {"suppliers":
+["id"]}, {
+    "on_delete": "cascade",
+    "on_update": "cascade",
+})

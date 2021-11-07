@@ -1,0 +1,1 @@
+drop_foreign_key("sessions", "sessions_user_id_fk")

@@ -14,3 +14,4 @@ gen
 .phpunit.result.cache
 npm-debug.log
 yarn-error.log
+database.yml

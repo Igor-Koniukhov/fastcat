@@ -1,0 +1,6 @@
+create_table("suppliers_items") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("item_id", "integer", {"default": 0})
+  t.Column("created_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP"})
+  t.Column("updated_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"})
+}

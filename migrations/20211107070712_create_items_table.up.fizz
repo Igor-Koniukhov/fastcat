@@ -1,0 +1,12 @@
+create_table("items") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("image", "string", {"default": ""})
+  t.Column("ingredients", "json")
+  t.Column("name", "string", {"default": ""})
+  t.Column("price", "integer")
+  t.Column("type", "string", {"default": ""})
+  t.Column("supplier_id", "integer")
+  t.Column("deleted_at", "timestamp", {"null": true})
+  t.Column("created_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP"})
+  t.Column("updated_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"})
+}

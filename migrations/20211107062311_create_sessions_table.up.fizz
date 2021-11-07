@@ -1,0 +1,8 @@
+create_table("sessions") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("users_id", "integer", {"default": 0})
+  t.Column("session", "string", {"size": 300, "default": ""})
+  t.Column("session_info", "string", {"default": ""})
+  t.Column("created_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP"})
+  t.Column("updated_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"})
+}

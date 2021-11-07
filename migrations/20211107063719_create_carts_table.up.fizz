@@ -1,0 +1,11 @@
+create_table("carts") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("user_id", "integer", {"default": 0})
+  t.Column("user", "json", {})
+  t.Column("address_delivery", "string", {"default": ""})
+  t.Column("cart_body", "json", {})
+  t.Column("amount", "string", {"default": ""})
+  t.Column("status", "string", {"default": "accepted"})
+  t.Column("created_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP"})
+  t.Column("updated_at", "timestamp", {"default_raw": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"})
+}

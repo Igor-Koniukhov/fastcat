@@ -1,0 +1,1 @@
+drop_foreign_key("items", "items_suppliers_id_fk")

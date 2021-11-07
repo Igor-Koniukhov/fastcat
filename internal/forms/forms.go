@@ -34,7 +34,6 @@ func New(data url.Values) *Form {
 		data,
 		errors(map[string][]string{}),
 	}
-
 }
 
 // Required checks for required fields
